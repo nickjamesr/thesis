@@ -1,0 +1,13 @@
+
+1) Gather together all data.
+    * Bulk molecule simulation
+    * Bulk PT symmetric simulation (Yogesh)
+    * Verification (Bayesian updating)
+    * Hamiltomo
+
+2) Gather scripts to produce simulations.
+    * Decoupling
+    * Dialing (simulations of experimental errors)
+    * Verification (high photon numbers)
+
+3) Write/collate scripts to analyse data.
