@@ -9,8 +9,6 @@
 // Output file:
 //   * ../data/updating.dat
 
-#include "heads/update.h"
-
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -29,7 +27,6 @@ int main(int argc, char** argv){
     getData("../data/3photon_timetagged.dat");
   matrix<std::complex<double> > u=fromFile("../data/unitary.dat",
     nmodes);
-  u.print();
   std::ofstream fout("../data/updating.dat");
   estimator p_uniform(u, nphotons, pdf::RStarUniform, normalise::trivial),
     p_quantum(u, nphotons, pdf::RStarQuantum, normalise::trivial);
