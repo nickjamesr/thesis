@@ -1,0 +1,13 @@
+Set the following parameters:
+at0: 26.00
+at1: 50.33
+aq0: 20.30
+aq1: 158.00
+aq2: 160.50
+Setting the following phases:
+ R3: -69.22
+ R2: 93.06
+Set the following amplitudes:
+at0: 28.35
+aq1: 146.52
+aq2: 179.56

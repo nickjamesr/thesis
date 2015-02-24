@@ -1,0 +1,10 @@
+Set the following parameters:
+at0: 26.00
+at1: 44.62
+aq0: 30.86
+aq1: 158.00
+aq2: 160.50
+Set the following amplitudes:
+at0: 29.25
+aq1: 145.84
+aq2: 147.75
