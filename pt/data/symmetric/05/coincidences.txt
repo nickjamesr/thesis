@@ -1,4 +1,4 @@
-# Coincidence data (corrected for efficiencies) for data in 'data/symmetric/05'
+# Coincidence data (corrected for efficiencies) for data in '../data/symmetric/05'
 # Order: Quantum, errors, Classical, errors
 0.2231 0.0073 0.0076 0.0086 0.0090 0.2450 
 0.0030 0.0005 0.0005 0.0006 0.0006 0.0028 

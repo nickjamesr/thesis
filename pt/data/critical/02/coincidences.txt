@@ -1,4 +1,4 @@
-# Coincidence data (corrected for efficiencies) for data in 'data/critical/02'
+# Coincidence data (corrected for efficiencies) for data in '../data/critical/02'
 # Order: Quantum, errors, Classical, errors
 0.1659 0.0831 0.0019 0.5753 0.0262 0.0010 
 0.0030 0.0019 0.0003 0.0057 0.0012 0.0002 

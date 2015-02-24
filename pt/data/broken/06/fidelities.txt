@@ -1,3 +1,3 @@
-#Fidelities for data in 'data/broken/06'
+#Fidelities for data in '../data/broken/06'
 # trace (adjusted) quantum classical quart trit
 0.9491 0.9760 0.9518 0.9344 0.9767 0.9014

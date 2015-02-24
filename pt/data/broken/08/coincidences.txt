@@ -1,4 +1,4 @@
-# Coincidence data (corrected for efficiencies) for data in 'data/broken/08'
+# Coincidence data (corrected for efficiencies) for data in '../data/broken/08'
 # Order: Quantum, errors, Classical, errors
 0.1626 0.0242 0.0123 0.0691 0.0364 0.2001 
 0.0031 0.0013 0.0009 0.0024 0.0018 0.0045 
