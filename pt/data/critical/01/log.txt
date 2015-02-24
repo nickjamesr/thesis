@@ -1,0 +1,5 @@
+Set at1 to 71.00
+Set the following amplitudes:
+at0: 5.56
+aq1: 175.26
+aq2: 180.78

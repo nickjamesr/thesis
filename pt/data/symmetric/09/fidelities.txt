@@ -1,0 +1,3 @@
+#Fidelities for data in 'data/symmetric/09'
+# trace (adjusted) quantum classical quart trit
+0.7367 0.9327 0.9199 0.9217 0.9375 0.9219

@@ -1,0 +1,3 @@
+#Fidelities for data in 'data/broken/05'
+# trace (adjusted) quantum classical quart trit
+0.9775 0.9790 0.9355 0.9432 0.9836 0.9004

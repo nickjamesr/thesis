@@ -1,0 +1,6 @@
+# Coincidence data (corrected for efficiencies) for data in 'data/broken/06'
+# Order: Quantum, errors, Classical, errors
+0.1649 0.0217 0.0103 0.0905 0.0431 0.1768 
+0.0303 0.0124 0.0084 0.0542 0.0368 0.0838 
+0.0890 0.0841 0.0376 0.3006 0.1479 0.0945 
+0.0178 0.0195 0.0128 0.0791 0.0545 0.0490 

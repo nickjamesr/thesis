@@ -1,8 +1,6 @@
 
 1) Gather together all data.
-    * Bulk molecule simulation
     * Bulk PT symmetric simulation (Yogesh)
-    * Verification (Bayesian updating)
     * Hamiltomo
 
 2) Gather scripts to produce simulations.

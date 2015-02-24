@@ -1,0 +1,8 @@
+Set at1 to 70.83
+Setting the following phases:
+ R3: -3.27
+ R2: 123.10
+Set the following amplitudes:
+at0: 48.28
+aq1: 153.01
+aq2: 165.31

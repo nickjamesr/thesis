@@ -1,0 +1,6 @@
+# Coincidence data (corrected for efficiencies) for data in 'data/symmetric/06'
+# Order: Quantum, errors, Classical, errors
+0.2070 0.0178 0.0353 0.0135 0.0273 0.2011 
+0.0029 0.0008 0.0011 0.0008 0.0011 0.0027 
+0.1094 0.1054 0.2097 0.0765 0.1445 0.1057 
+0.0026 0.0024 0.0032 0.0022 0.0030 0.0024 
