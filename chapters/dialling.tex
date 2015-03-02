@@ -1,12 +1,31 @@
 \chapter{Direct Dialling}
 \label{ch:DirectDialling}
-
 \section{Introduction}
-Early theoretical work that I did. Motivated by the question: if we want a Haar
-unitary from a Reck scheme\cite{reck94}, can we just set the parameters
-(reflectivities and phase shifts) randomly and independenly? If so, what
-distributions? Answer: yes and a load of beta distributions, depending on where
-the beamsplitter is.
+This chapter is concerned with universal circuits for linear optics, of which
+the bulk optics circuit described in chapter~\ref{ch:BulkCircuit} is a small
+example.
+The motivating question of the chapter is, if one wants to use a Reck
+scheme\cite{reck94} to dial a Haar random unitary matrix, how should the
+parameters be chosen? A priori, it is not clear that the reflectivities and
+phase shifts in the Reck scheme will follow simple distributions, nor that they
+can be chosen independently of each other.
+
+I will begin by reviewing the Reck scheme, and how it may be implemented in
+integrated optics. I then return to the question of dialling a Haar unitary on
+this device, by way of a coordinate transformation to the physical parameters on
+the device.
+
+\section{A universal circuit for linear optics}
+Any lossless\footnote{In practical devices, this approximation is very good.
+What is the loss in dB/cm for our Reck scheme?} linear optical device can be
+described by a unitary matrix operating on the optical modes. A device with
+\(m\) input and \(m\) output modes will be described by an \(m \by m\) unitary.
+In~\cite{reck94}, it is shown that the converse is true: any unitary matrix can
+be realised by a linear optical circuit. A constructive proof of this is
+presented, and a candidate `universal circuit' is proposed. Universal, in this
+context refers to a linear optical circuit with adjustable components
+(beamsplitters with variable reflectivity and variable phase shifts), which can
+be configured into any unitary.
 
 \section{Arithmetic of probability density functions}
 I spent a lot of time considering these. I think I can present this as
