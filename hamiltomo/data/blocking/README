@@ -1,0 +1,16 @@
+Power meter measurements for 774,776,778nm
+
+Each file is numbered (e.g. 6_11.csv) with the range of outputs that had a
+detector.
+
+Each line refers to a single input mode
+
+There are 3 lists (comma separated) on each line, which are the three
+wavelengths in order 774, 776, 778
+
+Within each list, the elements correspond to an output
+
+e.g. in 6_11.csv:
+
+line 1: input in mode 1 (indexing from 1)
+774:{P6,P7,P8,P9,P10,P11}, 776:{P6,P7,P8,P9,P10,P11}, 778:{P6,P7,P8,P9,P10,P11}
