@@ -1,0 +1,25 @@
+\chapter{Boson simulations (it's just diagonalisation)}
+\label{ch:Simulations}
+
+\section{Introduction}
+This formed the bulk of the experimental work in my PhD. Roughly speaking, we
+take a hamiltonian, \(\mat{H}\) and exponentiate it to get a load of unitaries
+(\(\mat{U}=e^{-i\mat{H}t}\)) at a series of timesteps. Using a decomposition
+similar to the one in \cite{reck94} we can implement these on a single
+circuit.
+
+Two physical implementations: bulk optics and integrated optics. I was
+responsible for the calibration of the bulk circuit (crapusoids), writing the
+control code, and taking a large portion of the data. I trained DTC student
+Chris Sparrow in the operation of the experiment.
+
+\section{Molecular vibrations}
+Simulating phonons in the harmonic limit corresponds to vibrations of molecules.
+
+\section{PT-symmetric systems}
+Taking a non-Hermitian hamiltonian, \(\mat{G}\) corresponds to an open system
+with loss and/or gain. A system with balanced but spatially separated loss and
+gain is \pt-symmetric. Exponentiating this hamiltonian gives us a non-unitary
+time-evolution operator, \(\mat{V}\). Using unitary dilation, we implement this
+as a sub-matrix of a unitary operator. Physically, this corresponds to coupling
+the system to an environment with an equal number of spatial modes.
