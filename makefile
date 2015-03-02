@@ -1,7 +1,11 @@
 chapters=$(addprefix chapters/,calibration.tex dialling.tex simulations.tex\
  decoupling.tex hamiltomo.tex verification.tex)
+figures=scatterbox/calibration/figures/circuit.pdf\
+ scatterbox/calibration/figures/schematic.pdf\
+ scatterbox/calibration/figures/interferometerAB.pdf\
+ scatterbox/calibration/figures/interferometerCD.pdf
 
-thesis.pdf : thesis.tex thesis.sty $(chapters) bib/thesis.bib
+thesis.pdf : $(figures) thesis.tex thesis.sty $(chapters) bib/thesis.bib
 	pdflatex thesis
 	bibtex thesis
 	pdflatex thesis
@@ -17,8 +21,8 @@ thesis.pdf : thesis.tex thesis.sty $(chapters) bib/thesis.bib
 	pdflatex -jobname=$* "\includeonly{chapters/$*} \input{thesis.tex}"
 	@rm *.aux *.bbl *.blg *.log *.toc chapters/*.aux
 
-upload : thesis.pdf
-	@cp thesis.pdf /var/www/html/physics/thesis
+scatterbox/calibration/figures/%.pdf : scatterbox/calibration/figures/%.svg scatterbox/calibration/figures/%.pyx
+	cd scatterbox/calibration/figures && $(MAKE) $*.pdf
 
 clean :
 	@rm *.pdf
