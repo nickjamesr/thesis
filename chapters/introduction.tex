@@ -1,0 +1,46 @@
+\chapter{Introduction}
+\label{ch:Introduction}
+The race for the first quantum computer is on. Academic researchers and private
+enterprises around the world are pursuing this goal, on a number of different
+physical platforms. Here, I will describe my efforts towards achieving quantum
+computation in linear optics.
+
+Of course, building a full-scale, universal quantum computer is going to be
+difficult, and beyond the scope of any single PhD student's research. At the
+other end of the spectrum, some quantum technologies have already found
+commercial viability, also putting them outside of the realms of academic
+research. I will focus on the middle ground between these two extremes: quantum
+computers that fall short of being universal for BQP, yet may be able to
+outperform a classical computer at certain, specific tasks in the near future.
+
+One such device would be the Boson Sampler. Proposed by Aaronson and Arkhipov
+\todo{citation}, this is a device somewhat native to linear optics. While it is
+a good candidate for beating a classical computer, its uses are somewhat limited
+at the moment. I will discuss two results relevant to building a Boson Sampler:
+in chapter~\ref{ch:DirectDialling} I present a theoretical result concerning
+Haar random unitary matrices; chapter~\ref{ch:QCVV} presents a demonstration of
+practical techniques to verify the output of such a device. Experimental results
+presented in chapter~\ref{ch:QCVV} could be said to be implementing
+\bosonsampling{ }on a small scale.
+
+The second class of quantum computer that I shall discuss is the quantum
+simulator. The purpose of quantum simulation is to use a device that is well
+understood and controlled, in order to simulate the behaviour of a quantum
+system that is less accessible. In chapter~\ref{ch:Simulations} I present
+experimental results of quantum simulations using linear optics. Two systems are
+simulated: the (quantized) vibrations of molecules, and more abstract systems of
+bosons obeying \pt-symmetric (but non-Hermitian) dynamics.
+
+Once these devices begin to become larger, it is essential to have procedures to
+test whether they are working correctly. Since the original point is to
+outperform a classical computer, they cannot simply be checked by performing the
+same calculations classically! Chapter~\ref{ch:QCVV} presents methods for the
+calibration, validation and verification of quantum devices. The calibration
+procedure is described in detail for a circuit in bulk optics, which illustrates
+many of the complicating features present in any large optical device. The
+verification procedure is used to check the coherence \todo{how do I say this? I
+mean indistinguishability of photons} of up to 5 photons in a quantum walk.
+
+Finally, chapter~\ref{ch:Hamiltomo} describes a tomography protocol that can be
+used in certain circumstances to arrive at a complete description of the device
+in question.
