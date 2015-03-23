@@ -1,21 +1,22 @@
 \chapter{Direct Dialling}
 \label{ch:DirectDialling}
-\section{Introduction}
-This chapter is concerned with universal circuits for linear optics, of which
-the bulk optics circuit described in chapter~\ref{ch:QCVV} is a small
-example.
-The motivating question of the chapter is, if one wants to use a Reck
-scheme\cite{reck94} to dial a Haar random unitary matrix, how should the
-parameters be chosen? A priori, it is not clear that the reflectivities and
-phase shifts in the Reck scheme will follow simple distributions, nor that they
-can be chosen independently of each other.
 
-I will begin by reviewing the Reck scheme, and how it may be implemented in
-integrated optics. I then return to the question of dialling a Haar unitary on
-this device, by way of a coordinate transformation to the physical parameters on
-the device.
+\section{Introduction}
+\label{sec:DDIntro}
+This chapter serves as a good introduction to some of the important concepts
+that will crop up later on. I will begin with an introduction to the Reck
+scheme \cite{reck94}, an architecture for realising any unitary matrix in linear
+optics; then proceed to explain \bosonsampling \cite{bosonsampling}, a task that
+may enable a demonstration of computational superiority of linear optics over
+classical computers. The main results of the chapter concerns the important task
+of dialling Haar random unitary matrices into a linear-optical Reck scheme. This
+is achieved by way of a coordinate transformation parameterising unitaries in
+terms of physical parameters. The final section is a further application of this
+parameterisation to the task of inferring the unitary description of a linear
+optical circuit.
 
 \section{A universal circuit for linear optics}
+\label{sec:ReckScheme}
 Any lossless\footnote{In practical devices, this approximation is very good.
 What is the loss in dB/cm for our Reck scheme?} linear optical device can be
 described by a unitary matrix operating on the optical modes. A device with
@@ -27,22 +28,48 @@ context refers to a linear optical circuit with adjustable components
 (beamsplitters with variable reflectivity and variable phase shifts), which can
 be configured into any unitary.
 
-\section{Arithmetic of probability density functions}
-I spent a lot of time considering these. I think I can present this as
-preliminary material.
+\begin{figure}
+  \begin{subfigure}{\textwidth}
+    \centering
+    \includegraphics{figures/reck_original}
+    \caption{The original Reck scheme, implemented in bulk optics. As with all
+    circuits in bulk optics, achieving phase stability in this system would be
+    very difficult.}
+    \label{fig:ReckOriginal}
+  \end{subfigure} \\
+  \vspace{1cm} \\
+  \begin{subfigure}{\textwidth}
+    \centering
+    \includegraphics{figures/reck_general}
+    \caption{A more modern take on the Reck scheme. Here we envisage using
+    Mach-Zehnder interferometers (MZIs) on an integrated platform, thus solving
+    the phase stability problem.}
+    \label{fig:ReckGeneral}
+  \end{subfigure}
+  \caption[The Reck scheme, in both it's original conception and an integrated
+  optics version]{The Reck scheme, in both it's original conception and an
+  integrated
+  optics version. In both systems, light enters from the left and the device
+  performs a unitary transformation on the modes. Variable-reflectivity
+  beamsplitters and variable phase shifts are needed in order to make the
+  circuit's operation reconfigurable to any unitary transformation. In the
+  bulk scheme, I have omitted any specifics, but in the integrated version these
+  could be implemented with directional couplers and thermal or electro-optic
+  phase shifts \todo{citation needed}.}
+  \label{fig:ReckScheme}
+\end{figure}
 
-\section{The Reck scheme}
-More background. Essential for several sections/chapters.
+\section{Boson Sampling}
+\label{sec:BosenSampling}
+Review \bosonsampling.
 
-\section{Results: the distributions}
-Explicitly lay out what probability distributions are required.
+\section{Dialling Haar unitaries}
+\label{sec:Parameterization}
+The results and proof.
 
-\section{Proof}
-In terms of a coordinate transformation
-
-\section{Applications}
-Most obviously, generating Haar unitaries (or truncations thereof) directly in
-experimental parameters
-
-Further work: reconstructing a unitary using Bayesian inference on this
-parameterisation.
+\section{Unitary Inference}
+\label{sec:UnitaryInference}
+One of the most important tasks in practical quantum computing is that of
+tomography: what does the device in the lab actually do? Although general
+methods exist \todo{citation needed}, they are intractable, requiring a number
+of measurements that scales exponentially in system size.

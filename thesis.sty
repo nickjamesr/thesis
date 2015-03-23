@@ -1,8 +1,20 @@
 \ProvidesPackage{thesis}
 
+\newenvironment{acknowledgements}
+  {\renewcommand\abstractname{Acknowledgements}\begin{abstract}}
+  {\end{abstract}}
+\newenvironment{declaration}
+  {\renewcommand\abstractname{Declaration}\begin{abstract}}
+  {\end{abstract}}
+
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{subcaption}
+\usepackage{setspace}
+\usepackage{caption}
+\usepackage{tocbibind}
+
+\captionsetup[figure]{font={stretch=1.0}}
 
 \newcommand{\bosonsampling}{\textsc{BosonSampling}}
 \newcommand{\rstar}{R^{*}}

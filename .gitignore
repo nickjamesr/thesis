@@ -2,6 +2,10 @@
 *.bbl
 *.blg
 *.log
+*.lof
 *.toc
 *.pdf
 *.swp
+
+reference
+reference/*
