@@ -9,7 +9,6 @@ thesis.pdf : $(figures) thesis.tex title.tex thesis.sty $(chapters)\
 	bibtex thesis
 	pdflatex thesis
 	pdflatex thesis
-	@rm thesis.aux thesis.bbl thesis.blg thesis.log thesis.toc chapters/*.aux
 
 %.pdf : thesis.tex thesis.sty chapters/%.tex bib/thesis.bib
 	pdflatex thesis
@@ -18,10 +17,9 @@ thesis.pdf : $(figures) thesis.tex title.tex thesis.sty $(chapters)\
 	pdflatex -jobname=$* "\includeonly{chapters/$*} \input{thesis.tex}"
 	pdflatex -jobname=$* "\includeonly{chapters/$*} \input{thesis.tex}"
 	pdflatex -jobname=$* "\includeonly{chapters/$*} \input{thesis.tex}"
-	@rm *.aux *.bbl *.blg *.log *.toc chapters/*.aux
 
 figures/%.pdf : figures/%.svg figures/%.pyx
 	cd figures && $(MAKE) $*.pdf
 
 clean :
-	@rm *.pdf
+	@rm *.pdf *.aux chapters/*.aux
