@@ -6,14 +6,14 @@
 This chapter serves as a good introduction to some of the important concepts
 that will crop up later on. I will begin with an introduction to the Reck
 scheme \cite{reck94}, an architecture for realising any unitary matrix in linear
-optics; then proceed to explain \bosonsampling \cite{bosonsampling}, a task that
-may enable a demonstration of computational superiority of linear optics over
-classical computers. The main results of the chapter concerns the important task
-of dialling Haar random unitary matrices into a linear-optical Reck scheme. This
-is achieved by way of a coordinate transformation parameterising unitaries in
-terms of physical parameters. The final section is a further application of this
-parameterisation to the task of inferring the unitary description of a linear
-optical circuit.
+optics; then proceed to explain \bosonsampling{} \cite{bosonsampling}, a task
+that may enable a demonstration of computational superiority of linear optics
+over classical computers. The main results of the chapter concerns the important
+task of dialling Haar random unitary matrices into a linear-optical Reck scheme.
+This is achieved by way of a coordinate transformation parameterising unitaries
+in terms of physical parameters. The final section is a further application of
+this parameterisation to the task of inferring the unitary description of a
+linear optical circuit.
 
 \section{A universal circuit for linear optics}
 \label{sec:ReckScheme}
@@ -42,6 +42,7 @@ be configured into any unitary.
     \centering
     \includegraphics{figures/reck_general}
     \caption{A more modern take on the Reck scheme. Here we envisage using
+    a triangular array of
     Mach-Zehnder interferometers (MZIs) on an integrated platform, thus solving
     the phase stability problem.}
     \label{fig:ReckGeneral}
@@ -61,11 +62,27 @@ be configured into any unitary.
 
 \section{Boson Sampling}
 \label{sec:BosenSampling}
-Review \bosonsampling.
+This section presents a review of \bosonsampling{}: a sampling algorithm
+presented by Aaronson and Arkhipov in~\cite{bosonsampling}. None of development
+or complexity analysis of this algorithm is my own work, but it provides useful
+context for the material later in this chapter.
 
 \section{Dialling Haar unitaries}
 \label{sec:Parameterization}
-The results and proof.
+Now for the main result of this chapter: how do we dial a Haar random unitary in
+a linear optical device. Given a unitary matrix, there is a straightforward
+algorithm \todo{is this presented in Reck?} to extract the appropriate circuit
+parameters, and this method applies as well to random matrices as any others.
+Here I describe a method which bypasses the generation of the matrix, instead
+operating directly on the circuit parameters. I derive probability density
+functions for each component in the Reck scheme and present a proof that
+choosing parameters independently from these pdfs will result in Haar random
+unitary matrices.
+
+At the heart of the proof is a coordinate transformation between the Cartesian
+basis (i.e. the numbers that we write down in a matrix) and the physical basis
+(the values of beamsplitter reflectivities and phase shifts in the physical
+realisation of the unitary.
 
 \section{Unitary Inference}
 \label{sec:UnitaryInference}

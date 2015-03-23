@@ -1,5 +1,5 @@
 chapters=$(addprefix chapters/,qcvv.tex dialling.tex simulations.tex\
- decoupling.tex hamiltomo.tex introduction.tex)
+ hamiltomo.tex introduction.tex)
 figures=$(addprefix figures/, circuit.pdf schematic.pdf interferometerAB.pdf\
  interferometerCD.pdf reck_original.pdf reck_general.pdf)
 

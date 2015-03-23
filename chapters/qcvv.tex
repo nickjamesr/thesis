@@ -10,23 +10,6 @@ circuit on four modes. The architecture was motivated by (but not identical to)
 the scheme described by Reck et al in \cite{reck94}. An application of this
 circuit to quantum simulation is described in chapter~\ref{ch:Simulations}.
 
-\begin{figure}
-  \centering
-  \includegraphics{figures/circuit.pdf}
-  \caption[A schematic of the bulk optics circuit used for simulations.]
-  {A schematic of the bulk optics circuit. Two photons are injected at
-  the left of the circuit in orthogonal polarisations (\(\ket{H}\) indicates
-  horizontal and \(\ket{V}\) indicates vertical), using an in-fibre polarising
-  beamsplitter (PBS) to combine the two photons into a single path. The circuit
-  operates in a combined path/polarisation encoding, where polarising beam
-  displacers (PBD) are used to convert between the two. Operations are performed
-  with fixed quarter waveplates (QWP) and polarisation flips (X), and variable
-  angle half waveplates (HWP). After the operations are complete,
-  polarisation-sensitive detection is performed using further PBS elements and
-  single photon avalanche diodes. We label the detectors A through D.}
-  \label{fig:circuit}
-\end{figure}
-
 \section{Calibration (the crapusoids are real)}
 \label{sec:Calibration}
 \begin{figure}
@@ -55,10 +38,12 @@ circuit to quantum simulation is described in chapter~\ref{ch:Simulations}.
 
 \section{Benchmarking (arguably the first boson sampler)}
 \label{sec:Benchmarking}
+Note here that this kind of randomized benchmarking is not always particularly
+useful.
 
 \section{Verification}
 \label{sec:Verification}
-Work relating to verification in quantum walks and \bosonsampling. I don't think
-it's unfair to say that I had the original motivation to implement the
+Work relating to verification in quantum walks and \bosonsampling{}. I don't
+think it's unfair to say that I had the original motivation to implement the
 \(\rstar\) protocol described in \cite{aaronson13}. I did the Bayesian model
-comparison between \bosonsampling and uniform distributions.
+comparison between \bosonsampling{} and uniform distributions.
