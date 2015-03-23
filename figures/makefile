@@ -16,13 +16,13 @@ circuit.png : circuit.svg
 	$(inkscape) -d 360 -e circuit.png circuit.svg
 
 interferometerAB.png : interferometerAB.svg
-	$(inkscape) -d 90 -e interferometerAB.png interferometerAB.svg
+	$(inkscape) -d 180 -e interferometerAB.png interferometerAB.svg
 
 interferometerAB.pdf : interferometerAB.png interferometerAB.pyx
 	pyxplot interferometerAB.pyx
 
 interferometerCD.png : interferometerCD.svg
-	$(inkscape) -d 90 -e interferometerCD.png interferometerCD.svg
+	$(inkscape) -d 180 -e interferometerCD.png interferometerCD.svg
 
 interferometerCD.pdf : interferometerCD.png interferometerCD.pyx
 	pyxplot interferometerCD.pyx
