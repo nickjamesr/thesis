@@ -4,10 +4,16 @@ else
 inkscape=inkscape
 endif
 
-all = circuit.pdf interferometerAB.pdf interferometerCD.pdf schematic.pdf \
-reck_original.pdf reck_general.pdf
+all = cascade.pdf circuit.pdf interferometerAB.pdf interferometerCD.pdf \
+schematic.pdf reck_original.pdf reck_general.pdf reck_schematic.pdf
 
 default : $(all)
+
+cascade.eps : cascade.svg
+	$(inkscape) -E cascade.eps cascade.svg
+
+cascade.pdf : cascade.eps cascade.pyx
+	pyxplot cascade.pyx
 
 circuit.pdf : circuit.png circuit.pyx
 	pyxplot circuit.pyx
@@ -27,17 +33,23 @@ interferometerCD.png : interferometerCD.svg
 interferometerCD.pdf : interferometerCD.png interferometerCD.pyx
 	pyxplot interferometerCD.pyx
 
+reck_general.eps : reck_general.svg
+	$(inkscape) -E reck_general.eps reck_general.svg
+
+reck_general.pdf : reck_general.eps reck_general.pyx
+	pyxplot reck_general.pyx
+
 reck_original.eps : reck_original.svg
 	$(inkscape) -E reck_original.eps reck_original.svg
 
 reck_original.pdf : reck_original.eps reck_original.pyx
 	pyxplot reck_original.pyx
 
-reck_general.eps : reck_general.svg
-	$(inkscape) -E reck_general.eps reck_general.svg
+reck_schematic.eps : reck_schematic.svg
+	$(inkscape) -E reck_schematic.eps reck_schematic.svg
 
-reck_general.pdf : reck_general.eps reck_general.pyx
-	pyxplot reck_general.pyx
+reck_schematic.pdf : reck_schematic.eps reck_schematic.pyx
+	pyxplot reck_schematic.pyx
 
 schematic.png : schematic.svg
 	$(inkscape) -d 180 -e schematic.png schematic.svg

@@ -18,7 +18,7 @@ linear optical circuit.
 \section{A universal circuit for linear optics}
 \label{sec:ReckScheme}
 Any lossless\footnote{In practical devices, this approximation is very good.
-What is the loss in dB/cm for our Reck scheme?} linear optical device can be
+\todo{1dB/cm in silica devices?}} linear optical device can be
 described by a unitary matrix operating on the optical modes. A device with
 \(m\) input and \(m\) output modes will be described by an \(m \by m\) unitary.
 In~\cite{reck94}, it is shown that the converse is true: any unitary matrix can
@@ -47,8 +47,8 @@ be configured into any unitary.
     the phase stability problem.}
     \label{fig:ReckGeneral}
   \end{subfigure}
-  \caption[The Reck scheme, in both it's original conception and an integrated
-  optics version]{The Reck scheme, in both it's original conception and an
+  \caption[The Reck scheme, in both its original conception and an integrated
+  optics version]{The Reck scheme, in both its original conception and an
   integrated
   optics version. In both systems, light enters from the left and the device
   performs a unitary transformation on the modes. Variable-reflectivity
@@ -78,6 +78,25 @@ operating directly on the circuit parameters. I derive probability density
 functions for each component in the Reck scheme and present a proof that
 choosing parameters independently from these pdfs will result in Haar random
 unitary matrices.
+
+\begin{figure}
+  \begin{subfigure}{0.43\textwidth}
+    \centering
+    \includegraphics{figures/reck_schematic}
+    \caption{}
+    \label{fig:ReckSchematic}
+  \end{subfigure}
+  \hspace{0.04\textwidth}
+  \begin{subfigure}{0.53\textwidth}
+    \centering
+    \includegraphics{figures/cascade}
+    \caption{}
+    \label{fig:Cascade}
+  \end{subfigure}
+  \caption[The Reck scheme in terms of successive operations on vectors]
+  {The Reck scheme in terms of successive operations on vectors}
+  \label{fig:ReckCascade}
+\end{figure}
 
 At the heart of the proof is a coordinate transformation between the Cartesian
 basis (i.e. the numbers that we write down in a matrix) and the physical basis

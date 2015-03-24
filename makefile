@@ -1,7 +1,8 @@
-chapters=$(addprefix chapters/,qcvv.tex dialling.tex simulations.tex\
+chapters=$(addprefix chapters/,qcv.tex dialling.tex simulations.tex\
  hamiltomo.tex introduction.tex)
-figures=$(addprefix figures/, circuit.pdf schematic.pdf interferometerAB.pdf\
- interferometerCD.pdf reck_original.pdf reck_general.pdf)
+figures=$(addprefix figures/, cascade.pdf circuit.pdf interferometerAB.pdf\
+ interferometerCD.pdf reck_original.pdf reck_general.pdf reck_schematic.pdf\
+ schematic.pdf)
 
 thesis.pdf : $(figures) thesis.tex title.tex thesis.sty $(chapters)\
 		bib/thesis.bib
