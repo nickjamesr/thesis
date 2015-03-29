@@ -27,7 +27,7 @@
   \includegraphics{figures/example}
   \caption[A $6 \by 6$ unitary, expressed in linear optics]
     {(a) A \(6 \by 6\) unitary, expressed in linear optics using a scheme
-    similar to the one in \cite{re-prl-73-58}. (b) The \pdf{}s for
+    similar to the one in \cite{reck}. (b) The \pdf{}s for
     beamsplitter reflectivities required to achieve Haar random unitaries.
     The reflectivities of beamsplitters on the
     bottom row can be chosen uniformly from the interval \(\left[ 0,1 \right)\),
@@ -45,27 +45,27 @@
   \label{fig:example}
 \end{figure*}
 
-The development of the \bosonsampling{} problem \cite{aa-conf-11-333} has
+The development of the \bosonsampling{} problem \cite{bosonsampling} has
 motivated fresh interest in studying \emph{random} unitaries that describe the
 optical circuits acting on multiphoton states. Rapid developments in the field
 of integrated optics with reconfigurable components facilitates the construction
 of large-scale optical circuits capable of actively realising any unitary
 operator. Combined with on-chip sources \cite{si-nphoton-8-104}
 and detectors \cite{re-srep-3, pe-ncomm-3-1325}, the scale of experimental
-implementations of \bosonsampling{} \cite{cr-nat-7-545, br-sci-339-794,
-sp-sci-339-798, ti-nphoton-7-540} is likely to increase.
+implementations of \bosonsampling{} \cite{bs-rome, bs-brisbane,
+bs-oxford, bs-vienna} is likely to increase.
 
 In linear optics, any unitary operator can be implemented as an array of
 beamsplitters and phase shifters as shown in figure~\ref{fig:reck}. A similar
 mathematical decomposition has been known for some time in the work of Hurwitz
 \cite{hurwitz}, with the link to experimental components made more recently by
-Reck et al. \cite{re-prl-73-58}. Here we present a simple procedure for choosing
+Reck et al. \cite{reck}. Here we present a simple procedure for choosing
 a Haar random unitary on an optical circuit by choosing values of the physical
 parameters independently from simple distributions. This procedure is useful in
 applications such as \bosonsampling{} where we do not need to know the exact
 unitary description of the circuit being implemented, but need a guarantee that
 it is drawn from the correct distribution. While similar parameterisations exist
-in the mathematical literature \cite{sp-jmp-53-013501, zy-jpa-27-4235}, the
+in the mathematical literature \cite{spengler2012, zy-jpa-27-4235}, the
 relevance to linear optics is not widely appreciated. Further, we extend the
 result to systems of qubits, by deriving a mapping between a linear-optical
 circuit on \(m=2^{n}\) modes and a circuit operating on \(n\) qubits.
@@ -75,7 +75,7 @@ uniform distribution in that it should be unbiased. The probability of drawing
 a particular unitary matrix from some region in the space of unitaries should
 be in direct proportion to the volume of the region as defined by the Haar
 measure, which is the unique translation-invariant measure on the space of
-unitaries \cite{re-phd}. As argued in \cite{re-phd}, if \(m\) vectors \(\left\{
+unitaries. As argued in \cite{reffy}, if \(m\) vectors \(\left\{
 v_{i} \right\} = \left\{ v_{1}, v_{2}, \cdots, v_{m} \right\}\) are successively
 drawn from the unbiased distribution of unit vectors in the
 \(\left(m-i\right)\)-dimensional subspace orthogonal to all previous vectors,
@@ -298,7 +298,7 @@ compact and non-redundant, whereas the equivalent in the Cartesian basis is a
 lot more complicated. While the mathematics of this process has been known
 for some time, the link to linear-optical components has not previously been
 made clear, and the proof presented here in terms of a change of basis is much
-simpler than that in \cite{sp-jpa-43-385306}. The formula in its general form
+simpler than that in \cite{spengler2010}. The formula in its general form
 is applicable to \bosonsampling{}, where Haar unitaries are required, and is
 extensible to systems of qubits so may find additional applications outside of
 linear optics.
@@ -390,51 +390,5 @@ down to a global phase) by the matrix
 \end{equation}
 The appropriate transformation between reflectivity and internal phase is now
 \(r \rightarrow \sin \of{^{\xi}/_{2}} \), resulting in different \pdf{}s, which
-are shown in figure~\ref{fig:example}d
-
-Recall that we have a lower Hessenberg matrix, which we are converting to lower
-triagular with column operations:
-\begin{equation}
-  \vec{c}_{0}^{\left(k\right)} = \vec{c}_{0}^{\left(k-1\right)} - \vec{c}_{k}
-  \frac{\mat{J}_{k-1,0}^{\left(k-1\right)}}{\mat{J}_{k-1,k}}
-\end{equation}
-This operation is designed to set \(\mat{J}_{k-1,0}^{k}=0\), by subtracting
-column \(\vec{c}_{k}\) multiplied by an appropriate scalar. The effect on all
-the other elements of \(\vec{c}_{0}\) is to remove the dependence on \(r_{k}\),
-which we can prove inductively.
-
-Suppose that after \(k\) such operations, the upper \(k\) elements of
-\(\vec{c}_{0}\) have been set to zero and the remaining elements have no
-dependence on \(r_{l}\) for \(0 \leq l \leq k\). We can express the elements of
-\(\vec{c}_{0}^{\left(k\right)}\) as:
-\begin{equation}
-  \label{eq:koperations}
-  \mat{J}_{i,0}^{\left(k\right)} = \left\{ \begin{array}{lcl}
-    r_{i+1} \prod_{l=k+1}^{i} \left( 1-r_{l} \right) & , & i \geq k \\
-    0 & , & i < k
-  \end{array} \right.
-\end{equation}
-The base case is \(k=0\), where the expression in equation~\ref{eq:firstcolumn}
-corresponds to this general form. We now perform the \(\left(k+1\right)^{
-\text{th}}\) operation on all non-zero rows (i.e.\ \(i \geq k+1\)):
-\begin{align}
-  \mat{J}_{i,0}^{\left(k+1\right)} &= \mat{J}_{i,0}^{\left(k\right)} - 
-    \frac{\mat{J}_{k,0}^{\left(k\right)}}{\mat{J}_{k,k+1}} \mat{J}_{i,k+1} \\
-  &= r_{i+1}\prod_{l=k+1}^{i} \left( 1-r_{l} \right) + \\
-  &\phantom{=} \frac{\displaystyle r_{k+1} \prod_{
-    l=k+1}^{k} \left( 1-r_{l} \right) }{\displaystyle r_{0} \prod_{l=1}^{k}
-    \left( 1-r_{l} \right) } \frac{ r_{0} r_{i+1} }{ \left( 1-r_{k+1} \right) }
-    \prod_{ l=1 }^{i} \left( 1-r_{l} \right) \\
-  &= r_{i+1} \prod_{l=k+1}^{i} \left( 1-r_{l} \right) + \frac{ r_{k+1} r_{i+1}
-    }{ \left( 1-r_{k+1} \right) } \prod_{l=k+1}^{i} \left( 1-r_{l} \right) \\
-  &= r_{i+1} \left( 1-r_{k+1} \right) \prod_{l=k+2}^{i} \left( 1-r_{l} \right)
-    + \\
-  &\phantom{=} r_{i+1} r_{k+1} \prod_{l=k+2}^{i} \left( 1-r_{l} \right) \\
-  &= r_{i+1} \left( 1-r_{k+1}+r_{k+1} \right) \prod_{l=k+2}^{i} \left( 1-r_{l}
-    \right) \\
-  &= r_{i+1} \prod_{l=k+2}^{i} \left( 1-r_{l} \right)
-\end{align}
-We recover the expression in~\ref{eq:koperations}, thus proving the result.
-After \(n-1\) iterations, we find that \(\mat{J}_{n-1,0}^{n-1}=r_{n}=1\),
-recalling that \(r_{n}=1\) was a variable introduced for convenience.
+are shown in figure~\ref{fig:example}d.
 
