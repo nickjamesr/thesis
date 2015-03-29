@@ -1,6 +1,6 @@
-\chapter{Introduction}
+\chapter{Background}
 \label{ch:Introduction}
-\section{Scientific matters}
+\section{General Introduction}
 \label{sec:science}
 The race for the first quantum computer is on. Academic researchers and private
 enterprises around the world are pursuing this goal, on a number of different
@@ -47,3 +47,56 @@ mean indistinguishability of photons} of up to 5 photons in a quantum walk.
 Finally, chapter~\ref{ch:Hamiltomo} describes a tomography protocol that can be
 used in certain circumstances to arrive at a complete description of the device
 in question.
+
+\section{A universal circuit for linear optics}
+\label{sec:ReckScheme}
+Any lossless\footnote{In practical devices, this approximation is very good.
+\todo{1dB/cm in silica devices?}} linear optical device can be
+described by a unitary matrix operating on the optical modes. A device with
+\(m\) input and \(m\) output modes will be described by an \(m \by m\) unitary.
+In~\cite{reck94}, it is shown that the converse is true: any unitary matrix can
+be realised by a linear optical circuit. A constructive proof of this is
+presented, and a candidate `universal circuit' is proposed. Universal, in this
+context refers to a linear optical circuit with adjustable components
+(beamsplitters with variable reflectivity and variable phase shifts), which can
+be configured into any unitary.
+
+\begin{figure}
+  \begin{subfigure}{\textwidth}
+    \centering
+    \includegraphics{figures/reck_original}
+    \caption{The original Reck scheme, implemented in bulk optics. As with all
+    circuits in bulk optics, achieving phase stability in this system would be
+    very difficult.}
+    \label{fig:ReckOriginal}
+  \end{subfigure} \\
+  \vspace{1cm} \\
+  \begin{subfigure}{\textwidth}
+    \centering
+    \includegraphics{figures/reck_general}
+    \caption{A more modern take on the Reck scheme. Here we envisage using
+    a triangular array of
+    Mach-Zehnder interferometers (MZIs) on an integrated platform, thus solving
+    the phase stability problem.}
+    \label{fig:ReckGeneral}
+  \end{subfigure}
+  \caption[The Reck scheme, in both its original conception and an integrated
+  optics version]{The Reck scheme, in both its original conception and an
+  integrated
+  optics version. In both systems, light enters from the left and the device
+  performs a unitary transformation on the modes. Variable-reflectivity
+  beamsplitters and variable phase shifts are needed in order to make the
+  circuit's operation reconfigurable to any unitary transformation. In the
+  bulk scheme, I have omitted any specifics, but in the integrated version these
+  could be implemented with directional couplers and thermal or electro-optic
+  phase shifts \todo{citation needed}.}
+  \label{fig:ReckScheme}
+\end{figure}
+
+\section{Boson Sampling}
+\label{sec:BosenSampling}
+This section presents a review of \bosonsampling{}: a sampling algorithm
+presented by Aaronson and Arkhipov in~\cite{bosonsampling}. None of development
+or complexity analysis of this algorithm is my own work, but it provides useful
+context for the material later in this chapter.
+
