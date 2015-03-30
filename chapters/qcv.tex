@@ -42,12 +42,17 @@ Note here that this kind of randomized benchmarking is not always particularly
 useful.
 
 \section{Verification}
-\label{sec:Verification}
 Work relating to verification in quantum walks and \bosonsampling{}. I don't
 think it's unfair to say that I had the original motivation to implement the
 \(\rstar\) protocol described in \cite{notuniform}. I did the Bayesian model
 comparison between \bosonsampling{} and uniform distributions.
 
+Verifying the output of a Boson sampler brings us up against the notorious
+problem of certifying a random number generator based on a short string of
+random output. This problem is illustrated in figure:~\ref{fig:dilbert}
+
+\subsection{Is BosonSampling uniform?}
+\label{sec:Verification}
 \begin{figure}
   \centering
   \includegraphics[width=\textwidth]{figures/protected/dilbert.png}
@@ -56,6 +61,34 @@ comparison between \bosonsampling{} and uniform distributions.
   \label{fig:dilbert}
 \end{figure}
 
-Verifying the output of a Boson sampler brings us up against the notorious
-problem of certifying a random number generator based on a short string of
-random output. This problem is illustrated in figure:~\ref{fig:dilbert}
+\begin{figure}
+  \centering
+  \includegraphics{figures/updating}
+  \caption[Bayesian model comparison using the $\rstar$ discriminator]
+  {Bayesian model comparison using the \(\rstar\) discriminator on 3-photon data
+  from a random unitary. We quickly become very confident that the data are
+  more likely to be drawn from the full \bosonsampling{} distribution than the
+  uniform distribution.}
+\end{figure}
+
+\subsection{Bosonic Clouding}
+In a multi-photon quantum walk, we observe a phenomenon where photons tend to
+appear in nearby output modes. This is distinct from \emph{Bosonic bunching},
+where multiple photons appear in the same output mode.
+
+\subsection{Higher photon numbers}
+\begin{figure}
+  \centering
+  \includegraphics{figures/sixphoton}
+  \caption[Bayesian model comparison on 6-photon events]
+  {Bayesian model comparison using the full pre-calculated 6-photon
+  distributions. (a) Events we believe to be quantum. (b) Events we believe to
+  be classical. In both cases, our confidence in the model quickly increases.}
+  \label{fig:sixphoton}
+\end{figure}
+I did some verification on 6-photon events in the recent integrated Reck
+experiment. With the circuit set to implement the 6-dimensional quantum Fourier
+transform, we injected 6 photons in the state \(\ket{3_{1},3_{2}}\) and
+performed a Bayesian model comparison between the quantum and classical
+distributions. Again, we quickly become very confident that the data are
+quantum, as shown in figure~\ref{fig:sixphoton}.

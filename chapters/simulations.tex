@@ -3,46 +3,6 @@
 
 \section{Introduction}
 \label{sec:SimIntro}
-This formed the bulk of the experimental work in my PhD. Roughly speaking, we
-take a hamiltonian, \(\mat{H}\) and exponentiate it to get a load of unitaries
-(\(\mat{U}=e^{-i\mat{H}t}\)) at a series of timesteps. Using a decomposition
-similar to the one in \cite{reck} we can implement these on a single
-circuit.
-
-Two physical implementations: bulk optics and integrated optics. I was
-responsible for the calibration of the bulk circuit (crapusoids), writing the
-control code, and taking a large portion of the data. I trained DTC student
-Chris Sparrow in the operation of the experiment.
-
-\begin{figure}
-  \centering
-  \includegraphics{figures/circuit.pdf}
-  \caption[A schematic of the bulk optics circuit used for simulations.]
-  {A schematic of the bulk optics circuit. Two photons are injected at
-  the left of the circuit in orthogonal polarisations (\(\ket{H}\) indicates
-  horizontal and \(\ket{V}\) indicates vertical), using an in-fibre polarising
-  beamsplitter (PBS) to combine the two photons into a single path. The circuit
-  operates in a combined path/polarisation encoding, where polarising beam
-  displacers (PBD) are used to convert between the two. Operations are performed
-  with fixed quarter waveplates (QWP) and polarisation flips (X), and variable
-  angle half waveplates (HWP). After the operations are complete,
-  polarisation-sensitive detection is performed using further PBS elements and
-  single photon avalanche diodes. We label the detectors A through D.}
-  \label{fig:circuit}
-\end{figure}
-
-\section{Quantized vibrational states}
-\label{sec:Phonons}
-More background: introduce the idea of quantized vibrational states and present
-the data for the 4-atom ring. I took the data, and did some of the analysis.
-
-\section{Molecular vibrations}
-\label{sec:Molecules}
-Simulating phonons in the harmonic limit corresponds to vibrations of molecules.
-
-\section{PT-symmetric systems}
-\label{sec:PT}
-\subsection{Introduction}
 In a seminal lecture \cite{qsim-feynman}, Feynman proposed that the
 fundamentally quantum nature of microscopic systems will enable an exact
 simulation of nature using quantum computers. Since then, tremendous progress
@@ -73,31 +33,61 @@ simulators has been to simulate closed quantum systems with a unitary time
 evolution \cite{cirac-natphys-8-264}: the effective Hamiltonian that describes
 such systems is always Hermitian.
 
-On a disparate front, non-Hermitian Hamiltonians, \(\mat{H}_{\pt}\), that are
+\begin{figure}
+  \centering
+  \includegraphics{figures/circuit.pdf}
+  \caption[A schematic of the bulk optics circuit used for simulations.]
+  {A schematic of the bulk optics circuit. Two photons are injected at
+  the left of the circuit in orthogonal polarisations (\(\ket{H}\) indicates
+  horizontal and \(\ket{V}\) indicates vertical), using an in-fibre polarising
+  beamsplitter (PBS) to combine the two photons into a single path. The circuit
+  operates in a combined path/polarisation encoding, where polarising beam
+  displacers (PBD) are used to convert between the two. Operations are performed
+  with fixed quarter waveplates (QWP) and polarisation flips (X), and variable
+  angle half waveplates (HWP). After the operations are complete,
+  polarisation-sensitive detection is performed using further PBS elements and
+  single photon avalanche diodes. We label the detectors A through D.}
+  \label{fig:circuit}
+\end{figure}
+
+\section{Quantized vibrational states}
+\label{sec:Phonons}
+More background: introduce the idea of quantized vibrational states and present
+the data for the 4-atom ring. I took the data, and did some of the analysis.
+
+\section{Molecular vibrations}
+\label{sec:Molecules}
+Simulating phonons in the harmonic limit corresponds to vibrations of molecules.
+
+\section{PT-symmetric systems}
+\label{sec:PT}
+\subsection{Introduction}
+
+On a disparate front, non-Hermitian Hamiltonians, \(\mat{H}_{\pt{}}\), that are
 invariant under the combined parity \((\op{P})\) and time-reversal
 \((\op{T})\) operations have been theoretically explored for more than a
 decade \cite{bender98, levai-jphysa-33-7165, bender07}. Although not Hermitian,
-such \(\pt\)-symmetric
+such \(\pt{}\)-symmetric
 Hamiltonians have a purely real spectrum that changes into complex-conjugate
 eigenvalues as the non-Hermiticity is increased. When the spectrum of
-\(\mat{H}_{\pt}\) is purely real, its non-orthogonal eigenvectors are
-simultaneous eigenvectors of the \(\pt\) operation. However, when the spectrum
+\(\mat{H}_{\pt{}}\) is purely real, its non-orthogonal eigenvectors are
+simultaneous eigenvectors of the \(\pt{}\) operation. However, when the spectrum
 has complex conjugate eigenvalues, due to the anti-linear nature of the operator
-\(\op{T}\), the eigenvectors are not \(\pt\) symmetric. This transition from
-real to complex spectrum is called \(\pt\) symmetry breaking. 
+\(\op{T}\), the eigenvectors are not \(\pt{}\) symmetric. This transition from
+real to complex spectrum is called \(\pt{}\) symmetry breaking. 
 
-It has been established that \(\pt\) symmetric theory is unlikely to be a
+It has been established that \(\pt{}\) symmetric theory is unlikely to be a
 complete alternative to quantum mechanics, either reducing to the same thing
 \cite{mostafazadeh-jmathphys-43-205} or producing non-physical results such as
 violation of the no-signaling principle of relativity \cite{lee-prl-112-130404}.
 However, it has recently become clear that it is far from being just a
-mathematical curiosity: \(\pt\)-symmetric Hamiltonians model open
+mathematical curiosity: \(\pt{}\)-symmetric Hamiltonians model open
 systems---classical or quantum---with balanced, spatially separated loss and
 gain. They have been used to theoretically investigate vortex hopping in
 superconductors \cite{naomichi-physrevlett-77-570},
 statistical mechanics of Coulomb gases \cite{gulden-jetp-117-517} and
 Non-equilibrium superconductivity \cite{rubinstein-physrevlett-99-167003,
-serbyn-physrevb-87-020501}. During the past three years, the \(\pt\)
+serbyn-physrevb-87-020501}. During the past three years, the \(\pt{}\)
 symmetry breaking has been experimentally investigated in classical systems
 including two optical waveguides \cite{pt-ruter}, electrical circuits
 \cite{schindler-physreva-84-040101}, mechanical systems
@@ -105,12 +95,12 @@ including two optical waveguides \cite{pt-ruter}, electrical circuits
 \cite{pt-regensburger}.
 
 In this paper, we demonstrate the quantum simulation of non-interacting bosons
-evolving under a \(\pt\) symmetric
+evolving under a \(\pt{}\) symmetric
 Hamiltonian. We investigate the single-particle statistics and bosonic
-correlations across the \(\pt\) symmetry breaking threshold. Although the time
-evolution under \(\mat{H}_{\pt}\) is not unitary, by embedding this open system
-into a larger, closed system, we demonstrate a general method for simulating
-non-Hermitian Hamiltonians.
+correlations across the \(\pt{}\) symmetry breaking threshold. Although the time
+evolution under \(\mat{H}_{\pt{}}\) is not unitary, by embedding this open
+system into a larger, closed system, we demonstrate a general method for
+simulating non-Hermitian Hamiltonians.
 
 \begin{figure}[t]
   \centering
@@ -133,15 +123,14 @@ non-Hermitian Hamiltonians.
     \includegraphics[width=\textwidth]{figures/protected/manifold_raw_A}
     \caption{}
   \end{subfigure}
-  \caption[Manifolds showing evolution of the $\pt$-symmetric system]
-  {Manifolds showing evolution of the \(\pt\)-symmetric system.}
+  \caption[Manifolds showing evolution of the PT-symmetric system]
+  {Manifolds showing evolution of the \(\pt{}\)-symmetric system.}
   \label{fig:manifold}
 \end{figure}
 
-\subsection{Theory}
-\subsubsection{Two-site \(\pt\)-symmetric model}
+\subsection{Two-site PT-symmetric model}
 Let us consider a 2-site Hamiltonian with a tunneling \(J > 0\) between the two
-sites and a \(\pt\)-symmetric potential \(\pm i \gamma\) on the two sites, \(
+sites and a \(\pt{}\)-symmetric potential \(\pm i \gamma\) on the two sites, \(
 \mat{H} = -J \sigma_x -i \gamma \sigma_z\). The eigenvalues of this matrix are
 \( \epsilon = \pm \sqrt{J^{2} - \gamma^{2}} \) which are real for \( J \geq
 \gamma \), although the eigenvectors are not orthogonal to each other.
@@ -161,7 +150,7 @@ J \) and \( \epsilon \) is real. In this case, we get the following
 
 In the limit where \( \gamma \rightarrow J_{-} \), \( \epsilon \rightarrow 0 \)
 and \( \frac{1}{\epsilon} \sin \alpha \rightarrow \frac{t}{\hbar} \), thus at
-the \(\pt\) phase boundary the time evolution operator becomes linear in time
+the \(\pt{}\) phase boundary the time evolution operator becomes linear in time
 instead of sinusoidal:
 \begin{equation}
   \mat{G}_{\leq,-} = \begin{pmatrix}
@@ -187,24 +176,24 @@ this case, the time evolution operator (with \( \beta = \Gamma \frac{t}{\hbar}
 \end{equation}
 In the limit where \( \gamma \rightarrow J_{+} \), \( \Gamma \rightarrow 0 \)
 and \( \frac{1}{\Gamma} \sinh \beta \rightarrow \frac{t}{\hbar} \) thus at the
-\(\pt\) phase boundary, we get a continuous time evolution operator,
+\(\pt{}\) phase boundary, we get a continuous time evolution operator,
 \begin{equation}
   \left. \mat{G}_{\leq} \of{t} \right|_{\gamma \rightarrow J_{-}} = \left.
     \mat{G}_{\geq} \of{t} \right|_{\gamma \rightarrow J_{+}}
 \end{equation}
 
-The behaviour of this \(\pt\)-symmetric system can be understood by looking at
+The behaviour of this \(\pt{}\)-symmetric system can be understood by looking at
 the occupation of (system or environment) modes when a particle initially in the
 system is evolved under the non-Hermitian \(\mat{H}\). This will be a function
 of the ratio \(\gamma/J\) as well as the time. In figure~\ref{fig:manifold} we
 illustrate this by setting \(J=1\) and showing the occupation of one of the
 system modes as a function of time for a range of values of \(\gamma\). The
-transition from \(\pt\) symmetric to \(\pt\) broken can be seen, and the
-occupations are continuous over the boundary. Also shown are cross-subsections
+transition from \(\pt{}\) symmetric to \(\pt{}\) broken can be seen, and the
+occupations are continuous over the boundary. Also shown are cross-sections
 where experimental data are taken (see figure~\ref{fig:results} for full
 experimental data).
 
-\subsubsection{Unitary Dilation}
+\subsection{Unitary Dilation}
 The simulation technique that we use requires that we embed the non-unitary
 time-evolution operator into a larger, unitary operator. This can be done for
 any matrix by doubling the dimension; that is, any \(n \by n\) matrix can be
@@ -276,33 +265,33 @@ keeping track of gain and loss.
     single photon data. The photon is initially injected in the system mode
     \(S_1\); probability of detection in each of the four modes \(\left\{S_1,
     S_2, E_1, E2\right\}\) after the evolution is shown. (a) is in the
-    \(\pt\)-symmetric region (\(\gamma=0.95\)), where we observe periodic
-    behaviour. (b) is on the \(\pt\) phase boundary (\(\gamma=1\)) and (c) is
-    in the \(\pt\) broken region (\(\gamma=1.05\)). In both of these cases,
+    \(\pt{}\)-symmetric region (\(\gamma=0.95\)), where we observe periodic
+    behaviour. (b) is on the \(\pt{}\) phase boundary (\(\gamma=1\)) and (c) is
+    in the \(\pt{}\) broken region (\(\gamma=1.05\)). In both of these cases,
     the detection probabilities in our
     experiment tend towards a constant value, with any evolution after this
     point being purely due to the scale factor. The bottom row (d-f) shows
     two-particle data, where the particles are initially injected in the two
     system modes, \(S_1\) and \(S_2\). We show the detection probabilities for
     pairs where one photon is still in mode \(S_1\), and the other photon is in
-    a different mode. (d) is in the \(\pt\)-symmetric region (\(\gamma=0.95\)),
-    and again exhibits periodic behaviour. (e) is on the \(\pt\) phase boundary
-    (\(\gamma=1\)) and (f) is in the \(\pt\)-broken region (\(\gamma=1.05\)). In
-    all cases, the scale factor (black dashed line; on a different axis), has
-    been separated out from the experimental observations, which reflect
-    detection probabilities, rather than mode occupation.}
+    a different mode. (d) is in the \(\pt{}\)-symmetric region
+    (\(\gamma=0.95\)), and again exhibits periodic behaviour. (e) is on the
+    \(\pt{}\) phase boundary (\(\gamma=1\)) and (f) is in the \(\pt{}\)-broken
+    region (\(\gamma=1.05\)). In all cases, the scale factor (black dashed
+    line; on a different axis), has been separated out from the experimental
+    observations, which reflect detection probabilities, rather than mode
+    occupation.}
   \label{fig:results}
 \end{figure}
 
-\subsection{Experiment}
-\subsubsection{Our Simulation}
+\subsection{Our Simulation}
 For our simulation we use a reconfigurable, four-mode photonic circuit in bulk
 optics, shown in figure~\ref{fig:manifold}(b). We map two of these optical modes
 to the system and two to the environment, so the transformation performed by the
 circuit is guaranteed to be unitary. By looking at detection events on only the
 system modes, \(S_1\) and \(S_2\) we can observe (a scaled version of) the
-evolution of the \(\pt\)-symmetric system, or by considering detection events on
-any other modes, we can study the interaction between the system and the
+evolution of the \(\pt{}\)-symmetric system, or by considering detection events
+on any other modes, we can study the interaction between the system and the
 environment. Note that when post-selecting on the system modes, there is a
 non-unit probability of a detection event. In light of this, we could not
 simulate the super-luminal signalling described in \cite{lee-prl-112-130404}.
@@ -316,23 +305,23 @@ implement very stable Jamin-Lebedeff interferometers, while
 polarisation-sensitive detection is achieved with in-fibre polarising
 beamsplitters (PBS) and single-photon avalanche diodes (SPADs).
 
-\subsubsection{Results}
+\subsection{Results}
 The graphs in figure~\ref{fig:results} show the evolution of the 2-site system
-at 3 points in the parameter space: \(\pt\)-symmetric, \(\gamma=0.95\) (a,d);
-\(\pt\)-critical, \(\gamma=1.0\) (b,e) and \(\pt\)-broken, \(\gamma=1.05\)
+at 3 points in the parameter space: \(\pt{}\)-symmetric, \(\gamma=0.95\) (a,d);
+\(\pt{}\)-critical, \(\gamma=1.0\) (b,e) and \(\pt{}\)-broken, \(\gamma=1.05\)
 (c,f). The scale factor (i.e. operator norm of the non-unitary matrix) has been
 seperated from the experimental data for clarity. Consequently, the occupation
 probabilities are always bounded between zero and one, and reflect the
 probabilities of detecting photons in the relevant optical modes. On the other
 hand, the scale factor is unbounded, and this is the origin of the quadratic or
-exponential growth in the critical and \(\pt\) broken regions.
+exponential growth in the critical and \(\pt{}\) broken regions.
 
 The top row (a-c) shows single-photon data, where the photon is injected into
 system mode \(S_1\). Occupation probabilities for all output modes are shown.
 The bottom row shows coincidental detections, where the photons are injected
 into the two system modes, \(S_1\) and \(S_2\). We show occupation probabilities
 for one photon in system mode \(S_1\) and the other photon in a different mode.
-In both the \(\pt\)-critical and \(\pt\)-broken regions, the coincidental
+In both the \(\pt{}\)-critical and \(\pt{}\)-broken regions, the coincidental
 detections between system and environment have very low probability.
 
 Throughout all graphs, points represent experimental data (error bars due to
@@ -362,7 +351,7 @@ into account the \(S_2 E_1\), \(S_2 E_2\) and \(E_1 E_2\) correlations, which
 are not presented here.
 
 We have therefore demonstrated the ability to simulate the evolution of
-\(\pt\)-symmetric systems in our 2-site model, across all regions of the phase
+\(\pt{}\)-symmetric systems in our 2-site model, across all regions of the phase
 space. The cost of our implementation using linear optics and unitary dilation
 is a doubling in the number of optical modes required, compared to the dimension
 of the system we are simulating. However, with integrated optics

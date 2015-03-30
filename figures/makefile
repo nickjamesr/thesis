@@ -14,7 +14,9 @@ all = cascade.pdf\
  reck_original.pdf\
  reck_general.pdf\
  recursive.pdf\
- schematic.pdf
+ schematic.pdf\
+ sixphoton.pdf\
+ updating.pdf
 
 default : $(all)
 
@@ -60,6 +62,13 @@ recursive.pdf : recursive.eps recursive.pyx
 
 schematic.pdf : schematic.eps schematic.pyx
 	pyxplot schematic.pyx
+
+sixphoton.pdf : sixphoton.pyx ../reck/data/classical_events.dat\
+ ../reck/data/quantum_events.dat
+	pyxplot sixphoton.pyx
+
+updating.pdf : updating.pyx ../verification/data/updating.dat
+	pyxplot updating.pyx
 
 clean : 
 	for f in *.pdf; do if [ -e $$f ]; then rm $$f; fi; done

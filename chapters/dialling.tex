@@ -45,6 +45,8 @@
   \label{fig:example}
 \end{figure*}
 
+\section{Introduction}
+\label{sec:DDIntro}
 The development of the \bosonsampling{} problem \cite{bosonsampling} has
 motivated fresh interest in studying \emph{random} unitaries that describe the
 optical circuits acting on multiphoton states. Rapid developments in the field
@@ -70,6 +72,8 @@ relevance to linear optics is not widely appreciated. Further, we extend the
 result to systems of qubits, by deriving a mapping between a linear-optical
 circuit on \(m=2^{n}\) modes and a circuit operating on \(n\) qubits.
 
+\section{A physically-motivated parameterization}
+\label{sec:Parameterization}
 Drawing a Haar random unitary is analogous to choosing a random number from a
 uniform distribution in that it should be unbiased. The probability of drawing
 a particular unitary matrix from some region in the space of unitaries should
@@ -193,7 +197,7 @@ dependence on \(r_{l}\) for \(0 \leq l \leq k\). We can express the elements of
   \end{array} \right.
 \end{equation}
 The base case is \(k=0\), where the expression in equation~\ref{eq:firstcolumn}
-corresponds to this general form. We now perform the \(\left(k+1\right)^{
+is recovered. We now perform the \(\left(k+1\right)^{
 \text{th}}\) operation on all non-zero rows (i.e.\ \(i \geq k+1\)):
 \begin{align}
   \mat{J}_{i,0}^{\left(k+1\right)} &= \mat{J}_{i,0}^{\left(k\right)} - 
@@ -212,8 +216,8 @@ corresponds to this general form. We now perform the \(\left(k+1\right)^{
   &= r_{i+1} \prod_{l=k+2}^{i} \left( 1-r_{l} \right)
 \end{align}
 We recover the expression in~\ref{eq:koperations}, thus proving the result.
-After \(n-1\) iterations, we find that \(\mat{J}_{n-1,0}^{n-1}=r_{n}=1\),
-recalling that \(r_{n}=1\) was a variable introduced for convenience.
+After \(n-1\) iterations, we find that \(\mat{J}_{n-1,0}^{\left(n-1\right)}=
+r_{n}=1\), recalling that \(r_{n}=1\) was a variable introduced for convenience.
 
 We can then place the column \(\vec{c}_{0}\) as the rightmost column, at which
 point the matrix is lower triangular and we can compute the determinant by
@@ -257,6 +261,8 @@ fabricated with reflectivities and phase shifts chosen from the correct
 distributions, as described here. A \( 6 \by 6 \) example is illustrated in
 figure~\ref{fig:example}.
 
+\section{Extension to qubits}
+\label{sec:Qubits}
 We now extend the result to the case of a unitary operating on qubits by
 demonstrating a mapping between a unitary operation on \(m=2^{n}\) optical
 modes and the same unitary operation on \(n\) qubits. The gates that we use to
@@ -291,17 +297,6 @@ variables, \(r = \sin^{2} \of{\theta} \) is required, and the appropriate
 \end{equation}
 These distributions are illustrated in figure~\ref{fig:example} alongside those
 for reflectivities.
-
-We have shown how to express the probability density function for Haar random
-unitary matrices in terms of physically motivated parameters. The expression is
-compact and non-redundant, whereas the equivalent in the Cartesian basis is a
-lot more complicated. While the mathematics of this process has been known
-for some time, the link to linear-optical components has not previously been
-made clear, and the proof presented here in terms of a change of basis is much
-simpler than that in \cite{spengler2010}. The formula in its general form
-is applicable to \bosonsampling{}, where Haar unitaries are required, and is
-extensible to systems of qubits so may find additional applications outside of
-linear optics.
 
 \begin{figure*}[p]
   \includegraphics{figures/qubits}
@@ -392,3 +387,15 @@ The appropriate transformation between reflectivity and internal phase is now
 \(r \rightarrow \sin \of{^{\xi}/_{2}} \), resulting in different \pdf{}s, which
 are shown in figure~\ref{fig:example}d.
 
+\section{Conclusions}
+\label{sec:DDConclusions}
+We have shown how to express the probability density function for Haar random
+unitary matrices in terms of physically motivated parameters. The expression is
+compact and non-redundant, whereas the equivalent in the Cartesian basis is a
+lot more complicated. While the mathematics of this process has been known
+for some time, the link to linear-optical components has not previously been
+made clear, and the proof presented here in terms of a change of basis is much
+simpler than that in \cite{spengler2010}. The formula in its general form
+is applicable to \bosonsampling{}, where Haar unitaries are required, and is
+extensible to systems of qubits so may find additional applications outside of
+linear optics.
