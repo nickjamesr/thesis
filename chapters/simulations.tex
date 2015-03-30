@@ -115,17 +115,10 @@ simulating non-Hermitian Hamiltonians.
 
 \begin{figure}[t]
   \centering
-  \begin{subfigure}{0.49\textwidth}
-    \includegraphics[width=\textwidth]{figures/protected/manifold_A}
-    \caption{}
-  \end{subfigure}
-  \begin{subfigure}{0.49\textwidth}
-    \includegraphics[width=\textwidth]{figures/protected/manifold_raw_A}
-    \caption{}
-  \end{subfigure}
+  \includegraphics{figures/manifolds}
   \caption[Manifolds showing evolution of the PT-symmetric system]
   {Manifolds showing evolution of the \(\pt{}\)-symmetric system.}
-  \label{fig:manifold}
+  \label{fig:manifolds}
 \end{figure}
 
 \subsection{Two-site PT-symmetric model}
@@ -185,7 +178,7 @@ and \( \frac{1}{\Gamma} \sinh \beta \rightarrow \frac{t}{\hbar} \) thus at the
 The behaviour of this \(\pt{}\)-symmetric system can be understood by looking at
 the occupation of (system or environment) modes when a particle initially in the
 system is evolved under the non-Hermitian \(\mat{H}\). This will be a function
-of the ratio \(\gamma/J\) as well as the time. In figure~\ref{fig:manifold} we
+of the ratio \(\gamma/J\) as well as the time. In figure~\ref{fig:manifolds} we
 illustrate this by setting \(J=1\) and showing the occupation of one of the
 system modes as a function of time for a range of values of \(\gamma\). The
 transition from \(\pt{}\) symmetric to \(\pt{}\) broken can be seen, and the
@@ -286,13 +279,13 @@ keeping track of gain and loss.
 
 \subsection{Our Simulation}
 For our simulation we use a reconfigurable, four-mode photonic circuit in bulk
-optics, shown in figure~\ref{fig:manifold}(b). We map two of these optical modes
-to the system and two to the environment, so the transformation performed by the
-circuit is guaranteed to be unitary. By looking at detection events on only the
-system modes, \(S_1\) and \(S_2\) we can observe (a scaled version of) the
-evolution of the \(\pt{}\)-symmetric system, or by considering detection events
-on any other modes, we can study the interaction between the system and the
-environment. Note that when post-selecting on the system modes, there is a
+optics, shown in figure~\ref{fig:manifolds}(b). We map two of these optical
+modes to the system and two to the environment, so the transformation performed
+by the circuit is guaranteed to be unitary. By looking at detection events on
+only the system modes, \(S_1\) and \(S_2\) we can observe (a scaled version of)
+the evolution of the \(\pt{}\)-symmetric system, or by considering detection
+events on any other modes, we can study the interaction between the system and
+the environment. Note that when post-selecting on the system modes, there is a
 non-unit probability of a detection event. In light of this, we could not
 simulate the super-luminal signalling described in \cite{lee-prl-112-130404}.
 

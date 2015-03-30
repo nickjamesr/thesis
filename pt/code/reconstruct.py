@@ -99,6 +99,14 @@ return : None'''
 ### Get Necessary data from files ###
   dips = np.loadtxt(fname+"/params.dat", usecols=(3,2,1))
 
+  # Info on PT parameters
+  with open(fname+"/info.txt",'r') as fin:
+    J = float(fin.readline().split()[2])
+    gamma = float(fin.readline().split()[2])
+    t = float(fin.readline().split()[2])
+    norm = float(fin.readline().split()[2])
+    
+
   matrix = np.loadtxt(fname+"/matrix.dat", dtype=complex)[0:4,0:2]
   matrix = realBorder(matrix)
   qin = abs2(matrix[:,0])
@@ -220,31 +228,31 @@ return : None'''
     quantum_ide = quantum_ide/sum(quantum_ide)
 
   # Format string for coincidence data
-  fmt="{0:02d} "
-  for i in range(1,13):
-    fmt += "{"+"{0:d}".format(i)+":.4f} "
+  fmt=""
+  for i in range(0,16):
+    fmt += " {"+"{0:d}".format(i)+":.4f}"
   fmt+="\n"
   # Write quantum coincidences
   fout=open("../data/"+sym+"/quantum.dat",'a')
-  fout.write(fmt.format(num,*np.append(quantum_exp,quantum_err)))
+  fout.write(fmt.format(t,J,gamma,norm,*np.append(quantum_exp,quantum_err)))
   fout.close()
   # Write classical coincidences
   fout=open("../data/"+sym+"/classical.dat",'a')
-  fout.write(fmt.format(num,*np.append(classical_exp,classical_err)))
+  fout.write(fmt.format(t,J,gamma,norm,*np.append(classical_exp,classical_err)))
   fout.close()
 
   # Format string for singles data
-  fmt="{0:02d} "
-  for i in range(1,9):
-    fmt += "{"+"{0:d}".format(i)+":.4f} "
+  fmt=""
+  for i in range(0,12):
+    fmt += " {"+"{0:d}".format(i)+":.4f}"
   fmt+="\n"
   # Write quart singles
   fout=open("../data/"+sym+"/quart.dat",'a')
-  fout.write(fmt.format(num,*np.append(quart,quart_err)))
+  fout.write(fmt.format(t,J,gamma,norm,*np.append(quart,quart_err)))
   fout.close()
   # Write trit singles
   fout=open("../data/"+sym+"/trit.dat",'a')
-  fout.write(fmt.format(num,*np.append(trit,trit_err)))
+  fout.write(fmt.format(t,J,gamma,norm,*np.append(trit,trit_err)))
   fout.close()
 
   if verbose:
@@ -326,16 +334,16 @@ if __name__=='__main__':
   fout.write("# trace (adjusted) classical quantum\n")
   fout.close()
   fout=open("../data/symmetric/quart.dat",'w')
-  fout.write("# A B C D dA dB dC dD\n")
+  fout.write("# t J gamma norm A B C D dA dB dC dD\n")
   fout.close()
   fout=open("../data/symmetric/trit.dat",'w')
-  fout.write("# A B C D dA dB dC dD\n")
+  fout.write("# t J gamma norm A B C D dA dB dC dD\n")
   fout.close()
   fout=open("../data/symmetric/quantum.dat",'w')
-  fout.write("# AB AC AD BC BD CD dAB dAC dAD dBC dCD\n")
+  fout.write("# t J gamma norm AB AC AD BC BD CD dAB dAC dAD dBC dCD\n")
   fout.close()
   fout=open("../data/symmetric/classical.dat",'w')
-  fout.write("# AB AC AD BC BD CD dAB dAC dAD dBC dCD\n")
+  fout.write("# t J gamma norm AB AC AD BC BD CD dAB dAC dAD dBC dCD\n")
   fout.close()
   for i in range(1,10):
     reconstruct("symmetric",i,verbose)
@@ -345,16 +353,16 @@ if __name__=='__main__':
   fout.write("# trace (adjusted) classical quantum\n")
   fout.close()
   fout=open("../data/critical/quart.dat",'w')
-  fout.write("# A B C D dA dB dC dD\n")
+  fout.write("# t J gamma norm A B C D dA dB dC dD\n")
   fout.close()
   fout=open("../data/critical/trit.dat",'w')
-  fout.write("# A B C D dA dB dC dD\n")
+  fout.write("# t J gamma norm A B C D dA dB dC dD\n")
   fout.close()
   fout=open("../data/critical/quantum.dat",'w')
-  fout.write("# AB AC AD BC BD CD dAB dAC dAD dBC dCD\n")
+  fout.write("# t J gamma norm AB AC AD BC BD CD dAB dAC dAD dBC dCD\n")
   fout.close()
   fout=open("../data/critical/classical.dat",'w')
-  fout.write("# AB AC AD BC BD CD dAB dAC dAD dBC dCD\n")
+  fout.write("# t J gamma norm AB AC AD BC BD CD dAB dAC dAD dBC dCD\n")
   fout.close()
   for i in range(1,10):
     reconstruct("critical",i,verbose)
@@ -364,16 +372,16 @@ if __name__=='__main__':
   fout.write("# trace (adjusted) classical quantum\n")
   fout.close()
   fout=open("../data/broken/quart.dat",'w')
-  fout.write("# A B C D dA dB dC dD\n")
+  fout.write("# t J gamma norm A B C D dA dB dC dD\n")
   fout.close()
   fout=open("../data/broken/trit.dat",'w')
-  fout.write("# A B C D dA dB dC dD\n")
+  fout.write("# t J gamma norm A B C D dA dB dC dD\n")
   fout.close()
   fout=open("../data/broken/quantum.dat",'w')
-  fout.write("# AB AC AD BC BD CD dAB dAC dAD dBC dCD\n")
+  fout.write("# t J gamma norm AB AC AD BC BD CD dAB dAC dAD dBC dCD\n")
   fout.close()
   fout=open("../data/broken/classical.dat",'w')
-  fout.write("# AB AC AD BC BD CD dAB dAC dAD dBC dCD\n")
+  fout.write("# t J gamma norm AB AC AD BC BD CD dAB dAC dAD dBC dCD\n")
   fout.close()
   for i in range(1,10):
     reconstruct("broken",i,verbose)

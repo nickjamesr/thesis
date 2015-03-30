@@ -9,8 +9,7 @@ dialling_figs=cascade.pdf\
  qubits.pdf\
  recursive.pdf
 
-simulations_figs=protected/manifold_A.pdf\
- protected/manifold_raw_A.pdf\
+simulations_figs=manifolds.pdf\
  protected/results.pdf\
  circuit.pdf\
  opensystem.pdf
@@ -26,9 +25,9 @@ qcv_figs=protected/dilbert.png\
 
 figures=$(addprefix figures/, $(background_figs)\
  $(dialling_figs)\
- $(integrated_figs)\
  $(simulations_figs)\
- $(qcv_figs))
+ $(qcv_figs)\
+ $(hamiltomo_figs))
 
 thesis.pdf : $(figures) thesis.tex title.tex thesis.sty $(chapters)\
 		bib/thesis.bib
@@ -54,6 +53,11 @@ figures/%.pdf : figures/%.pyx
 figures/protected/% :
 	cd figures/protected &&\
  wget http://www.mostlydowntime.co.uk/physics/thesis/$@
+
+verification/data/clouds/% :
+	cd verification/data &&\
+ wget http://www.mostlydowntime.co.uk/physics/thesis/data/clouds.tar.gz &&\
+ tar xvzf clouds.tar.gz
 
 clean :
 	cd figures && $(MAKE) clean

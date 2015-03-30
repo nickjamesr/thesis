@@ -9,6 +9,7 @@ all = cascade.pdf\
  circuit.pdf\
  interferometerAB.pdf\
  interferometerCD.pdf\
+ manifolds.pdf\
  opensystem.pdf\
  qubits.pdf\
  reck_original.pdf\
@@ -20,7 +21,11 @@ all = cascade.pdf\
 
 default : $(all)
 
-# All eps files have the same rule
+# Generate data if required
+../pt/% :
+	cd ../pt && $(MAKE) $*
+
+# Rule to generate eps from svg
 %.eps : %.svg
 	$(inkscape) -E $*.eps $<
 
@@ -28,8 +33,16 @@ default : $(all)
 circuit.png : circuit.svg
 	$(inkscape) -d 360 -e circuit.png circuit.svg
 
-# pdf files may have different/multiple dependencies
+# Manifold eps
+manifold_data=$(addprefix ../pt/data/,manifold/manifold_A.dat\
+ manifold/rawmanifold_A.dat\
+ broken/quantum.dat\
+ critical/quantum.dat\
+ symmetric/quantum.dat)
+manifold_bare_A.eps manifold_data_A.eps : manifolds.gnu $(manifold_data)
+	gnuplot manifolds.gnu
 
+# pdf files may have different/multiple dependencies
 cascade.pdf : cascade.eps cascade.pyx
 	pyxplot cascade.pyx
 
@@ -44,6 +57,9 @@ interferometerAB.pdf : interferometerAB.eps interferometerAB.pyx
 
 interferometerCD.pdf : interferometerCD.eps interferometerCD.pyx
 	pyxplot interferometerCD.pyx
+
+manifolds.pdf : manifold_bare_A.eps manifold_data_A.eps manifolds.pyx
+	pyxplot manifolds.pyx
 
 opensystem.pdf : opensystem.eps opensystem.pyx
 	pyxplot opensystem.pyx
