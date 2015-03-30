@@ -9,14 +9,12 @@ all = cascade.pdf\
  circuit.pdf\
  interferometerAB.pdf\
  interferometerCD.pdf\
- matrix.pdf\
+ opensystem.pdf\
  qubits.pdf\
  reck_original.pdf\
  reck_general.pdf\
- reck_schematic.pdf\
  recursive.pdf\
- schematic.pdf\
- unitary.pdf
+ schematic.pdf
 
 default : $(all)
 
@@ -48,11 +46,14 @@ circuit.pdf : circuit.png circuit.pyx
 example.pdf : example.eps beamsplitter.eps bsmzi.eps dcmzi.eps example.pyx
 	pyxplot example.pyx
 
-interferometerAB.pdf : interferometerAB.png interferometerAB.pyx
+interferometerAB.pdf : interferometerAB.eps interferometerAB.pyx
 	pyxplot interferometerAB.pyx
 
-interferometerCD.pdf : interferometerCD.png interferometerCD.pyx
+interferometerCD.pdf : interferometerCD.eps interferometerCD.pyx
 	pyxplot interferometerCD.pyx
+
+opensystem.pdf : opensystem.eps opensystem.pyx
+	pyxplot opensystem.pyx
 
 qubits.pdf : twoqubit.eps threequbit.eps qubits.pyx
 	pyxplot qubits.pyx
@@ -66,7 +67,7 @@ reck_original.pdf : reck_original.eps reck_original.pyx
 recursive.pdf : recursive.eps recursive.pyx
 	pyxplot recursive.pyx
 
-schematic.pdf : schematic.png schematic.pyx
+schematic.pdf : schematic.eps schematic.pyx
 	pyxplot schematic.pyx
 
 clean : 

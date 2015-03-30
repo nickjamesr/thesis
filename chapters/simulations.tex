@@ -112,32 +112,31 @@ evolution under \(\mat{H}_{\pt}\) is not unitary, by embedding this open system
 into a larger, closed system, we demonstrate a general method for simulating
 non-Hermitian Hamiltonians.
 
-\begin{figure*}[t]
+\begin{figure}[t]
   \centering
-  \includegraphics[width=\textwidth]{figures/protected/fig1}
-  \caption[Schematic of the system and manifold for results]
-    {(a) Schematic of the system, showing how the introduction
-    of coupling to an environment allows us to model the non-unitary system in
-    linear optics. (b) The linear-optical circuit used to perform the
-    experiment. Photon pairs from a type-I SPDC source are injected in the left,
-    and operations are performed on the polarisation state of the photons using
-    bulk-optical components. Half waveplates (HWP) control amplitude splittings,
-    while phase shifts are performed with a series of three waveplates (QHQ): a
-    half waveplate between two quarter waveplates oriented with the optic axis
-    at 45 degrees. Polarisation is flipped from horizontal to vertical using
-    fixed blocks (X), and conversion between path and polarisation is performed
-    with either beam displacers (BD) or polarising beamsplitters (PBS).
-    (c) Time evolution of the occupation of the initially occupied
-    mode (\(S_1\)) after evolution, for various suttings of the complex on-site
-    potential, \(\gamma\) across the \(\pt\) boundary. Coloured lines (red for
-    \(\pt\) symmetric, green for \(\pt\) critical and blue for \(\pt\) broken)
-    show cross-subsections where experimental data are taken. (Note the logarithmic
-    scale used in the \(z\) axis, since occupation in the \(\pt\)-broken region
-    increases exponentially. (d) The same time evolution as (c), but showing the
-    measured output power before any scaling. Coloured lines show the
-    cross-subsections as in (c); the points show the experimental data.}
+  \includegraphics{figures/opensystem}
+  \caption[Representation of an open system]
+  {Schematic representation of a simulation of an open system. We initialise a
+  state in the system subspace, which then evolves under a non-Hermitian
+  Hamiltonian to occupy a larger space. Detection on all output modes can reveal
+  information about evolution into the environment subspace.}
+  \label{fig:opensystem}
+\end{figure}
+
+\begin{figure}[t]
+  \centering
+  \begin{subfigure}{0.49\textwidth}
+    \includegraphics[width=\textwidth]{figures/protected/manifold_A}
+    \caption{}
+  \end{subfigure}
+  \begin{subfigure}{0.49\textwidth}
+    \includegraphics[width=\textwidth]{figures/protected/manifold_raw_A}
+    \caption{}
+  \end{subfigure}
+  \caption[Manifolds showing evolution of the $\pt$-symmetric system]
+  {Manifolds showing evolution of the \(\pt\)-symmetric system.}
   \label{fig:manifold}
-\end{figure*}
+\end{figure}
 
 \subsection{Theory}
 \subsubsection{Two-site \(\pt\)-symmetric model}
@@ -269,7 +268,7 @@ that the environment modes introduced for the simulation do not really
 correspond to a real physical system; rather they are just a convenient way of
 keeping track of gain and loss.
 
-\begin{figure*}[t]
+\begin{figure}[t]
   \centering
   \includegraphics[width=\textwidth]{figures/protected/results}
   \caption[Results of simulation]
@@ -293,7 +292,7 @@ keeping track of gain and loss.
     been separated out from the experimental observations, which reflect
     detection probabilities, rather than mode occupation.}
   \label{fig:results}
-\end{figure*}
+\end{figure}
 
 \subsection{Experiment}
 \subsubsection{Our Simulation}
@@ -383,14 +382,8 @@ polarisation-maintaining optical fibres. Single-photon detection was achieved
 using silicon-based avalanche photodiode single-photon counting modules.
 Coincidence counting logic used a field-programmable gate array.
 
-\subsubsection{Linear optical realisation of any unitary operator}
-Any \(m\)-dimensional unitary transformation \(\mat{U} \of{m}\) can be factored
-into \(m^{2}\) independent optical components: \(\frac{1}{2} m \left( m-1
-\right) \) beamsplitters and \(\frac{1}{2} m \left( m+1 \right) \) phase shifts,
-as shown in \cite{reck}.
-
 \subsubsection{Experimental reconfigurable circuit for 4 modes}
-The circuit shown in figure~\ref{fig:manifold}(b) can be used to realise any
+The circuit shown in figure~\ref{fig:circuit}(b) can be used to realise any
 unitary operator in 4 modes, down to experimentally undetectable phases on the
 input and output modes. This insensitivity to certain phases reduces the number
 of parameters that we need to control to 7. All of the tunable parameters are
