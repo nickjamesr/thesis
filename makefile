@@ -13,9 +13,10 @@ simulations_figs=circuit.pdf
 
 hamiltomo_figs=
 
-qcv_figs=schematic.pdf\
+qcv_figs=protected/dilbert.png\
  interferometerAB.pdf\
- interferometerCD.pdf
+ interferometerCD.pdf\
+ schematic.pdf
 
 figures=$(addprefix figures/, $(background_figs)\
  $(dialling_figs)\
@@ -43,6 +44,10 @@ figures/%.pdf : figures/%.svg figures/%.pyx
 
 figures/%.pdf : figures/%.pyx
 	cd figures && $(MAKE) $*.pdf
+
+figures/protected/% :
+	cd figures/protected &&\
+ wget http://www.mostlydowntime.co.uk/physics/thesis/$@
 
 clean :
 	cd figures && $(MAKE) clean
