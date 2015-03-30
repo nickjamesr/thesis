@@ -20,9 +20,9 @@ hamiltomo_figs=
 qcv_figs=protected/dilbert.png\
  interferometerAB.pdf\
  interferometerCD.pdf\
+ rstar.pdf\
  schematic.pdf\
- sixphoton.pdf\
- updating.pdf
+ sixphoton.pdf
 
 figures=$(addprefix figures/, $(background_figs)\
  $(dialling_figs)\
