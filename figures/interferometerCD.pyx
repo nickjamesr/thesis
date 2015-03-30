@@ -6,7 +6,7 @@ fig_m=fig_w/100.
 
 set multiplot
   set nodisplay
-  image "interferometerCD.png" at 0,0 width fig_w
+  eps "interferometerCD.eps" at 0,0 width fig_w
   set display
   refresh
 unset multiplot

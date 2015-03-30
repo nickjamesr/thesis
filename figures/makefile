@@ -26,15 +26,6 @@ default : $(all)
 circuit.png : circuit.svg
 	$(inkscape) -d 360 -e circuit.png circuit.svg
 
-interferometerAB.png : interferometerAB.svg
-	$(inkscape) -d 180 -e interferometerAB.png interferometerAB.svg
-
-interferometerCD.png : interferometerCD.svg
-	$(inkscape) -d 180 -e interferometerCD.png interferometerCD.svg
-
-schematic.png : schematic.svg
-	$(inkscape) -d 180 -e schematic.png schematic.svg
-
 # pdf files may have different/multiple dependencies
 
 cascade.pdf : cascade.eps cascade.pyx

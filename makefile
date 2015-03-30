@@ -12,6 +12,7 @@ dialling_figs=cascade.pdf\
 simulations_figs=protected/manifold_A.pdf\
  protected/manifold_raw_A.pdf\
  protected/results.pdf\
+ circuit.pdf\
  opensystem.pdf
 
 hamiltomo_figs=
