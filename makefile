@@ -60,5 +60,5 @@ clean :
 	if [ -e thesis.log ]; then rm thesis.log; fi
 	if [ -e thesis.toc ]; then rm thesis.toc; fi
 
-test : 
-	for f in figures/*.pdf; do echo $$f; done
+sweep :
+	if [ -e thesis.pdf ]; then rm thesis.pdf; fi

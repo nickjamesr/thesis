@@ -43,11 +43,11 @@ Simulating phonons in the harmonic limit corresponds to vibrations of molecules.
 \section{PT-symmetric systems}
 \label{sec:PT}
 \subsection{Introduction}
-In a seminal lecture \cite{feynman-qsim}, Feynman proposed that the
+In a seminal lecture \cite{qsim-feynman}, Feynman proposed that the
 fundamentally quantum nature of microscopic systems will enable an exact
 simulation of nature using quantum computers. Since then, tremendous progress
 has been made towards the development of such computers that, at their heart,
-are quantum systems \cite{ladd-nature-464-45}. On a broader scale, the
+are quantum systems \cite{qcomp-review}. On a broader scale, the
 development of tunable, controlled physical systems that simulate, on a quantum
 level, the phenomena of interest has been vigorously pursued over the past
 decade. Optical lattices have been used to simulate Mott-insulator transitions
@@ -55,7 +55,7 @@ decade. Optical lattices have been used to simulate Mott-insulator transitions
 \cite{lin-nature-462-628} and bound states in a repulsive potential
 \cite{winkler-nature-441-853}. Evanescently coupled waveguides
 \cite{garanovich-waveguides-2012} have been used to simulate quantum
-correlations \cite{peruzzo-science-329-1500}, disorder effects
+correlations \cite{walks-peruzzo}, disorder effects
 \cite{crespi-nphoton-7-322} and tunable quantum statistics
 \cite{matthews-scirep-3-1539}, as well as exotic states such as Floquet
 topological insulators \cite{rechtsman-nature-496-196,
@@ -63,11 +63,11 @@ khanikaev-natmater-12-233} and quantized Landau levels
 \cite{rechtsman-nphoton-7-153}.
 
 Concurrently, the groundbreaking work by Knill Laflamme and Milburn
-\cite{knill-nature-409-46} has shown that an arbitrary quantum simulation can be
+\cite{klm} has shown that an arbitrary quantum simulation can be
 implemented efficiently using linear optical elements along with single photon
 sources and detectors \cite{kok-revmodphys-79-135}, and significant advances
 have been made in increasing the efficiency and reducing the ancillary resources
-required for such an implementation \cite{obrien-science-308-1567,
+required for such an implementation \cite{review-obrien,
 obrien-natphoton-3-687}. In all their manifestations, the goal of quantum
 simulators has been to simulate closed quantum systems with a unitary time
 evolution \cite{cirac-natphys-8-264}: the effective Hamiltonian that describes
@@ -76,8 +76,8 @@ such systems is always Hermitian.
 On a disparate front, non-Hermitian Hamiltonians, \(\mat{H}_{\pt}\), that are
 invariant under the combined parity \((\op{P})\) and time-reversal
 \((\op{T})\) operations have been theoretically explored for more than a
-decade \cite{bender-physrevlett-80-5243, levai-jphysa-33-7165,
-bender-repprogphys-70-947}. Although not Hermitian, such \(\pt\)-symmetric
+decade \cite{bender98, levai-jphysa-33-7165, bender07}. Although not Hermitian,
+such \(\pt\)-symmetric
 Hamiltonians have a purely real spectrum that changes into complex-conjugate
 eigenvalues as the non-Hermiticity is increased. When the spectrum of
 \(\mat{H}_{\pt}\) is purely real, its non-orthogonal eigenvectors are
@@ -99,10 +99,10 @@ statistical mechanics of Coulomb gases \cite{gulden-jetp-117-517} and
 Non-equilibrium superconductivity \cite{rubinstein-physrevlett-99-167003,
 serbyn-physrevb-87-020501}. During the past three years, the \(\pt\)
 symmetry breaking has been experimentally investigated in classical systems
-including two optical waveguides \cite{ruter-natphys-6-192}, electrical circuits
+including two optical waveguides \cite{pt-ruter}, electrical circuits
 \cite{schindler-physreva-84-040101}, mechanical systems
 \cite{bender-amjphys-81-173} and discrete fiber networks
-\cite{regensburger-nat-488-167}.
+\cite{pt-regensburger}.
 
 In this paper, we demonstrate the quantum simulation of non-interacting bosons
 evolving under a \(\pt\) symmetric
@@ -214,7 +214,7 @@ to perform this embedding for a non-unitary matrix \(\mat{G}\), we must first
 rescale it so that the operator norm is less than or equal to 1. A suitable
 definition of operator norm in this case is \(\abs{\mat{G}} = \sqrt{\abs{e_{
 \text{max}}}}\), where \(e_{\text{max}}\) is the largest eigenvalue of 
-\(\mat{GG^{\dagger}}\) \cite{halmos-1950}. The scaled matrix is then
+\(\mat{GG^{\dagger}}\) \cite{dilation}. The scaled matrix is then
 \begin{equation}
   G_{s} = \frac{G}{\sqrt{\abs{e_{\text{max}}}}}
 \end{equation}
@@ -387,7 +387,7 @@ Coincidence counting logic used a field-programmable gate array.
 Any \(m\)-dimensional unitary transformation \(\mat{U} \of{m}\) can be factored
 into \(m^{2}\) independent optical components: \(\frac{1}{2} m \left( m-1
 \right) \) beamsplitters and \(\frac{1}{2} m \left( m+1 \right) \) phase shifts,
-as shown in \cite{reck-physrevlett-73-58}.
+as shown in \cite{reck}.
 
 \subsubsection{Experimental reconfigurable circuit for 4 modes}
 The circuit shown in figure~\ref{fig:manifold}(b) can be used to realise any
