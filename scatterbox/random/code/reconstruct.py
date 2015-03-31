@@ -6,10 +6,8 @@ import cmath
 import numpy as np
 import scipy.optimize as opt
 
-from matplotlib import pyplot
-from fitting_gui import Fittie
-from os import path
 from sys import argv
+from os import path
 
 def time(n):
   if (n < 20):
@@ -236,8 +234,8 @@ path.exists(folder+"/background.txt")):
   #print num, max(f_conj,f_recon), "\t", \
   #  f_class, "\t", f_quantum
   fout=open("data/fidelities.dat",'a')
-  fout.write("{0:02d} {1:.5f} {2:.5f} {3:.5f}\n".format(num, max(f_conj_adj,
-f_recon_adj), f_class, f_quantum))
+  fout.write("{0:02d} {1:.5f} {2:.5f} {3:.5f} {4:.5f} {5:.5f}\n".format(\
+num, max(f_conj_adj, f_recon_adj), f_class, f_quantum, f_quart, f_trit))
   fout.close()
 
   quart = np.append(quart, quart_err)
@@ -284,23 +282,23 @@ f_recon_adj), f_class, f_quantum))
     fstring += "\n"
 ### Quantum
   # Experimental
-    fout = open("data/quant_experimental.dat", 'a')
+    fout = open("data/quantum_experimental.dat", 'a')
     #fout.write(fstring.format(time(num), *quantum_exp))
     fout.write(fstring.format(num, *quantum_exp))
     fout.close()
   # Ideal
-    fout = open("data/quant_ideal.dat", 'a')
+    fout = open("data/quantum_ideal.dat", 'a')
     #fout.write(fstring.format(time(num), *quantum_ide))
     fout.write(fstring.format((num), *quantum_ide))
     fout.close()
 ### Classical
   # Experimental
-    fout = open("data/class_experimental.dat", 'a')
+    fout = open("data/classical_experimental.dat", 'a')
     #fout.write(fstring.format(time(num), *classical_exp))
     fout.write(fstring.format((num), *classical_exp))
     fout.close()
   # Ideal
-    fout = open("data/class_ideal.dat", 'a')
+    fout = open("data/classical_ideal.dat", 'a')
     #fout.write(fstring.format(time(num), *classical_ide))
     fout.write(fstring.format((num), *classical_ide))
     fout.close()
@@ -309,7 +307,7 @@ if __name__=='__main__':
   # Write file headers
   # Fidelities
   fout=open("data/fidelities.dat",'w')
-  fout.write("# trace classical quantum\n")
+  fout.write("# trace classical quantum quart trit\n")
   fout.close()
   # quart ideal
   fout=open("data/quart_ideal.dat",'w')
