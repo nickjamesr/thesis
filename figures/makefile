@@ -11,13 +11,15 @@ all = cascade.pdf\
  interferometerCD.pdf\
  manifolds.pdf\
  opensystem.pdf\
+ twosite.pdf\
  qubits.pdf\
  reck_original.pdf\
  reck_general.pdf\
  recursive.pdf\
  rstar.pdf\
  schematic.pdf\
- sixphoton.pdf
+ sixphoton.pdf\
+ twosite.pdf
 
 default : $(all)
 
@@ -76,6 +78,11 @@ reck_original.pdf : reck_original.eps reck_original.pyx
 recursive.pdf : recursive.eps recursive.pyx
 	pyxplot recursive.pyx
 
+rstar.pdf : rstar.pyx ../verification/data/updating.dat\
+ ../verification/data/RStarData.dat\
+ ../verification/data/histogram.dat
+	pyxplot rstar.pyx
+
 schematic.pdf : schematic.eps schematic.pyx
 	pyxplot schematic.pyx
 
@@ -83,10 +90,17 @@ sixphoton.pdf : sixphoton.pyx ../reck/data/classical_events.dat\
  ../reck/data/quantum_events.dat
 	pyxplot sixphoton.pyx
 
-rstar.pdf : rstar.pyx ../verification/data/updating.dat\
- ../verification/data/RStarData.dat\
- ../verification/data/histogram.dat
-	pyxplot rstar.pyx
+twosite_data=$(addprefix ../pt/data/,broken/quantum.dat\
+ broken/quart.dat\
+ broken/theory.dat\
+ critical/quantum.dat\
+ critical/quart.dat\
+ critical/theory.dat\
+ symmetric/quantum.dat\
+ symmetric/quart.dat\
+ symmetric/theory.dat)
+twosite.pdf : twosite.pyx $(twosite_data)
+	pyxplot twosite.pyx
 
 clean : 
 	for f in *.pdf; do if [ -e $$f ]; then rm $$f; fi; done

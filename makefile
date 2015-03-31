@@ -10,7 +10,7 @@ dialling_figs=cascade.pdf\
  recursive.pdf
 
 simulations_figs=manifolds.pdf\
- protected/results.pdf\
+ twosite.pdf\
  circuit.pdf\
  opensystem.pdf
 
