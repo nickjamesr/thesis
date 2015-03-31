@@ -1,7 +1,7 @@
 \chapter{Background}
 \label{ch:Introduction}
 \section{General Introduction}
-\label{sec:science}
+\label{sec:Science}
 The race for the first quantum computer is on. Academic researchers and private
 enterprises around the world are pursuing this goal, on a number of different
 physical platforms. Here, I will describe my efforts towards achieving quantum
@@ -42,11 +42,71 @@ calibration, validation and verification of quantum devices. The calibration
 procedure is described in detail for a circuit in bulk optics, which illustrates
 many of the complicating features present in any large optical device. The
 verification procedure is used to check the coherence \todo{how do I say this? I
-mean indistinguishability of photons} of up to 5 photons in a quantum walk.
+mean indistinguishability of photons} of up to 5 photons in a quantum walk and 6
+6 photons in a quantum Fourier transform.
 
 Finally, chapter~\ref{ch:Hamiltomo} describes a tomography protocol that can be
 used in certain circumstances to arrive at a complete description of the device
 in question.
+
+\section{Evolution of Quantum States}
+\label{sec:Evolution}
+The entire purpose of quantum mechanics is to calculate the evolution of quantum
+systems. At any time, a system in a pure state can be completely described by
+its wavefunction, \(\ket{\Psi}\) \cite{pbr}. In the non-relativistic
+picture\footnote{I am restricting the discussion to non-relativistic quantum
+mechanics, since it offers a valid description of the behaviour of photons,
+perhaps surprisingly since they travel at the speed of light.} this
+wavefunction evolves according to the Schr\"odinger equation, in terms of the
+Hamiltonian, \(\op{H}\):
+\begin{equation}
+  \op{H} \ket{\Psi} = i \hbar \frac{\partial}{\partial t} \ket{\Psi}
+\end{equation}
+In the case of a Hamiltonian that is constant in time, we can integrate this
+equation to obtain a time-evolution operator (sometimes referred to as a
+propagator):
+\begin{equation}
+  \label{eq:expiht}
+  \op{U} \of{t} = e^{-\frac{i}{\hbar} \op{H} t}
+\end{equation}
+This operator relates a known state of the system at time \(t_{0}\) to the state
+of the system at a later (or earlier) time, \(t\), via
+\begin{equation}
+  \ket{ \Psi \of{t} } = \op{U} \of{t-t_{0}} \ket{ \Psi \of{t_{0}} }
+\end{equation}
+Another simple case to consider is when the Hamiltonian varies but is piecewise
+constant in time. In this case each constant segment has its own time evolution
+operator, \(\op{U}_{i}\) and  the overall time evolution operator is just the
+(appropriately ordered) product of these:
+\begin{equation}
+  \op{U} = \op{U}_{n} \cdot \op{U}_{n-1} \dots \op{U}_{2} \cdot \op{U}_{1}
+\end{equation}
+When the Hamiltonian is Hermitian, which it must be for a closed quantum system
+(in order to conserve energy), the time evolution operator is unitary.
+
+In the case of photonics (or at least the cases that I will discuss in this
+thesis), the state space is discrete and finite, meaning that the wavefunction
+can be expressed exactly as a complex vector of unit magnitude. The number of
+dimensions required is the number of optical modes, be they spatial,
+polarisation or some other degree of freedom. The Hamiltonians that we consider
+are piecewise constant in time (e.g. the application of a waveplate in bulk or
+a directional coupler in integrated optics\footnote{between these optical
+components, the Hamiltonian is diagonal with uniform elements.}) so the time
+evolution operator is a natural description.
+
+When considering Hamiltonians on a discrete (\(m\)-dimensional) space, for
+example in the case of an \(m\) mode quantum walk \cite{walks-peruzzo}, the
+matrix exponential in equation~\ref{eq:expiht} can be performed classically in
+time polynomial in \(m\). This observation, along with the ability to realise
+any unitary operator in linear optics (see section~\ref{sec:ReckScheme}), is the
+basis of the quantum simulations performed in chapter~\ref{ch:Simulations}.
+
+This model can be extended to consider non-Hermitian Hamiltonians, in which
+case the same mathematics applies, but equation~\ref{eq:expiht} results in a 
+non-unitary operator. Physically, we associate this with an open quantum system,
+or a system coupled to some external degrees of freedom (an environment).
+Chapter~\ref{ch:Simulations} also describes quantum simulations of this kind of
+coupled system.
 
 \section{A universal circuit for linear optics}
 \label{sec:ReckScheme}
