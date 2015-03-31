@@ -72,3 +72,4 @@ clean :
 
 sweep :
 	if [ -e thesis.pdf ]; then rm thesis.pdf; fi
+	if [ -e thesis.aux ]; then rm thesis.aux; fi

@@ -116,10 +116,19 @@ described by a unitary matrix operating on the optical modes. A device with
 \(m\) input and \(m\) output modes will be described by an \(m \by m\) unitary.
 In~\cite{reck}, it is shown that the converse is true: any unitary matrix can
 be realised by a linear optical circuit. A constructive proof of this is
-presented, and a candidate `universal circuit' is proposed. Universal, in this
-context refers to a linear optical circuit with adjustable components
-(beamsplitters with variable reflectivity and variable phase shifts), which can
-be configured into any unitary.
+presented, and a candidate `universal circuit' is proposed (see
+figure~\ref{fig:ReckOriginal}). Universal, in this context refers to a linear
+optical circuit with adjustable components (beamsplitters with variable
+reflectivity and variable phase shifts), which can be configured into any
+unitary.
+
+This result has profound consequences for experimental quantum photonics.
+It implies that when such a circuit is built, \emph{all} other linear optical
+devices will become redundant, being just specific configurations of the
+general circuit. Rapid progress in fabrication and control of integrated optics
+has recently brought a \(6 \by 6\) reconfigurable circuit to the lab, and some
+of the data in chapter~\ref{ch:Simulations} were taken on this device.
+\todo{Hopefully!}
 
 \begin{figure}
   \begin{subfigure}{\textwidth}
@@ -156,7 +165,63 @@ be configured into any unitary.
 \section{Boson Sampling}
 \label{sec:BosenSampling}
 This section presents a review of \bosonsampling{}: a sampling algorithm
-presented by Aaronson and Arkhipov in~\cite{bosonsampling}. None of development
-or complexity analysis of this algorithm is my own work, but it provides useful
-context for the material later in this chapter.
+presented by Aaronson and Arkhipov in~\cite{bosonsampling} (AA). None of
+development or complexity analysis of this algorithm is my own work, but it
+provides useful context for material in chapter~\ref{ch:DirectDialling} and
+section~\ref{sec:RStar}.
+
+In their development of the \bosonsampling{} problem, AA have described a
+computational task that can be performed by a linear optical network which we
+strongly believe cannot be performed by a classical computer. If we find no
+fundamental obstacle to demonstrating \bosonsampling{} in practice (or even
+better, actually do it!), this would force us to abandon (or at least further
+extentd) the Extendend Church-Turing Thesis (ECT). First though, we need to
+better understand this \emph{strong belief} on which the result is based.
+
+The nature of the proof is that, if
+the exact form of the \bosonsampling{} problem were performed classically, it
+would imply the collapse of the polynomial hierarchy. While this is not
+expressly forbidden by complexity theory, the same can be said about the
+conservation of energy. The implications to a complexity theorist are equally
+absurd. The caveat to this proof is that even the quantum computer does not
+perform \bosonsampling{} exactly, so this is an unfair demand to place on a
+classical competitor. In the case of a reasonable approximation, two unproved
+but plausible conjectures (backed up by numerical evidence) are required to
+imply the same collapse of the polynomial hierarchy.
+
+Against the better known challenger to the ECT, using Shor's algorithm to factor
+large numbers, this actually compares very favourably. If somebody were to
+announce tomorrow that they had developed a classical algorithm that could
+factor numbers in polynomial time, this would have profound implications on
+everyday life (and quantum computing research budgets) but it wouldn't have a
+profound effect on complexity theory. A single decision problem (factoring)
+would have to be moved from NP to P. We already know that factoring is not
+NP-complete, so it wouldn't even have any implications on the long-standing
+question of whether P=NP.
+
+I will now briefly describe practical \bosonsampling{}, before returning to
+consider how valuable it is as a computational model. \todo{Insert summary 
+of \bosonsampling{} here!}
+
+Now one may ask how this is considered a computation at all.
+After all, it does not result in any deterministic outcome. A plausible
+complaint might be that just because something cannot be modeled classically,
+it doesn't make it a classically intractable computation. We can illustrate
+this by pointing to a cow, and using it to define the \alg{Cow} algorithm.
+After all, it is beyond the powers of our classical computers to model such a
+large ensemble of atoms. Therefore does \alg{Cow} not disprove the
+Church-Turing thesis?
+
+The response requires us to look at the other feature of computations: the
+input. We have no control over the input to \alg{Cow}, and even if we did it
+would require a very large number of parameters (surely exponential in the size
+of the cow?). On the other hand \bosonsampling{} is controlled by a small number
+of input parameters (\(\bigo \of{m^{2}}\) for an \(m\) mode linear optical
+circuit) and we have direct control over all of them.
+
+
+
+
+
+
 

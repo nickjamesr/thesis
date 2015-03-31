@@ -7,14 +7,15 @@
   {\renewcommand\abstractname{Declaration}\begin{abstract}}
   {\end{abstract}}
 
-\usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{amsfonts}
-\usepackage{subcaption}
-\usepackage{setspace}
 \usepackage{caption}
-\usepackage{tocbibind}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{subcaption}
 \usepackage{titlesec}
+\usepackage{tocbibind}
 
 \titleformat{\chapter}{\normalfont\huge\bfseries}{\thechapter}{1em}
 {\setstretch{1.0}}
@@ -22,7 +23,9 @@
 \captionsetup[figure]{font={stretch=1.0}}
 
 \newcommand{\abs}[1]{\left|#1\right|}
-\newcommand{\bosonsampling}{\textsc{BosonSampling}}
+\newcommand{\alg}[1]{\textsc{#1}}
+\newcommand{\bigo}{\mathrm{O}}
+\newcommand{\bosonsampling}{\alg{BosonSampling}}
 \newcommand{\by}{\times}
 \newcommand{\eff}{\text{eff}}
 \newcommand{\half}{1\!/2}
