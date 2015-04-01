@@ -20,6 +20,7 @@ hamiltomo_figs=
 qcv_figs=protected/dilbert.png\
  clouds.pdf\
  crapusoid.pdf\
+ crosstalk.pdf\
  interferometerAB.pdf\
  interferometerCD.pdf\
  rstar.pdf\
@@ -52,6 +53,9 @@ figures/%.pdf : figures/%.svg figures/%.pyx
 
 figures/%.pdf : figures/%.pyx
 	cd figures && $(MAKE) $*.pdf
+
+figures/%.png : figures/%.pyx
+	cd figures && $(MAKE) $*.png
 
 figures/protected/% :
 	cd figures/protected &&\
