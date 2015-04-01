@@ -4,14 +4,14 @@ else
 inkscape=inkscape
 endif
 
-all = cascade.pdf\
- example.pdf\
+all = bosonsampling.pdf\
+ cascade.pdf\
  circuit.pdf\
+ example.pdf\
  interferometerAB.pdf\
  interferometerCD.pdf\
  manifolds.pdf\
  opensystem.pdf\
- twosite.pdf\
  qubits.pdf\
  reck_original.pdf\
  reck_general.pdf\
@@ -45,6 +45,9 @@ manifold_bare_A.eps manifold_data_A.eps : manifolds.gnu $(manifold_data)
 	gnuplot manifolds.gnu
 
 # pdf files may have different/multiple dependencies
+bosonsampling.pdf : BSunitary.eps bosonsampling.pyx
+	pyxplot bosonsampling.pyx
+
 cascade.pdf : cascade.eps cascade.pyx
 	pyxplot cascade.pyx
 

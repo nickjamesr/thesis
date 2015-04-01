@@ -1,7 +1,8 @@
 chapters=$(addprefix chapters/,qcv.tex dialling.tex simulations.tex\
  hamiltomo.tex background.tex)
 
-background_figs=reck_original.pdf\
+background_figs=bosonsampling.pdf\
+ reck_original.pdf\
  reck_general.pdf\
  
 dialling_figs=cascade.pdf\

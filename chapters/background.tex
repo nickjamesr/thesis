@@ -164,6 +164,20 @@ of the data in chapter~\ref{ch:Simulations} were taken on this device.
 
 \section{Boson Sampling}
 \label{sec:BosenSampling}
+\begin{figure}
+  \includegraphics{figures/bosonsampling}
+  \caption[BosonSampling in linear optics]
+  {\bosonsampling{} in linear optics. \(p\) photons are injected into the first
+  \(p\) inputs of an \(m\) mode linear optical circuit, then detected at the
+  output, post-selecting on all photons occupying distinct modes. The
+  probability of this event occurring depends on the description of the circuit,
+  a unitary matrix \(\mat{U}\) (b). It can be calculated by taking columns of
+  the unitary corresponding to the input modes (shaded red) and rows
+  corresponding to the detector clicks (shaded green), the intersection of which
+  defines a \(p \by p\) submatrix (c). The probability of the detection event is
+  given by the absolute square of the permanent of this submatrix.}
+  \label{fig:BosonSampling}
+\end{figure}
 This section presents a review of \bosonsampling{}: a sampling algorithm
 presented by Aaronson and Arkhipov in~\cite{bosonsampling} (AA). None of
 development or complexity analysis of this algorithm is my own work, but it
