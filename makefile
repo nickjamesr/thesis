@@ -10,7 +10,7 @@ dialling_figs=cascade.pdf\
  qubits.pdf\
  recursive.pdf
 
-simulations_figs=manifolds.pdf\
+simulations_figs=manifolds.png\
  twosite.pdf\
  circuit.pdf\
  opensystem.pdf
@@ -18,6 +18,8 @@ simulations_figs=manifolds.pdf\
 hamiltomo_figs=
 
 qcv_figs=protected/dilbert.png\
+ clouds.pdf\
+ crapusoid.pdf\
  interferometerAB.pdf\
  interferometerCD.pdf\
  rstar.pdf\

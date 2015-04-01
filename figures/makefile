@@ -7,10 +7,13 @@ endif
 all = bosonsampling.pdf\
  cascade.pdf\
  circuit.pdf\
+ clouds.pdf\
+ crapusoid.pdf\
+ crosstalk.pdf\
  example.pdf\
  interferometerAB.pdf\
  interferometerCD.pdf\
- manifolds.pdf\
+ manifolds.png\
  opensystem.pdf\
  qubits.pdf\
  reck_original.pdf\
@@ -44,6 +47,14 @@ manifold_data=$(addprefix ../pt/data/,manifold/manifold_A.dat\
 manifold_bare_A.eps manifold_data_A.eps : manifolds.gnu $(manifold_data)
 	gnuplot manifolds.gnu
 
+# Manifold png (raster to save on size)
+manifolds.png : manifold_bare_A.eps manifold_data_A.eps manifolds.pyx
+	pyxplot manifolds.pyx
+
+# Clouding
+%.png : %.pov
+	povray +A $*.pov
+
 # pdf files may have different/multiple dependencies
 bosonsampling.pdf : BSunitary.eps bosonsampling.pyx
 	pyxplot bosonsampling.pyx
@@ -54,6 +65,15 @@ cascade.pdf : cascade.eps cascade.pyx
 circuit.pdf : circuit.png circuit.pyx
 	pyxplot circuit.pyx
 
+clouds.pdf : walk_ex_c.png walk_ex_q.png walk_th_c.png walk_th_q.png clouds.pyx
+	pyxplot clouds.pyx
+
+crapusoid.pdf : crapusoid.pyx
+	pyxplot crapusoid.pyx
+
+crosstalk.pdf : crosstalk.eps crosstalk.pyx
+	pyxplot crosstalk.pyx
+
 example.pdf : example.eps beamsplitter.eps bsmzi.eps dcmzi.eps example.pyx
 	pyxplot example.pyx
 
@@ -62,9 +82,6 @@ interferometerAB.pdf : interferometerAB.eps interferometerAB.pyx
 
 interferometerCD.pdf : interferometerCD.eps interferometerCD.pyx
 	pyxplot interferometerCD.pyx
-
-manifolds.pdf : manifold_bare_A.eps manifold_data_A.eps manifolds.pyx
-	pyxplot manifolds.pyx
 
 opensystem.pdf : opensystem.eps opensystem.pyx
 	pyxplot opensystem.pyx

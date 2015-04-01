@@ -58,12 +58,12 @@ u_{2,0} & u_{2,1} & u_{2,2} \\\\\
 u_{m-1,0} & u_{m-1,1} & u_{m-1,2} \
 \end{array}\right)\right|^{2}\)" at 60*fig_m,-7*fig_m
 
-  arrow from 77*fig_m,12*fig_m to 77*fig_m,5*fig_m with style 1
+  arrow from 67.5*fig_m,12*fig_m to 67.5*fig_m,5*fig_m with style 1
 
   # Subfigure labels
   text "(a)" at 23*fig_m,39*fig_m
-  text "(b)" at 76*fig_m,37*fig_m
-  text "(c)" at 60*fig_m, 6*fig_m
+  text "(b)" at 77*fig_m,37*fig_m
+  text "(c)" at 80*fig_m, 6*fig_m
   set display
   refresh
 unset multiplot

@@ -1,5 +1,5 @@
-set terminal pdf
-set output "manifolds.pdf"
+set terminal png dpi 240
+set output "manifolds.png"
 
 fig_w=12.
 fig_m=fig_w/100.

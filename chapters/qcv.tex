@@ -26,6 +26,16 @@ a Nature Photonics article \cite{verification}.
 \label{sec:Calibration}
 \begin{figure}
   \centering
+  \includegraphics{figures/crosstalk}
+  \caption[Nested Mach Zehnder interferometers]
+  {Nested Mach Zehnder interferometers. The phase \(\theta\) controlling the
+  inner MZI affects both the visibility and the origin of the fringes in the
+  outer MZI. We cannot treat the phases and the reflectivities as independent.}
+  \label{fig:nestedMZI}
+\end{figure}
+
+\begin{figure}
+  \centering
   \begin{subfigure}{\textwidth}
     \includegraphics{figures/schematic.pdf}
     \caption{A schematic of the circuit, expanded into path}
@@ -46,6 +56,16 @@ a Nature Photonics article \cite{verification}.
   \caption[Illustration of nested interferometers in the bulk Reck scheme]
   {Interferometers}
   \label{fig:interferometers}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics{figures/crapusoid}
+  \caption[Interference fringes distorted by crosstalk between components]
+  {Interference fringes observed in the bulk optics circuit. The distortion of
+  the fringes is not due to an imperfect waveplate implementing the phase shift,
+  but a kind of crosstalk between components.}
+  \label{fig:crapusoid}
 \end{figure}
 
 \section{Benchmarking (the first boson sampler)}
@@ -91,6 +111,24 @@ random output. This problem is illustrated in figure:~\ref{fig:dilbert}
 
 \subsection{Bosonic Clouding}
 \label{sec:Clouding}
+\begin{figure}
+  \centering
+  \includegraphics{figures/clouds}
+  \caption[Bosonic clouding in a quantum walk]
+  {Simulation and experiment for a 21-mode, 3-photon quantum walk, showing the
+  phenomenon of bosonic clouding. In all plots a sphere is drawn for every
+  possible detection event. The indices of the output modes dictate the
+  position, so for the event where the photons are detected in modes \(i\),
+  \(j\) and \(k\), a sphere will be drawn at \(\left(i,j,k\right)\) on these
+  axes. The size of the sphere indicates the probability of the event occuring. 
+  The clustering of events around but not necessarily on the line \(i=j=k\)
+  (drawn in black) is the phenomenon that we call bosonic clouding.
+  (a) and (b) show simulations of the quantum walk; (c) and (d) show the
+  experimental data; (a) and (c) (blue) are quantum data, i.e. indistinguishable
+  photons; (b) and (d) (red) are classical i.e. photons made distinguishable by
+  introducing a time delay.\\
+  (Plots by Pete Shadbolt)}
+\end{figure}
 In a multi-photon quantum walk, we observe a phenomenon where photons tend to
 appear in nearby output modes. This is distinct from \emph{Bosonic bunching},
 where multiple photons appear in the same output mode.
