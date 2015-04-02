@@ -24,7 +24,7 @@ a Nature Photonics article \cite{verification}.
 
 \section{Calibration (the crapusoids are real)}
 \label{sec:Calibration}
-\begin{figure}
+\begin{figure}[t]
   \centering
   \includegraphics{figures/crosstalk}
   \caption[Nested Mach Zehnder interferometers]
@@ -34,7 +34,7 @@ a Nature Photonics article \cite{verification}.
   \label{fig:nestedMZI}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[t]
   \centering
   \begin{subfigure}{\textwidth}
     \includegraphics{figures/schematic.pdf}
@@ -58,7 +58,7 @@ a Nature Photonics article \cite{verification}.
   \label{fig:interferometers}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[t]
   \centering
   \includegraphics{figures/crapusoid}
   \caption[Interference fringes distorted by crosstalk between components]
@@ -72,9 +72,9 @@ a Nature Photonics article \cite{verification}.
   \label{fig:crapusoid}
 \end{figure}
 
-\section{Benchmarking (the first boson sampler)}
+\section{Randomised benchmarking}
 \label{sec:Benchmarking}
-\begin{figure}
+\begin{figure}[t]
   \includegraphics{figures/benchmarking}
   \caption[Sample data from randomised benchmarking]
   {Data from a single instance of a unitary matrix used for randomised
@@ -88,9 +88,70 @@ a Nature Photonics article \cite{verification}.
   and the fidelities of individual distributions above (Kolmogorov distance
   between normalised probability distributions) are (a) \(0.97\); (b) \(0.94\);
   (c) \(0.99\); (d) \(0.89\).}
+  \label{fig:benchmarking}
 \end{figure}
-Note here that this kind of randomized benchmarking is not always particularly
-useful.
+In order to test the calibration of the bulk optics circuit, we used it to
+implement a series of Haar random unitaries: a process known as randomised
+benchmarking. This testing procedure (also seen, for example,
+in~\cite{peteschip}) is popular when the device being tested exhibits a high
+degree of reconfigurability. By taking random samples throughout the entire
+parameter space, we gain a degree of confidence that the device will work well
+in any configuration. The drawback of the procedure (as I describe with a
+specific example in chapter~\ref{ch:Simulations}) is that there can be small
+regions of the configuration space where the device consistently
+underperforms, which are unlikely to be detected by the randomised benchmarking.
+
+I took all the data presented in this section, and performed the analysis.
+
+The data taken consist of single photon detection statistics and two photon
+correlations. For the single photon data, we can inject in two possible input
+modes, and measure in four outputs (A, B, C, D), giving us two probability
+distributions, each of four elements. I refer to these as the \emph{quart}
+and \emph{trit} distributions, with the elements \(\vec{q}= \left( q_{A}, q_{B},
+q_{C}, q_{D} \right)\) and \(\vec{t} = \left( t_{A}, t_{B}, t_{C}, t_{D}
+\right)\) respectively. Subscripts refer to the detector label. Coincidences are
+counted between all pairs of detectors (AB, AC, AD, BC, BD, CD), but here there
+is only one input configuration. However, a delay can be introduced between
+the two photons, giving us two possible probability distributions each with six
+elements, which I refer to as quantum (\(\vec{Q}\)) for no temporal delay and
+classical (\(\vec{C}\)) for a large temporal delay. Since the detectors are not
+number resolving, we cannot measure the two photon events with multiple
+occupancy, so these distributions are not normalised. An comparison of the
+measured distributions to the expected distributions is illustrated in
+figure~\ref{fig:benchmarking} for a single random matrix.
+
+To assess the performance of the circuit, we consider several fidelity measures.
+First, we can take the four distributions described above, \(\vec{q}\),
+\(\vec{t}\), \(\vec{Q}\) and \(\vec{C}\) and compare them to the expected
+distributions using the Kolmogorov distance:
+\begin{equation}
+  \Delta \of{ p,p^{\prime} } = \frac{1}{2} \sum_{i} \abs{p_{i} - p_{i}^{\prime}}
+\end{equation}
+This measure is only applicable to properly normalised distributions, so we
+normalise the partial distributions \(\vec{Q}\) and \(\vec{C}\) to one for this
+calculation.
+
+The other distance measure is the trace distance between the intended unitary,
+\(\mat{U}\), and the unitary that was actually applied, \(\mat{U}^{\prime}\).
+The unitary that was applied is estimated from the measurements described, plus
+measurements of the relative efficiency of the four detectors. The trace
+distance that we use is:
+\begin{equation}
+  \frac{1}{2} \Tr \of{ \mat{U}^{\dagger} \mat{U}^{\prime} }
+\end{equation}
+where the factor of \(2\) is required because only two columns of the unitary
+are considered.
+
+The mean and standard deviations of each of these measures over the 12 random
+unitaries are summarised below:
+\begin{itemize}
+  \item Trace distance \(0.991\pm0.015\)
+  \item Quart fidelity \(0.979\pm0.005\)
+  \item Trit fidelity \(0.96\pm0.03\)
+  \item Quantum fidelity \(0.959\pm0.013\)
+  \item Classical fidelity \(0.971\pm0.015\)
+\end{itemize}
+
 
 \section{Verification}
 \label{sec:Verification}
@@ -105,7 +166,7 @@ random output. This problem is illustrated in figure:~\ref{fig:dilbert}
 
 \subsection{Is BosonSampling uniform?}
 \label{sec:RStar}
-\begin{figure}
+\begin{figure}[t]
   \centering
   \includegraphics[width=\textwidth]{figures/protected/dilbert.png}
   \caption[Dilbert discovers that verifying randomness is difficult.]
@@ -115,7 +176,7 @@ random output. This problem is illustrated in figure:~\ref{fig:dilbert}
   \label{fig:dilbert}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[t]
   \centering
   \includegraphics{figures/rstar}
   \caption[Using the $\rstar$ discriminator to verify BosonSampling]
@@ -130,7 +191,7 @@ random output. This problem is illustrated in figure:~\ref{fig:dilbert}
 
 \subsection{Bosonic Clouding}
 \label{sec:Clouding}
-\begin{figure}
+\begin{figure}[t]
   \centering
   \includegraphics{figures/clouds}
   \caption[Bosonic clouding in a quantum walk]
@@ -154,7 +215,7 @@ where multiple photons appear in the same output mode.
 
 \subsection{Higher photon numbers}
 \label{sec:SixPhoton}
-\begin{figure}
+\begin{figure}[t]
   \centering
   \includegraphics{figures/sixphoton}
   \caption[Bayesian model comparison on 6-photon events]

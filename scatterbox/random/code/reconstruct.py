@@ -429,3 +429,13 @@ if __name__=='__main__':
     fout.write("{0:d} {1:.4f} {2:.4f} {3:.4f} {4:.4f} {5:.4f}\n".format(i,\
  cth[num,7+2*i],cth[num,1+i],cth[num,8+2*i],cex[num,1+i],cex[num,7+i]))
   fout.close()
+
+  # Summarise the fidelities
+  f=np.loadtxt("data/fidelities.dat")
+  with open("data/fidelities.dat",'a') as fout:
+    fout.write("\n\n# Means :")
+    for i in range(1,6):
+      fout.write(" {0:.5f}".format(np.mean(f[:,i])))
+    fout.write("\n# Stdev :")
+    for i in range(1,6):
+      fout.write(" {0:.5f}".format(np.std(f[:,i])))

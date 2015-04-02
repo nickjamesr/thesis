@@ -104,7 +104,7 @@ the remaining data acquisition and all the data analysis.
 
 \section{Alternative methods}
 \label{sec:Alternatives}
-\begin{figure}
+\begin{figure}[t]
   \includegraphics{figures/logvsderivative}
   \caption[Comparison of power series and time derivative methods for
   Hamiltonian recovery]
@@ -118,6 +118,7 @@ the remaining data acquisition and all the data analysis.
   expected number of terms. The fidelity flattens off due to noise accumulating
   for higher order terms in the series. The error bar on each point is
   calculated by a Monte-Carlo simulation of 1000 random evaluations.}
+  \label{fig:logvsderivative}
 \end{figure}
 On inspection of equation~\ref{eq:exponential}, the most straightforward way to
 recover the Hamiltonian from a measurement of \(\mat{U}\) would appear to be to
@@ -129,16 +130,23 @@ This can be performed either by diagonalising \(\mat{U}\) or by taking a series
 expansion, both of which have their drawbacks. When diagonalising a unitary
 matrix, all eigenvalues are unit-modulus complex numbers which permit a freedom
 of \(\pm 2 n \pi\) when taking the logarithm. Therefore the resulting
-Hamiltonian is not unique. The series expansion has poor convergence properties,
-so only small time steps may be considered and many terms may be required to
-reach convergence. Experimentally, if there are errors in the measurement of
-\(\mat{U}\), taking high order terms causes a multiplication of these errors,
-which puts a practical limit on the number of terms that may be used. I do note
-that these considerations are not dissimilar to the step size considerations
-that I discuss above.
+Hamiltonian is not unique. The series expansion can only be used for small
+times, requiring the Frobenius norm of \(\identity-\mat{A}\) to be less than
+\(1\). More generally, since \(\mat{U} \of{\dt} = \mat{U} \of{t+\dt}
+\mat{U}^{\dagger} \of{t}\) for any \(t\), we just require two measurements of
+\(\mat{U}\) separated by a small time increment. This requirement is the same as
+the time derivative method.
 
-An improved series-type solution has been described in~\cite{hamiltomo}, where
-the Hermitian and anti-Hermitian parts of \(\mat{U}\) are considered separately.
+The relative merits of the time derivative compared to the series expansion
+depend on the magnitude of this timestep and the amount of noise present in the
+measurement of \(\mat{U}\). Simulations for a range of parameters are presented
+in figure~\ref{fig:logvsderivative}, and show that for smaller timesteps the
+time derivative can outperform the series method in the presence of experimental
+noise. For larger timesteps, the series may be a better choice.
+
+An alternative series-type solution has been described in~\cite{hamiltomo},
+where the Hermitian and anti-Hermitian parts of \(\mat{U}\) are considered
+separately.
 
 
 
