@@ -15,7 +15,7 @@ simulations_figs=manifolds.png\
  circuit.pdf\
  opensystem.pdf
 
-hamiltomo_figs=
+hamiltomo_figs=logvsderivative.pdf
 
 qcv_figs=protected/dilbert.png\
  benchmarking.pdf\

@@ -241,7 +241,7 @@ H      : exact Hamiltonian underlying the unitary evolution
 t1     : first measurement of U
 t2     : second measurement of U
 order  : order of Taylor series
-oise   : noise function to apply to unitaries
+noise  : noise function to apply to unitaries
 args   : arguments to pass to noise function
 return : (numpy array) estimate of Hamiltonian'''
   dim=H.shape[0]
@@ -252,17 +252,16 @@ return : (numpy array) estimate of Hamiltonian'''
   U_final=noise(expi(H,t2),*args)
   # propagator between t1 and t2
   U=numpy.dot(U_final,dagger(U_init))
-  matsin=0.5j*(U-dagger(U))
-  matcos=0.5*(U+dagger(U))
   identity=Identity(dim)
-  matpow=Identity(dim)
-  c_k=1
-  G=Identity(dim)
-  for k in range(1,order):
-    matpow=numpy.dot(matpow,(matcos-identity))
-    c_k*=(-1/2.)*(k/(k+0.5))
-    G+=c_k*matpow
-  return (1/(2*dt))*numpy.dot(matsin,G)
+  A=identity-U
+  An=A
+  # zeroth order term
+  logU=numpy.zeros((dim,dim),dtype=complex)
+  for n in range(1,order+1):
+    logU=logU-An/float(n)
+    An=numpy.dot(An,A)
+  G=1j*logU/dt
+  return G
 
 def expi(H,t):
   '''Evolve the Hamiltonian H for time t

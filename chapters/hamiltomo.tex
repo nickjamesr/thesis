@@ -104,6 +104,21 @@ the remaining data acquisition and all the data analysis.
 
 \section{Alternative methods}
 \label{sec:Alternatives}
+\begin{figure}
+  \includegraphics{figures/logvsderivative}
+  \caption[Comparison of power series and time derivative methods for
+  Hamiltonian recovery]
+  {Comparison of power series and time derivative as methods for Hamiltonian
+  tomography, showing fidelity of the recovered Hamiltonian against the number
+  of terms in the power series, for various levels of noise. Shaded regions show
+  the fidelity expected from the time derivative method, with the variation
+  being from Monte-Carlo simulation with 1000 random evaluations. This method
+  does not involve summing terms so is constant. The error bars show the
+  expected fidelity using a power series to evaluate the matrix logarithm to the
+  expected number of terms. The fidelity flattens off due to noise accumulating
+  for higher order terms in the series. The error bar on each point is
+  calculated by a Monte-Carlo simulation of 1000 random evaluations.}
+\end{figure}
 On inspection of equation~\ref{eq:exponential}, the most straightforward way to
 recover the Hamiltonian from a measurement of \(\mat{U}\) would appear to be to
 take the logarithm:

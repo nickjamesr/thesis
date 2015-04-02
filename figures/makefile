@@ -14,6 +14,7 @@ all = benchmarking.pdf\
  example.pdf\
  interferometerAB.pdf\
  interferometerCD.pdf\
+ logvsderivative.pdf\
  manifolds.png\
  opensystem.pdf\
  qubits.pdf\
@@ -33,6 +34,9 @@ default : $(all)
 
 ../scatterbox/random/%:
 	cd ../scatterbox/random && $(MAKE) $*
+
+../hamiltomo/%:
+	cd ../hamiltomo && $(MAKE) $*
 
 # Rule to generate eps from svg
 %.eps : %.svg
@@ -94,6 +98,17 @@ interferometerAB.pdf : interferometerAB.eps interferometerAB.pyx
 
 interferometerCD.pdf : interferometerCD.eps interferometerCD.pyx
 	pyxplot interferometerCD.pyx
+
+logvsderivative_data=$(addprefix ../hamiltomo/data/,\
+ comparison00.dat\
+ comparison01.dat\
+ comparison02.dat\
+ comparison03.dat\
+ comparison04.dat\
+ comparison05.dat\
+ comparison06.dat)
+logvsderivative.pdf : $(logvsderivative_data) logvsderivative.pyx
+	pyxplot logvsderivative.pyx
 
 opensystem.pdf : opensystem.eps opensystem.pyx
 	pyxplot opensystem.pyx

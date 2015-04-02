@@ -1,13 +1,13 @@
 set terminal pdf
 set output "benchmarking.pdf"
 
-fig_w=13.0
+fig_w=12.8
 fig_m=fig_w/100.
 
 pair_w=48*fig_m
 sing_w=32*fig_m
 plot_h=25*fig_m
-h_pad=5*fig_m
+h_pad=3*fig_m
 v_pad=5*fig_m
 text_dx=3*fig_m
 text_dy=-5*fig_m
@@ -49,6 +49,7 @@ set multiplot
   set size ratio plot_h/pair_w
   set ytics out 0.5
   set mytics 0.1
+  set ylabel "Probability"
   set noy2tics
   # Quantum
   set xtics out ("" 0, "" 1, "" 2, "" 3, "" 4, "" 5)
@@ -60,6 +61,7 @@ set multiplot
 
   # Classical
   set xtics out ("AB" 0, "AC" 1, "AD" 2, "BC" 3, "BD" 4, "CD" 5)
+  set xlabel "Correlation"
   set origin 0,0*(plot_h+v_pad)
   plot prefix+"/example_classical.dat" using 1:4 with boxes style 2 notitle,\
        prefix+"/example_classical.dat" using 1:3 with boxes style 2 notitle,\
@@ -71,10 +73,12 @@ set multiplot
   set width sing_w
   set size ratio plot_h/sing_w
   set noytics
+  set noylabel
   set y2tics out 0.5
   set my2tics 0.1
   # Quart
   set xtics out ("" 0, "" 1, "" 2, "" 3)
+  set noxlabel
   set origin pair_w+h_pad,1*(plot_h+v_pad)
   plot prefix+"/example_quart.dat" using 1:4 with boxes style 3 notitle,\
        prefix+"/example_quart.dat" using 1:3 with boxes style 3 notitle,\
@@ -83,6 +87,7 @@ set multiplot
 
   # Trit
   set xtics out ("A" 0, "B" 1, "C" 2, "D" 3)
+  set xlabel "Mode"
   set origin pair_w+h_pad,0*(plot_h+v_pad)
   plot prefix+"/example_trit.dat" using 1:4 with boxes style 3 notitle,\
        prefix+"/example_trit.dat" using 1:3 with boxes style 3 notitle,\
