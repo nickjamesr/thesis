@@ -4,7 +4,8 @@ else
 inkscape=inkscape
 endif
 
-all = bosonsampling.pdf\
+all = benchmarking.pdf\
+ bosonsampling.pdf\
  cascade.pdf\
  circuit.pdf\
  clouds.pdf\
@@ -29,6 +30,9 @@ default : $(all)
 # Generate data if required
 ../pt/% :
 	cd ../pt && $(MAKE) $*
+
+../scatterbox/random/%:
+	cd ../scatterbox/random && $(MAKE) $*
 
 # Rule to generate eps from svg
 %.eps : %.svg
@@ -56,6 +60,14 @@ manifolds.png : manifold_bare_A.eps manifold_data_A.eps manifolds.pyx
 	povray +A $*.pov
 
 # pdf files may have different/multiple dependencies
+benchmarking_data=$(addprefix ../scatterbox/random/data/,\
+ example_quart.dat\
+ example_trit.dat\
+ example_quantum.dat\
+ example_classical.dat)
+benchmarking.pdf : $(benchmarking_data) benchmarking.pyx
+	pyxplot benchmarking.pyx
+
 bosonsampling.pdf : BSunitary.eps bosonsampling.pyx
 	pyxplot bosonsampling.pyx
 

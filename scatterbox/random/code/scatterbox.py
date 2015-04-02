@@ -4,6 +4,14 @@ import numpy
 import math
 import cmath
 
+from os import path
+from sys import argv
+
+def usage():
+  print '''scatterbox.py fname
+fname  : file containing unitary matrix
+output : printed list of circuit parameters for unitary'''
+
 def abs2(z):
   return (z*z.conjugate()).real
 
@@ -144,6 +152,28 @@ class Circuit:
     fullu[3,1] = cosat0*t3 + sinat0*t2
     fullu[2,1] = sinat0*t3 - cosat0*t2
     #print "Reconstructed:\n", self.unitary
+
+  def quart(self):
+    u=self.unitary
+    quart=abs2(u[:,0])
+    return quart/sum(quart)
+
+  def trit(self):
+    u=self.unitary
+    trit=abs2(u[:,1])
+    return trit/sum(trit)
+
+  def quantum(self):
+    u=self.unitary
+    pairs=[(0,1),(0,2),(0,3),(1,2),(1,3),(2,3)]
+    quantum=[abs2(u[i,0]*u[j,1]+u[j,0]*u[i,1]) for i,j in pairs]
+    return quantum/sum(quantum)
+
+  def classical(self):
+    u=self.unitary
+    pairs=[(0,1),(0,2),(0,3),(1,2),(1,3),(2,3)]
+    classical=[abs2(u[i,0]*u[j,1])+abs2(u[j,0]*u[i,1]) for i,j in pairs]
+    return classical/sum(classical)
 
   def amplitudes(self):
     '''Return the counts expected for bosons'''
@@ -310,11 +340,23 @@ c[0], c[1], c[2], c[3], c[4], c[5]))
     return U
 
 if __name__=='__main__':
-  c = Circuit()
-  U = numpy.array([[0.5, 0.5],\
-      [0.5,complex(0,0.5)],\
-      [0.5,-0.5],\
-      [0.5,complex(0,-0.5)]])
-  c.fromMatrix(U)
+  if len(argv)<2:
+    usage()
+  elif not path.exists(argv[1]):
+    usage()
+  else:
+    c=Circuit()
+    c.load(argv[1])
+    labels=['at0','at1','pt0','pt1','aq0','aq1','aq2']
+    for x,l in zip(c.params(),labels):
+      print "{0:s}: {1:.2f}".format(l,x)
+    print
 
-
+    params=c.params()
+    print c.quart()
+    print
+    errs=(0.5,0.5,2,2,0.5,0.5,0.5)
+    for i in range(5):
+      p=[numpy.random.normal(mu,s) for mu,s in zip(params,errs)]
+      c.fromList(*p)
+      print c.quart()

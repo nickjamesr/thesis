@@ -18,6 +18,7 @@ simulations_figs=manifolds.png\
 hamiltomo_figs=
 
 qcv_figs=protected/dilbert.png\
+ benchmarking.pdf\
  clouds.pdf\
  crapusoid.pdf\
  crosstalk.pdf\
@@ -35,12 +36,14 @@ figures=$(addprefix figures/, $(background_figs)\
 
 thesis.pdf : $(figures) thesis.tex title.tex thesis.sty $(chapters)\
 		bib/thesis.bib
+	cd figures && $(MAKE)
 	pdflatex thesis
 	bibtex thesis
 	pdflatex thesis
 	pdflatex thesis
 
 %.pdf : thesis.tex thesis.sty chapters/%.tex bib/thesis.bib $(figures)
+	cd figures && $(MAKE)
 	pdflatex thesis
 	bibtex thesis
 	cp thesis.bbl $*.bbl

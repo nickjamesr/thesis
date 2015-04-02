@@ -2,12 +2,15 @@
 
 import math
 import cmath
+import sys
 
 import numpy as np
 import scipy.optimize as opt
 
-from sys import argv
 from os import path
+
+sys.path.append("code")
+from scatterbox import Circuit
 
 def time(n):
   if (n < 20):
@@ -59,6 +62,59 @@ def dVis(phi, b_exp, v_exp):
   b_mod = np.array([b_exp[i,j] for (i,j) in pairs])
   v_mod = -2*cosines/(b_mod + 1.0/b_mod)
   return sum((v_exp-v_mod)**2)
+
+def DiallingErrors(mat,ntrials,errs=None,level=68.2):
+  '''Calculate the dialling errors when attempting to dial unitary mat
+with component errors errs
+mat     : unitary to dial
+ntrials : number of trials in Monte-Carlo
+errs    : magnitude of dialling errors. Expecting tuple
+          (at0, at1, pt1, pt2, aq0, aq1, aq2) of values
+          in degrees. Defaults to 0.5 for amplitudes, 3 for phases
+level   : percentile for errors
+return  : tuple (quantum, classical, quart trit). Each item is a
+          list of (-,+) tuples representing l-th percentile errors
+          for a level l.'''
+  lo=0.005*(100-level)
+  hi=1-lo
+  lo=int(math.floor(lo*ntrials))
+  hi=int(math.ceil(hi*ntrials))
+  c=Circuit()
+  c.fromMatrix(mat)
+  params=c.params()
+
+  if errs is None:
+    errs=(0.5,0.5,3,3,0.5,0.5,0.5)
+  
+  # Set up the arrays to store the data
+  quart=np.empty((ntrials,4))     # A, B, C, D
+  trit=np.empty((ntrials,4))      # A, B, C, D
+  quantum=np.empty((ntrials,6))   # AB, AC, AD, BC, BD, CD
+  classical=np.empty((ntrials,6)) # AB, AC, AD, BC, BD, CD
+
+  # Populate the arrays with results of Monte-Carlo
+  for i in xrange(ntrials):
+    p=[np.random.normal(mu,s) for mu,s in zip(params,errs)]
+    c.fromList(*p)
+    quart[i]=c.quart()
+    trit[i]=c.trit()
+    quantum[i]=c.quantum()
+    classical[i]=c.classical()
+
+  # Find percentiles
+  quart_lo=[sorted(quart[:,i])[lo] for i in range(4)]
+  quart_hi=[sorted(quart[:,i])[hi] for i in range(4)]
+  trit_lo=[sorted(trit[:,i])[lo] for i in range(4)]
+  trit_hi=[sorted(trit[:,i])[hi] for i in range(4)]
+  quantum_lo=[sorted(quantum[:,i])[lo] for i in range(6)]
+  quantum_hi=[sorted(quantum[:,i])[hi] for i in range(6)]
+  classical_lo=[sorted(classical[:,i])[lo] for i in range(6)]
+  classical_hi=[sorted(classical[:,i])[hi] for i in range(6)]
+
+  # Construct return values
+  return [zip(x,y) for x,y in zip(\
+ [quantum_lo,classical_lo,quart_lo,trit_lo],
+ [quantum_hi,classical_hi,quart_hi,trit_hi])]
 
 def Reconstruct(num, save=True):
 ### Get Necessary data from files ###
@@ -182,12 +238,6 @@ path.exists(folder+"/background.txt")):
   f_conj = abs2(0.5*(qq+tt))
   f_conj_adj = abs2(0.5*(abs(qq)+abs(tt)))
 
-
-### TEMP ###
-  # Error bars for singles - need to be defined higher up
-  #quart_err = [0 for i in range(4)]
-  #trit_err = [0 for i in range(4)]
-
 ### Bar chart fidelities ###
   pairs = ((0,1), (0,2), (0,3), (1,2), (1,3), (2,3))
   eps = np.array([eta[i]*eta[j] for (i,j) in pairs])
@@ -207,19 +257,7 @@ path.exists(folder+"/background.txt")):
   quantum_ide = quantum_ide/sum(quantum_ide)
   quantum_exp = dips[:,2]*eps/sum(dips[:,2]*eps)
 
-### Normalise so sum of 10 coincidences equal to 1
-  '''classical_ide = np.array([abs2(matrix[i,0]*matrix[j,1]) +\
-      abs2(matrix[j,0]*matrix[i,1]) for (i,j) in pairs])
-  classical_exp = dips[:,1]*eps/sum(dips[:,1]*eps)
-  classical_exp = classical_exp*sum(classical_ide)
-  classical_err = classical_err*sum(classical_ide)
-
-  quantum_ide = np.array([abs2(matrix[i,0]*matrix[j,1] +\
-      matrix[j,0]*matrix[i,1]) for (i,j) in pairs])
-  quantum_exp = dips[:,2]*eps/sum(dips[:,2]*eps)
-  quantum_exp = quantum_exp*sum(quantum_ide)
-  quantum_err = quantum_err*sum(quantum_ide)'''
-
+### Write reconstructed matrix
   fout = open("data/{0:02}/reconstructed{0:02}.dat".format(num), 'w')
   for i in range(4):
     fout.write("{0:.5f}{1:+.5f}j {2:.5f}{3:+.5f}j\n".format(U_recon[i,0].real,\
@@ -231,8 +269,6 @@ path.exists(folder+"/background.txt")):
   f_class = 1-0.5*sum(abs(classical_ide-classical_exp))
   f_quantum = 1-0.5*sum(abs(quantum_ide-quantum_exp))
 
-  #print num, max(f_conj,f_recon), "\t", \
-  #  f_class, "\t", f_quantum
   fout=open("data/fidelities.dat",'a')
   fout.write("{0:02d} {1:.5f} {2:.5f} {3:.5f} {4:.5f} {5:.5f}\n".format(\
 num, max(f_conj_adj, f_recon_adj), f_class, f_quantum, f_quart, f_trit))
@@ -243,64 +279,71 @@ num, max(f_conj_adj, f_recon_adj), f_class, f_quantum, f_quart, f_trit))
   quantum_exp = np.append(quantum_exp, quantum_err)
   classical_exp = np.append(classical_exp, classical_err)
 
-  qin = np.append(qin, [0 for i in range(4)])
-  tin = np.append(tin, [0 for i in range(4)])
-  quantum_ide = np.append(quantum_ide, [0 for i in range(6)])
-  classical_ide = np.append(classical_ide, [0 for i in range(6)])
+  qin = list(qin)
+  tin = list(tin)
+  quantum_ide = list(quantum_ide)
+  classical_ide = list(classical_ide)
+
+  quantum_dialling,classical_dialling,quart_dialling,trit_dialling=\
+ DiallingErrors(matrix,5000)
 
   if save:
-### Quart
-  # Experimental
+### Experimental
     fstring = "{0:02d} "
     for i in range(1,9):
       fstring += "{" + str(i) + ":.4f} "
     fstring += "\n"
+  # Quart
     fout = open("data/quart_experimental.dat", 'a')
-    #fout.write(fstring.format(time(num), *quart))
     fout.write(fstring.format(num, *quart))
     fout.close()
-  # Ideal
-    fout = open("data/quart_ideal.dat", 'a')
-    #fout.write(fstring.format(time(num), *qin))
-    fout.write(fstring.format(num, *qin))
-    fout.close()
-### Trit
-  # Experimental
+  # Trit
     fout = open("data/trit_experimental.dat", 'a')
-    #fout.write(fstring.format(time(num), *trit))
     fout.write(fstring.format(num, *trit))
     fout.close()
-  # Ideal
-    fout = open("data/trit_ideal.dat", 'a')
-    #fout.write(fstring.format(time(num), *tin))
-    fout.write(fstring.format(num, *tin))
-    fout.close()
 
+### Ideal
     fstring = "{0:02d} "
     for i in range(1,13):
       fstring += "{" + str(i) + ":.4f} "
     fstring += "\n"
-### Quantum
-  # Experimental
+  # Quart
+    fout = open("data/quart_ideal.dat", 'a')
+    fout.write(fstring.format(num,\
+ *(qin+[x for y in quart_dialling for x in y])))
+    fout.close()
+  # Trit 
+    fout = open("data/trit_ideal.dat", 'a')
+    fout.write(fstring.format(num,\
+ *(tin+[x for y in trit_dialling for x in y])))
+    fout.close()
+
+### Experimental
+    fstring = "{0:02d} "
+    for i in range(1,13):
+      fstring += "{" + str(i) + ":.4f} "
+    fstring += "\n"
+  # Quantum
     fout = open("data/quantum_experimental.dat", 'a')
-    #fout.write(fstring.format(time(num), *quantum_exp))
     fout.write(fstring.format(num, *quantum_exp))
     fout.close()
-  # Ideal
-    fout = open("data/quantum_ideal.dat", 'a')
-    #fout.write(fstring.format(time(num), *quantum_ide))
-    fout.write(fstring.format((num), *quantum_ide))
-    fout.close()
-### Classical
-  # Experimental
+  # Classical
     fout = open("data/classical_experimental.dat", 'a')
-    #fout.write(fstring.format(time(num), *classical_exp))
     fout.write(fstring.format((num), *classical_exp))
     fout.close()
-  # Ideal
+### Ideal
+    fstring = "{0:02d} "
+    for i in range(1,19):
+      fstring += "{" + str(i) + ":.4f} "
+    fstring += "\n"
+    fout = open("data/quantum_ideal.dat", 'a')
+    fout.write(fstring.format((num),\
+ *(quantum_ide+[x for y in quantum_dialling for x in y])))
+    fout.close()
+  # Classical
     fout = open("data/classical_ideal.dat", 'a')
-    #fout.write(fstring.format(time(num), *classical_ide))
-    fout.write(fstring.format((num), *classical_ide))
+    fout.write(fstring.format((num),\
+ *(classical_ide+[x for y in classical_dialling for x in y])))
     fout.close()
 
 if __name__=='__main__':
@@ -311,7 +354,7 @@ if __name__=='__main__':
   fout.close()
   # quart ideal
   fout=open("data/quart_ideal.dat",'w')
-  fout.write("# A B C D dA dB dC dD\n")
+  fout.write("# A B C D A(-) A(+) B(-) B(+) C(-) C(+) D(-) D(+)\n")
   fout.close()
   # quart experimental
   fout=open("data/quart_experimental.dat",'w')
@@ -319,7 +362,7 @@ if __name__=='__main__':
   fout.close()
   # trit ideal
   fout=open("data/trit_ideal.dat",'w')
-  fout.write("# A B C D dA dB dC dD\n")
+  fout.write("# A B C D A(-) A(+) B(-) B(+) C(-) C(+) D(-) D(+)\n")
   fout.close()
   # trit experimental
   fout=open("data/trit_experimental.dat",'w')
@@ -327,7 +370,8 @@ if __name__=='__main__':
   fout.close()
   # quantum ideal
   fout=open("data/quantum_ideal.dat",'w')
-  fout.write("# AB AC AD BC BD CD dAB dAC dAD dBC dBD dCD\n")
+  fout.write("# AB AC AD BC BD CD AB(-) AB(+) AC(-) AC(+) AD(-) AD(+) BC(-)\
+ BC(+) BD(-) BD(+) CD(-) CD(+)\n")
   fout.close()
   # quantum experimental
   fout=open("data/quantum_experimental.dat",'w')
@@ -335,7 +379,8 @@ if __name__=='__main__':
   fout.close()
   # classical ideal
   fout=open("data/classical_ideal.dat",'w')
-  fout.write("# AB AC AD BC BD CD dAB dAC dAD dBC dBD dCD\n")
+  fout.write("# AB AC AD BC BD CD AB(-) AB(+) AC(-) AC(+) AD(-) AD(+) BC(-)\
+ BC(+) BD(-) BD(+) CD(-) CD(+)\n")
   fout.close()
   # classical experimental
   fout=open("data/classical_experimental.dat",'w')
@@ -344,3 +389,43 @@ if __name__=='__main__':
   for num in range(12):
     Reconstruct(num)
 
+  # For a single file (0 iteration), produce the data for actually plotting
+  num=0 
+
+  # Singles
+  qex=np.loadtxt("data/quart_experimental.dat")
+  qth=np.loadtxt("data/quart_ideal.dat")
+  tex=np.loadtxt("data/trit_experimental.dat")
+  tth=np.loadtxt("data/trit_ideal.dat")
+
+  fout=open("data/example_quart.dat",'w')
+  fout.write("# th(-) th(=) th(+) ex(=) ex(+-)\n")
+  for i in range(4):
+    fout.write("{0:d} {1:.4f} {2:.4f} {3:.4f} {4:.4f} {5:.4f}\n".format(i,\
+ qth[num,5+2*i],qth[num,1+i],qth[num,6+2*i],qex[num,1+i],qex[num,5+i]))
+  fout.close()
+  fout=open("data/example_trit.dat",'w')
+  fout.write("# th(-) th(=) th(+) ex(=) ex(+-)\n")
+  for i in range(4):
+    fout.write("{0:d} {1:.4f} {2:.4f} {3:.4f} {4:.4f} {5:.4f}\n".format(i,\
+ tth[num,5+2*i],tth[num,1+i],tth[num,6+2*i],tex[num,1+i],tex[num,5+i]))
+  fout.close()
+
+  # Coincidences
+  qex=np.loadtxt("data/quantum_experimental.dat")
+  qth=np.loadtxt("data/quantum_ideal.dat")
+  cex=np.loadtxt("data/classical_experimental.dat")
+  cth=np.loadtxt("data/classical_ideal.dat")
+
+  fout=open("data/example_quantum.dat",'w')
+  fout.write("# th(-) th(=) th(+) ex(=) ex(+-)\n")
+  for i in range(6):
+    fout.write("{0:d} {1:.4f} {2:.4f} {3:.4f} {4:.4f} {5:.4f}\n".format(i,\
+ qth[num,7+2*i],qth[num,1+i],qth[num,8+2*i],qex[num,1+i],qex[num,7+i]))
+  fout.close()
+  fout=open("data/example_classical.dat",'w')
+  fout.write("# th(-) th(=) th(+) ex(=) ex(+-)\n")
+  for i in range(6):
+    fout.write("{0:d} {1:.4f} {2:.4f} {3:.4f} {4:.4f} {5:.4f}\n".format(i,\
+ cth[num,7+2*i],cth[num,1+i],cth[num,8+2*i],cex[num,1+i],cex[num,7+i]))
+  fout.close()
