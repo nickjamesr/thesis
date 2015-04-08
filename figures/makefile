@@ -16,6 +16,7 @@ all = benchmarking.pdf\
  interferometerCD.pdf\
  logvsderivative.pdf\
  manifolds.png\
+ molecules.pdf\
  opensystem.pdf\
  qubits.pdf\
  reck_original.pdf\
@@ -24,7 +25,8 @@ all = benchmarking.pdf\
  rstar.pdf\
  schematic.pdf\
  sixphoton.pdf\
- twosite.pdf
+ twosite.pdf\
+ vibrations.pdf
 
 default : $(all)
 
@@ -34,6 +36,9 @@ default : $(all)
 
 ../scatterbox/random/%:
 	cd ../scatterbox/random && $(MAKE) $*
+
+../scatterbox/molecules/%:
+	cd ../scatterbox/molecules && $(MAKE) $*
 
 ../hamiltomo/%:
 	cd ../hamiltomo && $(MAKE) $*
@@ -45,6 +50,9 @@ default : $(all)
 # png files may have different resolution
 circuit.png : circuit.svg
 	$(inkscape) -d 360 -e circuit.png circuit.svg
+
+vibrations.png : vibrations.svg
+	$(inkscape) -d 120 -e vibrations.png vibrations.svg
 
 # Manifold eps
 manifold_data=$(addprefix ../pt/data/,manifold/manifold_A.dat\
@@ -110,6 +118,22 @@ logvsderivative_data=$(addprefix ../hamiltomo/data/,\
 logvsderivative.pdf : $(logvsderivative_data) logvsderivative.pyx
 	pyxplot logvsderivative.pyx
 
+molecules_data=$(addprefix ../scatterbox/molecules/data/,\
+ OCS/quantum.dat\
+ OCS/quantum_ideal.dat\
+ OCS/quart.dat\
+ OCS/quart_ideal.dat\
+ OCS/trit.dat\
+ OCS/trit_ideal.dat\
+ CO2/quantum.dat\
+ CO2/quantum_ideal.dat\
+ CO2/quart.dat\
+ CO2/quart_ideal.dat\
+ CO2/trit.dat\
+ CO2/trit_ideal.dat)
+molecules.pdf : $(molecules_data) molecules.pyx
+	pyxplot molecules.pyx
+
 opensystem.pdf : opensystem.eps opensystem.pyx
 	pyxplot opensystem.pyx
 
@@ -148,6 +172,9 @@ twosite_data=$(addprefix ../pt/data/,broken/quantum.dat\
  symmetric/theory.dat)
 twosite.pdf : twosite.pyx $(twosite_data)
 	pyxplot twosite.pyx
+
+vibrations.pdf : vibrations.pyx vibrations.png
+	pyxplot vibrations.pyx
 
 clean : 
 	for f in *.pdf; do if [ -e $$f ]; then rm $$f; fi; done

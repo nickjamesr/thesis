@@ -1,6 +1,8 @@
 #!/usr/bin/gnuplot
 
-set style line 3 lc rgb "#00aaff"
+set style line 1 lw 3
+set style line 2 lw 3
+set style line 3 lw 3 lc rgb "#00aaff"
 set style line 4 lc 1 pt 7              # Experimental symmetric
 set style line 5 lc 2 pt 7              # Experimental critical
 set style line 6 lc rgb "#00aaff" pt 7  # Experimental broken

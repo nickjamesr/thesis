@@ -1,4 +1,19 @@
 fidelities.dat
 
-OCS/*.dat
-CO2/*.dat
+OCS/quantum.dat
+OCS/quantum_ideal.dat
+OCS/classical.dat
+OCS/classical_ideal.dat
+OCS/quart.dat
+OCS/quart_ideal.dat
+OCS/trit.dat
+OCS/trit_ideal.dat
+
+CO2/quantum.dat
+CO2/quantum_ideal.dat
+CO2/classical.dat
+CO2/classical_ideal.dat
+CO2/quart.dat
+CO2/quart_ideal.dat
+CO2/trit.dat
+CO2/trit_ideal.dat

@@ -13,7 +13,9 @@ dialling_figs=cascade.pdf\
 simulations_figs=manifolds.png\
  twosite.pdf\
  circuit.pdf\
- opensystem.pdf
+ molecules.pdf\
+ opensystem.pdf\
+ vibrations.pdf
 
 hamiltomo_figs=logvsderivative.pdf
 

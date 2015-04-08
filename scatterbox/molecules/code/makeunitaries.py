@@ -2,6 +2,8 @@
 
 import numpy
 
+from errors import DiallingErrors
+
 def RealBorder(M):
   '''pre- and post-multiply M by a diagonal matrix of phases to make
 the border elements real.
@@ -82,32 +84,38 @@ if __name__=='__main__':
   fquantum=open("../data/OCS/quantum_ideal.dat", 'w')
   fclassical=open("../data/OCS/classical_ideal.dat", 'w')
 
-  fquart.write("# A B C D\n")
-  ftrit.write("# A B C D\n")
-  fquantum.write("# AB AC AD BC BD CD\n")
-  fclassical.write("# AB AC AD BC BD CD\n")
+  fquart.write("# A B C D A(-) A(+) B(-) B(+) C(-) C(+) D(-) D(+)\n")
+  ftrit.write("# A B C D A(-) A(+) B(-) B(+) C(-) C(+) D(-) D(+)\n")
+  fquantum.write("# AB AC AD BC BD CD AB(-) AB(+) AC(-) AC(+) AD(-) AD(+) BC(-)\
+ BC(+) BD(-) BD(+) CD(-) CD(+)\n")
+  fclassical.write("# AB AC AD BC BD CD AB(-) AB(+) AC(-) AC(+) AD(-) AD(+)\
+ BC(-) BC(+) BD(-) BD(+) CD(-) CD(+)\n")
 
   sfmt=""
   pfmt=""
-  for i in range(5):
+  for i in range(13):
     sfmt+=("{"+str(i)+":.4g} ")
-  for i in range(7):
+  for i in range(19):
     pfmt+=("{"+str(i)+":.4g} ")
   sfmt+="\n"
   pfmt+="\n"
 
   for t in numpy.linspace(0,0.01,201):
-  #for t in (0,):
-    for i,x in zip(range(4),ocslevels):
+    for i,x in enumerate(ocslevels):
       diag[i,i]=numpy.exp(-1.0j*x*t)
     unitary=numpy.dot(meas, numpy.dot(diag, prep))
     permuted=numpy.array([[unitary[i,j] for j in (1,3,0,2)] for i in range(4)])
     quart,trit=GetSingles(permuted)
     quantum,classical=GetPairs(permuted)
-    fquart.write(sfmt.format(t,*quart))
-    ftrit.write(sfmt.format(t,*trit))
-    fquantum.write(pfmt.format(t,*quantum))
-    fclassical.write(pfmt.format(t,*classical))
+    quantum_err,classical_err,quart_err,trit_err=DiallingErrors(permuted,2000)
+    fquart.write(sfmt.format(t,\
+ *(list(quart)+[x for y in quart_err for x in y])))
+    ftrit.write(sfmt.format(t,\
+ *(list(trit)+[x for y in trit_err for x in y])))
+    fquantum.write(pfmt.format(t,\
+ *(list(quantum)+[x for y in quantum_err for x in y])))
+    fclassical.write(pfmt.format(t,\
+ *(list(classical)+[x for y in classical_err for x in y])))
 
   fquart.close()
   ftrit.close()
@@ -121,31 +129,38 @@ if __name__=='__main__':
   fquantum=open("../data/CO2/quantum_ideal.dat", 'w')
   fclassical=open("../data/CO2/classical_ideal.dat", 'w')
 
-  fquart.write("# A B C D\n")
-  ftrit.write("# A B C D\n")
-  fquantum.write("# AB AC AD BC BD CD\n")
-  fclassical.write("# AB AC AD BC BD CD\n")
+  fquart.write("# A B C D A(-) A(+) B(-) B(+) C(-) C(+) D(-) D(+)\n")
+  ftrit.write("# A B C D A(-) A(+) B(-) B(+) C(-) C(+) D(-) D(+)\n")
+  fquantum.write("# AB AC AD BC BD CD AB(-) AB(+) AC(-) AC(+) AD(-) AD(+) BC(-)\
+ BC(+) BD(-) BD(+) CD(-) CD(+)\n")
+  fclassical.write("# AB AC AD BC BD CD AB(-) AB(+) AC(-) AC(+) AD(-) AD(+)\
+ BC(-) BC(+) BD(-) BD(+) CD(-) CD(+)\n")
 
   sfmt=""
   pfmt=""
-  for i in range(5):
+  for i in range(13):
     sfmt+=("{"+str(i)+":.4g} ")
-  for i in range(7):
+  for i in range(19):
     pfmt+=("{"+str(i)+":.4g} ")
   sfmt+="\n"
   pfmt+="\n"
 
   for t in numpy.linspace(0,0.01,201):
-    for i,x in zip(range(4),co2levels):
+    for i,x in enumerate(co2levels):
       diag[i,i]=numpy.exp(-1.0j*x*t)
     unitary=numpy.dot(meas, numpy.dot(diag, prep))
     permuted=numpy.array([[unitary[i,j] for j in (1,3,0,2)] for i in range(4)])
     quart,trit=GetSingles(permuted)
     quantum,classical=GetPairs(permuted)
-    fquart.write(sfmt.format(t,*quart))
-    ftrit.write(sfmt.format(t,*trit))
-    fquantum.write(pfmt.format(t,*quantum))
-    fclassical.write(pfmt.format(t,*classical))
+    quantum_err,classical_err,quart_err,trit_err=DiallingErrors(permuted,2000)
+    fquart.write(sfmt.format(t,\
+ *(list(quart)+[x for y in quart_err for x in y])))
+    ftrit.write(sfmt.format(t,\
+ *(list(trit)+[x for y in trit_err for x in y])))
+    fquantum.write(pfmt.format(t,\
+ *(list(quantum)+[x for y in quantum_err for x in y])))
+    fclassical.write(pfmt.format(t,\
+ *(list(classical)+[x for y in classical_err for x in y])))
 
   fquart.close()
   ftrit.close()
