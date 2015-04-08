@@ -80,6 +80,23 @@ Note that this is not the only way to recover the Hamiltonian from measurements
 of \(\mat{U}\). Alternatives, such as the matrix logarithm and series expansions
 are discussed briefly in section~\ref{sec:Alternatives}. The rest of this
 section concerns the factors involved in choosing the step size, \(\dt\).
+\begin{figure}[t]
+  \centering
+  \includegraphics{figures/timestep}
+  \caption[Error in Hamiltonian reconstruction as a function of step size]
+  {Error in Hamiltonian reconstruction as a function of step size, under varying
+  noise from experimental error. All simulations are for a \(9 \by 9\)
+  tridiagonal Hamiltonian, with noise applied directly to the unitary.
+  In the absence of noise, the error in the
+  reconstruction decreases as \(\dt^{2}\), since we are using the 3-point
+  numerical derivative. In the presence of noise, there is an optimum point. For
+  step sizes below this, the difference between the two unitaries being
+  subtracted is swamped by the noise and the fidelity starts to decrease again.
+  Shaded regions show \(1 \sigma\) variations over Monte-Carlo simulations of
+  noise in the unitary.}
+  \label{fig:stepsize}
+\end{figure}
+
 
 \section{Experimental implementation}
 \label{sec:HTExperiment}

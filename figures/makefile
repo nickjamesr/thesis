@@ -25,6 +25,7 @@ all = benchmarking.pdf\
  rstar.pdf\
  schematic.pdf\
  sixphoton.pdf\
+ timestep.pdf\
  twosite.pdf\
  vibrations.pdf
 
@@ -160,6 +161,13 @@ schematic.pdf : schematic.eps schematic.pyx
 sixphoton.pdf : sixphoton.pyx ../reck/data/classical_events.dat\
  ../reck/data/quantum_events.dat
 	pyxplot sixphoton.pyx
+
+timestep_data=$(addprefix ../hamiltomo/data/,timestep0.dat\
+ timestep_1e-04.dat\
+ timestep_1e-06.dat\
+ timestep_1e-08.dat)
+timestep.pdf : $(timestep_data) timestep.pyx
+	pyxplot timestep.pyx
 
 twosite_data=$(addprefix ../pt/data/,broken/quantum.dat\
  broken/quart.dat\

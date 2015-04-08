@@ -27,7 +27,7 @@ set multiplot
   set origin 0,0
   set width left_w
   set size ratio plot_h/left_w
-  set ylabel "Fidelity (trace distance)"
+  set ylabel "Error in \(H\) (trace distance)"
   set xtics 1,4
   set mxtics 1
   set logscale y

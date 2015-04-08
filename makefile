@@ -17,7 +17,8 @@ simulations_figs=manifolds.png\
  opensystem.pdf\
  vibrations.pdf
 
-hamiltomo_figs=logvsderivative.pdf
+hamiltomo_figs=logvsderivative.pdf\
+ timestep.pdf
 
 qcv_figs=protected/dilbert.png\
  benchmarking.pdf\
