@@ -208,10 +208,88 @@ random output. This problem is illustrated in figure:~\ref{fig:dilbert}
   photons; (b) and (d) (red) are classical i.e. photons made distinguishable by
   introducing a time delay.\\
   (Plots by Pete Shadbolt, used with permission.)}
+  \label{fig:clouds}
 \end{figure}
 In a multi-photon quantum walk, we observe a phenomenon where photons tend to
 appear in nearby output modes. This is distinct from \emph{Bosonic bunching},
-where multiple photons appear in the same output mode.
+where multiple photons appear in the same output mode. This is illustrated for
+the case of a 3-photon, 21-mode quantum walk in figure~\ref{fig:clouds}. It is
+clear from the figure that the events produced with indistinguishable photons
+(blue, a and c) tend to occur with all photons in nearby modes. On the other
+hand, when distinguishing degrees of freedom (e.g. a temporal delay) are
+introduced between the photons (red, b and d), the clouds dissipate. Bosonic
+clouding thus appears to be the result of constructive interference.
+
+We quantify this phenomenon by assigning to each event, a number between -1 and
+1, depending on where in the device the photons exit. Suppose the optical modes
+are labelled from left to right from 0 to \(m-1\). If all the photons exit in
+the left half of the device (modes 0 to \(m/2-1\)) or all photons exit in the
+right half of the device (modes \(m/2\) to \(m-1\)), this is \emph{fully
+clouded}, and is assigned a value of 1. If exactly half the photons exit in each
+side of the device (assuming an even number of photons), this event is
+\emph{fully balanced} and is assigned a value of -1. Averaging the values of all
+events recorded in an experimental run gives the degree of clouding,
+\(\clouding\). The higher this value, the more clouding we expect to see, so in
+figure~\ref{clouds}, (a) and (c) will have a higher value of \(\clouding\) than
+(b) and (d).
+
+In the experiment reported in~\cite{verification}, we use this parameter
+\(\clouding\) to demonstrate the presence of the clouding phenomenon in a
+5-photon, 21-mode quantum walk, from just a few hundred \todo{how many?} events.
+
+It is natural to ask at this point whether the phenomenon persists to much
+higher numbers of photons and modes. After all, the fully-clouded subspace
+occupies only a combinatorially small fraction of the full configuration space
+\todo{proof}. I have derived numerical evidence that it does, by performing
+Monte-Carlo simulations of quantum walks of up to 14 photons in 196
+modes\footnote{The relationship \(p=m^{2}\) is used because of the bosonic
+birthday bound discussed in \cite{bosonsampling} and \cite{bs-rome} \todo{Is it
+in this reference?}. At least a quadratic relationship is required to suppress
+bunched events.}.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics{figures/bigclouds}
+  \caption[Numerical evidence of bosonic clouds in 14-photon quantum walks]
+  {Numerical evidence of bosonic clouds persisting in quantum walks of up to 14
+  photons.}
+  \label{fig:bigclouds}
+\end{figure}
+In these simulations, I divide the configuration space into quadrants,
+parameterised by the number of photons that exit in the left half of the device,
+\(\nleft\), and estimate the cumulative probability of an event occurring in
+each quadrant. If clouding is present, we expect there to be a surplus of
+probability in the quadrants with either high or low values of \(\nleft\) (a low
+\(\nleft\) indicates photons clouded in the right half of the device). The
+results are summarised in figure~\ref{fig:bigclouds}. Comparing the simulations
+with indistinguishable photons (blue) to those with distinguishable photons
+(red), this surplus is in fact observed.
+
+A bit more detail is required on exactly how these simulations are performed. 
+Since the full configuration space for 14 photons in 196 modes is approximately
+\(8.8 \times 10^{20}\) and calculating the probability for each configuration
+involves evaluating the permanent of a \(14 \by 14\) complex matrix, it is not
+feasible to simply sum all the probabilities in any quadrant. This brute-force
+approach is quick for 5 photons in 25 modes, possible up to 7 photons in 49
+modes, but not beyond this: thus is the nature of exponential (combinatorial)
+scaling. Instead, I perform a Monte-Carlo integration, evaluating probabilities
+for a handful (\(10^{6}\), for the 14 photon simulation in
+figure~\ref{fig:bigclouds}) of events from each quadrant and taking the average
+of these to be the average over the entire quadrant. The probability of an event
+in this quadrant is then estimated to be this average multiplied by the number
+of possible events in that quadrant. Errors are estimated by repeating the
+calculation 32 times and taking the mean and standard deviation.
+
+The nature of the evolution of a quantum walk requires some further modification
+of the Monte-Carlo process described. The photons are injected near the centre
+of the device, and on average travel to either side a distance that increases
+linearly with the evolution time (length of coupling region). This implies that
+most of the configuration space (the regions where at least one of the photons
+is still near the centre) will have very low probabilities. A uniform sampling
+across the configuration space will pick up mostly these, and possibly miss the
+clouds entirely. Instead of the uniform distribution, I sample according to the
+probability of the event occuring in a `classical' experiment, where the
+injected photons are distinguishable in some degree of freedom.
 
 \subsection{Higher photon numbers}
 \label{sec:SixPhoton}

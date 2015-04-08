@@ -5,6 +5,7 @@ inkscape=inkscape
 endif
 
 all = benchmarking.pdf\
+ bigclouds.pdf\
  bosonsampling.pdf\
  cascade.pdf\
  circuit.pdf\
@@ -12,6 +13,7 @@ all = benchmarking.pdf\
  crapusoid.pdf\
  crosstalk.pdf\
  example.pdf\
+ hamiltonians.png\
  interferometerAB.pdf\
  interferometerCD.pdf\
  logvsderivative.pdf\
@@ -44,6 +46,11 @@ default : $(all)
 ../hamiltomo/%:
 	cd ../hamiltomo && $(MAKE) $*
 
+../verification/data/clouds/% :
+	cd ../verification/data &&\
+ wget http://www.mostlydowntime.co.uk/physics/thesis/data/clouds.tar.gz &&\
+ tar xvzf clouds.tar.gz
+
 # Rule to generate eps from svg
 %.eps : %.svg
 	$(inkscape) -E $*.eps $<
@@ -51,6 +58,16 @@ default : $(all)
 # png files may have different resolution
 circuit.png : circuit.svg
 	$(inkscape) -d 360 -e circuit.png circuit.svg
+
+hamiltonians_data=$(addprefix ../hamiltomo/data/Hamiltonians/,\
+ refs0803.dat\
+ refs0804.dat\
+ refs0806.dat\
+ refs0903.dat\
+ refs0904.dat\
+ refs0906.dat)
+hamiltonians.png : $(hamiltonians_data) hamiltonians.gnu
+	gnuplot hamiltonians.gnu
 
 vibrations.png : vibrations.svg
 	$(inkscape) -d 120 -e vibrations.png vibrations.svg
@@ -80,6 +97,18 @@ benchmarking_data=$(addprefix ../scatterbox/random/data/,\
  example_classical.dat)
 benchmarking.pdf : $(benchmarking_data) benchmarking.pyx
 	pyxplot benchmarking.pyx
+
+bigclouds_data=$(addprefix ../verification/data/clouds/,\
+ 14x196classical.dat\
+ 14x196quantum.dat\
+ 10x100classical.dat\
+ 10x100quantum.dat\
+ 6x36classical.dat\
+ 6x36quantum.dat\
+ 6x36exactclassical.dat\
+ 6x36exactquantum.dat)
+bigclouds.pdf : $(bigclouds_data) bigclouds.pyx
+	pyxplot bigclouds.pyx
 
 bosonsampling.pdf : BSunitary.eps bosonsampling.pyx
 	pyxplot bosonsampling.pyx

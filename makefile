@@ -18,10 +18,12 @@ simulations_figs=manifolds.png\
  vibrations.pdf
 
 hamiltomo_figs=logvsderivative.pdf\
+ hamiltonians.png\
  timestep.pdf
 
 qcv_figs=protected/dilbert.png\
  benchmarking.pdf\
+ bigclouds.pdf\
  clouds.pdf\
  crapusoid.pdf\
  crosstalk.pdf\
@@ -66,11 +68,6 @@ figures/%.png : figures/%.pyx
 figures/protected/% :
 	cd figures/protected &&\
  wget http://www.mostlydowntime.co.uk/physics/thesis/$@
-
-verification/data/clouds/% :
-	cd verification/data &&\
- wget http://www.mostlydowntime.co.uk/physics/thesis/data/clouds.tar.gz &&\
- tar xvzf clouds.tar.gz
 
 clean :
 	cd figures && $(MAKE) clean

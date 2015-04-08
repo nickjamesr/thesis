@@ -14,10 +14,10 @@ text_dy=-3*fig_m
 
 set grid x
 
-set style 1 colour white linewidth 0 fillcolour rgb(0.7,0.9,0.7)
-set style 2 pointtype 15 pointsize 0.6 linewidth 0.8 colour rgb(0.0,0.6,0.0)
-set style 3 colour white linewidth 0 fillcolour rgb(0.7,0.7,0.9)
-set style 4 pointtype 15 pointsize 0.6 linewidth 0.8 colour rgb(0.0,0.0,0.8)
+set style 1 linewidth 0.1 colour rgb(0.6,0.8,0.6) fillcolour rgb(0.7,0.8,0.6)
+set style 2 pointtype 15 pointsize 0.6 linewidth 0.8 colour green
+set style 3 linewidth 0.1 colour rgb(0.7,0.7,1.0) fillcolour rgb(0.7,0.7,1.0)
+set style 4 pointtype 15 pointsize 0.6 linewidth 0.8 colour blue
 
 ocs="../scatterbox/molecules/data/OCS"
 co2="../scatterbox/molecules/data/CO2"
