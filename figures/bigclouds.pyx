@@ -18,7 +18,7 @@ key_dy=4*fig_m
 text_dx=fig_m
 text_dy=-4*fig_m
 
-fdir="../verification/data/clouds"
+fdir="../verification/data/bigclouds"
 
 quant_col=rgb(0.0,0.0,1.0)
 class_col=rgb(1.0,0.0,0.0)

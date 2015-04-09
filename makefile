@@ -66,6 +66,9 @@ figures/%.pdf : figures/%.pyx
 figures/%.png : figures/%.pyx
 	cd figures && $(MAKE) $*.png
 
+figures/%.png : figures/%.gnu
+	cd figures && $(MAKE) $*.png
+
 figures/protected/% :
 	cd figures/protected &&\
  wget http://www.mostlydowntime.co.uk/physics/thesis/$@

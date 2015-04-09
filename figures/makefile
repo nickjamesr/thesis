@@ -50,7 +50,8 @@ default : $(all)
 ../verification/data/bigclouds/% ../verification/data/clouds/%:
 	cd ../verification/data &&\
  wget http://www.mostlydowntime.co.uk/physics/thesis/data/clouds.tar.gz &&\
- tar xvzf clouds.tar.gz
+ tar xvzf clouds.tar.gz &&\
+ rm clouds.tar.gz
 
 # Rule to generate eps from svg
 %.eps : %.svg
