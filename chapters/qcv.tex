@@ -394,9 +394,9 @@ occupies only a combinatorially small fraction of the full configuration space
 \todo{proof}. I have derived numerical evidence that it does, by performing
 Monte-Carlo simulations of quantum walks of up to 14 photons in 196
 modes\footnote{The relationship \(p=m^{2}\) is used because of the bosonic
-birthday bound discussed in \cite{bosonsampling} and \cite{bs-rome} \todo{Is it
-in this reference?}. At least a quadratic relationship is required to suppress
-bunched events.}.
+birthday bound discussed in \cite{bosonsampling, birthdays,
+experimental-birthdays} At least a quadratic relationship is required to
+suppress bunched events.}.
 
 \begin{figure}[h]
   \centering
@@ -441,6 +441,16 @@ across the configuration space will pick up mostly these, and possibly miss the
 clouds entirely. Instead of the uniform distribution, I sample according to the
 probability of the event occuring in a `classical' experiment, where the
 injected photons are distinguishable in some degree of freedom.
+
+\section{Alternative Approaches}
+\label{sec:QCVAlternatives}
+The methods described in this chapter rely on the \(\rstar\) discriminator (as
+in section~\ref{sec:RStar}), explicit calculation of permanents
+(section~\ref{sec:SixPhoton}), and the emergence and disappearance of bosonic
+clouds (section~\ref{sec:Clouding}). Other approaches have been described, and
+in fact used in practice, for example observation of the zero transmission law
+for quantum Fourier transform \cite{ztl, tichy-verification} and the Bosonic
+birthday bound \cite{birthdays, experimental-birthdays}.
 
 \subsection{Experimental Details}
 \label{sec:VerificationExperiment}
