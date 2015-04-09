@@ -9,7 +9,8 @@ all = benchmarking.pdf\
  bosonsampling.pdf\
  cascade.pdf\
  circuit.pdf\
- clouds.pdf\
+ clouding.pdf\
+ clouds3d.pdf\
  crapusoid.pdf\
  crosstalk.pdf\
  example.pdf\
@@ -46,7 +47,7 @@ default : $(all)
 ../hamiltomo/%:
 	cd ../hamiltomo && $(MAKE) $*
 
-../verification/data/clouds/% :
+../verification/data/bigclouds/% ../verification/data/clouds/%:
 	cd ../verification/data &&\
  wget http://www.mostlydowntime.co.uk/physics/thesis/data/clouds.tar.gz &&\
  tar xvzf clouds.tar.gz
@@ -98,7 +99,7 @@ benchmarking_data=$(addprefix ../scatterbox/random/data/,\
 benchmarking.pdf : $(benchmarking_data) benchmarking.pyx
 	pyxplot benchmarking.pyx
 
-bigclouds_data=$(addprefix ../verification/data/clouds/,\
+bigclouds_data=$(addprefix ../verification/data/bigclouds/,\
  14x196classical.dat\
  14x196quantum.dat\
  10x100classical.dat\
@@ -119,8 +120,14 @@ cascade.pdf : cascade.eps cascade.pyx
 circuit.pdf : circuit.png circuit.pyx
 	pyxplot circuit.pyx
 
-clouds.pdf : walk_ex_c.png walk_ex_q.png walk_th_c.png walk_th_q.png clouds.pyx
-	pyxplot clouds.pyx
+clouding_data=$(addprefix ../verification/data/clouds/,\
+ bs_experimental_3photons_histogram.dat)
+clouding.pdf : $(clouding_data) clouding.pyx
+	pyxplot clouding.pyx
+
+clouds3d.pdf : walk_ex_c.png walk_ex_q.png walk_th_c.png walk_th_q.png\
+ clouds3d.pyx
+	pyxplot clouds3d.pyx
 
 crapusoid.pdf : crapusoid.pyx
 	pyxplot crapusoid.pyx

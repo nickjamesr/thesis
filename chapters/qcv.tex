@@ -191,9 +191,9 @@ random output. This problem is illustrated in figure:~\ref{fig:dilbert}
 
 \subsection{Bosonic Clouding}
 \label{sec:Clouding}
-\begin{figure}[t]
+\begin{figure}[p]
   \centering
-  \includegraphics{figures/clouds}
+  \includegraphics{figures/clouds3d}
   \caption[Bosonic clouding in a quantum walk]
   {Simulation and experiment for a 21-mode, 3-photon quantum walk, showing the
   phenomenon of bosonic clouding. In all plots a sphere is drawn for every
@@ -208,13 +208,13 @@ random output. This problem is illustrated in figure:~\ref{fig:dilbert}
   photons; (b) and (d) (red) are classical i.e. photons made distinguishable by
   introducing a time delay.\\
   (Plots by Pete Shadbolt, used with permission.)}
-  \label{fig:clouds}
+  \label{fig:clouds3d}
 \end{figure}
 In a multi-photon quantum walk, we observe a phenomenon where photons tend to
 appear in nearby output modes. This is distinct from \emph{Bosonic bunching},
 where multiple photons appear in the same output mode. This is illustrated for
-the case of a 3-photon, 21-mode quantum walk in figure~\ref{fig:clouds}. It is
-clear from the figure that the events produced with indistinguishable photons
+the case of a 3-photon, 21-mode quantum walk in figure~\ref{fig:clouds3d}. It
+is clear from the figure that the events produced with indistinguishable photons
 (blue, a and c) tend to occur with all photons in nearby modes. On the other
 hand, when distinguishing degrees of freedom (e.g. a temporal delay) are
 introduced between the photons (red, b and d), the clouds dissipate. Bosonic
@@ -236,6 +236,28 @@ figure~\ref{clouds}, (a) and (c) will have a higher value of \(\clouding\) than
 In the experiment reported in~\cite{verification}, we use this parameter
 \(\clouding\) to demonstrate the presence of the clouding phenomenon in a
 5-photon, 21-mode quantum walk, from just a few hundred \todo{how many?} events.
+The results of this experiment are summarised in figure~\ref{fig:clouding}.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics{figures/clouding}
+  \caption[Experimental observation of Bosonic clouds in quantum walks of up to
+  5 photons]
+  {Experimental observation of Bosonic clouds in quantum walk of up to 5
+  photons. Continuous probability density functions are theoretical expectations
+  with the distribution calculated using Monte-Carlo simulations of Poissonian
+  noise. Points show experimental data with Poissonian counting errors. The
+  probability density is on an arbitrary scale with all distributions normalised
+  to unity. Blue lines/points indicate indistinguishable photons, while red
+  lines/points indicate photons with a temporal delay introducing
+  distinguishability. (a-c) 21-mode quantum walk with varying number of photons.
+  Evidence of clouding is shown by the higher mean value of \(\clouding\) for
+  indistinguishable photons compared to distinguishable.
+  The dotted line in (c) shows the effect of introducing distinguishability
+  in one of the photons. (d) 9-mode random unitary. Here there is little
+  difference between distinguishable and indistinguishable events.}
+  \label{fig:clouding}
+\end{figure}
 
 It is natural to ask at this point whether the phenomenon persists to much
 higher numbers of photons and modes. After all, the fully-clouded subspace

@@ -1,5 +1,5 @@
 set terminal pdf
-set output "clouds.pdf"
+set output "clouds3d.pdf"
 
 fig_w=12
 fig_m=fig_w/100.

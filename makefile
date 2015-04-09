@@ -24,7 +24,8 @@ hamiltomo_figs=logvsderivative.pdf\
 qcv_figs=protected/dilbert.png\
  benchmarking.pdf\
  bigclouds.pdf\
- clouds.pdf\
+ clouding.pdf\
+ clouds3d.pdf\
  crapusoid.pdf\
  crosstalk.pdf\
  interferometerAB.pdf\
