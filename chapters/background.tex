@@ -110,27 +110,7 @@ coupled system.
 
 \section{A universal circuit for linear optics}
 \label{sec:ReckScheme}
-Any lossless\footnote{In practical devices, this approximation is very good.
-\todo{1dB/cm in silica devices?}} linear optical device can be
-described by a unitary matrix operating on the optical modes. A device with
-\(m\) input and \(m\) output modes will be described by an \(m \by m\) unitary.
-In~\cite{reck}, it is shown that the converse is true: any unitary matrix can
-be realised by a linear optical circuit. A constructive proof of this is
-presented, and a candidate `universal circuit' is proposed (see
-figure~\ref{fig:ReckOriginal}). Universal, in this context refers to a linear
-optical circuit with adjustable components (beamsplitters with variable
-reflectivity and variable phase shifts), which can be configured into any
-unitary.
-
-This result has profound consequences for experimental quantum photonics.
-It implies that when such a circuit is built, \emph{all} other linear optical
-devices will become redundant, being just specific configurations of the
-general circuit. Rapid progress in fabrication and control of integrated optics
-has recently brought a \(6 \by 6\) reconfigurable circuit to the lab, and some
-of the data in chapter~\ref{ch:Simulations} were taken on this device.
-\todo{Hopefully!}
-
-\begin{figure}
+\begin{figure}[p]
   \begin{subfigure}{\textwidth}
     \centering
     \includegraphics{figures/reck_original}
@@ -161,9 +141,28 @@ of the data in chapter~\ref{ch:Simulations} were taken on this device.
   phase shifts \todo{citation needed}.}
   \label{fig:ReckScheme}
 \end{figure}
+Any lossless\footnote{In practical devices, this approximation is very good.
+\todo{1dB/cm in silica devices?}} linear optical device can be
+described by a unitary matrix operating on the optical modes. A device with
+\(m\) input and \(m\) output modes will be described by an \(m \by m\) unitary.
+In~\cite{reck}, it is shown that the converse is true: any unitary matrix can
+be realised by a linear optical circuit. A constructive proof of this is
+presented, and a candidate `universal circuit' is proposed (see
+figure~\ref{fig:ReckOriginal}). Universal, in this context refers to a linear
+optical circuit with adjustable components (beamsplitters with variable
+reflectivity and variable phase shifts), which can be configured into any
+unitary.
+
+This result has profound consequences for experimental quantum photonics.
+It implies that when such a circuit is built, \emph{all} other linear optical
+devices will become redundant, being just specific configurations of the
+general circuit. Rapid progress in fabrication and control of integrated optics
+has recently brought a \(6 \by 6\) reconfigurable circuit to the lab, and some
+of the data in chapter~\ref{ch:Simulations} were taken on this device.
+\todo{Hopefully!}
 
 \section{Boson Sampling}
-\label{sec:BosenSampling}
+\label{sec:BosonSampling}
 \begin{figure}
   \includegraphics{figures/bosonsampling}
   \caption[BosonSampling in linear optics]
@@ -214,8 +213,42 @@ NP-complete, so it wouldn't even have any implications on the long-standing
 question of whether P=NP.
 
 I will now briefly describe practical \bosonsampling{}, before returning to
-consider how valuable it is as a computational model. \todo{Insert summary 
-of \bosonsampling{} here!}
+consider how valuable it is as a computational model. As the name suggests, a
+demonstration of \bosonsampling{} involves taking samples from a probability
+distribution, in this case corresponding to the probabilities of detection
+events in a linear optics experiment as shown in figure~\ref{fig:BosonSampling}.
+The linear optics circuit on \(m\) modes is described by an \(m \by m\) unitary
+matrix, \(\mat{U}\). We inject \(p\) photons into the first \(p\) input modes
+and detect on all output modes. There are \(\comb{m+p-1}{p}\) possible output
+configurations, of which \(\comb{m}{p}\) occupy the \emph{collision-free
+subspace}, that is, no mode contains more than one photon.
+
+In order to calculate the probability of any detection event, we take the
+indices of occupied input modes, \(\left\{ s_{0}, s_{1}, \dots, s_{p-1} \right\}
+\) (usually assumed to be \(0, 1, \dots p-1\) without loss of generality) and
+the indices of occupied output modes, \(\left\{ t_{0}, t_{1}, \dots, t_{p-1}
+\right\}\). From the unitary \(\mat{U}\), we select rows corresponding to the
+output modes and columns corresponding to the output modes, and take the
+submatrix defined by the intersections, \(\mat{U}_{ST}\). The probability of the
+event is the absolute square of the permanent of this submatrix, \(\abs{
+\perm \of{ \mat{U}_{ST} }} \). This process is illustrated in
+figure~\ref{fig:BosonSampling}.
+
+This description gives us some intuition into why it may be hard to perform
+\bosonsampling{} classically. The size of the distribution---\( \comb{m+p-1}{p}
+\)---increases combinatorially with the number of photons\footnote{Provided that
+the number of modes also increases accordingly}, so the memory requirement for
+storing the entire distribution is not polynomial in \(p\). Further, even if one
+didn't have to store the entire distribution to perform a sampling (and we
+wouldn't expect to have to do this), just computing one element of it requires
+evaluation of the permanent of a \(p \by p\) complex matrix. Computing
+permanents exactly is \# P complete \cite{valiant} and the fastest known
+algorithm (Ryser's algorithm) has running time \(\bigo \of{ p 2^{p} }\). This is
+by no means a proof that \bosonsampling{} is classically hard (if we inject
+classical, distinguishable particles, we can sample the output distribution
+without explicitly calculating \emph{any} \(p\)-photon probabilities), but it
+does strongly suggest a link between \bosonsampling{} and the evaluation of
+permanents.
 
 Now one may ask how this is considered a computation at all.
 After all, it does not result in any deterministic outcome. A plausible
@@ -233,9 +266,19 @@ of the cow?). On the other hand \bosonsampling{} is controlled by a small number
 of input parameters (\(\bigo \of{m^{2}}\) for an \(m\) mode linear optical
 circuit) and we have direct control over all of them.
 
-
-
-
-
-
-
+A final important discussion surrounding \bosonsampling{} is that of
+verification: if we have a large Boson Sampler, how can we confirm that it is
+operating correctly? There is an important distinction to be made here between
+a quantum algorithm like Shor factoring, which in in NP and \bosonsampling{},
+which is not. In the former case, the problem satisfies the \emph{short
+certificate} property, guaranteeing that the output of any task in NP can be
+verified by in classical polynomial time. A valid certificate in the case of
+factoring is the prime factors, since these can be efficiently multiplied
+together to verify correct operation. Tasks outside NP have no such guarantee.
+This difficulty was raised in the original proposal by Aaronson and Arkhipov,
+and highlighted again by Gogolin et al \cite{gogolin}, who showed that under
+certain circumstances it would be information-theoreticaly impossible to
+distinguish the output of a Boson Sampler from that of a uniform sampling of the
+configuration space. In chapter~\ref{ch:qcv} I describe methods to address this
+problem, and gain some confidence in the correct operation of a \bosonsampling{}
+device.

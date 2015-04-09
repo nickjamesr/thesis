@@ -1,4 +1,5 @@
 Data that needs gathering:
+  - Chip data for PT symmetry
   - Evidence that I'm well out of the optimum for Hamiltomo
 
 Figures that still need figuring out:
@@ -6,7 +7,7 @@ Figures that still need figuring out:
 
 Background that needs writing:
   - SST
-  - BosonSampling
+  - Experimental details
 
 Discussion that needs writing:
   - Vibrational states/molecules
@@ -14,6 +15,3 @@ Discussion that needs writing:
   - Hamiltomo results - why are they crap?
 
 Organisation to be done:
-  - Move experimental details for simulation chapter out of PT symmetry and into
-    separate section
-  - Add experimental details section in other experimental chapters
