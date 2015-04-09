@@ -152,20 +152,13 @@ unitaries are summarised below:
   \item Classical fidelity \(0.971\pm0.015\)
 \end{itemize}
 
+\subsection{Experimental Details}
+\label{sec:BenchmarkingExperiment}
+Refer to the experimental details section of the simulations chapter, and make
+sure I get the numbers right.
 
 \section{Verification}
 \label{sec:Verification}
-Work relating to verification in quantum walks and \bosonsampling{}. I don't
-think it's unfair to say that I had the original motivation to implement the
-\(\rstar\) protocol described in \cite{notuniform}. I did the Bayesian model
-comparison between \bosonsampling{} and uniform distributions.
-
-Verifying the output of a Boson sampler brings us up against the notorious
-problem of certifying a random number generator based on a short string of
-random output. This problem is illustrated in figure:~\ref{fig:dilbert}
-
-\subsection{Is BosonSampling uniform?}
-\label{sec:RStar}
 \begin{figure}[t]
   \centering
   \includegraphics[width=\textwidth]{figures/protected/dilbert.png}
@@ -175,6 +168,54 @@ random output. This problem is illustrated in figure:~\ref{fig:dilbert}
   rights reserved.}
   \label{fig:dilbert}
 \end{figure}
+In this section, I discuss the work I have done on procedures for verifying the
+correct operation of large linear optical devices, such as \bosonsampling{}
+machines. For the small scale experiments performed in the past, verification
+has been performed by procedures such as quantum process tomography (for
+quantum computing) \todo{citation. Hifi?} or fully evaluating the output
+probability distribution (for \bosonsampling{}) \todo{citation. Any of the BS
+experiments?}. However, as the size of devices---and more importantly the number
+of photons---increases, these procedures do not scale well enough, and new
+approaches are required.
+
+The task of verifying \bosonsampling{} is particularly important, if it is going
+to be accepted as a demonstration of post-classical computing. As a sampling
+problem, it is also particularly difficult: even verifying classical random
+number generators poses a challenge, as illustrated in figure~\ref{fig:dilbert}.
+The additional problem in the case of \bosonsampling{} lies in the fact that the
+configuration space being sampled is so large: with a few dozen photons in a few
+hundred modes, the probability of observing the same event twice is vanishingly
+small, making estimating any individual proabability futile.
+
+This point was raised by Gogolin et al in~\cite{gogolin}, in which an argument
+is presented that under certain conditions the output of a \bosonsampling{}
+machine is indistinguishable from a uniform sampling over the state space. The
+resulting discussion, most notably Aaronson's response in~\cite{notuniform}
+forms the basis for the next section.
+
+\subsection{Is BosonSampling uniform?}
+\label{sec:RStar}
+The problem of verifying the output of a \bosonsampling{} device has been known
+since the original proposal in~\cite{bosonsampling}, and was subsequently
+highlighted in a controversial paper by Gogolin et al \cite{gogolin}. The
+authors present an argument that the output of a \bosonsampling{} machine cannot
+be distinguished from a uniform sampling over the configuration space in
+polynomial time. Their case rests on a set of constraints on the verification
+procedure, limiting the discussion to \emph{symmetric algorithms}. In this
+regime, knowledge of the unitary matrix being implemented by the device is
+forbidden, and the output seen by the verifier is just a string of events, each
+labelled uniquely. Since the probability of observing the same event more than
+once is vanishingly small, it is deduced that in this regime it is
+information-theoretically impossible to distinguish the \bosonsampling{}
+distribution from the uniform.
+
+A response to this was quickly published by Aaronson and Arkhipov (AA)
+in~\cite{notuniform}, challenging the assumpton of no knowledge of the unitary
+description of the device. Indeed, we know from~\cite{sst} that it is possible
+to efficiently determine the unitary from one- and two-photon measurements so it
+is not unreasonable to relax this assumption. Under the new set of assumptions 
+good knowledge of the unitary, polynomial samples), AA derive an efficient
+procedure for discriminating \bosonsampling{} from uniform sampling is derived.
 
 \begin{figure}[t]
   \centering
@@ -187,7 +228,95 @@ random output. This problem is illustrated in figure:~\ref{fig:dilbert}
   the model describing our data. The models under comparison here are true
   \bosonsampling{} (blue) and uniform sampling (black). We rapidly conclude that
   the data are supported much better by the \bosonsampling{} model.}
+  \label{fig:rstar}
 \end{figure}
+Practically, the procedure involves computing a quantity, \(\rstar\) for each
+observed event, which depends on the input state, \(\ket{S}\), the output state
+\(\ket{T}\) and the unitary describing the device \(\mat{U}\). Express the
+\(p\)-photon state \(\ket{S} = \ket{s_{0} s_{1} \dots s_{p-1}}\) as a series of
+\(p\) integers indicating the mode occupied by each photon, and similar for
+\(\ket{T}\). Then take the \(p \by p\) submatrix \(\mat{U}_{ST}\) of \(\mat{U}\)
+formed by the intersections of the rows \(t_{0}, \dots, t_{p-1}\) and the
+columns \(s_{0}, \dots, s_{p-1}\). The permanent of this matrix (with
+appropriate normalisation if there is multiple occupancy of any mode) would give
+us the trasfer element \(\left\langle T \middle| \mat{U} \middle| S
+\right\rangle\). The value of \(\rstar\) is correlated with the permanent, but
+can be computed efficiently by taking the norm of each row in
+\(\mat{U}_{ST}\), then taking the product of these norms.
+
+Over a set of samples the distribution of values of \(\rstar\) is different for 
+events produced by a
+\bosonsampling{} machine and those produced by a uniform sampling, and AA show
+that this difference remains significant in the limit of many photons in large
+devices. Figure~\ref{fig:rstar}(a) compares the two distributions for 3 photons
+in 9 modes, and shows a histogram of 434 experimentally-observed values, which
+match the \bosonsampling{} case very closely. We go further with our
+experimental analysis by using the histogram data to perform a Bayesian model
+comparison between \bosonsampling{} and uniform sampling, shown in
+figure~\ref{fig:rstar}(b). After only 12 detection events we are over 90\%
+confident that we are performing \bosonsampling{} rather than uniform sampling.
+
+This kind of data analysis can be performed in real time, which will be an
+important feature in larger devices where count rates may be much lower. The
+experiment can be halted once a certain threshold for confidence is passed,
+rather than collecting data for predetermined long periods.
+
+\subsection{Higher photon numbers}
+\label{sec:SixPhoton}
+\begin{figure}[t]
+  \centering
+  \includegraphics{figures/sixphoton}
+  \caption[Bayesian model comparison on 6-photon events]
+  {Bayesian model comparison using the full pre-calculated 6-photon
+  distributions. (a) Events we believe to be quantum. (b) Events we believe to
+  be classical. In both cases, our confidence in the model quickly increases.}
+  \label{fig:sixphoton}
+\end{figure}
+I now describe a similar Bayesian analysis to that presented in the previous
+section, in the regime where detection events are rare. Here, we inject 6
+photons into a 6-mode quantum Fourier transform described by the unitary
+\begin{align}
+  \mat{QFT}_{jk} = \frac{1}{\sqrt{6}} \omega^{jk} &&,&&
+  \omega=e^{\frac{2\pi i}{6}}
+\end{align}
+implemented on a reconfigurable integrated optics circit. The input state
+consists of three photons in each of the first two modes, \(\ket{S} =
+\ket{000111}\) and we observe events in the subspace where no more than two
+photons occupy the same mode. Photons are injected under two conditions:
+quantum (indistinguishable photons) and classical (photons made distinguishable
+by introducitng a time delay between mode 0 and mode 1). The aim of the analysis
+is to distinguish between these two conditions based on the detection
+statistics, with a small number of observations.
+
+Since we are dealing with a small number of events, we allow ourselves to
+compute the permanents and work with exact detection probabilities. This method
+would be tractable up to about 25 photons, after which the permanents become too
+large to evaluate exactly. If we assign prior probabilities \(\prob{P} \of{Q}\)
+to the `Quantum' model (indistinguishable photons) and \(\prob{P} \of{C}\) to
+the `Classical' model (distinguishable photons), we update on the event \(E\) as
+follows:
+\begin{align}
+  \prob{P} \of{Q \given E} &= \frac{\prob{P} \of{E \given Q} \prob{P} \of{Q}}{
+    \prob{P} \of{E}} \\
+  \prob{P} \of{C \given E} &= \frac{\prob{P} \of{E \given C} \prob{P} \of{C}}{
+    \prob{P} \of{E}}
+\end{align}
+where \(\prob{P} \of{E \given Q}\) and \(\prob{P} \of{E \given C}\) are the
+probabilities (calculated from permanents) of the event assuming the Quantum and
+Classical models, respectively. The denominator \(\prob{P} \of{E} =
+\prob{P} \of{E \given Q} + \prob{P} \of{E \given C}\) is required for
+normalisation.
+
+The data are presented in figure~\ref{fig:sixphoton}, after 14 indistinguishable
+and 34 distinguishable events have been collected. After 14 events we are 99.8\%
+confident that the quantum data come from indistinguishable photons and 99.9\%
+confident that the classical data come from indistinguishable photons,
+demonstrating the power of this method.
+
+The data
+for this section were collected by PhD student Chris Harrold, and the detection
+probabilities were computed by PhD student Jacques Carolan. I performed the
+Bayesian analysis.
 
 \subsection{Bosonic Clouding}
 \label{sec:Clouding}
@@ -220,18 +349,18 @@ hand, when distinguishing degrees of freedom (e.g. a temporal delay) are
 introduced between the photons (red, b and d), the clouds dissipate. Bosonic
 clouding thus appears to be the result of constructive interference.
 
-We quantify this phenomenon by assigning to each event, a number between -1 and
-1, depending on where in the device the photons exit. Suppose the optical modes
-are labelled from left to right from 0 to \(m-1\). If all the photons exit in
-the left half of the device (modes 0 to \(m/2-1\)) or all photons exit in the
+We quantify this phenomenon by assigning to each event, a number \(c\) between
+-1 and 1, depending on where in the device the photons exit. Suppose the optical
+modes are labelled from left to right from 0 to \(m-1\). If all the photons exit
+in the left half of the device (modes 0 to \(m/2-1\)) or all photons exit in the
 right half of the device (modes \(m/2\) to \(m-1\)), this is \emph{fully
-clouded}, and is assigned a value of 1. If exactly half the photons exit in each
-side of the device (assuming an even number of photons), this event is
-\emph{fully balanced} and is assigned a value of -1. Averaging the values of all
-events recorded in an experimental run gives the degree of clouding,
+clouded}, and is assigned a value \(c=1\). If exactly half the photons exit in
+each side of the device (assuming an even number of photons), this event is
+\emph{fully balanced} and is assigned a value \(c=-1\). Averaging the values of
+all events recorded in an experimental run gives the degree of clouding,
 \(\clouding\). The higher this value, the more clouding we expect to see, so in
-figure~\ref{clouds}, (a) and (c) will have a higher value of \(\clouding\) than
-(b) and (d).
+figure~\ref{fig:clouds3d}, (a) and (c) will have a higher value of \(\clouding\)
+than (b) and (d).
 
 In the experiment reported in~\cite{verification}, we use this parameter
 \(\clouding\) to demonstrate the presence of the clouding phenomenon in a
@@ -313,31 +442,7 @@ clouds entirely. Instead of the uniform distribution, I sample according to the
 probability of the event occuring in a `classical' experiment, where the
 injected photons are distinguishable in some degree of freedom.
 
-\subsection{Higher photon numbers}
-\label{sec:SixPhoton}
-\begin{figure}[t]
-  \centering
-  \includegraphics{figures/sixphoton}
-  \caption[Bayesian model comparison on 6-photon events]
-  {Bayesian model comparison using the full pre-calculated 6-photon
-  distributions. (a) Events we believe to be quantum. (b) Events we believe to
-  be classical. In both cases, our confidence in the model quickly increases.}
-  \label{fig:sixphoton}
-\end{figure}
-I did some verification on 6-photon events in the recent integrated Reck
-experiment. With the circuit set to implement the 6-dimensional quantum Fourier
-transform, we injected 6 photons in the state \(\ket{3_{1},3_{2}}\) and
-performed a Bayesian model comparison between the quantum and classical
-distributions. Again, we quickly become very confident that the data are
-quantum, as shown in figure~\ref{fig:sixphoton}.
-
-It's worth mentioning somehow that the quantum interference here is in some way
-not `true' 6-photon quantum interference. It seems to come out as equivalent to
-around 3 photons, but I can't remember quite how Chris and I came up with that
-figure.
-
-The photons are injected into just two input modes. In order to obtain classical
-results, it is sufficient to introduce a time delay between these two modes,
-without applying relative delays between the three photons in the same mode.
-This is readily derived by considering the probabilities of output events in
-terms of matrix permanents.
+\subsection{Experimental Details}
+\label{sec:VerificationExperiment}
+Details of the quantum walk experiment and whatever I can determine about the
+6-photon QFT bit.

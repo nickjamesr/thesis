@@ -1,14 +1,19 @@
 Data that needs gathering:
-  - Experimental clouding
   - Evidence that I'm well out of the optimum for Hamiltomo
 
 Figures that still need figuring out:
-  - Big clouds
+  - Deduction of time parameter for QW at different wavelengths (Hamiltomo)
 
 Background that needs writing:
   - SST
+  - BosonSampling
 
 Discussion that needs writing:
   - Vibrational states/molecules
   - Tichy verification (ZTL)
   - Hamiltomo results - why are they crap?
+
+Organisation to be done:
+  - Move experimental details for simulation chapter out of PT symmetry and into
+    separate section
+  - Add experimental details section in other experimental chapters

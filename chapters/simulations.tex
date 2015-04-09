@@ -372,8 +372,17 @@ straightforward to handle. In addition, our method of simulation allows the
 number of particles to be scaled up, to the point where classical simulations
 may become intractable.
 
-\subsection{Supplementary information}
-\subsubsection{Photon source and detectors}
+\subsection{Experimental details}
+\label{sec:SimulationExperiment}
+The circuit shown in figure~\ref{fig:circuit} can be used to realise any
+unitary operator in 4 modes, down to experimentally undetectable phases on the
+input and output modes. This insensitivity to certain phases reduces the number
+of parameters that we need to control to 7. All of the tunable parameters are
+realised experimentally with half waveplates (HWPs), 5 of which control
+amplitude splitting and the remaining 2 control internal phases
+(interferometers). The calibration of the circuit is decribed in
+section~\ref{sec:Calibration} of chapter~\ref{ch:QCV}.
+
 The type-I spontaneous parametric down-conversion source used a 404nm
 continuous-wave laser focused to a 40 \(\mu\)m waist in a \(\text{BiB}_3
 \text{O}_6\) (Bismuth Triborate) non-linear crystal to produce pairs of
@@ -383,35 +392,17 @@ polarisation-maintaining optical fibres. Single-photon detection was achieved
 using silicon-based avalanche photodiode single-photon counting modules.
 Coincidence counting logic used a field-programmable gate array.
 
-\subsubsection{Experimental reconfigurable circuit for 4 modes}
-The circuit shown in figure~\ref{fig:circuit}(b) can be used to realise any
-unitary operator in 4 modes, down to experimentally undetectable phases on the
-input and output modes. This insensitivity to certain phases reduces the number
-of parameters that we need to control to 7. All of the tunable parameters are
-realised experimentally with half waveplates (HWPs), 5 of which control
-amplitude splitting and the remaining 2 control internal phases
-(interferometers). The amplitude
-splittings can be computed easily and deterministically for any matrix. However
-the calculation of the internal phases is complicated by the fact that the
-interferometric path difference depends on not just the waveplates
-that we use to control the phase, but also on other elements inside the
-interferometer. Consequently, we use single-photon data to calibrate the
-interferometers for each case on an ad-hoc basis. This does not pose a problem
-for scalability, since it can be done using classical (coherent) light or
-single-photon input states. The single-photon data presented in
-figure~\ref{fig:twosite} do not rely on this calibration.
 
 \subsubsection{Data acquisition}
 For each unitary operator that we implement, we take one- and two-photon data.
-The one-photon data presented in this paper is obtained by injecting one photon
-into the circuit, with the other photon from the created pair acting as a
-herald, and counting coincidental detections between them. This data was taken
-with an integration time of 30 seconds for each of the two input modes of the
-circuit.
+The one-photon data are obtained by injecting one photon into the circuit, with
+the other photon from the created pair acting as a herald, and counting
+coincidental detections between them. An integration time of 30 seconds is used
+for each of the two input modes ofthe circuit.
 % NOTE: Remember that we take the one-photon data with 4 detectors, so we first
 % herald with detector A and measure BCD and then herald with detector D and
 % measure ABC.
-The two-photon data consists of injecting both photons simultaneously then
+The two-photon data consist of injecting both photons simultaneously then
 delaying one photon from the pair with respect to the other to observe the
 quantum to classical transition in photon correlations. This is done for each
 pair of different output ports giving a total of six pairwise data sets in our
@@ -425,3 +416,4 @@ counts at each of detectors \(S_2\), \(E_1\) and \(E_2\) to the counts at
 detector \(S_1\) (after an integration time of 20 seconds and subtracting the
 background of dark counts) give us the relevant efficiency data. We use this
 measured efficiency data to correct both the one- and two-photon count numbers.
+
