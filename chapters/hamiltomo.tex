@@ -23,9 +23,104 @@ quantum walk.
 
 \section{Tomography of a unitary}
 \label{sec:SST}
-This section is a review of the method in~\cite{sst} for efficiently determining
-the unitary description of a linear optical circuit. It is not my own work, but
-it is important background for the results that follow.
+This section is a review of the method in~\cite{sst} (SST) for efficiently
+determining the unitary description of a linear optical circuit. It is not my
+own work, but it is important background for the results that follow.
+
+Any linear optical device on \(m\) modes can be described in its entirety by an
+\(m \by m\) unitary matrix, \(\mat{U}\). Since photons do not interact, this
+matrix is sufficient to decsribe the action of the device on any number of
+photons, even if the calculation of the transfer elements does not scale
+polynomially with the number of photons, \(p\). This means that a full
+description of the device can be expressed in only \(m^{2}\) real
+parameters\footnote{An \(m \by m\) unitary matrix is normally written in terms
+of \(m^{2}\) complex numbers (therefore \(2m^{2}\) real parameters) but the
+constraints of unitary remove half of these.}. In SST, Laing and O'Brien
+present a method for determining all of these parameters experimentally, with
+measurements of single photons (or equivalently coherent states) and photon
+pairs. No higher photon numbers are required.
+
+Each element in the unitary matrix is a complex number, and can therefore be
+expressed as an amplitude and a phase. The scheme begins by examining the
+amplitudes. In the absence of loss, if we inject coherent light with power \(P\)
+into mode \(j\), then the power measured in output mode \(i\) is \(P_{ij} =
+P \abs{u_{ij}}^{2}\) (where \(u_{ij}\) is the \(i,j^{\text{th}}\) element of
+\(\mat{U}\)). By taking power measurements for each of the \(m^{2}\)
+input/output pairs, we could deduce the amplitudes of all the matrix elements.
+
+The presence of loss complicates matters. Suppose the efficiency of inserting a
+photon in mode \(j\) is \(\eta_{j}^{\text{(in)}}\) and the efficiency of the
+detector on mode \(i\) is \(\eta_{i}^{\text{(out)}}\), then the expression for
+the output power becomes \(P_{ij} = P \eta_{j}^{\text{(in)}} \abs{u_{ij}}^{2}
+\eta_{i}^{\text{(out)}}\), and we are unable to separate the amplitudes from the
+efficiencies (or equivalently losses). At this point, the SST procedure
+constructs ratios of powers in which the losses cancel:
+\begin{equation}
+  \label{eq:ratios}
+  R_{ijkl} = \frac{P_{ik} P_{jl}}{P_{il} P_{jk}} = \frac{\abs{u_{ik}}^{2}
+  \abs{u_{jl}}^{2}}{\abs{u_{il}}^{2} \abs{u_{jk}}^{2}}
+\end{equation}
+These become useful later in discussion of the phases, but for determining the
+amplitudes there is an easier approach, making use of the Sinkhorn-Knopp
+algorithm~\cite{sinkhorn-knopp}. The algorithm takes the raw matrix of powers,
+\(\mat{P}\) and iteratively pre- and post- multiplying by real diagonal matrices
+such that the rows and columns are normalised to 1. Sinkhorn's
+theorem~\cite{sinkhorn} implies that this process will converge on the matrix
+of absolute squares of elements of \(\mat{U}\). By keeping track of the diagonal
+matrices, estimates of the losses can also be extracted. This procedure has been
+developed in the context of linear optics by Jacques Carolan and used
+extensively in the lab for reconstructing unitaries.
+
+In order to determine the phases of the elements of \(\mat{U}\), we must either
+employ interferometric techniques (as in \cite{sst-ralph}) or look at quantum
+interference between pairs of photons, as in the SST protocol. Consider
+injecting two photons in modes \(k\) and \(l\) with a variable time delay,
+\(\delta\) and measuring coincident detections in modes \(i\) and \(j\) as a
+function of \(\delta\). The result is a generalisation of the Hong Ou Mandel
+(HOM) dip described in~\cite{hom} and will be a dip (or antidip) with visibility
+\(V_{ijkl}\). The visibility is a function of the \emph{quantum}
+coincidence rate, \(Q_{ijkl}\) (where \(\delta=0\)) and the \emph{classical}
+coincidence rate, \(C_{ijkl}\) (where \(\delta\) is large enough to neglect
+interference between the photons), defined as
+\begin{equation}
+  V_{ijkl} = \frac{C_{ijkl} - Q_{ijkl}}{C_{ijkl}}
+\end{equation}
+It can take values between -1 (perfect antidip, constructive quantum
+interference) and +1 (perfect dip, destructive quantum interference). Since the
+numerator and the denominator are affected equally by losses at inputs and
+outputs, this quantity is independent of losses. We can express it in terms of
+other loss-independent quantities (the ratios described in
+equation~\ref{eq:ratios}) and the relative phases on elements of the unitary:
+\begin{equation}
+  V_{ijkl} = -\frac{2 \sqrt{R_{ijkl}} \cos \theta_{ijkl}}{1+R_{ijkl}}
+\end{equation}
+where \(\theta_{ijkl} = \phi_{ik} + \phi_{jl} - \phi_{il} - \phi_{jk}\) and
+\(u_{ij} = \abs{u_{ij}}e^{i\phi_{ij}}\).
+
+Thus we can deduce, from loss independent measurements, a set of relationships
+between the phases of elements of the unitary. In order to make progress, we
+must choose a row and a column as \emph{reference elements}, assumed to be real;
+all other phases can now be completely specified relative to these. This freedom
+to choose a reference reflects an invariance in the experiment. Since we prepare
+and measure in the computational basis, we can pre- or post- multiply by a
+diagonal matrix of phases with no effect on any observable quantities. We
+therefore couldn't expect to specify the phases any more precisely than this.
+
+It will become evident in later sections that this does not imply that all
+choices of references are equally valid. Consider using row \(\alpha\) and
+column \(\beta\) to deduce the phase of an element \(u_{jl}\) where \(j \neq
+\alpha\) and \(l \neq \beta\):
+\begin{align}
+  && \cos{\phi_{jl}} &= - V_{\alpha j \beta l} \frac{1 + R_{\alpha j \beta l}}
+    {2 \sqrt{R_{\alpha j \beta l}}} && \\
+  \text{where} && R_{\alpha j \beta l} &= \frac{P_{\alpha \beta}
+    P_{jl}}{P_{\alpha l} P_{j \beta}} &&
+\end{align}
+This method works fine unless one of the powers \(P_{\alpha \beta},
+P_{\alpha l}, P_{j \beta}\) is equal to zero, in which case the phase is
+undefined (if \(P_{jl}=0\) we do not need to know its phase). It is therefore
+important to select references in such a way as to minimize the number of zero
+elements.
 
 \section{Tomography of a Hamiltonian}
 \label{sec:Hamiltomo}
