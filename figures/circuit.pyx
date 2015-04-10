@@ -24,13 +24,13 @@ set multiplot
   text "\textbf{C}" at 92*fig_m,40*fig_m
   text "\textbf{D}" at 82*fig_m,49*fig_m
   # Label elements
-  text "\(t_0\)" at 20*fig_m,20*fig_m
+  text "\(at_0\)" at 19*fig_m,20*fig_m
   text "\(\phi_0\)" at 26*fig_m,20*fig_m
-  text "\(t_1\)" at 41*fig_m,28*fig_m
+  text "\(at_1\)" at 40*fig_m,28*fig_m
   text "\(\phi_1\)" at 47*fig_m,28*fig_m
-  text "\(q_0\)" at 54*fig_m,28*fig_m
-  text "\(q_1\)" at 88*fig_m,28*fig_m
-  text "\(q_2\)" at 89*fig_m,36*fig_m
+  text "\(aq_0\)" at 54*fig_m,28*fig_m
+  text "\(aq_1\)" at 88*fig_m,28*fig_m
+  text "\(aq_2\)" at 89*fig_m,36*fig_m
   set display
   refresh
 unset multiplot

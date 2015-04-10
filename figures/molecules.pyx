@@ -233,9 +233,9 @@ set multiplot
   plot
 
 ##### AXIS LABELS
-  text "time" at pair_w/2,-v_pad halign centre
-  text "time" at pair_w+h_pad+pair_w/2,-v_pad halign centre
-  text "time" at 2*(pair_w+h_pad)+pair_w/2,-v_pad halign centre
+  text "time /(cm/\(c\))" at pair_w/2,-v_pad halign centre
+  text "time /(cm/\(c\))" at pair_w+h_pad+pair_w/2,-v_pad halign centre
+  text "time /(cm/\(c\))" at 2*(pair_w+h_pad)+pair_w/2,-v_pad halign centre
   text "\(t\)" at plot_w/2,2*plot_h+offset halign centre
   text "\(t\)" at plot_w/2+plot_w+h_pad,2*plot_h+offset halign centre
   text "\(t\)" at plot_w/2+2*(plot_w+h_pad),2*plot_h+offset halign centre

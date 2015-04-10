@@ -66,6 +66,8 @@ dynamics) and consider a more abstract system of bosons obeying PT-symmetric
 publication in collaboration with Chris Sparrow, Anthony Laing and Yogesh
 Jonglekar.
 
+\section{Experimental Setup}
+\label{sec:BulkReck}
 \begin{figure}[t]
   \centering
   \includegraphics{figures/circuit.pdf}
@@ -82,22 +84,44 @@ Jonglekar.
   single photon avalanche diodes. We label the detectors A through D.}
   \label{fig:circuit}
 \end{figure}
+The results in this chapter were obtained using the bulk optics circuit shown in
+figure~\ref{fig:circuit}. This circuit allows complete reconfigurability and
+arbitrary control over two photons in four optical modes. Operationally, it is
+similar to the scheme in~\cite{reck} (introduced in
+section~\ref{sec:ReckScheme}), but architecturally it is optimised for a stable
+implementation in bulk optics using combined path/polarisation encoding and 
+Jamin-Lebedef interferometers. Reconfigurability is provided by a series of 7
+half waveplates, 5 of which give control over the amplitude splitting of the
+photons with the remaining 2 controlling the internal phases. Since we always
+inject and measure in the computational basis (i.e.\ exactly one photon in each
+input mode and no interferometry at the output) there are 4 phases that would
+appear in a general unitary but which do not affect our results, plus a global
+phase that would not be detected by any experiment. More detail on the
+calibration of the circuit is provided in chapter~\ref{ch:QCV}.
 
-\section{Molecular vibrations}
+Up to two photons can be injected at the input, initially in orthogonal
+polarisations, \(\ket{H}\) and \(\ket{V}\). The operation performed on the
+photons' state is described by a \(4 \by 2\) unitary (only 2 columns are
+required because there are only 2 inputs),
+\begin{align}
+  \mat{U} = \begin{pmatrix}
+    q_{0} & t_{0} \\
+    q_{1} & t_{1} \\
+    q_{2} & t_{2} \\
+    q_{3} & t_{3}
+  \end{pmatrix} && \begin{array}{l}
+    U \ket{V} = \ket{\vec{q}} \\
+    U \ket{H} = \ket{\vec{t}}
+  \end{array}
+\end{align}
+We refer to the final state of the photon injected in the \(\ket{V}\) mode as
+the \emph{quart} and the final state of the photon injected in the \(\ket{H}\)
+mode as the \emph{trit}. At the end of the circuit we detect photons in each of
+the four modes. We can perform either single photon counting or photon
+coincidence detection.
+
+\section{Molecular Vibrations}
 \label{sec:Molecules}
-\begin{figure}
-  \centering
-  \includegraphics{figures/molecules}
-  \caption[Simulation of quantized vibrational states in molecules]
-  {Simulation of quantized vibrational states in molecules. Blue is \co{} and
-  green OCS. Lines represent the theoretically calculated evolution of the
-  probabilities, with shaded regions showing \(\pm 1 \sigma\) expected due to
-  errors in dialling. Points are experimentally measured, with error bars due to
-  Poissonian noise too small to see at this scale.}
-  \label{fig:molecules}
-\end{figure}
-In this section I present results from the quantum simulation of vibrational
-states of molecules. The work is currently being prepared for publication. 
 \begin{figure}[h]
   \centering
   \includegraphics{figures/vibrations.pdf}
@@ -110,23 +134,123 @@ states of molecules. The work is currently being prepared for publication.
   motion.}
   \label{fig:vibrations}
 \end{figure}
+In this section I present results from the quantum simulation of quantized
+vibrations in molecules. The theory was developed by Enrique Mart\'in L\'opez
+and the overall project was supervised by Anthony Laing. I was responsible for
+the calibration of the circuit, taking part of the data (for the OCS moleculels)
+and analysis of the data. The rest of the data (the \co{} molecules) was taken
+by Chris Sparrow, who I instructed in the use of the circuit.
+
+\subsection{Introduction to phonons}
+\label{sec:Phonons}
+In classical physics, systems of coupled oscillators can be analysed in terms of
+their normal modes, representing collective motions of the individual
+oscillators with well-defined frequencies. If the magnitude of the oscillation
+is large, the excitation of one normal mode will shift the frequency of other
+normal modes: a kind of interaction. However, in the limit of small
+oscillations, this shift vanishes and the normal modes do not interact. We call
+this the harmonic limit.
+
+In quantum mechanics, a system of coupled oscillators (like any other system)
+can be described by its Hamiltonian. The Hamiltonian can be diagonalised,
+yielding the eigenstates of the system, equivalent to the normal modes of a
+classical oscillator. We can define creation and annihilation operators for
+excitations of the eigenstates, and treat them as bosonic quasiparticles:
+phonons. In the harmonic limit, these phonons do not interact, and can thus be
+simulated by our system.
+
+\subsection{The molecules}
+We have four optical modes, which allows us to simulate 4-level molecules
+exactly. In general, a completely asymmetric \(n\)-atom molecule will have \(3
+\left(n-2\right)\) vibrational states (the remaining 6 degrees of freedom are
+uniform translation in three directions and rotation about three axes). A linear
+molecule has rotational symmetry about one axis; in this case the rotational
+mode about this axis of symmetry is composed of (degenerate) bending modes and
+there are \(3n - 5\) vibrational modes. Therefore a linear 3-atom molecule will
+have four vibrational modes, making it a suitable candidate for simulation in
+our system. The four modes are illustrated in figure~\ref{fig:vibrations}.
+
+We identify two such molecules to simulate: carbon dioxide (\co{}) and carbonyl
+sulphate (OCS). The energies of the vibrational modes are taken from
+spectroscopic data on the HITRAN database~\cite{hitran}, to give us the
+Hamiltonians in the diagonal basis:
+\begin{align}
+  H_{\text{OCS}} = \begin{pmatrix}
+    520 & 0 & 0 & 0 \\
+    0 & 520 & 0 & 0 \\
+    0 & 0 & 859 & 0 \\
+    0 & 0 & 0 & 2062 \end{pmatrix} && , && H_{\text{CO}_{2}} = \begin{pmatrix}
+    667 & 0 & 0 & 0 \\
+    0 & 667 & 0 & 0 \\
+    0 & 0 & 1388 & 0 \\
+    0 & 0 & 0 & 2349 \end{pmatrix}
+\end{align}
+in units of \(\cm^{-1}\). This is sufficient information to perform simulations
+of the evolution of the vibrational state of the molecules.
+
+\begin{figure}
+  \centering
+  \includegraphics{figures/molecules}
+  \caption[Simulation of quantized vibrational states in molecules]
+  {Simulation of quantized vibrational states in molecules. Blue is \co{} and
+  green OCS. Lines represent the theoretically calculated evolution of the
+  probabilities, with shaded regions showing \(\pm 1 \sigma\) expected due to
+  errors in dialling. Points are experimentally measured, with error bars due to
+  Poissonian noise too small to see at this scale.}
+  \label{fig:molecules}
+\end{figure}
+
+The only aspect of the simulation to be determined is the preparation and
+measurement basis. If we prepare or measure in the any of the eigenmodes, the
+time evolution will be trivial; more interesting simulations are derived when
+the preparation and measurement basis are different. Suppose that the unitary
+operators mapping the computational basis to the preparation and measurement
+bases are \(\mat{V}_{\prep}\) and \(\mat{V}_{\meas}\), respectively. Then the
+unitary operator that we have to dial into our circuit to model the evolution of
+the state for a time \(t\) is:
+\begin{equation}
+  \mat{U} \of{t} = \mat{V}_{\meas}^{\dagger} \cdot e^{-i \mat{H} t/\hbar} \cdot
+  \mat{V}_{\prep}
+\end{equation}
+This expression can be understood as mapping the computational state at the
+input to the device onto one of the preparation basis states, then performing
+the time evolution in the diagonal basis and finally projecting from a
+measurement basis state back onto the computational basis measured by our
+detectors. We chose the measurement and preparation bases randomly and
+independently, according to the Haar measure since this brings us into the
+regime described by \bosonsampling{}: while the \(\mat{U} \of{t}\) and \(\mat{U}
+\of{t^{\prime}} \) will be correlated, any individual instance will be a Haar
+random unitary.
+
+Given a diagonal Hamiltonian and preparation and measurement bases, we proceed
+with the simulation using a discrete time method. We dial \(\mat{U} \of{t}\) for
+21 values of \(t\) equally spaced in the interval \(\left[0,0.01\right]\)
+(units of \(\cm / c\)) and record single-phonon occupations and
+phonon-pair coincidences at each time. The results are shown in
+figure~\ref{fig:molecules}.
 
 \section{PT-symmetric systems}
 \label{sec:PT}
-\subsection{Introduction}
+The simulations presented in the previous section are entirely concerned with a
+closed quantum system, evolving according to Hermitian dynamics. I now turn my
+attention to quantum systems described by non-Hermitian Hamiltonians,
+particularly those that are invariant under the combined parity \((\op{P})\) and
+time-reversal \((\op{T})\) operations. The theory of the 2-site
+\(\pt\)-symmetric model was developed by Yogesh Jonglekar. I derived the
+matrices to be simulated, and performed the data analysis. The data was
+collected jointly by me and Chris Sparrow.
 
-On a disparate front, non-Hermitian Hamiltonians, \(\mat{H}_{\pt{}}\), that are
-invariant under the combined parity \((\op{P})\) and time-reversal
-\((\op{T})\) operations have been theoretically explored for more than a
-decade \cite{bender98, levai-jphysa-33-7165, bender07}. Although not Hermitian,
-such \(\pt{}\)-symmetric
-Hamiltonians have a purely real spectrum that changes into complex-conjugate
-eigenvalues as the non-Hermiticity is increased. When the spectrum of
-\(\mat{H}_{\pt{}}\) is purely real, its non-orthogonal eigenvectors are
-simultaneous eigenvectors of the \(\pt{}\) operation. However, when the spectrum
-has complex conjugate eigenvalues, due to the anti-linear nature of the operator
-\(\op{T}\), the eigenvectors are not \(\pt{}\) symmetric. This transition from
-real to complex spectrum is called \(\pt{}\) symmetry breaking. 
+\subsection{Introduction}
+Systems obeying \(\pt\) symmetry, have been theoretically explored for more than
+a decade \cite{bender98, levai-jphysa-33-7165, bender07}. Although not
+Hermitian, the Hamiltonians have a purely real spectrum that changes into
+complex-conjugate eigenvalues as the non-Hermiticity is increased. When the
+spectrum of \(\mat{H}_{\pt{}}\) is purely real, its non-orthogonal
+eigenvectors are simultaneous eigenvectors of the \(\pt{}\) operation. However,
+when the spectrum has complex conjugate eigenvalues, due to the anti-linear
+nature of the operator \(\op{T}\), the eigenvectors are not \(\pt{}\)
+symmetric. This transition from real to complex spectrum is called \(\pt{}\)
+symmetry breaking. 
 
 It has been established that \(\pt{}\) symmetric theory is unlikely to be a
 complete alternative to quantum mechanics, either reducing to the same thing
@@ -146,7 +270,7 @@ including two optical waveguides \cite{pt-ruter}, electrical circuits
 \cite{bender-amjphys-81-173} and discrete fiber networks
 \cite{pt-regensburger}.
 
-In this paper, we demonstrate the quantum simulation of non-interacting bosons
+I will now demonstrate the quantum simulation of non-interacting bosons
 evolving under a \(\pt{}\) symmetric
 Hamiltonian. We investigate the single-particle statistics and bosonic
 correlations across the \(\pt{}\) symmetry breaking threshold. Although the time
@@ -331,7 +455,7 @@ keeping track of gain and loss.
 
 \subsection{Our Simulation}
 For our simulation we use a reconfigurable, four-mode photonic circuit in bulk
-optics, shown in figure~\ref{fig:manifolds}(b). We map two of these optical
+optics, shown in figure~\ref{fig:circuit}. We map two of these optical
 modes to the system and two to the environment, so the transformation performed
 by the circuit is guaranteed to be unitary. By looking at detection events on
 only the system modes, \(S_1\) and \(S_2\) we can observe (a scaled version of)
