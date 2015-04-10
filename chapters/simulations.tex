@@ -3,35 +3,68 @@
 
 \section{Introduction}
 \label{sec:SimIntro}
-In a seminal lecture \cite{qsim-feynman}, Feynman proposed that the
-fundamentally quantum nature of microscopic systems will enable an exact
-simulation of nature using quantum computers. Since then, tremendous progress
-has been made towards the development of such computers that, at their heart,
-are quantum systems \cite{qcomp-review}. On a broader scale, the
-development of tunable, controlled physical systems that simulate, on a quantum
-level, the phenomena of interest has been vigorously pursued over the past
-decade. Optical lattices have been used to simulate Mott-insulator transitions
-\cite{jordens-nature-455-204}, synthetic magnetic fields
-\cite{lin-nature-462-628} and bound states in a repulsive potential
-\cite{winkler-nature-441-853}. Evanescently coupled waveguides
-\cite{garanovich-waveguides-2012} have been used to simulate quantum
-correlations \cite{walks-peruzzo}, disorder effects
-\cite{crespi-nphoton-7-322} and tunable quantum statistics
-\cite{matthews-scirep-3-1539}, as well as exotic states such as Floquet
-topological insulators \cite{rechtsman-nature-496-196,
-khanikaev-natmater-12-233} and quantized Landau levels
-\cite{rechtsman-nphoton-7-153}.
+Simulation of quantum systems, often the electronic energy states of molecules,
+is a major challenge for classical computers, with even the fastest algorithms
+falling short of polyomial scaling with the system size. Approximations can be
+pretty good, but in the case of simulations of catalyst molecules, fall short
+of the required precision for useful theoretical conclusions. \todo{This is
+mostly based on the presentation at Microsoft - find some citations.} A solution
+was proposed by Feynman \cite{qsim-feynman} in the early days of quantum
+information science: use a quantum system to simulate other quantum systems.
+Further study of quantum computing has formalised this idea and we now
+understand that if we had sufficient control over one quantum system to build a
+universal quantum computer, we could program it to simulate any other quantum
+system.
 
-Concurrently, the groundbreaking work by Knill Laflamme and Milburn
-\cite{klm} has shown that an arbitrary quantum simulation can be
-implemented efficiently using linear optical elements along with single photon
-sources and detectors \cite{kok-revmodphys-79-135}, and significant advances
-have been made in increasing the efficiency and reducing the ancillary resources
-required for such an implementation \cite{review-obrien,
-obrien-natphoton-3-687}. In all their manifestations, the goal of quantum
-simulators has been to simulate closed quantum systems with a unitary time
-evolution \cite{cirac-natphys-8-264}: the effective Hamiltonian that describes
-such systems is always Hermitian.
+I will refer to this method of simulation as \emph{digital} quantum simulation,
+since it translates the dynamics of the simulated system into operations on
+qubits: digital quantum information. The advantage of digital simulation is that
+it is independent of the physical system implementing the qubits, which could be
+anything from trapped ions to guided photons. Indeed, simulations of small
+molecules have been performed in this way in linear optics~\cite{qsim-peruzzo}
+and NMR~\cite{qsim-du} platforms \todo{and others?} This advantage is offset by
+the large resource overheads required for the encoding. While some progress has
+been made in reducing the overheads~\cite{qsim-poulin}, like any application
+involving digital quantum computing, the technical challenge remains formidable.
+
+An alternative approach to quantum simulation is the \emph{analogue} simulator.
+While digital quantum simulation can be compared to modelling planetary motions
+on a classical computer, analogue simulation bears more resemblance to an
+orrery: a mechanical system that actually moves models of the planets. This may
+seem like a primitive approach to simulation, but it has the advantage of
+leveraging properties of the simulator to reduce the overheads in performing the
+simulation. In this chapter, I discuss how to take advantage of the properties
+of photons in linear optics to perform simulations of other systems of
+non-interacting bosons without the overheads of a universal quantum computer.
+
+By way of introduction, consider four broad categories of quantum objects.
+First, group by exchange symmetry: Fermions and Bosons, then by interactions:
+particles can interact with each other (e.g. charged particles via the
+electromagnetic force) or not. If we can perform accurate simulations of
+interacting systems, fermionic or bosonic, then we can simulate any quantum
+system: this would effectively require a universal quantum computer. When
+interactions can be ignored, we have a much more limited simulator, and if we
+are further restricted to non-interacting Fermions, the system can be simulated
+classically \todo{citation needed}. The final category---non-interacting
+Bosons---is likely to yield more interesting results and since the recent
+proposal of \bosonsampling{}~\cite{bosonsampling} appears to be intractable to
+classical simulation under certain conditions.
+
+Photons belong to this final class: they are Bosonic particles, and infamously
+non-interacting (proposals for universal photonic quantum computers rely on
+effective interactions via detection~\cite{klm}). The implication of this is
+that with a relatively simple quantum computer (a system of photons in a large
+interferometer) we can go beyond \bosonsampling{} and perform meaningful quantum
+simulations. I discuss two specific instances of quantum simulations that I have
+performed. In the first, we identify quantized molecular vibrations (phonons in
+the harmonic limit) as another system of non-interacting bosons, susceptible to
+our simulation method. This work is being prepared for publication, in
+collaboration with Enrique Mart\'in L\'opez, Chris Sparrow and Anthony Laing.
+In the second, we move away from closed quantum systems (Hermitian/unitary
+dynamics) and consider a more abstract system of bosons obeying PT-symmetric
+(non-Hermitian/non-unitary) dynamics. This work is being prepared for
+publication in collaboration with Chris Sparrow, Anthony Laing and Yogesh
+Jonglekar.
 
 \begin{figure}[t]
   \centering
