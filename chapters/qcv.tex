@@ -22,8 +22,29 @@ systems. The analysis using the \(\rstar\) discriminator (as described
 in~\cite{notuniform}) and the discussion of \emph{Bosonic clouding} appeared in
 a Nature Photonics article \cite{verification}.
 
-\section{Calibration (the crapusoids are real)}
+\section{Calibration}
 \label{sec:Calibration}
+Future experiments in linear optics are going to exhibit a high degree of
+reconfigurability. Fully programmable integrated optics circuits, based on the
+scheme in~\cite{reck} are now being constructed and tested in the
+lab~\cite{bigreck, qpp}. An important challenge in using such devices is the
+calibration of the components: constructing a map between unitary matrices and
+parameters on the circuit. Chapter~\ref{ch:DirectDialling} presents the
+mathematical coordinate transformation that applies in the ideal case, but not
+in the more realistic scenarios encountered in real devices.
+
+The first complicating factor is finding the origins for the parameters: we have
+a control \(V\) that affects a reflectivity \(r\) (on integrated optics this is
+often a voltage controlling a heater, which controls a phase, which controls the
+reflectivity of an MZI) but we do not know a priori what settings of \(V\)
+correspond to \(r=0\) and \(r=1\). By scanning over a range of \(V\) and
+observing the effect of quantities with a known dependence on \(r\), we can
+approximate \(r \of{V}\), as described in \cite{peteschip}. Under these
+conditions, the task of calibrating the full circuit is more involved than the
+ideal case, but still fairly straightforward since the components are
+independent. The automation of this process has been discussed in a slightly
+different context (separating orthogonal input states) in~\cite{alignment}.
+
 \begin{figure}[t]
   \centering
   \includegraphics{figures/crosstalk}
@@ -33,6 +54,42 @@ a Nature Photonics article \cite{verification}.
   outer MZI. We cannot treat the phases and the reflectivities as independent.}
   \label{fig:nestedMZI}
 \end{figure}
+
+Up to now, all components in the circuit have been considered independent. I now
+continue to discuss the phenomenon of crosstalk, and the implications on the
+general calibration problem. A simple example of crosstalk---nested Mach Zehnder
+interferometers---is illustrated in figure~\ref{fig:nestedMZI}. In this setup,
+we have a generalised Mach Zehnder interferometer (MZI) controlled by a phase
+\(\phi\) and a loss \(\eta\) in one arm (b). The loss is implemented with
+another MZI, controlled by phase \(\theta\) (a). In an ideal case, the
+parameters \(\eta\) and \(\phi\) could be treated independenty: scanning over
+the range of \(\phi\) would generate interference fringes in the reflectivity of
+the outer MZI; the loss \(\eta\) would affect the visibility of the fringe, but
+not the origin. In the realistic fringe in figure~\ref{fig:nestedMZI}(c), a
+shift of \(\frac{\theta}{2}\) is observed, therefore the assumption of
+independence is violated.
+
+A calibration can be achieved by setting the loss \(\eta\) to the desired value,
+then setting the phase \(\phi\), taking the shift into account. \(\phi\) must
+then be adjusted any time \(\eta\) changes. This situation with nested MZIs is
+unavoidable in integrated optics versions of the Reck scheme (see
+figure~\ref{fig:ReckScheme}), and can be dealt with in the manner described.
+Instead of losses, it is amplitude splittings that crosstalk with the internal
+phases, but the effect is the same.
+
+This simple case of crosstalk is not particularly hard to deal with, since its
+effect can be precisely predicted in terms of ideal components. I will refer to
+this scenario as type I crosstalk. More complicated cases (type II crosstalk)
+concern couplings between components due to imperfect components or
+isolation. For example, when using thermo-optic phase shifts in integrated
+optics, the heaters are not perfectly thermally isolated. Increasing the voltage
+on one heater could cause a phase shift elsewhere. In addition to this, the
+voltage controllers for the heaters may not be perfectly electrically isolated:
+an increase in one voltage could cause a shift in voltages elsewhere. Unlike the
+thermal crosstalk, the effect of electrical crosstalk may not even be well
+localised. These effects are generally unique to a particular device, and must
+be dealt with on a case-by-case basis. I will now discuss a practical example of
+calibrating a device in the presence of multiple varieties of crosstalk.
 
 \begin{figure}[t]
   \centering
@@ -58,38 +115,76 @@ a Nature Photonics article \cite{verification}.
   \label{fig:interferometers}
 \end{figure}
 
-\begin{figure}[t]
+The device in question is the bulk optics device used for the simulations in
+chapter~\ref{ch:Simulations}. For ease of discussion, I have expanded the
+path/polarisation description of the circuit in figure~\ref{fig:circuit} into a
+path only equivalent in figure~\ref{fig:schematic}. The waveplates implementing
+amplitude splittings (\(at_{0}, at_{1}, aq_{0}, aq_{1}, aq_{2}\)) are shown as
+beamsplitters, and the phase shifts implemented by the waveplates \(\phi_{0}\)
+and \(\phi_{1}\) are shown on the relevant paths. In figures~\ref{fig:ab}
+and~\ref{fig:cd}, I have highilighted the two interferometers, which can produce
+fringes in count rates at detectors A and B and detectors C and D respectively.
+
+When \(\phi_{0}\) is scanned, the observed interference fringes are as expected,
+but the origin of the fringes shifts as a function of other components in the
+interferometer, \(aq_{0}\) and \(at_{1}\), which in the ideal case would have no
+effect on the internal phase. This is an example of type I crosstalk, and the
+phase shifts due to \(aq_{0}\) and \(at_{1}\) could be characterized through
+measurement and incorporated into the calibration. However, due to the nature of
+bulk optics, there is generally a further drift in the origin of the fringe due
+to movement of components. This drift cannot be characterized, but the timescale
+is sufficiently slow that it does not have to be adjusted for in any given run
+of the experiment. The approach we used to deal with these effects (drift and
+type I crosstalk) was to perform the phase calibration for every unitary, with
+the amplitude splittings \(aq_{0}\) and \(at_{1}\) set, then assume that drift
+would be negligible for the time required to take the data. Note that drift is
+not an issue in integrated optics \todo{citation needed}.
+
+Scanning \(\phi_{1}\) results in much more complicated interference fringes,
+shown in figure~\ref{fig:crapusoid}, due to type II crosstalk (self crosstalk in
+this case). To understand this function, we need to consider how the phase is
+implemented by a waveplate acting on polarisation degrees of freedom. As shown
+in figure~\ref{fig:circuit}, the phase shift is achieved by a series of three
+waveplates: a half waveplate at an angle \(2\phi_{1}\) between two quarter
+waveplates at \(45\deg\). Two modes (one horizontal and one vertical) pass
+through all three waveplates, collecting a relative phase of \(2\phi_{1}\) and
+two other modes (one horizontal and one vertical) pass only through the two
+quarter waveplates, flipping horizontal to vertical and vice versa. The
+crosstalk effect is derived from the fact that the two modes passing through the
+half waveplate both collect an additional phase with respect to the two modes
+that do not, which depends on the angle of the half waveplate. This is all
+represented schematically in figure~\ref{fig:schematic} by the phases \(\delta
+\of{\phi_{1}} + \phi_{1}\) and \(\delta \of{\phi_{1}} - \phi_{1}\) on the upper
+two modes. The lower two modes do not pass through the half waveplate so collect
+no phase.
+
+\begin{figure}[h]
   \centering
   \includegraphics{figures/crapusoid}
   \caption[Interference fringes distorted by crosstalk between components]
   {Interference fringes observed in the bulk optics circuit. The distortion of
   the fringes is not due to an imperfect waveplate implementing the phase shift,
   but a kind of crosstalk between components. In this instance, the circuit
-  parameters were set to \(t_{0}=22.5\deg\), \(t_{1}=24.45\deg\),
-  \(q_{0}=20.95\deg\), \(q_{1}=22.5\deg\), \(q_{2}=22.5\deg\). The waveplate
+  parameters were set to \(at_{0}=22.5\deg\), \(at_{1}=24.45\deg\),
+  \(aq_{0}=20.95\deg\), \(aq_{1}=22.5\deg\), \(aq_{2}=22.5\deg\). The waveplate
   controlling \(\phi_{0}\) was fixed and the waveplate controlling \(\phi_{2}\)
-  was scanned for a full rotation.}
+  was scanned for a full rotation. Lines are fitted to the data using
+  equation~\ref{eq:crapusoid}.}
   \label{fig:crapusoid}
 \end{figure}
 
+The function \(\delta \of{\phi_{1}}\) is sinusoidal, and we can model the
+count rates in figure~\ref{fig:crapusoid} using the function
+\begin{equation}
+  \label{eq:crapusoid}
+  C \of{\phi_{1}} = A \left[ 1 \pm \cos \of{ \phi_{1} - \beta - \varepsilon
+  \cos \of{ \phi_{1} - r}} \right] + d
+\end{equation}
+Fitting the data to this function, we can effectively calibrate the device in
+the presence of the type II crosstalk. 
+
 \section{Randomised benchmarking}
 \label{sec:Benchmarking}
-\begin{figure}[t]
-  \includegraphics{figures/benchmarking}
-  \caption[Sample data from randomised benchmarking]
-  {Data from a single instance of a unitary matrix used for randomised
-  benchmarking. (a) quantum coincidences; (b) classical coincidences; (c)
-  singles from the `quart'; (d) singles from the `trit'. The bars show results 
-  expected from theory, with the middle line being the ideal case, and the lower
-  and upper lines represnting \(\pm 1\sigma\) deviations caused by errors in
-  setting parameters. The points are the experimentally measured results. Error
-  bars due to Poissonian noise are too small to see on this scale. The overall
-  fidelity (trace distance between ideal and reconstructed matrices) is \(0.99\)
-  and the fidelities of individual distributions above (Kolmogorov distance
-  between normalised probability distributions) are (a) \(0.97\); (b) \(0.94\);
-  (c) \(0.99\); (d) \(0.89\).}
-  \label{fig:benchmarking}
-\end{figure}
 In order to test the calibration of the bulk optics circuit, we used it to
 implement a series of Haar random unitaries: a process known as randomised
 benchmarking. This testing procedure (also seen, for example,
@@ -119,6 +214,23 @@ number resolving, we cannot measure the two photon events with multiple
 occupancy, so these distributions are not normalised. An comparison of the
 measured distributions to the expected distributions is illustrated in
 figure~\ref{fig:benchmarking} for a single random matrix.
+
+\begin{figure}[t]
+  \includegraphics{figures/benchmarking}
+  \caption[Sample data from randomised benchmarking]
+  {Data from a single instance of a unitary matrix used for randomised
+  benchmarking. (a) quantum coincidences; (b) classical coincidences; (c)
+  singles from the `quart'; (d) singles from the `trit'. The bars show results 
+  expected from theory, with the middle line being the ideal case, and the lower
+  and upper lines represnting \(\pm 1\sigma\) deviations caused by errors in
+  setting parameters. The points are the experimentally measured results. Error
+  bars due to Poissonian noise are too small to see on this scale. The overall
+  fidelity (trace distance between ideal and reconstructed matrices) is \(0.99\)
+  and the fidelities of individual distributions above (Kolmogorov distance
+  between normalised probability distributions) are (a) \(0.97\); (b) \(0.94\);
+  (c) \(0.99\); (d) \(0.89\).}
+  \label{fig:benchmarking}
+\end{figure}
 
 To assess the performance of the circuit, we consider several fidelity measures.
 First, we can take the four distributions described above, \(\vec{q}\),

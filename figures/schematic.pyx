@@ -11,11 +11,11 @@ set multiplot
   text "\(\left|H\right\rangle\)" at 0*fig_m,23*fig_m
   text "\(\left|V\right\rangle\)" at 0*fig_m,4*fig_m
   # Component labels (amplitudes)
-  text "\(t_0\)" at 14*fig_m,23*fig_m
-  text "\(t_1\)" at 52.5*fig_m,23*fig_m
-  text "\(q_2\)" at 91*fig_m,23*fig_m
-  text "\(q_0\)" at 52.5*fig_m,9*fig_m
-  text "\(q_1\)" at 91*fig_m,9*fig_m
+  text "\(at_0\)" at 13*fig_m,23*fig_m
+  text "\(at_1\)" at 51.5*fig_m,23*fig_m
+  text "\(aq_2\)" at 90*fig_m,23*fig_m
+  text "\(aq_0\)" at 51.5*fig_m,9*fig_m
+  text "\(aq_1\)" at 90*fig_m,9*fig_m
   # Component labels (phases)
   text "\(+\phi_{0}\)" at 25*fig_m,23*fig_m
   text "\(-\phi_{0}\)" at 25*fig_m,16*fig_m
