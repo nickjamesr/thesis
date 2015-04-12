@@ -66,7 +66,7 @@ dynamics) and consider a more abstract system of bosons obeying PT-symmetric
 publication in collaboration with Chris Sparrow, Anthony Laing and Yogesh
 Jonglekar.
 
-\section{Experimental Setup}
+\subsection{Experimental Setup}
 \label{sec:BulkReck}
 \begin{figure}[t]
   \centering
@@ -120,6 +120,8 @@ mode as the \emph{trit}. At the end of the circuit we detect photons in each of
 the four modes. We can perform either single photon counting or photon
 coincidence detection.
 
+\subsection{Figures of Merit}
+
 \section{Molecular Vibrations}
 \label{sec:Molecules}
 \begin{figure}[h]
@@ -159,7 +161,7 @@ excitations of the eigenstates, and treat them as bosonic quasiparticles:
 phonons. In the harmonic limit, these phonons do not interact, and can thus be
 simulated by our system.
 
-\subsection{The molecules}
+\subsection{Application to Molecules}
 We have four optical modes, which allows us to simulate 4-level molecules
 exactly. In general, a completely asymmetric \(n\)-atom molecule will have \(3
 \left(n-2\right)\) vibrational states (the remaining 6 degrees of freedom are
@@ -362,6 +364,31 @@ occupations are continuous over the boundary. Also shown are cross-sections
 where experimental data are taken (see figure~\ref{fig:twosite} for full
 experimental data).
 
+\subsection{Three-site PT-symmetric model}
+\label{sec:ThreeSite}
+We can expand this model to a 3-site system, where the Hamiltonian is given by:
+\begin{equation}
+  \mat{H}_{3} = \begin{pmatrix}
+    i \gamma & -\eta & 0 \\
+    -\eta & 0 -\eta \\
+    0 & -\eta & -i \gamma \\
+  \end{pmatrix} = \mat{H}_{3}^{\transpose} \neq \mat{H}_{3}^{\dagger}
+\end{equation}
+When \(\gamma=0\), this is familiar in a photonics context as a
+continuously-coupled quantum walk on three modes with uniform coupling between
+the modes. The eigenvalues are \(\left\{ -\sqrt{2} \eta, 0 +\sqrt{2}
+\eta\right\}\), and the eigenvectors are orthonormal.
+
+In the case \(\gamma \neq 0\), the matrix is no longer Hermitian. Physically,
+the scenario describes a gain on mode 0 and an equal loss on mode 2, while
+mode 1 remains lossless. The eigenvalues are now \(\left\{ \pm \sqrt{2 \eta^{2}
+- \gamma^{2}}, 0 \right\}\), and we observe the same \(\pt\) symmetry breaking
+as in the two-site model. When the non-Hermitian term is sufficiently small
+(\(\gamma \leq \sqrt{2} \eta\)), the spectrum is real, while above this
+threshold (\(\gamma > \sqrt{2} \eta\)), we see a pair of complex conjugate
+eigenvalues emerge. The behaviour of the system is again continuous across the
+\(\pt\) boundary.
+
 \subsection{Unitary Dilation}
 The simulation technique that we use requires that we embed the non-unitary
 time-evolution operator into a larger, unitary operator. This can be done for
@@ -426,7 +453,7 @@ that the environment modes introduced for the simulation do not really
 correspond to a real physical system; rather they are just a convenient way of
 keeping track of gain and loss.
 
-\begin{figure}[t]
+\begin{figure}[p]
   \centering
   \includegraphics{figures/twosite}
   \caption[Results of simulation]
@@ -453,7 +480,8 @@ keeping track of gain and loss.
   \label{fig:twosite}
 \end{figure}
 
-\subsection{Our Simulation}
+\subsection{Four Mode Simulation}
+\label{sec:FourMode}
 For our simulation we use a reconfigurable, four-mode photonic circuit in bulk
 optics, shown in figure~\ref{fig:circuit}. We map two of these optical
 modes to the system and two to the environment, so the transformation performed
@@ -474,7 +502,6 @@ implement very stable Jamin-Lebedeff interferometers, while
 polarisation-sensitive detection is achieved with in-fibre polarising
 beamsplitters (PBS) and single-photon avalanche diodes (SPADs).
 
-\subsection{Results}
 The graphs in figure~\ref{fig:twosite} show the evolution of the 2-site system
 at 3 points in the parameter space: \(\pt{}\)-symmetric, \(\gamma=0.95\) (a,d);
 \(\pt{}\)-critical, \(\gamma=1.0\) (b,e) and \(\pt{}\)-broken, \(\gamma=1.05\)
@@ -501,7 +528,7 @@ scale factor, and is unbounded.
 To evaluate the fidelity of our simulations, we look at two measures. The first
 is a trace distance between the unitary matrix that we intended to implement,
 and the matrix that we in fact did implement, according to the data we collect
-\todo{cite SST}. If the desired unitary is \(\mat{U}\) and the measured unitary
+\cite{sst}. If the desired unitary is \(\mat{U}\) and the measured unitary
 is \(\mat{U^{\prime}}\), the trace distance, \(F\) is defined by:
 \[F=\frac{1}{2}\Tr\of{\mat{U}^{\dagger}{\mat{U}^{\prime}}}\]
 The second measure we use compares (normalised) discrete probability
@@ -519,6 +546,33 @@ distance, \(0.956 \pm 0.020\) for the single photon data shown and \(0.961 \pm
 into account the \(S_2 E_1\), \(S_2 E_2\) and \(E_1 E_2\) correlations, which
 are not presented here.
 
+\subsection{Six Mode Simulation}
+\label{sec:SixMode}
+In order to perform a simulation of the three-site \(\pt\)-symmetric model using
+the method of unitary dilation, we require an optical circuit with six modes.
+This is realised in integrated optics, using thermo-optic phase shifts and Mach
+Zehnder interferometers (MZIs) to achieve the necessary reconfigurability. Full
+simulations of the time evolution are performed for two regions of the phase
+space: one below and one above the \(\pt\) threshold. The results of the
+simulation can be seen in figures~\ref{fig:threesitesingles} (single photon
+data) and~\ref{fig:threesitetwofolds} (two photon correlations).
+\begin{figure}[p]
+  \centering
+  \includegraphics{figures/threesite_singles}
+  \caption[Single photon data from simulation of the 3-site PT symmetric model]
+  {Single photon data from simulation of the 3-site \(\pt\) symmetric model}
+  \label{fig:threesitesingles}
+\end{figure}
+
+\begin{figure}[p]
+  \centering
+  \includegraphics{figures/threesite_pairs}
+  \caption[Two photon data from simulation of the 3-site PT symmetric model]
+  {Two photon data from simulation of the 3-site \(\pt\) symmetric model}
+  \label{fig:threesitetwofolds}
+\end{figure}
+
+\subsection{Conclusions}
 We have therefore demonstrated the ability to simulate the evolution of
 \(\pt{}\)-symmetric systems in our 2-site model, across all regions of the phase
 space. The cost of our implementation using linear optics and unitary dilation
@@ -529,8 +583,9 @@ straightforward to handle. In addition, our method of simulation allows the
 number of particles to be scaled up, to the point where classical simulations
 may become intractable.
 
-\subsection{Experimental details}
+\section{Experimental details}
 \label{sec:SimulationExperiment}
+\subsection{Four mode circuit in bulk optics}
 The circuit shown in figure~\ref{fig:circuit} can be used to realise any
 unitary operator in 4 modes, down to experimentally undetectable phases on the
 input and output modes. This insensitivity to certain phases reduces the number
@@ -549,8 +604,12 @@ polarisation-maintaining optical fibres. Single-photon detection was achieved
 using silicon-based avalanche photodiode single-photon counting modules.
 Coincidence counting logic used a field-programmable gate array.
 
+\subsection{Six mode circuit in integrated optics}
+For the three-site \(\pt\)-symmetric model, we require six optical modes to
+simulate the non-unitary evolution in three modes. A fully reconfigurable
+circuit in integrated optics is used for this purpose.
 
-\subsubsection{Data acquisition}
+\subsection{Data acquisition}
 For each unitary operator that we implement, we take one- and two-photon data.
 The one-photon data are obtained by injecting one photon into the circuit, with
 the other photon from the created pair acting as a herald, and counting
