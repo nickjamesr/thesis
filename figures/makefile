@@ -28,6 +28,8 @@ all = benchmarking.pdf\
  rstar.pdf\
  schematic.pdf\
  sixphoton.pdf\
+ threesite_singles.pdf\
+ threesite_pairs.pdf\
  timestep.pdf\
  twosite.pdf\
  vibrations.pdf
@@ -198,6 +200,10 @@ schematic.pdf : schematic.eps schematic.pyx
 sixphoton.pdf : sixphoton.pyx ../reck/data/classical_events.dat\
  ../reck/data/quantum_events.dat
 	pyxplot sixphoton.pyx
+
+threesite_data=
+threesite_singles.pdf threesite_pairs.pdf: $(threesite_data) threesite.pyx
+	pyxplot threesite.pyx
 
 timestep_data=$(addprefix ../hamiltomo/data/,timestep0.dat\
  timestep_1e-04.dat\

@@ -100,6 +100,7 @@ return : None'''
       powers = [abs2(U[i,mode[0]]*U[j,mode[1]]+U[i,mode[1]]*U[j,mode[0]])\
 for i,j in pairs]
       fout.write(fmt.format(t,norm,*powers))
+      powers/=sum(powers) # Normalise visible coincidences to 1
       t+=tstep
 
 def singles_exp(gamma,eta,tree,sym,mode=0):

@@ -15,6 +15,8 @@ simulations_figs=manifolds.png\
  circuit.pdf\
  molecules.pdf\
  opensystem.pdf\
+ threesite_singles.pdf\
+ threesite_pairs.pdf\
  vibrations.pdf
 
 hamiltomo_figs=logvsderivative.pdf\
