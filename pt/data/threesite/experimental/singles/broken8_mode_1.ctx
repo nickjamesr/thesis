@@ -1,0 +1,13 @@
+metadata: {"Input": 1, "Int_time": 1, "Unitary": "NTT/pt_symmetry/broken8.csv", "computer": "PHOTON_COUNTER", "label": "singles data for pt symmetry", "parent": "2015_04_01_wednesday_13h12m29s", "repeats": 10, "timestamp": "2015_04_02_thursday_11h31m43s"}
+A: 99039
+B: 27154
+C: 2681
+D: 5845
+E: 23674
+F: 5737
+AG: 10610
+BG: 2781
+CG: 130
+DG: 517
+EG: 2236
+FG: 11

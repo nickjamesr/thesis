@@ -1,0 +1,22 @@
+metadata: {"Inputs": "C7D6", "Int_time": 1, "Unitary": "NTT/pt_symmetry/broken4.csv", "computer": "PHOTON_COUNTER", "label": "PT-symmetry, input in modes 1 and 2 (fibres 7 and 6), C7D6, *56,000, **1000 ", "motor_controller_pos": "32.15997", "parent": "2015_04_01_wednesday_15h40m51s", "regime": "Q", "repeats": 60, "timestamp": "2015_04_01_wednesday_16h18m25s"}
+AB: 13139
+AC: 14833
+AD: 1831
+AE: 5429
+AF: 9674
+BC: 1034
+BD: 5641
+BE: 374
+BF: 752
+CD: 6329
+CE: 193
+CF: 524
+DE: 2340
+DF: 4238
+EF: 158
+A: 1237737
+B: 525320
+C: 547865
+D: 511688
+E: 217995
+F: 390310

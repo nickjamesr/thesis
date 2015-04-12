@@ -1,0 +1,122 @@
+metadata: {"Inputs": "C7D5", "Int_time": 1, "Unitary": "NTT/pt_symmetry/symmetric8.csv", "computer": "PHOTON_COUNTER", "label": "PT-symmetry, input in modes 1 and 3 (fibres 7 and 5), C7D6, *58,000, **1100 ", "motor_controller_pos": "32.74167", "regime": "Q", "repeats": 60, "timestamp": "2015_04_01_wednesday_17h18m36s"}
+Heater context: {"0": {"current": 0.0, "voltage": 9.341}, "1": {"current": 0.097, "voltage": 0.054}, "2": {"current": 0.0, "voltage": 0.0}, "3": {"current": 0.0, "voltage": 0.082}, "4": {"current": 0.048, "voltage": 5.168}, "5": {"current": 0.0, "voltage": 0.108}, "6": {"current": 10.058, "voltage": 2.186}, "7": {"current": 2.099, "voltage": 4.287}, "8": {"current": 0.0, "voltage": 0.062}, "9": {"current": 14.013, "voltage": 2.956}, "10": {"current": 0.0, "voltage": 9.197}, "11": {"current": 14.697, "voltage": 3.356}, "12": {"current": 0.0, "voltage": 0.19}, "13": {"current": 21.093, "voltage": 4.765}, "14": {"current": 37.255, "voltage": 8.022}, "15": {"current": 27.539, "voltage": 6.327}, "16": {"current": 41.308, "voltage": 9.322}, "17": {"current": 36.035, "voltage": 8.059}, "18": {"current": 30.273, "voltage": 6.949}, "19": {"current": 42.48, "voltage": 9.392}, "20": {"current": 20.849, "voltage": 5.001}, "21": {"current": 17.529, "voltage": 3.995}, "22": {"current": 34.326, "voltage": 7.555}, "23": {"current": 16.894, "voltage": 3.679}, "24": {"current": 19.824, "voltage": 4.518}, "25": {"current": 19.482, "voltage": 4.451}, "26": {"current": 25.732, "voltage": 5.75}, "27": {"current": 10.888, "voltage": 2.278}, "28": {"current": 12.109, "voltage": 2.66}, "29": {"current": 30.468, "voltage": 6.712}, "30": {"current": 17.529, "voltage": 4.015}}
+Heater context: "No context given"
+count_rates: {"a": 3843, "ab": 15, "ac": 113, "ace": 1, "ad": 16, "ae": 18, "b": 6108, "bc": 34, "bd": 128, "be": 10, "c": 22307, "cd": 815, "ce": 3, "cf": 1, "d": 22712, "de": 84, "df": 8, "e": 3123, "f": 685, "g": 370, "h": 489}
+Heater context: "No context given"
+count_rates: {"a": 3793, "ab": 13, "ac": 104, "ace": 1, "ad": 19, "ae": 6, "af": 1, "b": 6117, "bc": 25, "bd": 134, "be": 1, "bf": 1, "c": 22123, "cd": 785, "ce": 7, "cf": 1, "d": 22674, "de": 84, "df": 7, "e": 3011, "f": 695, "g": 334, "h": 497}
+Heater context: "No context given"
+count_rates: {"a": 3944, "ab": 10, "ac": 103, "ad": 23, "ae": 16, "af": 1, "b": 6130, "bc": 38, "bcd": 1, "bd": 182, "be": 3, "c": 22324, "cd": 757, "ce": 6, "cf": 3, "d": 22854, "de": 95, "df": 4, "e": 3165, "f": 678, "g": 291, "h": 478}
+Heater context: "No context given"
+count_rates: {"a": 3852, "ab": 13, "ac": 133, "ad": 33, "ae": 17, "b": 6191, "bc": 35, "bcd": 2, "bd": 159, "be": 1, "bf": 3, "c": 22402, "cd": 787, "ce": 8, "cf": 1, "d": 22681, "de": 84, "df": 3, "e": 3103, "f": 658, "g": 354, "h": 483}
+Heater context: "No context given"
+count_rates: {"a": 3840, "ab": 15, "ac": 127, "ad": 21, "ade": 1, "ae": 10, "af": 1, "b": 6256, "bc": 32, "bd": 170, "be": 4, "c": 22487, "cd": 762, "ce": 6, "d": 22796, "de": 97, "df": 8, "e": 3097, "ef": 1, "f": 622, "g": 311, "h": 493}
+Heater context: "No context given"
+count_rates: {"a": 3818, "ab": 9, "ac": 113, "ad": 30, "ae": 12, "b": 5966, "bc": 22, "bd": 171, "be": 5, "bf": 1, "c": 22506, "cd": 758, "ce": 2, "d": 22795, "de": 86, "df": 11, "dh": 2, "e": 3094, "f": 631, "g": 330, "h": 476}
+Heater context: "No context given"
+count_rates: {"a": 3844, "ab": 16, "ac": 98, "ad": 14, "ae": 14, "af": 3, "b": 6070, "bc": 40, "bcd": 1, "bd": 160, "be": 1, "bf": 3, "c": 22542, "cd": 778, "ce": 5, "cf": 2, "d": 22930, "de": 96, "df": 7, "e": 3216, "f": 650, "g": 354, "h": 507}
+Heater context: "No context given"
+count_rates: {"a": 3854, "ab": 10, "ac": 123, "ad": 25, "ae": 9, "af": 1, "b": 6139, "bc": 19, "bce": 1, "bd": 174, "be": 5, "bf": 1, "c": 22257, "cd": 788, "ce": 4, "d": 22620, "de": 90, "df": 9, "e": 3097, "f": 646, "g": 337, "h": 448}
+Heater context: "No context given"
+count_rates: {"a": 3840, "ab": 16, "ac": 112, "ad": 21, "ae": 22, "b": 6164, "bc": 33, "bd": 170, "be": 8, "bf": 1, "c": 23100, "cd": 753, "ce": 10, "cf": 1, "d": 23173, "de": 93, "df": 6, "e": 3087, "f": 679, "g": 320, "h": 452}
+Heater context: "No context given"
+count_rates: {"a": 3855, "ab": 17, "ac": 110, "ad": 18, "ae": 16, "b": 6094, "bc": 31, "bd": 152, "be": 2, "bf": 2, "bh": 1, "c": 22641, "cd": 761, "ce": 7, "d": 22890, "de": 91, "df": 5, "e": 3210, "f": 682, "g": 339, "h": 484}
+Heater context: "No context given"
+count_rates: {"a": 3826, "ab": 10, "ac": 96, "ad": 19, "ae": 15, "b": 6102, "bc": 27, "bd": 187, "be": 5, "bf": 1, "c": 22494, "cd": 803, "ce": 7, "cg": 1, "d": 22668, "de": 97, "df": 5, "e": 2979, "f": 673, "g": 365, "h": 437}
+Heater context: "No context given"
+count_rates: {"a": 3797, "ab": 17, "ac": 134, "acd": 1, "ad": 10, "ae": 17, "af": 2, "b": 6197, "bc": 37, "bcd": 1, "bd": 159, "be": 7, "c": 22362, "cd": 798, "ce": 3, "cf": 1, "ch": 1, "d": 22558, "de": 119, "df": 6, "e": 3049, "f": 623, "g": 316, "h": 447}
+Heater context: "No context given"
+count_rates: {"a": 3783, "ab": 14, "ac": 108, "ad": 21, "ae": 11, "af": 2, "b": 6286, "bc": 33, "bd": 134, "be": 4, "bf": 1, "c": 22422, "cd": 772, "ce": 4, "cf": 2, "d": 22764, "de": 95, "df": 8, "e": 3172, "f": 668, "g": 322, "h": 500}
+Heater context: "No context given"
+count_rates: {"a": 3847, "ab": 18, "ac": 109, "ad": 25, "ae": 12, "b": 6032, "bc": 38, "bcd": 2, "bd": 174, "c": 22736, "cd": 742, "ce": 7, "cf": 2, "d": 22751, "de": 83, "df": 3, "e": 3140, "eh": 1, "f": 685, "g": 337, "h": 506}
+Heater context: "No context given"
+count_rates: {"a": 3812, "ab": 9, "ac": 115, "ad": 24, "ae": 11, "af": 2, "b": 6151, "bc": 35, "bcd": 1, "bd": 163, "be": 4, "bf": 1, "c": 22907, "cd": 761, "ce": 3, "d": 22977, "de": 87, "df": 3, "dh": 1, "e": 3104, "f": 613, "g": 352, "h": 482}
+Heater context: "No context given"
+count_rates: {"a": 3827, "ab": 14, "abcd": 1, "ac": 109, "ad": 20, "ae": 14, "b": 6008, "bc": 25, "bd": 146, "be": 4, "c": 22540, "cd": 756, "ce": 7, "cf": 1, "d": 22993, "de": 98, "df": 8, "e": 3053, "f": 628, "g": 303, "h": 457}
+Heater context: "No context given"
+count_rates: {"a": 3824, "ab": 14, "ac": 104, "acd": 1, "ad": 21, "ae": 11, "b": 6181, "bc": 33, "bcd": 1, "bd": 168, "be": 1, "bf": 2, "c": 22844, "cd": 783, "ce": 4, "cf": 1, "d": 22739, "de": 88, "df": 7, "e": 3089, "ef": 1, "f": 636, "g": 335, "h": 478}
+Heater context: "No context given"
+count_rates: {"a": 3962, "ab": 7, "ac": 122, "ad": 23, "ae": 7, "af": 1, "b": 6179, "bc": 29, "bd": 174, "be": 4, "bf": 1, "c": 22608, "cd": 738, "ce": 8, "d": 23046, "de": 94, "df": 7, "e": 3156, "f": 632, "g": 340, "h": 500}
+Heater context: "No context given"
+count_rates: {"a": 3777, "ab": 13, "ac": 103, "acd": 1, "ad": 22, "ae": 12, "b": 6121, "bc": 32, "bd": 163, "be": 3, "bf": 2, "c": 22359, "cd": 774, "ce": 7, "d": 23124, "de": 99, "df": 6, "e": 3232, "f": 679, "g": 337, "h": 506}
+Heater context: "No context given"
+count_rates: {"a": 3915, "ab": 15, "ac": 120, "ad": 17, "ae": 16, "b": 6154, "bc": 31, "bd": 165, "be": 3, "c": 22430, "cd": 780, "ce": 9, "cf": 3, "d": 22772, "de": 106, "df": 5, "e": 3089, "f": 636, "g": 336, "h": 482}
+Heater context: "No context given"
+count_rates: {"a": 3876, "ab": 17, "ac": 105, "ad": 24, "ae": 13, "af": 1, "b": 6157, "bc": 42, "bd": 195, "be": 9, "c": 22362, "cd": 747, "ce": 2, "cf": 1, "d": 22780, "de": 77, "df": 6, "e": 3013, "f": 670, "g": 343, "h": 435}
+Heater context: "No context given"
+count_rates: {"a": 3840, "ab": 17, "ac": 116, "acd": 1, "ad": 19, "ae": 15, "b": 6020, "bc": 37, "bd": 144, "be": 1, "bf": 1, "c": 22591, "cd": 741, "ce": 2, "cf": 1, "d": 23118, "de": 78, "df": 7, "e": 3080, "f": 675, "g": 368, "h": 489}
+Heater context: "No context given"
+count_rates: {"a": 3924, "ab": 11, "ac": 125, "ad": 18, "ae": 14, "b": 6023, "bc": 35, "bd": 160, "be": 1, "c": 22437, "cd": 776, "ce": 6, "cf": 2, "d": 23067, "de": 94, "df": 9, "e": 3139, "f": 658, "g": 338, "h": 500}
+Heater context: "No context given"
+count_rates: {"a": 4028, "ab": 13, "ac": 112, "ad": 23, "ae": 7, "af": 1, "b": 6173, "bc": 36, "bd": 161, "be": 8, "c": 22679, "cd": 748, "ce": 7, "d": 23219, "de": 94, "df": 7, "dh": 1, "e": 3079, "f": 640, "g": 325, "h": 475}
+Heater context: "No context given"
+count_rates: {"a": 3844, "ab": 14, "ac": 114, "ad": 19, "ae": 13, "af": 1, "b": 6226, "bc": 37, "bd": 174, "be": 6, "bf": 1, "c": 22817, "cd": 728, "cde": 1, "ce": 9, "cf": 4, "d": 23013, "de": 94, "df": 7, "e": 2987, "f": 653, "g": 331, "h": 494}
+Heater context: "No context given"
+count_rates: {"a": 3957, "ab": 13, "ac": 99, "ad": 20, "ae": 15, "b": 6137, "bc": 37, "bd": 163, "be": 1, "bf": 1, "c": 22766, "cd": 756, "ce": 6, "cf": 2, "d": 23062, "de": 112, "df": 5, "e": 3040, "f": 650, "g": 351, "h": 456}
+Heater context: "No context given"
+count_rates: {"a": 4007, "ab": 13, "ac": 99, "ad": 25, "ae": 19, "b": 6248, "bc": 23, "bd": 199, "be": 4, "bf": 4, "c": 22786, "cd": 790, "ce": 4, "d": 23421, "de": 81, "df": 11, "e": 3006, "f": 653, "g": 356, "h": 486}
+Heater context: "No context given"
+count_rates: {"a": 3741, "ab": 18, "ac": 120, "ad": 28, "ae": 14, "b": 6274, "bc": 39, "bd": 155, "be": 3, "bf": 1, "c": 22771, "cd": 769, "ce": 5, "d": 23053, "de": 97, "df": 7, "e": 3058, "f": 678, "g": 375, "h": 500}
+Heater context: "No context given"
+count_rates: {"a": 3762, "ab": 11, "ac": 110, "acd": 1, "ad": 21, "ae": 11, "b": 6041, "bc": 28, "bd": 178, "be": 4, "c": 22416, "cd": 725, "ce": 7, "cf": 1, "ch": 1, "d": 23021, "de": 94, "df": 5, "e": 3056, "f": 649, "g": 346, "h": 448}
+Heater context: "No context given"
+count_rates: {"a": 3757, "ab": 9, "ac": 124, "ad": 19, "ae": 14, "b": 6239, "bc": 25, "bd": 161, "be": 6, "bf": 1, "bh": 1, "c": 22670, "cd": 796, "ce": 6, "cf": 1, "d": 23068, "de": 80, "df": 10, "e": 3066, "f": 653, "g": 339, "h": 451}
+Heater context: "No context given"
+count_rates: {"a": 3921, "ab": 15, "ac": 116, "acd": 1, "ad": 13, "ae": 13, "b": 6095, "bc": 37, "bcd": 1, "bd": 168, "be": 2, "c": 22343, "cd": 803, "cde": 1, "ce": 4, "cf": 2, "d": 23117, "de": 83, "df": 11, "dg": 2, "e": 3090, "ef": 1, "f": 592, "g": 349, "h": 473}
+Heater context: "No context given"
+count_rates: {"a": 3821, "ab": 10, "ac": 139, "ad": 24, "ae": 13, "af": 1, "b": 6046, "bc": 35, "bcd": 1, "bd": 183, "be": 8, "bf": 1, "c": 22690, "cd": 760, "ce": 3, "cg": 1, "d": 23025, "de": 96, "df": 4, "e": 3150, "f": 677, "g": 301, "h": 494}
+Heater context: "No context given"
+count_rates: {"a": 3847, "ab": 12, "ac": 102, "acde": 1, "ad": 18, "ae": 15, "b": 6104, "bc": 31, "bd": 170, "be": 5, "bf": 1, "c": 22467, "cd": 734, "cde": 1, "ce": 3, "ch": 1, "d": 22758, "de": 108, "df": 8, "e": 3237, "f": 678, "g": 319, "h": 480}
+Heater context: "No context given"
+count_rates: {"a": 3825, "ab": 9, "ac": 106, "ad": 30, "ae": 13, "af": 1, "b": 6099, "bc": 34, "bd": 175, "be": 2, "bf": 1, "c": 22444, "cd": 737, "ce": 9, "cf": 1, "d": 23020, "de": 87, "df": 3, "dh": 1, "e": 3059, "f": 681, "g": 353, "h": 455}
+Heater context: "No context given"
+count_rates: {"a": 3854, "ab": 9, "ac": 110, "ad": 18, "ae": 14, "b": 6166, "bc": 30, "bcd": 1, "bd": 182, "be": 3, "bf": 1, "c": 22900, "cd": 813, "ce": 8, "d": 22716, "de": 88, "df": 8, "e": 3033, "f": 665, "g": 342, "h": 467}
+Heater context: "No context given"
+count_rates: {"a": 3876, "ab": 15, "ac": 125, "ad": 27, "ae": 18, "b": 6142, "bc": 28, "bd": 182, "be": 4, "bf": 2, "c": 22549, "cd": 775, "ce": 8, "cf": 1, "d": 22737, "de": 110, "df": 9, "e": 3040, "f": 692, "g": 353, "h": 482}
+Heater context: "No context given"
+count_rates: {"a": 3945, "ab": 11, "ac": 109, "ad": 28, "ae": 13, "b": 6300, "bc": 27, "bd": 179, "bdf": 1, "be": 2, "c": 22508, "cd": 837, "ce": 4, "cf": 3, "d": 23338, "de": 107, "df": 2, "e": 3106, "f": 675, "g": 349, "h": 488}
+Heater context: "No context given"
+count_rates: {"a": 3805, "ab": 9, "ac": 103, "ad": 21, "ae": 12, "b": 6151, "bc": 36, "bd": 159, "be": 2, "bf": 2, "c": 22412, "cd": 772, "ce": 1, "cf": 3, "d": 23188, "de": 81, "df": 6, "e": 3146, "f": 670, "g": 333, "h": 446}
+Heater context: "No context given"
+count_rates: {"a": 3927, "ab": 9, "abc": 1, "ac": 112, "ad": 32, "ae": 15, "b": 6194, "bc": 38, "bd": 160, "bde": 1, "be": 6, "bf": 2, "c": 22631, "cd": 759, "ce": 5, "d": 23016, "de": 97, "df": 6, "e": 3041, "f": 681, "g": 351, "h": 503}
+Heater context: "No context given"
+count_rates: {"a": 3943, "ab": 16, "ac": 112, "ad": 22, "ae": 11, "af": 1, "b": 6258, "bc": 32, "bcd": 1, "bd": 174, "be": 5, "c": 22498, "cd": 760, "ce": 5, "cf": 2, "d": 23140, "de": 95, "df": 11, "e": 3163, "f": 675, "g": 358, "h": 490}
+Heater context: "No context given"
+count_rates: {"a": 3973, "ab": 12, "ac": 127, "ad": 28, "ae": 18, "b": 6134, "bc": 34, "bd": 184, "c": 22558, "cd": 765, "ce": 8, "cf": 2, "d": 23136, "de": 85, "df": 10, "e": 3106, "f": 654, "g": 348, "h": 478}
+Heater context: "No context given"
+count_rates: {"a": 3729, "ab": 19, "ac": 114, "ad": 19, "ae": 18, "af": 1, "b": 6116, "bc": 31, "bd": 153, "be": 1, "bf": 2, "c": 22551, "cd": 715, "ce": 6, "cf": 3, "d": 23296, "de": 91, "df": 8, "dh": 1, "e": 3001, "f": 690, "g": 302, "h": 495}
+Heater context: "No context given"
+count_rates: {"a": 3997, "ab": 16, "ac": 113, "ad": 20, "ae": 13, "b": 6013, "bc": 37, "bd": 163, "be": 1, "bf": 3, "c": 22931, "cd": 824, "cde": 1, "ce": 3, "cf": 1, "d": 23375, "de": 99, "df": 3, "e": 3131, "f": 656, "g": 360, "h": 445}
+Heater context: "No context given"
+count_rates: {"a": 3928, "ab": 9, "ac": 115, "acd": 1, "ad": 24, "ae": 22, "af": 2, "b": 6103, "bc": 37, "bcd": 1, "bd": 155, "be": 2, "c": 22795, "cd": 749, "ce": 7, "cf": 2, "d": 23116, "de": 102, "df": 2, "e": 3232, "f": 659, "g": 320, "h": 493}
+Heater context: "No context given"
+count_rates: {"a": 3811, "ab": 14, "ac": 96, "ad": 24, "ae": 12, "b": 6057, "bc": 40, "bd": 158, "be": 5, "bf": 3, "c": 22709, "cd": 769, "ce": 5, "d": 23044, "de": 103, "df": 6, "e": 3141, "f": 655, "g": 338, "h": 451}
+Heater context: "No context given"
+count_rates: {"a": 3942, "ab": 10, "ac": 96, "ad": 16, "ae": 10, "af": 2, "b": 6258, "bc": 34, "bd": 162, "be": 5, "c": 22625, "cd": 739, "ce": 9, "cf": 3, "d": 23162, "de": 94, "df": 6, "dh": 1, "e": 3183, "f": 669, "g": 334, "h": 508}
+Heater context: "No context given"
+count_rates: {"a": 3838, "ab": 12, "ac": 110, "ad": 19, "adh": 1, "ae": 10, "af": 1, "b": 6188, "bc": 26, "bcd": 1, "bd": 153, "be": 1, "c": 22616, "cd": 822, "ce": 5, "cf": 1, "d": 22808, "de": 87, "df": 7, "e": 3096, "f": 681, "g": 313, "h": 491}
+Heater context: "No context given"
+count_rates: {"a": 3810, "ab": 16, "ac": 103, "acd": 1, "ad": 16, "ae": 12, "af": 1, "b": 6302, "bc": 28, "bd": 159, "be": 4, "bf": 1, "c": 22494, "cd": 716, "ce": 5, "cf": 1, "d": 23248, "de": 89, "df": 4, "e": 3143, "f": 669, "g": 381, "h": 486}
+Heater context: "No context given"
+count_rates: {"a": 3893, "ab": 18, "ac": 115, "ad": 19, "ae": 16, "b": 6039, "bc": 45, "bd": 182, "be": 3, "c": 22648, "cd": 758, "ce": 6, "d": 22856, "de": 102, "df": 3, "e": 2983, "f": 638, "g": 346, "h": 498}
+Heater context: "No context given"
+count_rates: {"a": 3772, "ab": 6, "ac": 103, "ad": 27, "ae": 14, "af": 1, "b": 6078, "bc": 28, "bd": 134, "be": 2, "bf": 5, "c": 22597, "cd": 733, "ce": 4, "d": 22933, "de": 81, "df": 12, "e": 3062, "f": 671, "g": 359, "h": 492}
+Heater context: "No context given"
+count_rates: {"a": 3952, "ab": 13, "abd": 1, "ac": 91, "ad": 21, "ae": 16, "af": 1, "b": 6055, "bc": 30, "bd": 186, "be": 2, "c": 22511, "cd": 759, "ce": 3, "cf": 2, "d": 22983, "de": 97, "df": 6, "e": 3149, "f": 678, "g": 323, "h": 486}
+Heater context: "No context given"
+count_rates: {"a": 3916, "ab": 15, "ac": 94, "acd": 1, "ad": 26, "ae": 19, "af": 3, "b": 6167, "bc": 28, "bd": 171, "be": 6, "bf": 2, "c": 22731, "cd": 759, "ce": 2, "cf": 1, "d": 23436, "de": 86, "df": 7, "e": 3053, "f": 692, "g": 339, "h": 509}
+Heater context: "No context given"
+count_rates: {"a": 3872, "ab": 11, "ac": 135, "ad": 23, "ae": 8, "af": 1, "b": 6217, "bc": 27, "bd": 163, "be": 7, "c": 22757, "cd": 741, "ce": 6, "cf": 1, "d": 23316, "de": 90, "df": 8, "dh": 1, "e": 3061, "f": 697, "g": 343, "h": 478}
+Heater context: "No context given"
+count_rates: {"a": 3943, "ab": 9, "ac": 94, "ad": 22, "ae": 12, "b": 6159, "bc": 33, "bcd": 1, "bd": 189, "be": 2, "bf": 1, "c": 22448, "cd": 814, "ce": 7, "cf": 2, "d": 22861, "de": 94, "df": 10, "dh": 1, "e": 3121, "eh": 1, "f": 630, "g": 331, "h": 478}
+Heater context: "No context given"
+count_rates: {"a": 3776, "ab": 18, "ac": 117, "ad": 24, "ae": 13, "af": 1, "b": 6021, "bc": 33, "bcd": 1, "bd": 146, "be": 3, "bf": 2, "c": 22394, "cd": 801, "ce": 3, "cf": 2, "d": 22958, "de": 87, "df": 7, "dh": 1, "e": 3131, "f": 652, "g": 339, "h": 478}
+Heater context: "No context given"
+count_rates: {"a": 3865, "ab": 19, "ac": 121, "ad": 18, "ae": 16, "b": 6050, "bc": 33, "bd": 166, "be": 4, "bf": 2, "c": 22697, "cd": 774, "ce": 3, "cf": 1, "d": 22932, "de": 100, "df": 3, "e": 3127, "f": 692, "g": 341, "h": 490}
+Heater context: "No context given"
+count_rates: {"a": 3724, "ab": 12, "abd": 1, "ac": 134, "ad": 16, "ae": 11, "af": 1, "b": 6037, "bc": 40, "bd": 168, "be": 3, "bf": 2, "c": 22602, "cd": 773, "ce": 3, "d": 23105, "de": 92, "df": 8, "e": 3038, "f": 641, "g": 350, "h": 498}
+Heater context: "No context given"
+count_rates: {"a": 3931, "ab": 14, "ac": 114, "ad": 20, "ae": 18, "b": 6032, "bc": 39, "bd": 153, "be": 5, "c": 22957, "cd": 741, "ce": 6, "cf": 1, "d": 23234, "de": 104, "df": 4, "e": 3100, "f": 688, "g": 338, "h": 499}
+Heater context: "No context given"
+count_rates: {"a": 3830, "ab": 15, "ac": 119, "ad": 22, "ae": 16, "af": 1, "b": 6254, "bc": 36, "bd": 177, "be": 2, "bf": 1, "c": 22505, "cd": 777, "cde": 1, "ce": 5, "d": 23002, "de": 112, "df": 6, "dh": 1, "e": 3046, "f": 664, "g": 368, "h": 482}
+Heater context: "No context given"
+count_rates: {"a": 3813, "ab": 13, "ac": 126, "ad": 23, "ae": 17, "af": 1, "b": 6032, "bc": 34, "bcd": 1, "bd": 193, "be": 4, "bf": 1, "c": 22486, "cd": 770, "ce": 5, "d": 23186, "de": 76, "df": 4, "e": 3111, "f": 657, "g": 344, "h": 463}

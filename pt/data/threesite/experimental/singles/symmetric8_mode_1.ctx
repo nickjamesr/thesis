@@ -1,0 +1,13 @@
+metadata: {"Input": 1, "Int_time": 1, "Unitary": "NTT/pt_symmetry/symmetric8.csv", "computer": "PHOTON_COUNTER", "label": "singles data for pt symmetry", "parent": "2015_04_01_wednesday_13h18m03s", "repeats": 10, "timestamp": "2015_04_02_thursday_11h31m55s"}
+A: 18877
+B: 8682
+C: 3638
+D: 123267
+E: 4124
+F: 5811
+AG: 1843
+BG: 732
+CG: 242
+DG: 13896
+EG: 23
+FG: 18

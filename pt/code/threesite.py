@@ -134,9 +134,24 @@ if __name__=='__main__':
   # Theory (smooth curve)
   tstep=0.01
   singles_incr(gamma,eta,tmin,tmax,tstep,\
-"data/threesite/symmetric/theory/singles.dat",mode=0)
+"data/threesite/symmetric/theory/singles0.dat",mode=0)
+  singles_incr(gamma,eta,tmin,tmax,tstep,\
+"data/threesite/symmetric/theory/singles1.dat",mode=1)
+  singles_incr(gamma,eta,tmin,tmax,tstep,\
+"data/threesite/symmetric/theory/singles2.dat",mode=2)
+  singles_incr(gamma,eta,tmin,tmax,tstep,\
+"data/threesite/symmetric/theory/singles3.dat",mode=3)
+  singles_incr(gamma,eta,tmin,tmax,tstep,\
+"data/threesite/symmetric/theory/singles4.dat",mode=4)
+  singles_incr(gamma,eta,tmin,tmax,tstep,\
+"data/threesite/symmetric/theory/singles5.dat",mode=5)
+
   pairs_incr(gamma,eta,tmin,tmax,tstep,\
-"data/threesite/symmetric/theory/pairs.dat",mode=(0,1))
+"data/threesite/symmetric/theory/pairs01.dat",mode=(0,1))
+  pairs_incr(gamma,eta,tmin,tmax,tstep,\
+"data/threesite/symmetric/theory/pairs12.dat",mode=(1,2))
+  pairs_incr(gamma,eta,tmin,tmax,tstep,\
+"data/threesite/symmetric/theory/pairs02.dat",mode=(0,2))
 
   # Simulation (sparse points)
   tree=bintree(tmin,tmax)
@@ -164,9 +179,24 @@ mode=(0,1))
   # Theory (smooth curve)
   tstep=0.01
   singles_incr(gamma,eta,tmin,tmax,tstep,\
-"data/threesite/broken/theory/singles.dat",mode=0)
+"data/threesite/broken/theory/singles0.dat",mode=0)
+  singles_incr(gamma,eta,tmin,tmax,tstep,\
+"data/threesite/broken/theory/singles1.dat",mode=1)
+  singles_incr(gamma,eta,tmin,tmax,tstep,\
+"data/threesite/broken/theory/singles2.dat",mode=2)
+  singles_incr(gamma,eta,tmin,tmax,tstep,\
+"data/threesite/broken/theory/singles3.dat",mode=3)
+  singles_incr(gamma,eta,tmin,tmax,tstep,\
+"data/threesite/broken/theory/singles4.dat",mode=4)
+  singles_incr(gamma,eta,tmin,tmax,tstep,\
+"data/threesite/broken/theory/singles5.dat",mode=5)
+
   pairs_incr(gamma,eta,tmin,tmax,tstep,\
-"data/threesite/broken/theory/pairs.dat",mode=(0,1))
+"data/threesite/broken/theory/pairs01.dat",mode=(0,1))
+  pairs_incr(gamma,eta,tmin,tmax,tstep,\
+"data/threesite/broken/theory/pairs12.dat",mode=(1,2))
+  pairs_incr(gamma,eta,tmin,tmax,tstep,\
+"data/threesite/broken/theory/pairs02.dat",mode=(0,2))
 
   # Simulation (sparse points)
   tree=bintree(tmin,tmax)
