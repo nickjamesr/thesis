@@ -1,8 +1,8 @@
 #!/usr/bin/python
 #--------------------------------------------------------------------------#
-# THREESITE.PY                                                             #
+# GENERATE.PY                                                              #
 #                                                                          #
-# Functions to deal with the 3 site model                                  #
+# Functions to generate data for the three site model                      #
 #                                                                          #
 # Dependencies:                                                            #
 #  * numpy                                                                 #
@@ -19,6 +19,38 @@ from bintree import node, bintree
 
 def abs2(z):
   return abs(z)*abs(z)
+
+def trees(s,b):
+  '''Generate the binary tree objects for the experimental points.
+s      : (tmin,tmax) for symmetric tree
+b      : (tmin,tmax) for broken tree
+return : symmetric,broken'''
+  symmetric=bintree(*s)
+  symmetric.root.split()
+  symmetric.root.left.split()
+  symmetric.root.right.split()
+  symmetric.root.left.left.split()
+  symmetric.root.left.right.split()
+  symmetric.root.right.left.split()
+  symmetric.root.right.right.split()
+  symmetric.root.left.left.left.split()
+  symmetric.root.right.right.right.split()
+  symmetric.root.right.right.right.right.split()
+
+  broken=bintree(*b)
+  broken.root.split()
+  broken.root.left.split()
+  broken.root.right.split()
+  broken.root.left.left.split()
+  broken.root.left.right.split()
+  broken.root.left.left.left.split()
+  broken.root.left.left.right.split()
+  broken.root.left.left.left.left.split()
+  broken.root.left.left.right.left.split()
+  broken.root.left.left.right.left.left.split()
+  broken.root.left.left.left.left.left.split()
+
+  return symmetric,broken
 
 def singles_incr(gamma,eta,tmin,tmax,tstep,fname,mode=0):
   '''Print the singles rates to a file for a range of times with constant
@@ -61,7 +93,7 @@ return : None'''
     fmt+=" {"+str(i+2)+":.6f}"
   fmt+="\n"
   with open(fname, 'w') as fout:
-    fout.write("# gamma {0:.4f}\n# eta   {1:.4f}\n# t norm 00 01 02 03 04 \
+    fout.write("# gamma {0:.4f}\n# eta   {1:.4f}\n# t norm 01 02 03 04 \
 05 12 13 14 15 23 24 25 34 35 45\n".format(gamma,eta))
     while t<tmax:
       U,norm = threesitematrix(gamma,eta,t)
@@ -80,7 +112,8 @@ sym    : Symmetry of the matrix (symmetric | broken)
 mode   : (optional) input mode
 return : None'''
   fmt="{0:.6f} {1:.6f} {2:.6f} {3:.6f} {4:.6f} {5:.6f} {6:.6f} {7:.6f}\n"
-  with open("data/threesite/"+sym+"/simulation/singles.dat", 'w') as fout:
+  with open("data/threesite/"+sym+"/simulation/singles{0:d}.dat".format(mode),\
+'w') as fout:
     fout.write("# gamma {0:.4f}\n# eta   {1:.4f}\n\
 # t norm 0 1 2 3 4 5\n".format(gamma,eta))
     for n,t in enumerate(tree.points()):
@@ -98,7 +131,7 @@ as matrix:
           z=U[i,5]
           matrix.write("({0:.6f},{1:.6f})\n".format(z.real,z.imag))
 
-def pairs_exp(gamma,eta,tree,sym,mode=0):
+def pairs_exp(gamma,eta,tree,sym,mode=(0,1)):
   '''Print the singles rates to a file for the range of times that I
 want in the experiment.
 gamma  : Magnitude of (complex) on-site potential
@@ -113,8 +146,9 @@ return : None'''
   for i in range(len(pairs)):
     fmt+=" {"+str(i+2)+":.6f}"
   fmt+="\n"
-  with open("data/threesite/"+sym+"/simulation/pairs.dat", 'w') as fout:
-    fout.write("# gamma {0:.4f}\n# eta   {1:.4f}\n# t norm 00 01 02 03 04 \
+  with open("data/threesite/"+sym+"/simulation/pairs{0:d}{1:d}.dat".format(\
+mode[0],mode[1]), 'w') as fout:
+    fout.write("# gamma {0:.4f}\n# eta   {1:.4f}\n# t norm 01 02 03 04 \
 05 12 13 14 15 23 24 25 34 35 45\n".format(gamma,eta))
     for n,t in enumerate(tree.points()):
       U,norm = threesitematrix(gamma,eta,t)
@@ -124,12 +158,17 @@ for i,j in pairs]
 
 if __name__=='__main__':
 
+  period=5.135 # Empirical - period for symmetric case
+  level=6.000  # Broken case levels off after approximately this time
+  s=(0,period)
+  b=(0,level)
+  symmetric_tree,broken_tree=trees(s,b)
+
 ### SYMMETRIC ###
   eta=1
   gamma=0.5*numpy.sqrt(2)*eta
-  period=5.135 # Empirical
-  tmin=0
-  tmax=period
+  tmin=s[0]
+  tmax=s[1]
 
   # Theory (smooth curve)
   tstep=0.01
@@ -154,27 +193,30 @@ if __name__=='__main__':
 "data/threesite/symmetric/theory/pairs02.dat",mode=(0,2))
 
   # Simulation (sparse points)
-  tree=bintree(tmin,tmax)
-  tree.root.split()
-  tree.root.left.split()
-  tree.root.right.split()
-  tree.root.left.left.split()
-  tree.root.left.right.split()
-  tree.root.right.left.split()
-  tree.root.right.right.split()
-  tree.root.left.left.left.split()
-  tree.root.right.right.right.split()
-  tree.root.right.right.right.right.split()
-  singles_exp(gamma,eta,tree,"symmetric",\
+  singles_exp(gamma,eta,symmetric_tree,"symmetric",\
 mode=0)
-  pairs_exp(gamma,eta,tree,"symmetric",\
+  singles_exp(gamma,eta,symmetric_tree,"symmetric",\
+mode=1)
+  singles_exp(gamma,eta,symmetric_tree,"symmetric",\
+mode=2)
+  singles_exp(gamma,eta,symmetric_tree,"symmetric",\
+mode=3)
+  singles_exp(gamma,eta,symmetric_tree,"symmetric",\
+mode=4)
+  singles_exp(gamma,eta,symmetric_tree,"symmetric",\
+mode=5)
+  pairs_exp(gamma,eta,symmetric_tree,"symmetric",\
 mode=(0,1))
+  pairs_exp(gamma,eta,symmetric_tree,"symmetric",\
+mode=(1,2))
+  pairs_exp(gamma,eta,symmetric_tree,"symmetric",\
+mode=(0,2))
 
 ### BROKEN ###
   eta=1
   gamma=1.05*numpy.sqrt(2)*eta
-  tmin=0
-  tmax=6 # Levels off after approximately this time
+  tmin=b[0]
+  tmax=b[1] # Levels off after approximately this time
 
   # Theory (smooth curve)
   tstep=0.01
@@ -199,23 +241,23 @@ mode=(0,1))
 "data/threesite/broken/theory/pairs02.dat",mode=(0,2))
 
   # Simulation (sparse points)
-  tree=bintree(tmin,tmax)
-  tree.root.split()
-  tree.root.left.split()
-  tree.root.right.split()
-  tree.root.left.left.split()
-  tree.root.left.right.split()
-  tree.root.left.left.left.split()
-  tree.root.left.left.right.split()
-  tree.root.left.left.left.left.split()
-  #tree.root.left.left.left.right.split()
-  tree.root.left.left.right.left.split()
-  tree.root.left.left.right.left.left.split()
-  #tree.root.left.left.right.right.split()
-  tree.root.left.left.left.left.left.split()
-  singles_exp(gamma,eta,tree,"broken",\
+  singles_exp(gamma,eta,broken_tree,"broken",\
 mode=0)
-  pairs_exp(gamma,eta,tree,"broken",\
+  singles_exp(gamma,eta,broken_tree,"broken",\
+mode=1)
+  singles_exp(gamma,eta,broken_tree,"broken",\
+mode=2)
+  singles_exp(gamma,eta,broken_tree,"broken",\
+mode=3)
+  singles_exp(gamma,eta,broken_tree,"broken",\
+mode=4)
+  singles_exp(gamma,eta,broken_tree,"broken",\
+mode=5)
+  pairs_exp(gamma,eta,broken_tree,"broken",\
 mode=(0,1))
+  pairs_exp(gamma,eta,broken_tree,"broken",\
+mode=(1,2))
+  pairs_exp(gamma,eta,broken_tree,"broken",\
+mode=(0,2))
 
 
