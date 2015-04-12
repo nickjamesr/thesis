@@ -65,6 +65,67 @@ return  : (numpy array) time-evolution operator (not necessarily
   U = dilate(numpy.matrix(G))
   return U, normG
 
+def threesitematrix(gamma, eta, t, verbose=False, tol=1e-12):
+  '''Generate the matrix corresponding to a 3-site PT symmetric
+Hamiltonian with parameters gamma and eta, evolved to time t.
+The form of the (non-Hermitian) Hamiltonian is:
+    / i*gamma -eta     0   \
+H = |  -eta     0    -eta   |
+    \    0    -eta -i*gamma /
+gamma   : (imaginary) on-site potential
+eta     : coupling between adjacent sites
+t       : evolution time
+verbose : (optional) print verbose output to stdout
+return  : (numpy array) time-evolution operator (not unitary)'''
+  gamma=float(gamma)
+  eta=float(eta)
+  t=float(t)
+  H=numpy.array([[1j*gamma, -eta, 0], [-eta, 0, -eta], [0, -eta, -1j*gamma]],\
+dtype=complex)
+  if abs(2*eta**2-gamma**2)<tol:
+    # critical case
+    raise Exception('Critical case', 'Singular matrix')
+  elif 2*eta**2>gamma**2:
+    # symmetric case
+    if verbose:
+      print "Symmetric case"
+    evals=numpy.array([0,numpy.sqrt(2*eta**2-gamma**2),\
+-numpy.sqrt(2*eta**2-gamma**2)], dtype=complex)
+    vzero=1/numpy.sqrt(gamma**2+2*eta**2)*numpy.array([eta,gamma*1j,-eta],\
+dtype=complex)
+    vplus=1/(2*numpy.sqrt(2)*eta)*numpy.array([-1j*gamma-numpy.sqrt(2*eta**2-\
+gamma**2), 2*eta, 1j*eta-numpy.sqrt(2*eta**2-gamma**2)],dtype=complex)
+    vminus=1/(2*numpy.sqrt(2)*eta)*numpy.array([-1j*gamma+numpy.sqrt(2*eta**2-\
+gamma**2), 2*eta, 1j*gamma+numpy.sqrt(2*eta**2-gamma**2)],dtype=complex)
+  elif 2*eta**2 < gamma**2:
+    # broken case
+    if verbose:
+      print "Broken case"
+    evals=numpy.array([0,1j*numpy.sqrt(gamma**2-2*eta**2),\
+-1j*numpy.sqrt(gamma*2-2*eta**2)], dtype=complex)
+    vzero=1/numpy.sqrt(gamma**2+2*eta**2)*numpy.array([eta,gamma*1j,-eta],\
+dtype=complex)
+    vplus=1/(2*gamma)*numpy.array([1j*(-gamma - numpy.sqrt(gamma**2-2*eta**2)),\
+2*eta, 1j*(gamma - numpy.sqrt(gamma**2 - 2*eta**2))], dtype=complex)
+    vminus=1/(2*gamma)*numpy.array([1j*(-gamma + numpy.sqrt(gamma**2 -\
+2*eta**2)), 2*eta, 1j*(gamma + numpy.sqrt(gamma**2 - 2*eta**2))], dtype=complex)
+
+  # Now calculate the exponential
+
+  V=numpy.array([[vzero[0],vplus[0],vminus[0]],\
+                 [vzero[1],vplus[1],vminus[1]],\
+                 [vzero[2],vplus[2],vminus[2]]],dtype=complex)
+  D=numpy.array([[numpy.exp(-1j*evals[0]*t),0,0],
+                 [0,numpy.exp(-1j*evals[1]*t),0],
+                 [0,0,numpy.exp(-1j*evals[2]*t)]],dtype=complex)
+  G=numpy.dot(V, numpy.dot(D, numpy.linalg.inv(V)))
+
+  evals,evecs = linalg.eig(numpy.dot(G,numpy.conjugate(numpy.transpose(G))))
+  normG = numpy.sqrt(max(abs(evals)))
+  G /= normG
+  U = dilate(numpy.matrix(G))
+  return U, normG
+
 def singles(u, col=0):
   '''Count rates for single photons injected into a 4x4 unitary matrix
 u      : unitary matrix
