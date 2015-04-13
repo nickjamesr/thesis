@@ -44,3 +44,20 @@ if __name__=='__main__':
   G=hamiltomo.Derivative(H,t,texp,noise.WalkWithExperimentalNoise,\
     (eps,pairs,refs))
   WriteMatrix('data/TOpt/experimental.dat',G)
+
+  dt=0.5
+  eps=1e-4
+  tstep=2**(0.25)
+  nsteps=21
+  nreps=16
+  dist=numpy.zeros((nreps,))
+  fout=open("data/TOpt/ErrorVsTime.dat",'w')
+  for i in range(nsteps):
+    for j in range(nreps):
+      G=hamiltomo.Derivative(H,t,dt,noise.PowerMeterNoise,(eps,))
+      dist[j]=distances.HermitianDistance(H,G)
+    fout.write("{0:.4g} {1:.4g} {2:.4g} {3:.4g}\n".format(dt,numpy.mean(dist),\
+      numpy.mean(dist)-numpy.std(dist), numpy.mean(dist)+numpy.std(dist)))
+    print dt,numpy.mean(dist)
+    dt/=tstep
+  fout.close()

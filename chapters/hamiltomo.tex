@@ -298,25 +298,62 @@ evolution times were 6.723, 6.682 and 6.594 for wavelengths 774nm, 776nm and
   \centering
   \includegraphics{figures/tevol}
   \caption[Deducing the effective evolution times for different wavelengths]
-  {Deducing the effective evolution times for differet wavelengths. The minima
-  of the Kolmogorov distances are found at 6.723, 6.682 and 6.594 for
-  wavelengths 774nm, 776nm and 778 nm respectively. The effective (symmetrised)
-  timestep is 0.06}
+  {(a) Deducing the effective evolution times for differet wavelengths. The
+  error is a mean Kolmogorov distance between the power distributions and has
+  minima at 6.723, 6.682 and 6.594 for wavelengths 774nm, 776nm and 778nm
+  respectively. The effective (symmetrised) timestep is 0.06. (b) Simulating the
+  experimental noise in the amplitude reconstructions, and assessing the optimum
+  value of \(\dt\) to use to recover the Hamiltonian. Shaded region represents
+  \(\pm 1 \sigma\) variation over Monte-Carlo simulation. The black dotted line
+  is the estimated timestep. Error here is a trace distance between the ideal
+  and the recovered Hamiltonian. We are not too far from the optimum value, but
+  when adding in noise from two-photon data the value shifts dramatically.}
   \label{fig:tevol}
 \end{figure}
-
-A simulation of the experiment, incorporating some realistic experimental noise
-is shown in figure~\ref{fig:hamiltoniansim}.
 
 \begin{figure}
   \centering
   \includegraphics{figures/hamiltoniansim}
   \caption[Simulation of the Hamiltonian tomography under experimental noise]
-  {Simulation of the Hamiltonian tomography experiment under realistic
-  experimental noise. The region in the black box is the submatrix that is
-  reconstructed from experimental data.}
+  {(a) The Hamiltonian describing the quantum walk. (b) Reconstruction of 
+  the Hamiltonian by the protocol described in this chapter, under realistic
+  experimental conditions. The region in the black box is the submatrix that is
+  reconstructed from experimental data. Column 9 and row 4 are used for
+  references}
   \label{fig:hamiltoniansim}
 \end{figure}
+
+A simulation of the experiment, incorporating some realistic experimental noise
+is shown in figure~\ref{fig:hamiltoniansim}. Column 9 and row 4 are used as
+references in the simulation and two different noise mechanisms are
+taken into account. First, when reconstructing the amplitudes of elements in a
+unitary, we inject coherent light into the device and measure the power at each
+of the outputs; the error on these measurements is about 1 part in \(10^{4}\).
+Second, the signs of the elements (with respect to a reference) are deduced from
+2-photon interference dips. In practice, we observe 2-photon count rates for a
+range of time delays around zero, and decide whether it is a dip (destructive
+interference) or antidip (constructive interference). In the simulation, I look
+at the count rate at the centre of the dip (\(Q\)) and far away from the dip
+(\(C\)), and add Poissonian noise to both of these values. If \(Q<C\), it is
+considered a dip; if \(Q>C\) it is an antidip. The simulation in
+figure~\ref{fig:hamiltoniansim} uses a rather optimistic \(10^{8}\) photon pairs
+for each observation. This is well above the count rates observed in the lab,
+but is deliberately high to take into account the additional information gained
+from scanning over values rather than just looking at two points.
+
+The results of the simulation demonstrate that under the experimental
+conditions, we would not expect to reliably observe tridiagonal character in the
+region (marked with a black square in figure~\ref{fig:hamiltoniansim}). The
+general character of the reconstruction is that it is very good in the `left'
+half of the device (top left of the figure, modes with low index) but poor in
+the `right' half (bottom right of the figure, modes with high index. This
+observation is related to the choice of references, and has links to the
+clouding phenomenon discussed in chapter~\ref{ch:QCV}. Since we use row 4 as a
+reference, count rates for correlations between modes \(i=4\) and \(j \approx
+4\) will be much higher than rates for correlations between mode \(i=4\) and \(j
+\approx 16\) (the other side of the device). We are therefore able to
+reconstruct the signs of the elements much more reliably for these columns of
+the unitary, leading to a better estimate of the Hamiltonian.
 
 \section{Alternative methods}
 \label{sec:Alternatives}
