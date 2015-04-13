@@ -15,6 +15,7 @@ all = benchmarking.pdf\
  crosstalk.pdf\
  example.pdf\
  hamiltonians.png\
+ hamiltoniansim.pdf\
  interferometerAB.pdf\
  interferometerCD.pdf\
  logvsderivative.pdf\
@@ -28,6 +29,7 @@ all = benchmarking.pdf\
  rstar.pdf\
  schematic.pdf\
  sixphoton.pdf\
+ tevol.pdf\
  threesite_singles.pdf\
  threesite_pairs.pdf\
  timestep.pdf\
@@ -72,6 +74,12 @@ hamiltonians_data=$(addprefix ../hamiltomo/data/Hamiltonians/,\
  refs0906.dat)
 hamiltonians.png : $(hamiltonians_data) hamiltonians.gnu
 	gnuplot hamiltonians.gnu
+
+hamiltoniansim_data=$(addprefix ../hamiltomo/data/TOpt/,ideal.dat\
+ experimental.dat)
+idealhamiltonian.png experimentalhamiltonian.png : $(hamiltoniansim_data)\
+ hamiltoniansim.gnu
+	gnuplot hamiltoniansim.gnu
 
 vibrations.png : vibrations.svg
 	$(inkscape) -d 120 -e vibrations.png vibrations.svg
@@ -141,6 +149,10 @@ crosstalk.pdf : crosstalk.eps crosstalk.pyx
 example.pdf : example.eps beamsplitter.eps bsmzi.eps dcmzi.eps example.pyx
 	pyxplot example.pyx
 
+hamiltoniansim.pdf : idealhamiltonian.png experimentalhamiltonian.png\
+ hamiltoniansim.pyx
+	pyxplot hamiltoniansim.pyx
+
 interferometerAB.pdf : interferometerAB.eps interferometerAB.pyx
 	pyxplot interferometerAB.pyx
 
@@ -201,7 +213,37 @@ sixphoton.pdf : sixphoton.pyx ../reck/data/classical_events.dat\
  ../reck/data/quantum_events.dat
 	pyxplot sixphoton.pyx
 
-threesite_data=
+tevol_data=$(addprefix ../hamiltomo/data/TOpt/,tevol_774.dat\
+ tevol_776.dat\
+ tevol_778.dat)
+tevol.pdf : $(tevol_data) tevol.pyx
+	pyxplot tevol.pyx
+
+threesite_data=$(addprefix ../pt/data/threesite/,symmetric/theory/singles0.dat\
+ symmetric/theory/singles1.dat\
+ symmetric/theory/singles2.dat\
+ symmetric/experimental/singles0.dat\
+ symmetric/experimental/singles1.dat\
+ symmetric/experimental/singles2.dat\
+ broken/theory/singles0.dat\
+ broken/theory/singles1.dat\
+ broken/theory/singles2.dat\
+ broken/experimental/singles0.dat\
+ broken/experimental/singles1.dat\
+ broken/experimental/singles2.dat\
+ symmetric/theory/pairs01.dat\
+ symmetric/theory/pairs02.dat\
+ symmetric/theory/pairs12.dat\
+ symmetric/experimental/pairs01.dat\
+ symmetric/experimental/pairs02.dat\
+ symmetric/experimental/pairs12.dat\
+ broken/theory/pairs01.dat\
+ broken/theory/pairs02.dat\
+ broken/theory/pairs12.dat\
+ broken/experimental/pairs01.dat\
+ broken/experimental/pairs02.dat\
+ broken/experimental/pairs12.dat\
+)
 threesite_singles.pdf threesite_pairs.pdf: $(threesite_data) threesite.pyx
 	pyxplot threesite.pyx
 

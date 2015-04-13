@@ -6,6 +6,7 @@ fnames=classical.dat\
  theory.dat\
  trit.dat
 
+
 symmetric=$(addprefix data/symmetric/,$(fnames))
 critical=$(addprefix data/critical/,$(fnames))
 broken=$(addprefix data/broken/,$(fnames))
@@ -43,3 +44,35 @@ data/broken/classical.dat\
  data/broken/quart.dat\
  data/broken/trit.dat : code/reconstruct.py
 	cd code && ./reconstruct.py
+
+threesite=$(addprefix data/threesite/,symmetric/theory/singles0.dat\
+ symmetric/theory/singles1.dat\
+ symmetric/theory/singles2.dat\
+ symmetric/experimental/singles0.dat\
+ symmetric/experimental/singles1.dat\
+ symmetric/experimental/singles2.dat\
+ broken/theory/singles0.dat\
+ broken/theory/singles1.dat\
+ broken/theory/singles2.dat\
+ broken/experimental/singles0.dat\
+ broken/experimental/singles1.dat\
+ broken/experimental/singles2.dat\
+ symmetric/theory/pairs01.dat\
+ symmetric/theory/pairs02.dat\
+ symmetric/theory/pairs12.dat\
+ symmetric/experimental/pairs01.dat\
+ symmetric/experimental/pairs02.dat\
+ symmetric/experimental/pairs12.dat\
+ broken/theory/pairs01.dat\
+ broken/theory/pairs02.dat\
+ broken/theory/pairs12.dat\
+ broken/experimental/pairs01.dat\
+ broken/experimental/pairs02.dat\
+ broken/experimental/pairs12.dat\
+)
+$(threesite) : code/threesite/generate.py code/threesite/process.py
+	python code/threesite/generate.py
+	python code/threesite/process.py
+
+
+

@@ -18,6 +18,17 @@ import numpy
 
 from random import Random
 
+def WriteMatrix(fname,M):
+  fout=open(fname,'w')
+  for i in range(21):
+    for j in range(21):
+      if i==j:
+        fout.write("0.000 ")
+      else:
+        fout.write("{0:.4f} ".format(M[i,j].real))
+    fout.write("\n")
+  fout.close()
+
 def NoNoise(U,args=()):
   '''Token function to apply no noise to a unitary
 U      : input unitary
@@ -73,7 +84,7 @@ return : (numpy array) unitary with noise applied'''
   pre,V,post=hamiltomo.Normalise(V,eps=1e-10,maxiter=200)
   return V
 
-def WalkWithExperimentalNoise(U,singles,pairs,refs=(0,0),losses=None,seed=None):
+def WalkWithExperimentalNoise(U,eps,pairs,refs=(0,0),losses=None,seed=None):
   '''Return a unitary with noise applied as Poissonian noise in both
 amplitude and phase reconstructions. Function assumes U is a
 quantum walk unitary, therefore all elements in real-bordered
@@ -81,15 +92,16 @@ form are real and only signs must be deduced from dips. These
 signs are determined by taking single point measurements for
 classical and quantum coincidences, rather than fitting a full
 dip.
-U       : (ideal) unitary to apply noise to
-singles : rate of singles counts for Poissonian noise
-pairs   : rate of coincidence counts  for Poissonian noise
-refs    : reference row and column (respectively) for phases
-losses  : input and output losses
-seed    : (optional) seed for rng
-return  : (numpy array) unitary with noise applied'''
+U      : (ideal) unitary to apply noise to
+eps    : error in power meter readings for amplitudes
+pairs  : rate of coincidence counts  for Poissonian noise
+refs   : reference row and column (respectively) for phases
+losses : input and output losses
+seed   : (optional) seed for rng
+return : (numpy array) unitary with noise applied'''
   # Get the amplitudes
-  V=numpy.abs(AmplitudeNoise(U,singles,losses,seed))
+  V=numpy.abs(PowerMeterNoise(U,eps,losses,seed))
+
   # Get the phases
   nrows,ncols=U.shape
   refrow,refcol=refs
@@ -116,7 +128,8 @@ U[refrow,j]*U[i,refcol])
       else:
         # Gaussian approximation
         quantum=numpy.random.normal(qmean,numpy.sqrt(qmean))
-      if classical>quantum:
+      #if cmean > qmean:
+      if classical > quantum:
         # Dip => negative sign
         V[i,j]*=float(-1)
   return V

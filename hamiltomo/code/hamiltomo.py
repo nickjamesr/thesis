@@ -211,6 +211,36 @@ return : dim x dim complex array containing a randomised Hamiltonian'''
     H[i+1,i]=complex(x,-y)
   return H
 
+def PetesHamiltonian():
+  '''Return the Hamiltonian as estimated by Pete
+return : 21x21 (Hermitian) matrix'''
+  offdiag=[0.466,0.54,0.504,0.515,0.494,0.451,0.508,0.511,0.483,0.505,0.547,\
+0.471,0.493,0.499,0.447,0.467,0.544,0.524,0.51,0.503]
+  h=numpy.zeros((21,21))
+  for i in range(21):
+    h[i,i]=2.122
+  for i in range(20):
+    h[i,i+1]=offdiag[i]
+    h[i+1,i]=offdiag[i]
+  return h
+
+def RealWalk(t=7):
+  '''Generate the unitary corresponding to our quantum walk evolved to a time t
+t       : evolution time
+returns : 21x21 (unitary) array'''
+  offdiag=[0.466,0.54,0.504,0.515,0.494,0.451,0.508,0.511,0.483,0.505,0.547,\
+0.471,0.493,0.499,0.447,0.467,0.544,0.524,0.51,0.503]
+  h=numpy.zeros((2,21))
+  for i in range(21):
+    h[1,i]=2.122
+  for i in range(20):
+    h[0,i+1]=offdiag[i]
+  evals,evecs=linalg.eig_banded(h)
+  diag=numpy.zeros((21,21),dtype=complex)
+  for i,z in enumerate(numpy.exp(-1j*evals*t)):
+    diag[i,i]=z
+  return numpy.dot(evecs, numpy.dot(diag, evecs.T.conjugate()))
+
 def dagger(U):
   '''Hermitian conjugate (conjugate transpose) of a matrix
 U      : complex matrix
@@ -232,6 +262,19 @@ return : numpy array containing estimate of Hamiltonian'''
   # t+h
   Uplus=noise(expi(H,t+dt),*args)
 
+  return (0.5j/dt)*numpy.dot((Uplus-Uminus),dagger(U))
+
+def DerivativeRealBorder(H,t,dt,refs):
+  '''Return the Hamiltonian computed using the time derivative method,
+with no noise but real bordered unitaries
+H      : exact Hamiltonian underlying the unitary
+t      : central time at which measurements are taken
+dt     : timestep
+refs   : (row,column) tuple containing references for real border
+return : numpy array containing estimate of Hamiltonian'''
+  U=RealBorder(expi(H,t),refs)
+  Uminus=RealBorder(expi(H,t-dt),refs)
+  Uplus=RealBorder(expi(H,t+dt),refs)
   return (0.5j/dt)*numpy.dot((Uplus-Uminus),dagger(U))
 
 def TaylorSeries(H,t1,t2,order,noise,args=()):

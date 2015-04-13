@@ -21,6 +21,8 @@ simulations_figs=manifolds.png\
 
 hamiltomo_figs=logvsderivative.pdf\
  hamiltonians.png\
+ hamiltoniansim.pdf\
+ tevol.pdf\
  timestep.pdf
 
 qcv_figs=protected/dilbert.png\

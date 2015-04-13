@@ -13,16 +13,28 @@ hamiltonians=$(addprefix data/Hamiltonians/,refs0803.dat\
  refs0904.dat\
  refs0906.dat)
 
-timestep=$(addprefix data/,timestep0.dat\
+timestep=$(addprefix data/TOpt/,timestep0.dat\
  timestep_1e-04.dat\
  timestep_1e-06.dat\
  timestep_1e-08.dat)
+
+tevol=$(addprefix data/TOpt/,tevol_774.dat\
+ tevol_776.dat\
+ tevol_778.dat)
+
+topt=$(addprefix data/TOpt/,ideal.dat experimental.dat)
 
 $(comparison) : code/comparison.py
 	python code/comparison.py
 
 $(timestep) : code/timestep.py
 	python code/timestep.py
+
+$(tevol) : code/TEvol.py
+	python code/TEvol.py
+
+$(topt) : code/TOpt.py
+	python code/TOpt.py
 
 ### Hamiltonian reconstructions
 

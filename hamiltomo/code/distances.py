@@ -56,3 +56,15 @@ return : (float) trace distance between U and V'''
   uv=numpy.dot(U, hamiltomo.dagger(V))
   return hamiltomo.abs2((1./dim)*sum(uv.flatten()[0::dim+1]))
 
+def KolmogorovDistance(A,B):
+  '''Kolmogorov Distance between two nxn matrices of probabilities
+(assumed normalised) (1/2n)*sum_ij(|a_ij - b_ij|)
+A      : reference matrix
+B      : test matrix
+return : (float) distance between  A and B'''
+  kd=0
+  m,n=A.shape
+  for i in range(m):
+    for j in range(n):
+      kd+=abs(A[i,j]-B[i,j])
+  return (kd/(2*m))

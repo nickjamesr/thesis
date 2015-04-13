@@ -168,6 +168,7 @@ can instead discretise the derivative, and take multiple measurements of
 present the commonly-used 3-point time derivative, and derive the following
 expression for \(\mat{H}\):
 \begin{equation}
+  \label{eq:hamiltomo}
   \mat{H} = \frac{i}{2 \dt} \left[ \mat{U} \of{t+\dt} - \mat{U} \of{t-\dt}
   \right] \mat{U}^{\dagger} \of{t}
 \end{equation}
@@ -175,7 +176,8 @@ Note that this is not the only way to recover the Hamiltonian from measurements
 of \(\mat{U}\). Alternatives, such as the matrix logarithm and series expansions
 are discussed briefly in section~\ref{sec:Alternatives}. The rest of this
 section concerns the factors involved in choosing the step size, \(\dt\).
-\begin{figure}[t]
+
+\begin{figure}[h]
   \centering
   \includegraphics{figures/timestep}
   \caption[Error in Hamiltonian reconstruction as a function of step size]
@@ -192,6 +194,9 @@ section concerns the factors involved in choosing the step size, \(\dt\).
   \label{fig:stepsize}
 \end{figure}
 
+Like any discrete calculus method, the discretisation length (step size) affects
+the accuracy of the method greatly. Figure~\ref{fig:stepsize} illustrates the
+effect of varying the step size in a simulated experimental context.
 
 \section{Experimental implementation}
 \label{sec:HTExperiment}
@@ -209,10 +214,54 @@ quantum walk, where each waveguide is coupled to its nearest neighbour: the
 effective evolution time is proportional to the optical path length of the
 coupling region. We cannot easily vary the physical length of the coupling
 region, but by varying the wavelength of the light, we can change the optical
-length. It is using this technique that we perform the experiment described in
-this section. Note that the setup and wavelength shifting of the source, and
-most of the data acquisition was was done by PhD student Jacques Carolan. I did
-the remaining data acquisition and all the data analysis.
+length. We use this technique on a 21 mode continuously coupled quantum walk to
+obtain the results in this section. Note that the setup and wavelength shifting
+of the source, and most of the data acquisition was was done by Jacques Carolan.
+I did the remaining data acquisition and all the data analysis.
+
+The construction of the quantum walk allows coupling between nearest-neighbour
+waveguides with negligible longer range couplings. The chip that we use is
+designed to have uniform couplings. We therefore expect the Hamiltonian to be
+tridiagonal, with approximately uniform elements \(\eta\) on the first
+off-diagonals. As long as the diagonal elements are uniform, they do not make a
+difference to the experimental observables so we can treat these as zero without
+loss of generality.
+
+For three different wavelengths (774nm, 776nm, 778nm), four columns (indices
+8,9,10,11) of the unitary are reconstructed from coherent light and photon pair
+interference measurements. This is sufficient to estimate a \(4 \by 4\)
+submatrix of the Hamiltonian, by considering equation~\ref{eq:hamiltomo} on an
+element-wise basis:
+\begin{equation}
+  \mat{H}_{ij} = \frac{i}{2 \dt} \left[ \mat{U}_{ik} \of{ t+\dt } \mat{U}_{kj}^{
+  \dagger} \of{t} - \mat{U}_{ik} \of{ t-\dt } \mat{U}_{kj}^{\dagger} \of{t}
+  \right]
+\end{equation}
+This demonstrates that any element \(\mat{H}_{ij}\) can be estimated from
+measurements of row \(i\) of \(\mat{U} \of{t+\dt}\) and \(\mat{U} \of{t+\dt}\)
+and row \(j\) of \(\mat{U} \of{t}\). Noting that for a constant time
+Hamiltonian, \(\mat{U} \of{t}\) and \(\mat{U} \of{t^{\prime}}\) commute for any
+\(t\) and \(t^{\prime}\), we can reverse the order of the product, and thus the
+result also applies for columns. Experimentally, this is significant, since
+measuring a row of a unitary requires injecting photons in all input modes and
+detecting in one, while measuring a column requires injecting in a single mode
+and detecting in all modes. The latter is easier since we generally have
+detectors on all output modes.
+
+As noted in section~\ref{sec:SST}, there is a freedom in the unitry
+reconstruction where we can make different choices for the reference row and
+column for phases. We observe that this choice makes a big difference to the
+final results.
+
+The quantum walk exhibits some features that aid in the reconstruction process.
+Notably, when we apply the real border to the unitary, all elements become real,
+regardless of the choice of reference. Deduction of the phases of the unitary
+elements reduces to deciding the sign, which only requires us to distinguish
+between a dip and an antidip rather than measuring the visibility accurately. We
+also benefit from the simplification that ignoring phase information and using
+real bordered matrices in equation~\ref{eq:hamiltomo} does not prevent us from
+recovering the correct Hamiltonian. The only effect is a factor of \(\pm i\) in
+the off diagonal elements.
 
 \begin{figure}
   \centering
@@ -224,26 +273,52 @@ the remaining data acquisition and all the data analysis.
   absolute value of the element, from white (0) to blue (0.4). Tridiagonal
   character is most visible in the \(\left(8,3\right)\) and \(\left(8,4\right)\)
   plots.}
+  \label{fig:hamiltonians}
+\end{figure}
+
+The results of the experiment are shown in figure~\ref{fig:hamiltonians}, for 6
+different choices of references (column 8 or 9, and row 3, 4 or 6). The
+tridiagonal character of the Hamiltonian is most visible for references (8,3)
+and (8,4), but does not persist for all choices. This can't be assigned just to
+the effect described in section~\ref{sec:SST} where more zeros in the references
+result in a worse reconstruction: the choices with the fewest zeros are (9,3)
+and (9.4). Instead, I will argue that it is may be due to an inappropriate step
+size for the noise present in the experiment.
+
+I determine the time difference by fitting single photon data (since these are
+the most reliable) to an existing model of the Hamiltonian \todo{where did Pete
+get this?} for a range of times. At each time a distance between the power
+distributions (mean Kolmogorov distance) is computed and the minimum distance is
+assumed to correspond to the best estimate of the evolution time. The results
+are shown in figure~\ref{fig:tevol}, from which we deduce that the effective
+evolution times were 6.723, 6.682 and 6.594 for wavelengths 774nm, 776nm and
+778nm (respectively).
+
+\begin{figure}
+  \centering
+  \includegraphics{figures/tevol}
+  \caption[Deducing the effective evolution times for different wavelengths]
+  {Deducing the effective evolution times for differet wavelengths. The minima
+  of the Kolmogorov distances are found at 6.723, 6.682 and 6.594 for
+  wavelengths 774nm, 776nm and 778 nm respectively. The effective (symmetrised)
+  timestep is 0.06}
+  \label{fig:tevol}
+\end{figure}
+
+A simulation of the experiment, incorporating some realistic experimental noise
+is shown in figure~\ref{fig:hamiltoniansim}.
+
+\begin{figure}
+  \centering
+  \includegraphics{figures/hamiltoniansim}
+  \caption[Simulation of the Hamiltonian tomography under experimental noise]
+  {Simulation of the Hamiltonian tomography experiment under realistic
+  experimental noise. The region in the black box is the submatrix that is
+  reconstructed from experimental data.}
 \end{figure}
 
 \section{Alternative methods}
 \label{sec:Alternatives}
-\begin{figure}[t]
-  \includegraphics{figures/logvsderivative}
-  \caption[Comparison of power series and time derivative methods for
-  Hamiltonian recovery]
-  {Comparison of power series and time derivative as methods for Hamiltonian
-  tomography, showing fidelity of the recovered Hamiltonian against the number
-  of terms in the power series, for various levels of noise. Shaded regions show
-  the fidelity expected from the time derivative method, with the variation
-  being from Monte-Carlo simulation with 1000 random evaluations. This method
-  does not involve summing terms so is constant. The error bars show the
-  expected fidelity using a power series to evaluate the matrix logarithm to the
-  expected number of terms. The fidelity flattens off due to noise accumulating
-  for higher order terms in the series. The error bar on each point is
-  calculated by a Monte-Carlo simulation of 1000 random evaluations.}
-  \label{fig:logvsderivative}
-\end{figure}
 On inspection of equation~\ref{eq:exponential}, the most straightforward way to
 recover the Hamiltonian from a measurement of \(\mat{U}\) would appear to be to
 take the logarithm:
@@ -268,6 +343,23 @@ in figure~\ref{fig:logvsderivative}, and show that for smaller timesteps the
 time derivative can outperform the series method in the presence of experimental
 noise. For larger timesteps, the series may be a better choice.
 
+\begin{figure}[h]
+  \includegraphics{figures/logvsderivative}
+  \caption[Comparison of power series and time derivative methods for
+  Hamiltonian recovery]
+  {Comparison of power series and time derivative as methods for Hamiltonian
+  tomography, showing fidelity of the recovered Hamiltonian against the number
+  of terms in the power series, for various levels of noise. Shaded regions show
+  the fidelity expected from the time derivative method, with the variation
+  being from Monte-Carlo simulation with 1000 random evaluations. This method
+  does not involve summing terms so is constant. The error bars show the
+  expected fidelity using a power series to evaluate the matrix logarithm to the
+  expected number of terms. The fidelity flattens off due to noise accumulating
+  for higher order terms in the series. The error bar on each point is
+  calculated by a Monte-Carlo simulation of 1000 random evaluations.}
+  \label{fig:logvsderivative}
+\end{figure}
+
 An alternative series-type solution has been described in~\cite{hamiltomo},
 where the Hermitian and anti-Hermitian parts of \(\mat{U}\) are considered
 separately.
@@ -276,7 +368,8 @@ separately.
 \label{sec:HamiltomoExperiment}
 Get information from verification paper.
 
-
+Wavelength shifts were achieved by tuning the laser and tilting the
+down-conversion crystal.
 
 
 
