@@ -1,8 +1,7 @@
 Data that needs gathering:
-  - fidelities for 3 site model
 
 Figures that still need figuring out:
-  - Why is the 0,1 (PT) data from the chip so dodgy?
+  - Reck chip
 
 Background that needs writing:
   - Experimental details (for all sections)
@@ -12,3 +11,7 @@ Discussion that needs writing:
   - How is clouding actually used for verification
 
 Organisation to be done:
+
+Puzzles:
+  - Why do the 3-site PT data look so bad for (0,1) input
+    (the fidelities are high...)
