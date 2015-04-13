@@ -61,16 +61,10 @@ thesis.pdf : $(figures) thesis.tex title.tex thesis.sty $(chapters)\
 	pdflatex -jobname=$* "\includeonly{chapters/$*} \input{thesis.tex}"
 	pdflatex -jobname=$* "\includeonly{chapters/$*} \input{thesis.tex}"
 
-figures/%.pdf : figures/%.svg figures/%.pyx
+figures/%.pdf :
 	cd figures && $(MAKE) $*.pdf
 
-figures/%.pdf : figures/%.pyx
-	cd figures && $(MAKE) $*.pdf
-
-figures/%.png : figures/%.pyx
-	cd figures && $(MAKE) $*.png
-
-figures/%.png : figures/%.gnu
+figures/%.png :
 	cd figures && $(MAKE) $*.png
 
 figures/protected/% :
