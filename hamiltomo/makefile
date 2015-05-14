@@ -22,7 +22,7 @@ tevol=$(addprefix data/TOpt/,tevol_774.dat\
  tevol_776.dat\
  tevol_778.dat)
 
-topt=$(addprefix data/TOpt/,ideal.dat experimental.dat)
+topt=$(addprefix data/TOpt/,ideal.dat experimental.dat ErrorVsTime.dat)
 
 $(comparison) : code/comparison.py
 	python code/comparison.py

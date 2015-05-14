@@ -1,4 +1,4 @@
-# The First Linear Optical Quantum Computers
+# Characterisation and Control of Linear Optical Quantum Computers
 ## My PhD thesis (working title)
 
 A work in progress, though I am aiming to have a first draft by mid-April and be

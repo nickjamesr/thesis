@@ -76,7 +76,8 @@ hamiltonians.png : $(hamiltonians_data) hamiltonians.gnu
 	gnuplot hamiltonians.gnu
 
 hamiltoniansim_data=$(addprefix ../hamiltomo/data/TOpt/,ideal.dat\
- experimental.dat)
+ experimental.dat\
+ ErrorVsTime.dat)
 idealhamiltonian.png experimentalhamiltonian.png : $(hamiltoniansim_data)\
  hamiltoniansim.gnu
 	gnuplot hamiltoniansim.gnu

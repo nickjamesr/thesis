@@ -164,7 +164,7 @@ format(i,j),'w') for i,j in [(0,1),(1,2),(0,2)]]
     singles_fidelities=[1-0.5*sum(abs(numpy.array([abs2(U[i,j]) \
 for j in range(6)])-singles[i])) for i in range(6)]
     pairs_ideal=[IdealPairs(U,mode) for mode in [(0,1),(1,2),(0,2)]]
-    pairs_fidelities=[1-0.5*sum(abs(pairs_ideal-pairs)) for i in range(3)]
+    pairs_fidelities=[1-0.5*sum(abs(pairs_ideal[i]-pairs[i])) for i in range(3)]
     fidelities_out.write(fidelities_fmt.format(t,*numpy.append(\
 singles_fidelities,pairs_fidelities)))
     # Write experimental data
@@ -218,7 +218,7 @@ format(i,j),'w') for i,j in [(0,1),(1,2),(0,2)]]
     singles_fidelities=[1-0.5*sum(abs(numpy.array([abs2(U[i,j]) \
 for j in range(6)])-singles[i])) for i in range(6)]
     pairs_ideal=[IdealPairs(U,mode) for mode in [(0,1),(1,2),(0,2)]]
-    pairs_fidelities=[1-0.5*sum(abs(pairs_ideal-pairs)) for i in range(3)]
+    pairs_fidelities=[1-0.5*sum(abs(pairs_ideal[i]-pairs[i])) for i in range(3)]
     fidelities_out.write(fidelities_fmt.format(t,*numpy.append(\
 singles_fidelities,pairs_fidelities)))
     # Wrte experimental data

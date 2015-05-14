@@ -1,22 +1,22 @@
-metadata: {"Inputs": "C7D6", "Int_time": 1, "Unitary": "NTT/pt_symmetry/identity.csv", "computer": "PHOTON_COUNTER", "label": "PT-symmetry, input in modes 1 and 2 (fibres 7 and 6), C7D6, *56,000, **1000 ", "motor_controller_pos": "32.15997", "parent": "2015_04_01_wednesday_15h48m43s", "regime": "Q", "repeats": 60, "timestamp": "2015_04_01_wednesday_16h18m31s"}
-AB: 59542
-AC: 80
-AD: 4
+metadata: {"Inputs": "C7D6", "Int_time": 1, "Unitary": "NTT/pt_symmetry/identity.csv", "computer": "PHOTON_COUNTER", "label": "PT-symmetry, input in modes 1 and 2 (fibres 7 and 5), C7D6, *31,000, **505 ", "motor_controller_pos": "32.16237", "parent": "2015_05_11_monday_13h54m37s", "regime": "Q", "repeats": 120, "timestamp": "2015_05_11_monday_14h22m31s"}
+AB: 43317
+AC: 60
+AD: 2
 AE: 5
-AF: 9
+AF: 5
 BC: 1
-BD: 2
-BE: 8
-BF: 3
+BD: 6
+BE: 4
+BF: 4
 CD: 0
 CE: 0
 CF: 0
 DE: 0
 DF: 0
-EF: 1
-A: 1791087
-B: 1349533
-C: 11422
-D: 8109
-E: 23678
-F: 27289
+EF: 0
+A: 1777082
+B: 1235257
+C: 18518
+D: 17514
+E: 54179
+F: 55156

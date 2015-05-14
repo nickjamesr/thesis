@@ -97,6 +97,7 @@ return : None'''
 05 12 13 14 15 23 24 25 34 35 45\n".format(gamma,eta))
     while t<tmax:
       U,norm = threesitematrix(gamma,eta,t)
+      #powers = [abs2(U[i,mode[0]]*U[j,mode[1]]+U[i,mode[1]]*U[j,mode[0]])\
       powers = [abs2(U[i,mode[0]]*U[j,mode[1]]+U[i,mode[1]]*U[j,mode[0]])\
 for i,j in pairs]
       fout.write(fmt.format(t,norm,*powers))
