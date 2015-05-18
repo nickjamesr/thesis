@@ -120,7 +120,11 @@ mode as the \emph{trit}. At the end of the circuit we detect photons in each of
 the four modes. We can perform either single photon counting or photon
 coincidence detection.
 
+\todo{Describe the integrated Reck scheme here.}
+
 \subsection{Figures of Merit}
+\todo{Move any definition of figures of merit (trace distance and Kolmogorov
+distance here.}
 
 \section{Molecular Vibrations}
 \label{sec:Molecules}
@@ -231,16 +235,19 @@ with the simulation using a discrete time method. We dial \(\mat{U} \of{t}\) for
 phonon-pair coincidences at each time. The results are shown in
 figure~\ref{fig:molecules}.
 
+\todo{Summarise fidelities across the simulation. Table?}
+
 \section{PT-symmetric systems}
 \label{sec:PT}
 The simulations presented in the previous section are entirely concerned with a
 closed quantum system, evolving according to Hermitian dynamics. I now turn my
 attention to quantum systems described by non-Hermitian Hamiltonians,
 particularly those that are invariant under the combined parity \((\op{P})\) and
-time-reversal \((\op{T})\) operations. The theory of the 2-site
+time-reversal \((\op{T})\) operations. The theory of the 
 \(\pt\)-symmetric model was developed by Yogesh Jonglekar. I derived the
-matrices to be simulated, and performed the data analysis. The data was
-collected jointly by me and Chris Sparrow.
+matrices to be simulated, and performed the data analysis. The data for the
+2-site model were collected jointly by me and Chris Sparrow, and the data for
+the 3-site model were collected by Chris Harrold.
 
 \subsection{Introduction}
 Systems obeying \(\pt\) symmetry, have been theoretically explored for more than
@@ -587,8 +594,9 @@ normalised probability distributions, and summarised below:
 \end{tabular}
 
 \subsection{Conclusions}
-We have therefore demonstrated the ability to simulate the evolution of
-\(\pt{}\)-symmetric systems in our 2-site model, across all regions of the phase
+We have therefore demonstrated the ability to simulate the evolution of a 2-site
+\(\pt{}\)-symmetric system in bulk optics and a 3-site \(\pt\)-symmetric system
+in integrated optics, across all regions of the phase
 space. The cost of our implementation using linear optics and unitary dilation
 is a doubling in the number of optical modes required, compared to the dimension
 of the system we are simulating. However, with integrated optics

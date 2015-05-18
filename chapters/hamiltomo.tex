@@ -197,10 +197,13 @@ section concerns the factors involved in choosing the step size, \(\dt\).
 Like any discrete calculus method, the discretisation length (step size) affects
 the accuracy of the method greatly. Figure~\ref{fig:stepsize} illustrates the
 effect of varying the step size in a simulated experimental context.
+\todo{Explain the noise mechanism - essentially dialling error \(\varepsilon\)
+on each of the phases in an integrated Reck scheme}.
 
 \section{Experimental implementation}
 \label{sec:HTExperiment}
-In photonics we have excellent sources and detectors, so the requirements of
+In photonics we have excellent sources and detectors \todo{citations}, so the
+requirements of
 arbitrary preparation and measurement in the computational basis are easy to
 meet. The requirement that we have control over the evolution time is a more
 difficult. In free space we could move the detectors closer to or further from
@@ -225,7 +228,16 @@ designed to have uniform couplings. We therefore expect the Hamiltonian to be
 tridiagonal, with approximately uniform elements \(\eta\) on the first
 off-diagonals. As long as the diagonal elements are uniform, they do not make a
 difference to the experimental observables so we can treat these as zero without
-loss of generality.
+loss of generality. The expected Hamiltonian is
+\begin{equation}
+  \mat{H} = \begin{pmatrix}
+  0 & \eta & 0 & 0 \\
+  \eta & 0 & \eta \\
+  0 & \eta & \ddots & \ddots & 0 \\
+  0 & & \ddots & 0 & \eta \\
+  & & 0 & \eta & 0
+  \end{pmatrix}
+\end{equation}
 
 For three different wavelengths (774nm, 776nm, 778nm), four columns (indices
 8,9,10,11) of the unitary are reconstructed from coherent light and photon pair
@@ -238,7 +250,7 @@ element-wise basis:
   \right]
 \end{equation}
 This demonstrates that any element \(\mat{H}_{ij}\) can be estimated from
-measurements of row \(i\) of \(\mat{U} \of{t+\dt}\) and \(\mat{U} \of{t+\dt}\)
+measurements of row \(i\) of \(\mat{U} \of{t-\dt}\) and \(\mat{U} \of{t+\dt}\)
 and row \(j\) of \(\mat{U} \of{t}\). Noting that for a constant time
 Hamiltonian, \(\mat{U} \of{t}\) and \(\mat{U} \of{t^{\prime}}\) commute for any
 \(t\) and \(t^{\prime}\), we can reverse the order of the product, and thus the
@@ -248,11 +260,6 @@ detecting in one, while measuring a column requires injecting in a single mode
 and detecting in all modes. The latter is easier since we generally have
 detectors on all output modes.
 
-As noted in section~\ref{sec:SST}, there is a freedom in the unitry
-reconstruction where we can make different choices for the reference row and
-column for phases. We observe that this choice makes a big difference to the
-final results.
-
 The quantum walk exhibits some features that aid in the reconstruction process.
 Notably, when we apply the real border to the unitary, all elements become real,
 regardless of the choice of reference. Deduction of the phases of the unitary
@@ -260,7 +267,7 @@ elements reduces to deciding the sign, which only requires us to distinguish
 between a dip and an antidip rather than measuring the visibility accurately. We
 also benefit from the simplification that ignoring phase information and using
 real bordered matrices in equation~\ref{eq:hamiltomo} does not prevent us from
-recovering the correct Hamiltonian. The only effect is a factor of \(\pm i\) in
+recovering the correct Hamiltonian: the only effect is a factor of \(\pm i\) in
 the off diagonal elements.
 
 \begin{figure}
@@ -276,7 +283,11 @@ the off diagonal elements.
   \label{fig:hamiltonians}
 \end{figure}
 
-The results of the experiment are shown in figure~\ref{fig:hamiltonians}, for 6
+The results of the experiment are shown in figure~\ref{fig:hamiltonians}.
+As noted in section~\ref{sec:SST}, there is a freedom in the unitry
+reconstruction where we can make different choices for the reference row and
+column for phases. We observe that this choice makes a big difference to the
+final results. We show six
 different choices of references (column 8 or 9, and row 3, 4 or 6). The
 tridiagonal character of the Hamiltonian is most visible for references (8,3)
 and (8,4), but does not persist for all choices. This can't be assigned just to
