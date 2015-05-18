@@ -189,15 +189,10 @@ section concerns the factors involved in choosing the step size, \(\dt\).
   noise from experimental error. All simulations are for a \(9 \by 9\)
   tridiagonal Hamiltonian, with noise applied directly to the unitary.
   In the absence of noise (black line), the error in the
-  reconstruction decreases as \(\dt^{2}\): a property of the 3-point
-  numerical derivative. In the presence of noise, this scaling applies to a
-  point, at which the error begins to increase again. The more noise, the higher
-  the optimum step size. The reason for this behaviour is that beyond the
-  optimum, the difference between the two unitaries in the term \(\left( \mat{U}
-  \of{t+\dt} - \mat{U} \of{t-\dt} \right)\) gets smaller than the noise in the
-  measurements of \(\mat{U} \of{t}\) causing a large error in estimating this
-  term. Shaded regions show \(1 \sigma\) variations over Monte-Carlo simulations
-  of noise in the unitary.}
+  reconstruction decreases as \(\dt^{2}\). When noise is simulated, an optimum
+  value of \(\dt\) is observed, which is larger for systems with more noise.
+  Shaded regions show \(1 \sigma\) variations over Monte-Carlo simulations of
+  noise in the unitary.}
   \label{fig:stepsize}
 \end{figure}
 
@@ -205,7 +200,16 @@ Like any discrete calculus method, the discretisation length (step size) affects
 the accuracy of the method greatly. Figure~\ref{fig:stepsize} illustrates the
 effect of varying the step size in a simulated experimental context.
 \todo{Explain the noise mechanism - essentially dialling error \(\varepsilon\)
-on each of the phases in an integrated Reck scheme}.
+on each of the phases in an integrated Reck scheme}. The black line shows the
+scaling of reconstruction error with step size \(\dt\) in an ideal (noiseless)
+system, which decreases as \(\dt^{2}\) as expected for a 3-point numerical
+derivative. In the presence of noise, this scaling only applies to a point,
+after which furter reductions in \(\dt\) result in \emph{more} error in the
+reconstruction rather than less. The reason for this behaviour is that beyond
+the optimum, the difference between the two unitaries in the term \(\left(
+\mat{U} \of{t+\dt} - \mat{U} \of{t-\dt} \right)\) gets smaller than the noise
+in the measurements of \(\mat{U} \of{t}\) causing a large error in estimating
+this term.
 
 \section{Experimental implementation}
 \label{sec:HTExperiment}
