@@ -9,9 +9,11 @@ Background that needs writing:
 
 Discussion that needs writing:
   - How is clouding actually used for verification
+  - Precision implications of direct dialling?
 
 Organisation to be done:
 
 Puzzles:
-  - Why do the 3-site PT data look so bad for (0,1) input
-    (the fidelities are high...)
+
+References to find:
+  - Random qubit unitaries cannot be implemented efficiently

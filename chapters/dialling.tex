@@ -1,5 +1,9 @@
 \chapter{Direct Dialling}
 \label{ch:DirectDialling}
+This chapter contains theoretical work that I performed with the intention of
+answering the question: ``How do we fabricate random linear optical circuits?''
+It is currently being prepared for publication in \cite{dialling}, with
+co-authors Anthony Laing and Jeremy O'Brien.
 
 \begin{figure}[t]
   \begin{subfigure}{0.52\textwidth}
@@ -19,7 +23,10 @@
     \ref{fig:cascade} expands one of the \(\mat{R}_{i}\) unitaries in terms of
     a cascade of beamsplitters and phase shifts. The connection between the
     \emph{Cartesian} basis, \(\vec{x}\) and the \emph{physical} basis,
-    \(\vec{r}\) is illustrated by the labels on \ref{fig:cascade}.}
+    \(\vec{r}\) is illustrated by the labels on \ref{fig:cascade}. The variable
+    \(r_{0}\) is required as an intermediate step, before we normalise to unit
+    vectors. Physically, it can refer to the input power, which will always be 1
+    in the case of single photons.}
   \label{fig:reck}
 \end{figure}
 
@@ -64,7 +71,8 @@ mathematical decomposition has been known for some time in the work of Hurwitz
 Reck et al. \cite{reck}. Here we present a simple procedure for choosing
 a Haar random unitary on an optical circuit by choosing values of the physical
 parameters independently from simple distributions. This procedure is useful in
-applications such as \bosonsampling{} where we do not need to know the exact
+applications such as \bosonsampling{} where we do not need to know in advance
+the exact
 unitary description of the circuit being implemented, but need a guarantee that
 it is drawn from the correct distribution. While similar parameterisations exist
 in the mathematical literature \cite{spengler2012, zy-jpa-27-4235}, the
@@ -80,9 +88,9 @@ a particular unitary matrix from some region in the space of unitaries should
 be in direct proportion to the volume of the region as defined by the Haar
 measure, which is the unique translation-invariant measure on the space of
 unitaries. As argued in \cite{reffy}, if \(m\) vectors \(\left\{
-v_{i} \right\} = \left\{ v_{1}, v_{2}, \cdots, v_{m} \right\}\) are successively
+v_{j} \right\} = \left\{ v_{1}, v_{2}, \cdots, v_{m} \right\}\) are successively
 drawn from the unbiased distribution of unit vectors in the
-\(\left(m-i\right)\)-dimensional subspace orthogonal to all previous vectors,
+\(\left(m-j\right)\)-dimensional subspace orthogonal to all previous vectors,
 they form the columns of a Haar random unitary. The problem of choosing Haar
 random unitaries thus reduces to the problem of drawing such a set of orthogonal
 vectors.
@@ -93,24 +101,27 @@ achieving the appropriate set of \(m\) vectors for a unitary operation on \(m\)
 modes. Each block labelled \(\mat{R}_{n}\) takes
 as input the basis state \( \ket{m-n}\) and performs a unitary operation to
 produce the \(n\)-dimensional vector \(\ket{v_n}\). Orthogonality is preserved
-as this vector is transformed by all subsequent \(\mat{R}_{i}\). Further, if the
+as this vector is transformed by all subsequent \(\mat{R}_{j}\). Further, if the
 vector \(\ket{v_{n}}\) is chosen from the unbiased distribution of unit vectors
 in \(n\) dimensions, the property of left invariance ensures that it does not
-become biased by the operation of the subsequent \(\mat{R}_{i}\).
+become biased by the operation of the subsequent \(\mat{R}_{j}\). More
+precisely, left invariance ensures that if we have a method for choosing Haar
+random unit vectors, \(\ket{v}\) and we pre-multiply by a constant unitary
+matrix, \(\mat{U}\), the vectors \(\mat{U} \ket{v}\) are also Haar random.
 
 The next consideration is therefore how to choose appropriate vectors, i.e.\
 unbiased unit vectors, in \(n\) dimensions. Figure~\ref{fig:cascade} expands one
 of the \(\mat{R}_{i}\) in terms of linear optical components, and we proceed
 from here. Consider the complex Gaussian vector in \(n\) dimensions:
 \begin{equation}
-  \ket{\vec{v}_{n}} = \sum_{i=0}^{n-1} z_{i} \ket{i} = \sum_{i=0}^{n-1} \tau_{i}
-  e^{i \alpha_{i}} \ket{i}
+  \ket{\vec{v}_{n}} = \sum_{j=0}^{n-1} z_{j} \ket{j} = \sum_{j=0}^{n-1} \tau_{j}
+  e^{i \alpha_{j}} \ket{j}
 \end{equation}
-where the \(z_i\) are i.i.d. Gaussian complex numbers, \( \prob{P}_{z} \of{z}
+where the \(z_j\) are i.i.d. Gaussian complex numbers, \( \prob{P}_{z} \of{z}
 \propto \exp \left( -\abs{z}^2 \right) \). Because of their independence, the
 probability density function (\pdf{}) for \(\vec{v}_n\) is the product of the
 \pdf{}s for the elements and depends only on the magnitude of the vector. Let
-\(x_i = \abs{z_i}^2 \), then:
+\(x_j = \abs{z_j}^2 \), then:
 \begin{equation}
   \label{eq:vec}
   \prob{P}_{\vec{v}_n} = e^{ -\left(x_0 + x_1 + \dots + x_{n-1} \right)} = e^{
@@ -120,24 +131,24 @@ Now consider the change of variables from this basis~\(\vec{x}\), which we call
 the Cartesian basis, to a new basis,~\(\vec{r}\):
 \begin{align}
   r_0 &= \sum_{k=0}^{n-1} x_k \\
-  r_i &= \frac{x_{i-1}}{\sum_{k=i}^{n-1} x_k} & \left( 0 < i \leq n-1 \right) \\
-  \phi_i &= \alpha_{i}
+  r_j &= \frac{x_{j-1}}{\sum_{k=j}^{n-1} x_k} & \left( 0 < j \leq n-1 \right) \\
+  \phi_j &= \alpha_{j}
 \end{align}
 We refer to \(\vec{r}\) as the physical basis because the variables
 correspond directly to components in a physical realisation of the vector in
 linear optics. In particular, \(r_0\) is the power of the input and the other
-\(r_i\) are reflectivities of beamsplitters. The relationship between
+\(r_j\) are reflectivities of beamsplitters. The relationship between
 \(\vec{x}\), \(\vec{r}\) and the physical system is shown in
 figure~\ref{fig:reck}.
 
 In order for this parameterisation to be useful, we must show that the \pdf{}
 for the vector \(\vec{v}_n\) is separable in the physical basis so that the
 experimental parameters can be chosen independently. We also need to derive the
-form of the marginal distributions for the \(r_i\) and \(\phi_{i}\). These will
+form of the marginal distributions for the \(r_j\) and \(\phi_{j}\). These will
 be the distributions from which experimental parameters must be chosen to
 obtain a Haar unitary. Since there is no functional dependence on the
-\(\alpha_{i}\) parameters in equation~\ref{eq:vec} and there is a one-to-one
-mapping \(\alpha_{i} \rightarrow \phi_{i}\), these phases can be chosen
+\(\alpha_{j}\) parameters in equation~\ref{eq:vec} and there is a one-to-one
+mapping \(\alpha_{j} \rightarrow \phi_{j}\), these phases can be chosen
 uniformly and independently from the interval \(\left[0,2\pi\right)\)
 
 Finding the \pdf{}s for the beamsplitter reflectivities requires a more careful
@@ -164,12 +175,17 @@ determinant, which is described by the four cases:
 \end{align}
 (where the variable \(r_{n}=1\) has been introduced for convenience)
 
-A matrix of this form (lower Hessenberg) can always be transformed into a
+This is a lower Hessenberg matrix, i.e. all entries above the first
+super-diagonal are zero. A matrix of this form can always be transformed into a
 lower triangular matrix---for which the determinant is simply the product of the
 diagonal elements---by column operations, which do not change the absolute value
 of the determinant. The first step is to perform a set of operations on the
-\(j=0\) column, \(\vec{c}_{0}\) that set the upper \(n-1\) terms to zero, as
-follows:
+\(j=0\) column, \(\vec{c}_{0}\) that set the upper \(n-1\) terms to zero.
+The \(k^{\text{th}}\) operation (indicated by bracketed superscript) is designed
+to set \(\mat{J}_{k-1,0}^{\left( k \right)}=0\), by subtracting column
+\(\vec{c}_{k}\) multiplied by an appropriate scalar. The effect on all
+the other elements of \(\vec{c}_{0}\) is to remove the dependence on \(r_{k}\),
+which we can prove inductively. The transformations are described by:
 \begin{equation}
   \label{eq:columns}
   \vec{c}_{0}^{\left( k \right)} = \vec{c}_{0}^{\left( k-1 \right)} -
@@ -178,11 +194,6 @@ follows:
 where \(k\) runs from \(1\) to \(m-1\). None of these operations changes the
 value of the determinant, and we now show that after the procedure is complete
 the element \(\mat{J}_{0,n-1}=1\).
-
-The \(k^{\text{th}}\) operation in equation~\ref{eq:columns} is designed to set
-\(\mat{J}_{k-1,0}^{k}=0\), by subtracting column \(\vec{c}_{k}\) multiplied by an appropriate scalar. The effect on all
-the other elements of \(\vec{c}_{0}\) is to remove the dependence on \(r_{k}\),
-which we can prove inductively.
 
 Suppose that after \(k\) such operations, the upper \(k\) elements of
 \(\vec{c}_{0}\) have been set to zero and the remaining elements have no
@@ -237,7 +248,9 @@ It can be verified by explicit integration that this expression is appropriately
 normalised. Since the \pdf{} is separable in this basis, the variables \( r_i
 \) are independent, and can be chosen according to their marginal distributions,
 \begin{align}
-  \prob{P}_{r_{i}} \of{r} = \left( n-i \right) \left( 1-r \right)^{n-i-1} &&
+  \prob{P}_{r_{i}} \of{r} &= \int \prob{P}_{r} \of{\vec{r}} \prod_{j \neq i}
+    dr_{j}\\
+  &= \left( n-i \right) \left( 1-r \right)^{n-i-1} &&
   1 \leq i < n
 \end{align}
 We now integrate over \(r_{0}\) to obtain a compact form for the \pdf{} of
@@ -250,7 +263,7 @@ and express the \pdf{} for the full circuit of beamsplitters,
 \(\prob{P}_{\vec{C}}\) as the product of the \pdf{}s for the diagonal arrays of
 beamsplitters:
 \begin{equation}
-  \prob{P}_{\vec{C}} = \prod_{j=1}^{n} \left[ \left( j-1 \right)!
+  \prob{P}_{\vec{C}} = \prod_{j=1}^{m} \left[ \left( j-1 \right)!
   \prod_{k=1}^{j-1} \left( 1-r_{j,k} \right)^{j-k-1} \right]
 \end{equation}
 where \( r_{j,k} \) is the reflectivity of the \( k^{\text{th}} \) beamsplitter
@@ -267,7 +280,7 @@ We now extend the result to the case of a unitary operating on qubits by
 demonstrating a mapping between a unitary operation on \(m=2^{n}\) optical
 modes and the same unitary operation on \(n\) qubits. The gates that we use to
 construct the mapping are the Hadamard gate, the CNOT gate (generalised to
-include multiple control) and variable phase gates, which implement a general
+include multiple controls) and variable phase gates, which implement a general
 phase rotation on a qubit, as follows:
 \begin{align}
   \Phi &= \begin{pmatrix}
@@ -289,7 +302,7 @@ The existence of this mapping means that we can directly apply the results
 described above to the implementation of Haar unitaries in systems of qubits,
 with the only difference being the description of a varible reflectivity element
 in terms of the internal phase \(\theta\) in an MZI. A further change of
-variables, \(r = \sin^{2} \of{\theta} \) is required, and the appropriate
+variables, \(r = \cos^{2} \of{\theta} \) is required, and the appropriate
 \pdf{}s for these elements are then:
 \begin{equation}
   \prob{P}_{\theta_{i}} \of{ \theta } = \left( n-i \right) \cos \of{
