@@ -284,7 +284,7 @@ the off diagonal elements.
 \end{figure}
 
 The results of the experiment are shown in figure~\ref{fig:hamiltonians}.
-As noted in section~\ref{sec:SST}, there is a freedom in the unitry
+As noted in section~\ref{sec:SST}, there is a freedom in the unitary
 reconstruction where we can make different choices for the reference row and
 column for phases. We observe that this choice makes a big difference to the
 final results. We show six
@@ -398,7 +398,13 @@ noise. For larger timesteps, the series may be a better choice.
   Hamiltonian recovery]
   {Comparison of power series and time derivative as methods for Hamiltonian
   tomography, showing fidelity of the recovered Hamiltonian against the number
-  of terms in the power series, for various levels of noise. Shaded regions show
+  of terms in the power series, for various levels of noise and two different
+  values of the timestep \(\dt\). In (a) a large timestep of 0.5 is used; in
+  (b), the timestep is much smaller at 0.05. In the case of power series,
+  \(\dt\) is the time for which the experiment is run before measurement; for
+  the time derivative it is the time between successive measurements. In both
+  instances, a smaller \(\dt\) is expected to give less error in the
+  reconstruction. Shaded regions show
   the fidelity expected from the time derivative method, with the variation
   being from Monte-Carlo simulation with 1000 random evaluations. This method
   does not involve summing terms so is constant. The error bars show the
