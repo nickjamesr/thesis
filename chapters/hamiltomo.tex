@@ -1,11 +1,14 @@
 \chapter{Tomography of Hamiltonians}
 \label{ch:Hamiltomo}
+In this chapter I discuss a procedure that I developed to determine the
+(time constant) Hamiltonian governing the evolution of a system of
+non-interacting Bosons in a discrete space. The results are being prepared for
+publication in \cite{hamiltomo}, with co-authors Jacques Carolan, Chris Harrold,
+Anthony Laing and Jeremy O'Brien.
 
 \section{Introduction}
 \label{sec:HTIntro}
-In this chapter I discuss a procedure that I developed to determine the
-(time constant) Hamiltonian governing the evolution of a system of
-non-interacting Bosons in a discrete space. The process requires measurements of
+The process requires measurements of
 single particle states and two particle correlations, and the number of
 measurements scales polynomially with the number of system modes. It relies on
 making measurements of the time evolution operator for multiple (minimum two,
@@ -27,7 +30,8 @@ This section is a review of the method in~\cite{sst} (SST) for efficiently
 determining the unitary description of a linear optical circuit. It is not my
 own work, but it is important background for the results that follow.
 
-Any linear optical device on \(m\) modes can be described in its entirety by an
+Any lossless linear optical device on \(m\) modes can be described in its
+entirety by an
 \(m \by m\) unitary matrix, \(\mat{U}\). Since photons do not interact, this
 matrix is sufficient to decsribe the action of the device on any number of
 photons, even if the calculation of the transfer elements does not scale
@@ -184,13 +188,16 @@ section concerns the factors involved in choosing the step size, \(\dt\).
   {Error in Hamiltonian reconstruction as a function of step size, under varying
   noise from experimental error. All simulations are for a \(9 \by 9\)
   tridiagonal Hamiltonian, with noise applied directly to the unitary.
-  In the absence of noise, the error in the
-  reconstruction decreases as \(\dt^{2}\), since we are using the 3-point
-  numerical derivative. In the presence of noise, there is an optimum point. For
-  step sizes below this, the difference between the two unitaries being
-  subtracted is swamped by the noise and the fidelity starts to decrease again.
-  Shaded regions show \(1 \sigma\) variations over Monte-Carlo simulations of
-  noise in the unitary.}
+  In the absence of noise (black line), the error in the
+  reconstruction decreases as \(\dt^{2}\): a property of the 3-point
+  numerical derivative. In the presence of noise, this scaling applies to a
+  point, at which the error begins to increase again. The more noise, the higher
+  the optimum step size. The reason for this behaviour is that beyond the
+  optimum, the difference between the two unitaries in the term \(\left( \mat{U}
+  \of{t+\dt} - \mat{U} \of{t-\dt} \right)\) gets smaller than the noise in the
+  measurements of \(\mat{U} \of{t}\) causing a large error in estimating this
+  term. Shaded regions show \(1 \sigma\) variations over Monte-Carlo simulations
+  of noise in the unitary.}
   \label{fig:stepsize}
 \end{figure}
 
@@ -202,25 +209,26 @@ on each of the phases in an integrated Reck scheme}.
 
 \section{Experimental implementation}
 \label{sec:HTExperiment}
-In photonics we have excellent sources and detectors \todo{citations}, so the
-requirements of
-arbitrary preparation and measurement in the computational basis are easy to
-meet. The requirement that we have control over the evolution time is a more
-difficult. In free space we could move the detectors closer to or further from
-the source, but the Hamiltonian describing photons propagating in free space is
-diagonal so the experiment would not be very interesting. Free space components
-with more interesting Hamiltonians such as waveplates tend to be fixed, so we
-have no control whatsoever over the evolution time!
+In photonics we have excellent sources \cite{sources-kwiat,
+sources-josh} and detectors \cite{detectors-yale, detectors-sprengers} so the
+requirements of arbitrary preparation and measurement in the computational basis
+are easy to meet. The requirement that we have control over the evolution time
+is a more difficult. In free space we could move the detectors closer to or
+further from the source, but the Hamiltonian describing photons propagating in
+free space is diagonal so the experiment would not be very interesting. Free
+space components with more interesting Hamiltonians such as waveplates tend to
+be fixed, so we have no control whatsoever over the evolution time!
 
 A solution is presented in integrated optics. Consider a continuously coupled
 quantum walk, where each waveguide is coupled to its nearest neighbour: the
 effective evolution time is proportional to the optical path length of the
 coupling region. We cannot easily vary the physical length of the coupling
-region, but by varying the wavelength of the light, we can change the optical
-length. We use this technique on a 21 mode continuously coupled quantum walk to
-obtain the results in this section. Note that the setup and wavelength shifting
-of the source, and most of the data acquisition was was done by Jacques Carolan.
-I did the remaining data acquisition and all the data analysis.
+region \cite{walks-jasmin} but by varying the wavelength of the light, we can
+change the optical length. We use this technique on a 21 mode continuously
+coupled quantum walk to obtain the results in this section. Note that the setup
+and wavelength shifting of the source, and most of the data acquisition was was
+done by Jacques Carolan. I did the remaining data acquisition and all the data
+analysis.
 
 The construction of the quantum walk allows coupling between nearest-neighbour
 waveguides with negligible longer range couplings. The chip that we use is
@@ -415,7 +423,7 @@ noise. For larger timesteps, the series may be a better choice.
   \label{fig:logvsderivative}
 \end{figure}
 
-An alternative series-type solution has been described in~\cite{hamiltomo},
+An alternative series-type solution has been described in~\cite{hamiltomo-ulm},
 where the Hermitian and anti-Hermitian parts of \(\mat{U}\) are considered
 separately.
 

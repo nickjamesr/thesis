@@ -41,5 +41,5 @@ return : None'''
   for i in range(4):
     for j in range(4):
       x,y=U[i,j].real, U[i,j].imag
-      fout.write("{0:+.4f}{1:+.4f}j ".format(x,y))
+      fout.write("{0:+.6f}{1:+.6f}j ".format(x,y))
     fout.write("\n")
