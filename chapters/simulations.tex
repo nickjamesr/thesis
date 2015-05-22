@@ -1,5 +1,21 @@
 \chapter{Boson simulations}
 \label{ch:Simulations}
+I discuss two specific instances of quantum simulations that I have
+performed. In the first, we identify quantized molecular vibrations (phonons in
+the harmonic limit) as another system of non-interacting bosons, susceptible to
+our simulation method. This work is being prepared for publication, in
+collaboration with Enrique Mart\'in L\'opez, Chris Sparrow and Anthony Laing.
+In the second, we move away from closed quantum systems (Hermitian/unitary
+dynamics) and consider a more abstract system of bosons obeying PT-symmetric
+(non-Hermitian/non-unitary) dynamics. This work is being prepared for
+publication in collaboration with Chris Sparrow, Anthony Laing and Yogesh
+Jonglekar.
+
+The theory of the 
+\(\pt\)-symmetric model was developed by Yogesh Jonglekar. I derived the
+matrices to be simulated, and performed the data analysis. The data for the
+2-site model were collected jointly by me and Chris Sparrow, and the data for
+the 3-site model were collected by Chris Harrold.
 
 \section{Introduction}
 \label{sec:SimIntro}
@@ -55,18 +71,10 @@ non-interacting (proposals for universal photonic quantum computers rely on
 effective interactions via detection~\cite{klm}). The implication of this is
 that with a relatively simple quantum computer (a system of photons in a large
 interferometer) we can go beyond \bosonsampling{} and perform meaningful quantum
-simulations. I discuss two specific instances of quantum simulations that I have
-performed. In the first, we identify quantized molecular vibrations (phonons in
-the harmonic limit) as another system of non-interacting bosons, susceptible to
-our simulation method. This work is being prepared for publication, in
-collaboration with Enrique Mart\'in L\'opez, Chris Sparrow and Anthony Laing.
-In the second, we move away from closed quantum systems (Hermitian/unitary
-dynamics) and consider a more abstract system of bosons obeying PT-symmetric
-(non-Hermitian/non-unitary) dynamics. This work is being prepared for
-publication in collaboration with Chris Sparrow, Anthony Laing and Yogesh
-Jonglekar.
+simulations.
 
-\subsection{Experimental Setup}
+\section{Experimental Setup}
+\subsection{Bulk Optics}
 \label{sec:BulkReck}
 \begin{figure}[t]
   \centering
@@ -120,11 +128,44 @@ mode as the \emph{trit}. At the end of the circuit we detect photons in each of
 the four modes. We can perform either single photon counting or photon
 coincidence detection.
 
+The reconfigurability of our circuit is obtained by joint path/polarisation
+operations. We can control the amplitudes at the output with half waveplates
+(HWPs), and the phases with a series of three waveplates (QHQ): a half waveplate
+between two quarter waveplates with the optic axis orientated at 45 degrees.
+We use beam displacers (BDs) to convert between path and polarisation and
+implement very stable Jamin-Lebedeff interferometers, while
+polarisation-sensitive detection is achieved with in-fibre polarising
+beamsplitters (PBS) and single-photon avalanche diodes (SPADs).
+
+\subsection{Integrated platform}
+This is realised in integrated optics, using thermo-optic phase shifts and Mach
+Zehnder interferometers (MZIs) to achieve the necessary reconfigurability.
 \todo{Describe the integrated Reck scheme here.}
+
+\section{Data Analysis}
+\subsection{Presentation of Data}
+\todo{This is where I explain which modes I am presenting, and how we have
+`saturated the distribution'---not a scalable approach. Maybe also the time to
+mention the scale factor in \(\pt\) section.}
 
 \subsection{Figures of Merit}
 \todo{Move any definition of figures of merit (trace distance and Kolmogorov
 distance here.}
+
+To evaluate the fidelity of our simulations, we look at two measures. The first
+is a trace distance between the unitary matrix that we intended to implement,
+and the matrix that we in fact did implement, according to the data we collect
+\cite{sst}. If the desired unitary is \(\mat{U}\) and the measured unitary
+is \(\mat{U^{\prime}}\), the trace distance, \(F\) is defined by:
+\[F=\frac{1}{2}\Tr\of{\mat{U}^{\dagger}{\mat{U}^{\prime}}}\]
+The second measure we use compares (normalised) discrete probability
+distributions, \(p\) and \(q\). This fidelity is computed as:
+\[F=1-\frac{1}{2}\sum_{i}\abs{p_{i}-q_{i}}\]
+This can be computed for the single photon data without any normalisation, since
+detection probabilities in the four modes \(S_1\),\(S_2\),\(E_1\) and \(E_2\)
+must sum to 1. In the case of coincidences, we only measure 6 out of the 10
+possible pairings, so we must normalise these to 1 before computing the
+fidelity.
 
 \section{Molecular Vibrations}
 \label{sec:Molecules}
@@ -228,6 +269,7 @@ regime described by \bosonsampling{}: while the \(\mat{U} \of{t}\) and \(\mat{U}
 \of{t^{\prime}} \) will be correlated, any individual instance will be a Haar
 random unitary.
 
+\subsection{Results}
 Given a diagonal Hamiltonian and preparation and measurement bases, we proceed
 with the simulation using a discrete time method. We dial \(\mat{U} \of{t}\) for
 21 values of \(t\) equally spaced in the interval \(\left[0,0.01\right]\)
@@ -243,14 +285,9 @@ The simulations presented in the previous section are entirely concerned with a
 closed quantum system, evolving according to Hermitian dynamics. I now turn my
 attention to quantum systems described by non-Hermitian Hamiltonians,
 particularly those that are invariant under the combined parity \((\op{P})\) and
-time-reversal \((\op{T})\) operations. The theory of the 
-\(\pt\)-symmetric model was developed by Yogesh Jonglekar. I derived the
-matrices to be simulated, and performed the data analysis. The data for the
-2-site model were collected jointly by me and Chris Sparrow, and the data for
-the 3-site model were collected by Chris Harrold.
+time-reversal \((\op{T})\) operations.
 
-\subsection{Introduction}
-Systems obeying \(\pt\) symmetry, have been theoretically explored for more than
+Systems obeying \(\pt\) symmetry have been theoretically explored for more than
 a decade \cite{bender98, levai-jphysa-33-7165, bender07}. Although not
 Hermitian, the Hamiltonians have a purely real spectrum that changes into
 complex-conjugate eigenvalues as the non-Hermiticity is increased. When the
@@ -500,15 +537,6 @@ the environment. Note that when post-selecting on the system modes, there is a
 non-unit probability of a detection event. In light of this, we could not
 simulate the super-luminal signalling described in \cite{lee-prl-112-130404}.
 
-The reconfigurability of our circuit is obtained by joint path/polarisation
-operations. We can control the amplitudes at the output with half waveplates
-(HWPs), and the phases with a series of three waveplates (QHQ): a half waveplate
-between two quarter waveplates with the optic axis orientated at 45 degrees.
-We use beam displacers (BDs) to convert between path and polarisation and
-implement very stable Jamin-Lebedeff interferometers, while
-polarisation-sensitive detection is achieved with in-fibre polarising
-beamsplitters (PBS) and single-photon avalanche diodes (SPADs).
-
 The graphs in figure~\ref{fig:twosite} show the evolution of the 2-site system
 at 3 points in the parameter space: \(\pt{}\)-symmetric, \(\gamma=0.95\) (a,d);
 \(\pt{}\)-critical, \(\gamma=1.0\) (b,e) and \(\pt{}\)-broken, \(\gamma=1.05\)
@@ -532,21 +560,6 @@ Poissonian noise are too small to see at this scale) and lines represent
 theoretical expectations. The dashed black line (not on the same scale) is the
 scale factor, and is unbounded.
 
-To evaluate the fidelity of our simulations, we look at two measures. The first
-is a trace distance between the unitary matrix that we intended to implement,
-and the matrix that we in fact did implement, according to the data we collect
-\cite{sst}. If the desired unitary is \(\mat{U}\) and the measured unitary
-is \(\mat{U^{\prime}}\), the trace distance, \(F\) is defined by:
-\[F=\frac{1}{2}\Tr\of{\mat{U}^{\dagger}{\mat{U}^{\prime}}}\]
-The second measure we use compares (normalised) discrete probability
-distributions, \(p\) and \(q\). This fidelity is computed as:
-\[F=1-\frac{1}{2}\sum_{i}\abs{p_{i}-q_{i}}\]
-This can be computed for the single photon data without any normalisation, since
-detection probabilities in the four modes \(S_1\),\(S_2\),\(E_1\) and \(E_2\)
-must sum to 1. In the case of coincidences, we only measure 6 out of the 10
-possible pairings, so we must normalise these to 1 before computing the
-fidelity.
-
 In summary, the fidelities obtained are \(0.948 \pm 0.052\) for the trace
 distance, \(0.956 \pm 0.020\) for the single photon data shown and \(0.961 \pm
 0.014\) for the coincidences. Note that the figure for the coincidences takes
@@ -557,10 +570,8 @@ are not presented here.
 \label{sec:SixMode}
 In order to perform a simulation of the three-site \(\pt\)-symmetric model using
 the method of unitary dilation, we require an optical circuit with six modes.
-This is realised in integrated optics, using thermo-optic phase shifts and Mach
-Zehnder interferometers (MZIs) to achieve the necessary reconfigurability. Full
-simulations of the time evolution are performed for two regions of the phase
-space: one below and one above the \(\pt\) threshold. The results of the
+Full simulations of the time evolution are performed for two regions of the
+phase space: one below and one above the \(\pt\) threshold. The results of the
 simulation can be seen in figures~\ref{fig:threesitesingles} (single photon
 data) and~\ref{fig:threesitetwofolds} (two photon correlations).
 \begin{figure}[p]
@@ -593,7 +604,17 @@ normalised probability distributions, and summarised below:
   \hline
 \end{tabular}
 
-\subsection{Conclusions}
+\section{Conclusions}
+\todo{Expand this section. Discussion should concern the following points:
+
+Molecules: real, physical system of interest. Cite Harvard.
+
+Scaling: going from bulk to integrated. Bigger system implies more modes - easy
+in integrated optics.
+
+PT: ``fully quantum'' unlike previous experiments. Demonstration of general
+method for non-Hermitian dynamics}
+
 We have therefore demonstrated the ability to simulate the evolution of a 2-site
 \(\pt{}\)-symmetric system in bulk optics and a 3-site \(\pt\)-symmetric system
 in integrated optics, across all regions of the phase
