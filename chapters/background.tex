@@ -3,17 +3,17 @@
 \section{General Introduction}
 \label{sec:Science}
 The race for the first quantum computer is on. Academic researchers and private
-enterprises around the world are pursuing this goal, on a number of different
-physical platforms. Here, I will describe my efforts towards achieving quantum
-computation in linear optics.
+enterprises \cite{dwave} around the world are pursuing this goal, on a number of
+different physical platforms. Here, I will describe my efforts towards achieving
+quantum computation in linear optics.
 
 Of course, building a full-scale, universal quantum computer is going to be
 difficult, and beyond the scope of any single PhD student's research. At the
 other end of the spectrum, some quantum technologies have already found
-commercial viability, also putting them outside of the realms of academic
-research. I will focus on the middle ground between these two extremes: quantum
-computers that fall short of being universal for BQP, yet may be able to
-outperform a classical computer at certain, specific tasks in the near future.
+commercial viability \cite{idquantique,magiq,qutools}, putting them beyond 
+the realms of academic research. I will focus on the middle ground between
+these two extremes: quantum computers that fall short of being universal for
+BQP, yet may be able to outperform a classical computer at certain, specific tasks in the near future.
 
 One such device would be the Boson Sampler. Proposed by Aaronson and Arkhipov
 in~\cite{bosonsampling}, this is a device somewhat native to linear optics.
@@ -34,25 +34,36 @@ experimental results of quantum simulations using linear optics. Two systems are
 simulated: the (quantized) vibrations of molecules, and more abstract systems of
 bosons obeying \(\pt\)-symmetric (but non-Hermitian) dynamics.
 
-Once these devices begin to become larger, it is essential to have procedures to
-test whether they are working correctly. Since the original point is to
-outperform a classical computer, they cannot simply be checked by performing the
-same calculations classically! Chapter~\ref{ch:QCV} presents methods for the
-calibration, validation and verification of quantum devices. The calibration
-procedure is described in detail for a circuit in bulk optics, which illustrates
-many of the complicating features present in any large optical device. The
-verification procedure is used to check the coherence \todo{how do I say this? I
-mean indistinguishability of photons} of up to 5 photons in a quantum walk and 6
-6 photons in a quantum Fourier transform.
+Once we begin to scale up the size of these devices, it will be essential to
+have procedures to test whether they are working correctly. Since the original
+point is to outperform a classical computer, they cannot simply be checked by
+performing the same calculations classically! In the case of problems in NP such
+as Shor factoring, we have efficient methods to check the output, but this is
+not guaranteed for the problems discussed here and the issue of verification in
+\bosonsampling is particularly important. Chapter~\ref{ch:QCV} describes methods
+for the calibration and verification of quantum optics devices. I present a
+detailed case study of the calibration of a circuit in bulk optics, which
+illustrates many of the complicating features present in any large optical
+device. A series of verification procedures are applied to systems of up to 5
+photons in a quantum walk and 6 photons in a quantum Fourier transform.
 
-Finally, chapter~\ref{ch:Hamiltomo} describes a tomography protocol that can be
-used in certain circumstances to arrive at a complete description of the device
-in question.
+Finally, in chapter~\ref{ch:Hamiltomo} I describe a tomography protocol that can
+be used in certain circumstances to efficiently determine the Hamiltonian
+describing a dynamical quantum system. Tomography arguably provides the ultimate
+verification of correct operation, but quantum process tomography has the
+unfortunate property of scaling exponentially with the size of the system. The
+procedure presented here applies when we can make simplifying assumptions,
+namely that the constituent particles of the system do not interact and that the
+Hamiltonian is constant (or at least piecewise constant) in time. I present an
+experimental demonstration of the protocol on a photonic quantum walk, but it
+could have applications outside of quantum photonics.
 
 \section{Evolution of Quantum States}
 \label{sec:Evolution}
-The entire purpose of quantum mechanics is to calculate the evolution of quantum
-systems. At any time, a system in a pure state can be completely described by
+A large part of quantum mechanics (arguably all of quantum mechanics) concerns
+calculating the evolution of quantum systems. At any time, a system in a pure
+state\footnote{Except when explicitly stated, I am describing photonic states as
+pure.} can be completely described by
 its wavefunction, \(\ket{\Psi}\) \cite{pbr}. In the non-relativistic
 picture\footnote{I am restricting the discussion to non-relativistic quantum
 mechanics, since it offers a valid description of the behaviour of photons,
@@ -147,8 +158,8 @@ described by a unitary matrix operating on the optical modes. A device with
 \(m\) input and \(m\) output modes will be described by an \(m \by m\) unitary.
 In~\cite{reck}, it is shown that the converse is true: any unitary matrix can
 be realised by a linear optical circuit. A constructive proof of this is
-presented, and a candidate `universal circuit' is proposed (see
-figure~\ref{fig:ReckOriginal}). Universal, in this context refers to a linear
+presented, and an architecture for a `universal circuit' is proposed (see
+figure~\ref{fig:ReckOriginal}). Universal in this context refers to a linear
 optical circuit with adjustable components (beamsplitters with variable
 reflectivity and variable phase shifts), which can be configured into any
 unitary.
@@ -159,16 +170,15 @@ devices will become redundant, being just specific configurations of the
 general circuit. Rapid progress in fabrication and control of integrated optics
 has recently brought a \(6 \by 6\) reconfigurable circuit to the lab, and some
 of the data in chapter~\ref{ch:Simulations} were taken on this device.
-\todo{Hopefully!}
 
 \section{Boson Sampling}
 \label{sec:BosonSampling}
 \begin{figure}
   \includegraphics{figures/bosonsampling}
   \caption[BosonSampling in linear optics]
-  {\bosonsampling{} in linear optics. \(p\) photons are injected into the first
-  \(p\) inputs of an \(m\) mode linear optical circuit, then detected at the
-  output, post-selecting on all photons occupying distinct modes. The
+  {(a) \bosonsampling{} in linear optics. \(p\) photons are injected into the
+  first \(p\) inputs of an \(m\) mode linear optical circuit, then detected at
+  the output, post-selecting on all photons occupying distinct modes. The
   probability of this event occurring depends on the description of the circuit,
   a unitary matrix \(\mat{U}\) (b). It can be calculated by taking columns of
   the unitary corresponding to the input modes (shaded red) and rows
@@ -177,7 +187,7 @@ of the data in chapter~\ref{ch:Simulations} were taken on this device.
   given by the absolute square of the permanent of this submatrix.}
   \label{fig:BosonSampling}
 \end{figure}
-This section presents a review of \bosonsampling{}: a sampling algorithm
+This section presents a brief review of \bosonsampling{}: a sampling algorithm
 presented by Aaronson and Arkhipov in~\cite{bosonsampling} (AA). None of
 development or complexity analysis of this algorithm is my own work, but it
 provides useful context for material in chapter~\ref{ch:DirectDialling} and
@@ -205,7 +215,7 @@ imply the same collapse of the polynomial hierarchy.
 Against the better known challenger to the ECT, using Shor's algorithm to factor
 large numbers, this actually compares very favourably. If somebody were to
 announce tomorrow that they had developed a classical algorithm that could
-factor numbers in polynomial time, this would have profound implications on
+factor numbers in polynomial time, the news would be very disruptive to
 everyday life (and quantum computing research budgets) but it wouldn't have a
 profound effect on complexity theory. A single decision problem (factoring)
 would have to be moved from NP to P. We already know that factoring is not
@@ -221,16 +231,16 @@ The linear optics circuit on \(m\) modes is described by an \(m \by m\) unitary
 matrix, \(\mat{U}\). We inject \(p\) photons into the first \(p\) input modes
 and detect on all output modes. There are \(\comb{m+p-1}{p}\) possible output
 configurations, of which \(\comb{m}{p}\) occupy the \emph{collision-free
-subspace}, that is, no mode contains more than one photon.
+subspace} i.e.\ where no mode contains more than one photon.
 
 In order to calculate the probability of any detection event, we take the
 indices of occupied input modes, \(\left\{ s_{0}, s_{1}, \dots, s_{p-1} \right\}
 \) (usually assumed to be \(0, 1, \dots p-1\) without loss of generality) and
 the indices of occupied output modes, \(\left\{ t_{0}, t_{1}, \dots, t_{p-1}
 \right\}\). From the unitary \(\mat{U}\), we select rows corresponding to the
-output modes and columns corresponding to the output modes, and take the
-submatrix defined by the intersections, \(\mat{U}_{ST}\). The probability of the
-event is the absolute square of the permanent of this submatrix, \(\abs{
+output modes and columns corresponding to the input modes, and take the
+submatrix \(\mat{U}_{ST}\) defined by their intersections. The probability of
+the event is the absolute square of the permanent of this submatrix, \(\abs{
 \perm \of{ \mat{U}_{ST} }} \). This process is illustrated in
 figure~\ref{fig:BosonSampling}.
 
@@ -277,7 +287,7 @@ factoring is the prime factors, since these can be efficiently multiplied
 together to verify correct operation. Tasks outside NP have no such guarantee.
 This difficulty was raised in the original proposal by Aaronson and Arkhipov,
 and highlighted again by Gogolin et al \cite{gogolin}, who showed that under
-certain circumstances it would be information-theoreticaly impossible to
+certain circumstances it would be information-theoretically impossible to
 distinguish the output of a Boson Sampler from that of a uniform sampling of the
 configuration space. In chapter~\ref{ch:QCV} I describe methods to address this
 problem, and gain some confidence in the correct operation of a \bosonsampling{}
