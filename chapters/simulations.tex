@@ -89,8 +89,8 @@ perform meaningful quantum simulations.
   \includegraphics{figures/circuit.pdf}
   \caption[A schematic of the bulk optics circuit used for simulations.]
   {A schematic of the bulk optics circuit. Two photons are injected at
-  the left of the circuit in orthogonal polarisations (\(\ket{H}\) indicates
-  horizontal and \(\ket{V}\) indicates vertical), using an in-fibre polarising
+  the left of the circuit in orthogonal polarisations (H indicates
+  horizontal and V indicates vertical), using an in-fibre polarising
   beamsplitter (PBS) to combine the two photons into a single path. The circuit
   operates in a combined path/polarisation encoding, where polarising beam
   displacers (PBD) are used to convert between the two. Operations are performed
@@ -100,7 +100,8 @@ perform meaningful quantum simulations.
   single photon avalanche diodes. We label the detectors A through D.}
   \label{fig:circuit}
 \end{figure}
-The results in this chapter were obtained using the bulk optics circuit shown in
+All simulations of molecular vibrations and the 2-site \(\pt\)-symmetric model
+were performed using the bulk optics circuit shown in
 figure~\ref{fig:circuit}. This circuit allows complete reconfigurability and
 arbitrary control over two photons in four optical modes. Operationally, it is
 similar to the scheme in~\cite{reck} (introduced in
@@ -116,7 +117,7 @@ phase that would not be detected by any experiment. More detail on the
 calibration of the circuit is provided in chapter~\ref{ch:QCV}.
 
 Up to two photons can be injected at the input, initially in orthogonal
-polarisations, \(\ket{H}\) and \(\ket{V}\). The operation performed on the
+polarisations, horizontal, H and vertical, V. The operation performed on the
 photons' state is described by a \(4 \by 2\) unitary (only 2 columns are
 required because there are only 2 inputs),
 \begin{align}
@@ -130,25 +131,20 @@ required because there are only 2 inputs),
     U \ket{H} = \ket{\vec{t}}
   \end{array}
 \end{align}
-We refer to the final state of the photon injected in the \(\ket{V}\) mode as
-the \emph{quart} and the final state of the photon injected in the \(\ket{H}\)
+We refer to the final state of the photon injected in the V mode as
+the \emph{quart} and the final state of the photon injected in the H
 mode as the \emph{trit}. At the end of the circuit we detect photons in each of
 the four modes. We can perform either single photon counting or photon
 coincidence detection.
 
-The reconfigurability of our circuit is obtained by joint path/polarisation
-operations. We can control the amplitudes at the output with half waveplates
-(HWPs), and the phases with a series of three waveplates (QHQ): a half waveplate
-between two quarter waveplates with the optic axis orientated at 45 degrees.
-We use beam displacers (BDs) to convert between path and polarisation and
-implement very stable Jamin-Lebedeff interferometers, while
-polarisation-sensitive detection is achieved with in-fibre polarising
-beamsplitters (PBS) and single-photon avalanche diodes (SPADs).
-
 \subsection{Integrated platform}
-This is realised in integrated optics, using thermo-optic phase shifts and Mach
-Zehnder interferometers (MZIs) to achieve the necessary reconfigurability.
-\todo{Describe the integrated Reck scheme here.}
+The simulation of the 3-site \(\pt\)-symmetric model requires a larger circuit,
+since the dilation of a \(3 \by 3\) non-unitary matrix may require up to 6
+dimensions. At this point it is already becoming clear that scaling up the bulk
+optical circuit is impractical; fortunately integrated optics provides a
+solution. We use a \(6 \by 6\) integrated circuit to perform the simulations.
+All optical modes are realised in path and reconfigurability is achieved with
+thermo-optic phase shifts and Mach Zehnder interferometers.
 
 \section{Data Analysis}
 \subsection{Presentation of Data}
@@ -157,9 +153,6 @@ Zehnder interferometers (MZIs) to achieve the necessary reconfigurability.
 mention the scale factor in \(\pt\) section.}
 
 \subsection{Figures of Merit}
-\todo{Move any definition of figures of merit (trace distance and Kolmogorov
-distance here.}
-
 To evaluate the fidelity of our simulations, we look at two measures. The first
 is a trace distance between the unitary matrix that we intended to implement,
 and the matrix that we in fact did implement, according to the data we collect
@@ -170,9 +163,10 @@ The second measure we use compares (normalised) discrete probability
 distributions, \(p\) and \(q\). This fidelity is computed as:
 \[F=1-\frac{1}{2}\sum_{i}\abs{p_{i}-q_{i}}\]
 This can be computed for the single photon data without any normalisation, since
-detection probabilities in the four modes \(S_1\),\(S_2\),\(E_1\) and \(E_2\)
-must sum to 1. In the case of coincidences, we only measure 6 out of the 10
-possible pairings, so we must normalise these to 1 before computing the
+detection probabilities across all output modes must sum to 1. In the case of
+coincidences, we only measure a subset of the possible detection events (in
+particular, we exclude the events where more than one photon occupies a single
+mode) so we must normalise the measured subset to 1 before computing the
 fidelity.
 
 \section{Molecular Vibrations}

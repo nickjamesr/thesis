@@ -16,8 +16,8 @@ set multiplot
   text "PBS" at 57*fig_m,48*fig_m
   text "prism" at 57*fig_m,40*fig_m
   # Label inputs
-  text "\(\left|V\right\rangle\)" at 5*fig_m,15*fig_m
-  text "\(\left|H\right\rangle\)" at 0*fig_m,2*fig_m
+  text "\textbf{V}" at 5*fig_m,15*fig_m
+  text "\textbf{H}" at 0*fig_m,2*fig_m
   # Label detectors
   text "\textbf{A}" at 93*fig_m,13*fig_m
   text "\textbf{B}" at 102*fig_m,22*fig_m
