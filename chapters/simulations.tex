@@ -4,15 +4,16 @@ In this chapter I discuss two instances of linear optical quantum simulations.
 The first is a full simulation of the time evolution of vibrational excitations
 in molecules. This work is being prepared for publication in \cite{molecules},
 with co-authors Enrique Mart\'in L\'opez, Chris Sparrow Jeremy O'Brien and
-Anthony Laing. The physical platform used in this simulation was a bulk optics
-circuit built by Enrique, which I calibrated. The experiment was planned by
-Enrique and data was collected by me and Chris Sparrow. I performed the data
-analysis.
+Anthony Laing. Some material appears in Enrique's PhD thesis \cite{enrique}. The
+physical platform used in this simulation was a bulk optics circuit built by
+Enrique, which I calibrated. The experiment was planned by Enrique and the
+overall project was supervised by Anthony. Data was collected by me and Chris
+Sparrow and analysed by me.
 
 The second simulation moves away from closed quantum systems obeying Hermitian
 dynamics and considers a more abstract system of bosons obeying (non-Hermitian) 
 PT-symmetric dynamics. This work is being prepared for publication in
-\cite{pt-prep} with co-authors Yogesh Jonglekar, Chris Sparrow, Chris Harrold,
+\cite{pt-prep} with co-authors Yogesh Joglekar, Chris Sparrow, Chris Harrold,
 Jeremy O'Brien and Anthony Laing. The theory for this section (the
 \(\pt\)-symmetric model) was developed by Yogesh and I planned the experiment.
 Two physical platforms were used: the bulk optics circuit used for the molecules
@@ -21,29 +22,32 @@ by me and Chris Sparrow; Chris Harrold took data on the integrated circuit.
 
 \section{Introduction}
 \label{sec:SimIntro}
-Simulation of quantum systems, often the electronic energy states of molecules,
+Simulation of quantum systems, for example calculation of the electronic energy
+states of molecules,
 is a major challenge for classical computers, with even the fastest algorithms
 falling short of polyomial scaling with the system size. Approximations can be
-pretty good, but in the case of simulations of catalyst molecules, fall short
+pretty good, but cases such as the simulation of catalyst molecules, fall short
 of the required precision for useful theoretical conclusions. \todo{This is
 mostly based on the presentation at Microsoft - find some citations.} A solution
 was proposed by Feynman \cite{qsim-feynman} in the early days of quantum
 information science: use a quantum system to simulate other quantum systems.
 Further study of quantum computing has formalised this idea and we now
-understand that if we had sufficient control over one quantum system to build a
-universal quantum computer, we could program it to simulate any other quantum
-system.
+understand that if we had sufficient control over one non-trivial quantum systemto build a universal quantum computer, we could program it to simulate any other
+quantum system.
 
 I will refer to this method of simulation as \emph{digital} quantum simulation,
 since it translates the dynamics of the simulated system into operations on
-qubits: digital quantum information. The advantage of digital simulation is that
-it is independent of the physical system implementing the qubits, which could be
-anything from trapped ions to guided photons. Indeed, simulations of small
-molecules have been performed in this way in linear optics~\cite{qsim-peruzzo}
-and NMR~\cite{qsim-du} platforms \todo{and others?} This advantage is offset by
-the large resource overheads required for the encoding. While some progress has
-been made in reducing the overheads~\cite{qsim-poulin}, like any application
-involving digital quantum computing, the technical challenge remains formidable.
+qubits: digital quantum information. The main advantage of digital simulation is
+that it is implemented on a quantum computer, for which error correcting
+algorithms provide a path for scalability. A further advantage is that
+algorithms can be devised independently of the physical system implementing the
+qubits, which could be anything from trapped ions to guided photons. Indeed,
+simulations of small molecules have been performed on such diverse platforms as
+linear optics~\cite{qsim-peruzzo} and NMR~\cite{qsim-du}. \todo{and others?}
+However these advantages are currently offset by the large resource overheads
+required for the encoding. While some progress has been made in reducing the
+overheads~\cite{qsim-poulin}, like any application involving digital quantum
+computing, the technical challenge remains formidable.
 
 An alternative approach to quantum simulation is the \emph{analogue} simulator.
 While digital quantum simulation can be compared to modelling planetary motions
@@ -51,16 +55,16 @@ on a classical computer, analogue simulation bears more resemblance to an
 orrery: a mechanical system that actually moves models of the planets. This may
 seem like a primitive approach to simulation, but it has the advantage of
 leveraging properties of the simulator to reduce the overheads in performing the
-simulation. In this chapter, I discuss how to take advantage of the properties
-of photons in linear optics to perform simulations of other systems of
-non-interacting bosons without the overheads of a universal quantum computer.
+simulation (at the cost of abandoning known methods for error correction). In
+this chapter, I discuss how to take advantage of the properties of photons in
+linear optics to perform simulations of other systems of non-interacting bosons
+without the overheads of a universal quantum computer.
 
 By way of introduction, consider four broad categories of quantum objects.
 First, group by exchange symmetry: Fermions and Bosons, then by interactions:
 particles can interact with each other (e.g. charged particles via the
-electromagnetic force) or not. If we can perform accurate simulations of
-interacting systems, fermionic or bosonic, then we can simulate any quantum
-system: this would effectively require a universal quantum computer. When
+electromagnetic force) or not. Full simulation of arbitrary interacting systems
+is believed to have the same requirements as a general quantum computer. When
 interactions can be ignored, we have a much more limited simulator, and if we
 are further restricted to non-interacting Fermions, the system can be simulated
 classically \todo{citation needed}. The final category---non-interacting
@@ -72,8 +76,8 @@ Photons belong to this final class: they are Bosonic particles, and infamously
 non-interacting (proposals for universal photonic quantum computers rely on
 effective interactions via detection~\cite{klm}). The implication of this is
 that with a relatively simple quantum computer (a system of photons in a large
-interferometer) we can go beyond \bosonsampling{} and perform meaningful quantum
-simulations.
+interferometer) we can go beyond the original \bosonsampling{} algorithm and
+perform meaningful quantum simulations.
 
 \section{Experimental Setup}
 \subsection{Bulk Optics}
@@ -211,7 +215,7 @@ simulated by our system.
 \subsection{Application to Molecules}
 We have four optical modes, which allows us to simulate 4-level molecules
 exactly. In general, a completely asymmetric \(n\)-atom molecule will have \(3
-\left(n-2\right)\) vibrational states (the remaining 6 degrees of freedom are
+n-6\) vibrational states (the remaining 6 degrees of freedom are
 uniform translation in three directions and rotation about three axes). A linear
 molecule has rotational symmetry about one axis; in this case the rotational
 mode about this axis of symmetry is composed of (degenerate) bending modes and
