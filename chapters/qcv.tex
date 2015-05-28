@@ -14,7 +14,7 @@ is presented in this chapter.
 A large part of the verification section is based on my contributions to an
 experiment published in~\cite{verification}, in which I was one of several
 co-authors. In this publication, I performed a Bayesian model analysis on a
-\bosonsampling experiment and developed the theory of the `bosonic clouding'
+\bosonsampling{} experiment and developed the theory of the `bosonic clouding'
 phenomenon presented as a general verification procedure. Finally, I present a
 similar Bayesian model analysis applied to 6-photon data, which will appear in
 the publication~\cite{bigreck}, on which I am one of several co-authors. While I
@@ -100,13 +100,14 @@ phases, but the effect is the same.
 This simple case of crosstalk is not particularly hard to deal with, since its
 effect can be precisely predicted in terms of ideal components. I will refer to
 this scenario as type I crosstalk. More complicated cases (type II crosstalk)
-concern couplings between components due to imperfect components or
+concern couplings due to imperfect components or
 isolation. For example, when using thermo-optic phase shifts in integrated
 optics, the heaters are not perfectly thermally isolated. Increasing the voltage
-on one heater could cause a phase shift elsewhere. In addition to this, the
+on one heater could cause a phase shift in nearby components. In addition to
+this, the
 voltage controllers for the heaters may not be perfectly electrically isolated:
 an increase in one voltage could cause a shift in voltages elsewhere. Unlike the
-thermal crosstalk, the effect of electrical crosstalk may not even be well
+thermal crosstalk, the effect of electrical crosstalk may not even be
 localised. These effects are generally unique to a particular device, and must
 be dealt with on a case-by-case basis. I will now discuss a practical example of
 calibrating a device in the presence of multiple varieties of crosstalk.
@@ -211,12 +212,7 @@ benchmarking. This testing procedure (also seen, for example,
 in~\cite{peteschip}) is popular when the device being tested exhibits a high
 degree of reconfigurability. By taking random samples throughout the entire
 parameter space, we gain a degree of confidence that the device will work well
-in any configuration. The drawback of the procedure (as I describe with a
-specific example in chapter~\ref{ch:Simulations}) is that there can be small
-regions of the configuration space where the device consistently
-underperforms, which are unlikely to be detected by the randomised benchmarking.
-
-I took all the data presented in this section, and performed the analysis.
+in any configuration.
 
 The data taken consist of single photon detection statistics and two photon
 correlations. For the single photon data, we can inject in two possible input
@@ -252,30 +248,19 @@ figure~\ref{fig:benchmarking} for a single random matrix.
   \label{fig:benchmarking}
 \end{figure}
 
-To assess the performance of the circuit, we consider several fidelity measures.
-First, we can take the four distributions described above, \(\vec{q}\),
-\(\vec{t}\), \(\vec{Q}\) and \(\vec{C}\) and compare them to the expected
-distributions using the Kolmogorov distance:
+To assess the performance of the circuit, we consider the same fidelitiy
+measures as in chapter~\ref{ch:Simulations}. Normalised probability
+distributions are compared using the Kolmogorov distance:
 \begin{equation}
   \Delta \of{ p,p^{\prime} } = \frac{1}{2} \sum_{i} \abs{p_{i} - p_{i}^{\prime}}
 \end{equation}
-This measure is only applicable to properly normalised distributions, so we
-normalise the partial distributions \(\vec{Q}\) and \(\vec{C}\) to one for this
-calculation.
-
-The other distance measure is the trace distance between the intended unitary,
-\(\mat{U}\), and the unitary that was actually applied, \(\mat{U}^{\prime}\).
-The unitary that was applied is estimated from the measurements described, plus
-measurements of the relative efficiency of the four detectors. The trace
-distance that we use is:
+and unitary matrices are compared using the trac distance
 \begin{equation}
   \frac{1}{2} \Tr \of{ \mat{U}^{\dagger} \mat{U}^{\prime} }
 \end{equation}
 where the factor of \(2\) is required because only two columns of the unitary
-are considered.
-
-The mean and standard deviations of each of these measures over the 12 random
-unitaries are summarised below:
+are considered. The mean and standard deviations of each of these measures over
+the 12 random unitaries are summarised below:
 
 \begin{tabular}{|c|c|c|c|c|}
   \hline
@@ -375,10 +360,12 @@ observed event, which depends on the input state, \(\ket{S}\), the output state
 formed by the intersections of the rows \(t_{0}, \dots, t_{p-1}\) and the
 columns \(s_{0}, \dots, s_{p-1}\). The permanent of this matrix (with
 appropriate normalisation if there is multiple occupancy of any mode) would give
-us the trasfer element \(\left\langle T \middle| \mat{U} \middle| S
-\right\rangle\). The value of \(\rstar\) is correlated with the permanent, but
-can be computed efficiently by taking the norm of each row in
-\(\mat{U}_{ST}\), then taking the product of these norms.
+us the transfer element \(\left\langle T \middle| \mat{U} \middle| S
+\right\rangle\). The value of \(\rstar\) can be computed efficiently by taking
+the norm of each row in \(\mat{U}_{ST}\), then taking the product of these
+norms. It has power to discriminate between uniform sampling and
+\bosonsampling{} because its value correlates with the permanent of the
+submatrix.
 
 Over a set of samples the distribution of values of \(\rstar\) is different for 
 events produced by a
@@ -444,15 +431,10 @@ Classical models, respectively. The denominator \(\prob{P} \of{E} =
 normalisation.
 
 The data are presented in figure~\ref{fig:sixphoton}, after 14 indistinguishable
-and 34 distinguishable events have been collected. After 14 events we are 99.8\%
-confident that the quantum data come from indistinguishable photons and 99.9\%
-confident that the classical data come from indistinguishable photons,
-demonstrating the power of this method.
-
-The data
-for this section were collected by PhD student Chris Harrold, and the detection
-probabilities were computed by PhD student Jacques Carolan. I performed the
-Bayesian analysis.
+and 34 distinguishable events have been collected (17 days of experimental
+time). After 14 events we are 99.8\% confident that the quantum data come from
+indistinguishable photons and 99.9\% confident that the classical data come
+from indistinguishable photons, demonstrating the power of this method.
 
 \subsection{Bosonic Clouding}
 \label{sec:Clouding}
@@ -472,22 +454,24 @@ Bayesian analysis.
   experimental data; (a) and (c) (blue) are quantum data, i.e. indistinguishable
   photons; (b) and (d) (red) are classical i.e. photons made distinguishable by
   introducing a time delay.\\
-  (Plots by Pete Shadbolt, used with permission.)}
+  (Graphic by Pete Shadbolt, used with permission.)}
   \label{fig:clouds3d}
 \end{figure}
 In a multi-photon quantum walk, we observe a phenomenon where photons tend to
-appear in nearby output modes. This is distinct from \emph{bosonic bunching},
-where multiple photons appear in the same output mode. This is illustrated for
-the case of a 3-photon, 21-mode quantum walk in figure~\ref{fig:clouds3d}. It
-is clear from the figure that the events produced with indistinguishable photons
-(blue, a and c) tend to occur with all photons in nearby modes. On the other
-hand, when distinguishing degrees of freedom (e.g. a temporal delay) are
-introduced between the photons (red, b and d), the clouds dissipate. Bosonic
-clouding thus appears to be the result of constructive interference.
+appear in nearby output modes (distinct from \emph{bosonic bunching},
+where multiple photons appear in \emph{the same} output mode). This is
+illustrated for the case of a 3-photon, 21-mode quantum walk in
+figure~\ref{fig:clouds3d}. It is clear from the figure that the events produced
+with indistinguishable photons (blue, a and c) tend to occur with all photons
+in nearby modes. On the other hand, when distinguishing degrees of freedom
+(e.g. a temporal delay) are introduced between the photons (red, b and d), the
+clouds dissipate and detection events are distributed much more uniformly
+through the configuration space. Bosonic clouding thus appears to be the result
+of quantum interference.
 
-We quantify this phenomenon by assigning to each event, a number \(c\) between
+We quantify this phenomenon by assigning to each event a number \(c\) between
 -1 and 1, depending on where in the device the photons exit. Suppose the optical
-modes are labelled from left to right from 0 to \(m-1\). If all the photons exit
+modes are labelled left to right from 0 to \(m-1\). If all the photons exit
 in the left half of the device (modes 0 to \(m/2-1\)) or all photons exit in the
 right half of the device (modes \(m/2\) to \(m-1\)), this is \emph{fully
 clouded}, and is assigned a value \(c=1\). If exactly half the photons exit in
@@ -500,8 +484,11 @@ than (b) and (d).
 
 In the experiment reported in~\cite{verification}, we use this parameter
 \(\clouding\) to demonstrate the presence of the clouding phenomenon in a
-5-photon, 21-mode quantum walk, from just a few hundred \todo{how many?} events.
-The results of this experiment are summarised in figure~\ref{fig:clouding}.
+5-photon, 21-mode quantum walk, from just a few hundred events (380
+distinguishable and 198 indistinguishable). The results of this experiment are
+summarised in figure~\ref{fig:clouding}, where a clear divide between quantum
+(indistinguishable) and classical (distinguishable) events is resolved by
+the parameter \(\clouding\).
 
 \begin{figure}[h]
   \centering
@@ -558,7 +545,7 @@ Since the full configuration space for 14 photons in 196 modes is approximately
 involves evaluating the permanent of a \(14 \by 14\) complex matrix, it is not
 feasible to simply sum all the probabilities in any quadrant. This brute-force
 approach is quick for 5 photons in 25 modes, possible up to 7 photons in 49
-modes, but not beyond this: thus is the nature of exponential (combinatorial)
+modes, but not beyond this: such is the nature of exponential (combinatorial)
 scaling. Instead, I perform a Monte-Carlo integration, evaluating probabilities
 for a handful (\(10^{6}\), for the 14 photon simulation in
 figure~\ref{fig:bigclouds}) of events from each quadrant and taking the average

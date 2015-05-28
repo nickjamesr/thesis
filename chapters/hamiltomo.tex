@@ -5,8 +5,10 @@ In this chapter I discuss a procedure that I developed to determine the
 non-interacting bosons in a discrete space. The results are being prepared for
 publication in \cite{hamiltomo}, with co-authors Jacques Carolan, Chris Harrold,
 Anthony Laing and Jeremy O'Brien. My contribution to this publication is the
-theory of the method, and analysis of the data. Data was taken by Jacques and
-Chris.
+theory of the method (including wavelength shifting as a control over effective
+evolution time) and analysis of the data. The construction and wavelength
+shifting of the variable wavelength source was done by Jacques, and Jacques and
+Chris took most of the data.
 
 \section{Introduction}
 \label{sec:HTIntro}
@@ -41,7 +43,7 @@ polynomially with the number of photons, \(p\). This means that a full
 description of the device can be expressed in only \(m^{2}\) real
 parameters\footnote{An \(m \by m\) unitary matrix is normally written in terms
 of \(m^{2}\) complex numbers (therefore \(2m^{2}\) real parameters) but the
-constraints of unitary remove half of these.}. In SST, Laing and O'Brien
+unitarity constraints remove half of these.}. In SST, Laing and O'Brien
 present a method for determining all of these parameters experimentally, with
 measurements of single photons (or equivalently coherent states) and photon
 pairs. No higher photon numbers are required.
@@ -155,6 +157,8 @@ operator, \(\mat{U}\) and the Hamiltonian is:
   \label{eq:exponential}
   \mat{U} \of{t} = e^{-i \mat{H} t}
 \end{equation}
+(where the factor of \(\hbar\) in the denominator has been subsumed into the
+units of \(\mat{H}\)).
 
 Now consider taking the time derivative of this expression:
 \begin{equation}
@@ -206,7 +210,7 @@ on each of the phases in an integrated Reck scheme}. The black line shows the
 scaling of reconstruction error with step size \(\dt\) in an ideal (noiseless)
 system, which decreases as \(\dt^{2}\) as expected for a 3-point numerical
 derivative. In the presence of noise, this scaling only applies to a point,
-after which furter reductions in \(\dt\) result in \emph{more} error in the
+after which further reductions in \(\dt\) result in \emph{more} error in the
 reconstruction rather than less. The reason for this behaviour is that beyond
 the optimum, the difference between the two unitaries in the term \(\left(
 \mat{U} \of{t+\dt} - \mat{U} \of{t-\dt} \right)\) gets smaller than the noise
@@ -231,10 +235,7 @@ effective evolution time is proportional to the optical path length of the
 coupling region. We cannot easily vary the physical length of the coupling
 region \cite{walks-jasmin} but by varying the wavelength of the light, we can
 change the optical length. We use this technique on a 21 mode continuously
-coupled quantum walk to obtain the results in this section. Note that the setup
-and wavelength shifting of the source, and most of the data acquisition was was
-done by Jacques Carolan. I did the remaining data acquisition and all the data
-analysis.
+coupled quantum walk to obtain the results in this section.
 
 The construction of the quantum walk allows coupling between nearest-neighbour
 waveguides with negligible longer range couplings. The chip that we use is
@@ -275,8 +276,14 @@ and detecting in all modes. The latter is easier since we generally have
 detectors on all output modes.
 
 The quantum walk exhibits some features that aid in the reconstruction process.
-Notably, when we apply the real border to the unitary, all elements become real,
-regardless of the choice of reference. Deduction of the phases of the unitary
+Note that given a unitary description of an optical component (which may be an
+integrated circuit implementing a quantum walk), if we only prepare and measure
+in the computational basis, any row or column of the unitary can be multiplied
+by a phase (unit-modulus complex number), while providing a good description
+of any measurements we make. By carefully choosing a series of such operations,
+we may always make all elements in one row and one column real. In the case of a
+quantum walk, performing this set of operations for \emph{any} row and column
+makes all elements real. Deduction of the phases of the unitary
 elements reduces to deciding the sign, which only requires us to distinguish
 between a dip and an antidip rather than measuring the visibility accurately. We
 also benefit from the simplification that ignoring phase information and using
@@ -308,11 +315,13 @@ and (8,4), but does not persist for all choices. This can't be assigned just to
 the effect described in section~\ref{sec:SST} where more zeros in the references
 result in a worse reconstruction: the choices with the fewest zeros are (9,3)
 and (9.4). Instead, I will argue that it is may be due to an inappropriate step
-size for the noise present in the experiment.
+size for the noise present in the experiment, and is partly a consequence of the
+bosonic clouding presented in chapter~\ref{ch:QCV}.
 
-I determine the time difference by fitting single photon data (since these are
-the most reliable) to an existing model of the Hamiltonian \todo{where did Pete
-get this?} for a range of times. At each time a distance between the power
+I determine the time difference by fitting single photon data to an existing
+model of the Hamiltonian (obtained by classical optimisation of coupling
+parameters to fit single photon data at a different wavelength)
+for a range of times. At each time a distance between the power
 distributions (mean Kolmogorov distance) is computed and the minimum distance is
 assumed to correspond to the best estimate of the evolution time. The results
 are shown in figure~\ref{fig:tevol}, from which we deduce that the effective
@@ -359,12 +368,14 @@ Second, the signs of the elements (with respect to a reference) are deduced from
 range of time delays around zero, and decide whether it is a dip (destructive
 interference) or antidip (constructive interference). In the simulation, I look
 at the count rate at the centre of the dip (\(Q\)) and far away from the dip
-(\(C\)), and add Poissonian noise to both of these values. If \(Q<C\), it is
-considered a dip; if \(Q>C\) it is an antidip. The simulation in
-figure~\ref{fig:hamiltoniansim} uses a rather optimistic \(10^{8}\) photon pairs
-for each observation. This is well above the count rates observed in the lab,
-but is deliberately high to take into account the additional information gained
-from scanning over values rather than just looking at two points.
+(\(C\)), and add Poissonian noise to both of these values to obtain
+approximations \(\tilde{Q}\) and \(\tilde{C}\). If \(\tilde{Q}<\tilde{C}\), it
+is considered a dip; if \(\tilde{Q}>\tilde{C}\) it is an antidip. The simulation
+in figure~\ref{fig:hamiltoniansim} uses a rather optimistic \(10^{8}\) photon
+pairs for each observation. This is well above the count rates observed in the
+lab, but is deliberately high to take into account the additional information
+gained from scanning over values rather than just looking at two points. Even
+so, figure~\ref{fig:hamiltoniansim} can be considered a best case scenario.
 
 The results of the simulation demonstrate that under the experimental
 conditions, we would not expect to reliably observe tridiagonal character in the
