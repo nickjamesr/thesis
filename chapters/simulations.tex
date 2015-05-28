@@ -55,7 +55,9 @@ on a classical computer, analogue simulation bears more resemblance to an
 orrery: a mechanical system that actually moves models of the planets. This may
 seem like a primitive approach to simulation, but it has the advantage of
 leveraging properties of the simulator to reduce the overheads in performing the
-simulation (at the cost of abandoning known methods for error correction). In
+simulation (at the cost of abandoning known methods for error correction) and
+may be a quicker route to outperforming classical algorithms
+\cite{qsim-analogue}. In
 this chapter, I discuss how to take advantage of the properties of photons in
 linear optics to perform simulations of other systems of non-interacting bosons
 without the overheads of a universal quantum computer.
@@ -199,8 +201,8 @@ by Chris Sparrow, who I instructed in the use of the circuit.
 In classical physics, systems of coupled oscillators can be analysed in terms of
 their normal modes, representing collective motions of the individual
 oscillators with well-defined frequencies. If the magnitude of the oscillation
-is large, the excitation of one normal mode will shift the frequency of other
-normal modes: a kind of interaction. However, in the limit of small
+is large, the excitation of one normal mode can shift the frequency of other
+normal modes, a kind of interaction. However, in the limit of small
 oscillations, this shift vanishes and the normal modes do not interact. We call
 this the harmonic limit.
 
@@ -213,7 +215,8 @@ phonons. In the harmonic limit, these phonons do not interact, and can thus be
 simulated by our system.
 
 \subsection{Application to Molecules}
-We have four optical modes, which allows us to simulate 4-level molecules
+In the bulk optics circuit we have four optical modes, which allows us to
+simulate 4-level molecules
 exactly. In general, a completely asymmetric \(n\)-atom molecule will have \(3
 n-6\) vibrational states (the remaining 6 degrees of freedom are
 uniform translation in three directions and rotation about three axes). A linear
@@ -256,10 +259,11 @@ of the evolution of the vibrational state of the molecules.
 The only aspect of the simulation to be determined is the preparation and
 measurement basis. If we prepare or measure in the any of the eigenmodes, the
 time evolution will be trivial; more interesting simulations are derived when
-the preparation and measurement basis are different. Suppose that the unitary
+the preparation and measurement basis both differ from the diagonal basis.
+Suppose that the unitary
 operators mapping the computational basis to the preparation and measurement
 bases are \(\mat{V}_{\prep}\) and \(\mat{V}_{\meas}\), respectively. Then the
-unitary operator that we have to dial into our circuit to model the evolution of
+unitary operator describing the evolution of
 the state for a time \(t\) is:
 \begin{equation}
   \mat{U} \of{t} = \mat{V}_{\meas}^{\dagger} \cdot e^{-i \mat{H} t/\hbar} \cdot
@@ -314,8 +318,8 @@ systems---classical or quantum---with balanced, spatially separated loss and
 gain. They have been used to theoretically investigate vortex hopping in
 superconductors \cite{naomichi-physrevlett-77-570},
 statistical mechanics of Coulomb gases \cite{gulden-jetp-117-517} and
-Non-equilibrium superconductivity \cite{rubinstein-physrevlett-99-167003,
-serbyn-physrevb-87-020501}. During the past three years, the \(\pt{}\)
+non-equilibrium superconductivity \cite{rubinstein-physrevlett-99-167003,
+serbyn-physrevb-87-020501}. In recent years, the \(\pt{}\)
 symmetry breaking has been experimentally investigated in classical systems
 including two optical waveguides \cite{pt-ruter}, electrical circuits
 \cite{schindler-physreva-84-040101}, mechanical systems
@@ -345,7 +349,14 @@ simulating non-Hermitian Hamiltonians.
   \centering
   \includegraphics{figures/manifolds}
   \caption[Manifolds showing evolution of the PT-symmetric system]
-  {Manifolds showing evolution of the \(\pt{}\)-symmetric system.}
+  {Manifolds showing evolution of the \(\pt{}\)-symmetric system. In each case,
+  the state is initialised with a single excitation in the system loss mode
+  \(S_{0}\). The time evolution of the occupation of mode \(S_{0}\) is shown
+  for a range of \(\gamma\), where \(\gamma < 1\) is the \(\pt\) symmetric
+  region and \(\gamma > 1\) is the \(\pt\) broken. Lines show the values of
+  \(\gamma\) (0.95,1.0,1.05) that we have used in the experiment. In (a)
+  unnormalised occupations are shown on a logarithmic scale, while in (b) the
+  occupations have been normalised and experimental data are shown as points.}
   \label{fig:manifolds}
 \end{figure}
 
@@ -420,7 +431,7 @@ We can expand this model to a 3-site system, where the Hamiltonian is given by:
 \begin{equation}
   \mat{H}_{3} = \begin{pmatrix}
     i \gamma & -\eta & 0 \\
-    -\eta & 0 -\eta \\
+    -\eta & 0 & -\eta \\
     0 & -\eta & -i \gamma \\
   \end{pmatrix} = \mat{H}_{3}^{\transpose} \neq \mat{H}_{3}^{\dagger}
 \end{equation}
@@ -473,14 +484,14 @@ size being sufficient is that each system mode needs only one loss/gain channel
 to realise arbitrary dynamics: adding more does not provide any additional
 freedom.
 
-The top left corner contains the matrix
-\(\mat{G}_{s}\), which describes motion within the system and the bottom right
-corner (\(-\mat{G}_{s}^{\dagger}\)) describes motion within the environment.
-Since \(\mat{G}_{s}=\exp \of{-i\mat{H}t}\), the evolution of the environment,
-\(\mat{-G}_{s}^{\dagger}=-\exp \of{i\mat{H}t}\), or the time-reversal of the
-system's evolution (with a constant phase). The cross terms, \(\mat{D}
-\of{\mat{G}_{s}}\) and \(\mat{D} \of{\mat{G}_{s}^{
-\dagger}} \), describe the coupling between the system and environment. If
+The top left corner contains the matrix \(\mat{G}_{s}\), which describes
+dynamics within the system and the bottom right corner
+(\(-\mat{G}_{s}^{\dagger}\)) describes dynamics within the environment.
+Since \(\mat{G}_{s}=\exp \of{-i\mat{H}t/\hbar}\), the evolution of the
+environment, \(\mat{-G}_{s}^{\dagger}=-\exp \of{i\mat{H}t/\hbar}\) is the
+time-reversal of the system's evolution (with a constant phase). The cross
+terms, \(\mat{D} \of{\mat{G}_{s}}\) and \(\mat{D} \of{\mat{G}_{s}^{ \dagger}}
+\), describe the coupling between the system and environment. If
 \(\mat{G}_{s}\) is already unitary, this coupling disappears, as expected:
 unitary evolution applies to a closed system.
 
@@ -488,7 +499,7 @@ A consequence of this simulation method is that there is no effective
 Hamiltonian that models the evolution of the closed system, i.e. no matrix
 \(\mat{H}_{\eff}\) can satisfy
 \begin{equation}
-  U\of{t} = e^{-i\mat{H}_{\eff}t}
+  U\of{t} = e^{-i\mat{H}_{\eff}t/\hbar}
 \end{equation}
 for all times \(t\). This is evident when considering the initial time \(t=0\).
 We would require
@@ -611,23 +622,26 @@ normalised probability distributions, and summarised below:
 \end{tabular}
 
 \section{Conclusions}
-\todo{Expand this section. Discussion should concern the following points: 
-(Molecules: real, physical system of interest. Cite Harvard.)
-(Scaling: going from bulk to integrated. Bigger system implies more modes - easy
-in integrated optics.)
-(PT: ``fully quantum'' unlike previous experiments. Demonstration of general
-method for non-Hermitian dynamics)}
+In this chapter I have demonstrated the power of linear optics to bosonic
+excitations in a wide variety of settings. The simulations of vibrational states
+in molecules shows an application to a system of genuine practical use,
+which is beginning to attract wider interest from the physical chemistry
+community \cite{vibronics}. I have also shown how, with a modest increase in
+experimental complexity, open quantum systems can be simulated with the same
+techniques. The procedure employed here generalises beyond the \(\pt\)-symmetric
+systems studied, to any non-Hermitian dynamics of non-interacting bosons. While
+\(\pt\)-symmetric systems have been studied experimentally in the past, the
+results presented here are arguably the first fully quantum simulations,
+compared to (for example) coherent light in \cite{pt-ruter} and
+\cite{pt-regensburger}.
 
-We have therefore demonstrated the ability to simulate the evolution of a 2-site
-\(\pt{}\)-symmetric system in bulk optics and a 3-site \(\pt\)-symmetric system
-in integrated optics, across all regions of the phase
-space. The cost of our implementation using linear optics and unitary dilation
-is a doubling in the number of optical modes required, compared to the dimension
-of the system we are simulating. However, with integrated optics
-\todo{citations}, a constant-factor increase in number of modes is
-straightforward to handle. In addition, our method of simulation allows the
-number of particles to be scaled up, to the point where classical simulations
-may become intractable.
+By going from a bulk optics circuit to an integrated platform, I have
+demonstrated a path to scalability for this kind of simulation. There are no
+clear fundamental obstacles to increasing the size of integrated optics circuits
+to thousands of optical modes, while classical simulations would break down long
+before this. Overall, I conclude that analogue quantum simulation has the
+potential to outperform classical computers before large scale digital quantum
+simulation becomes practical.
 
 \section{Experimental details}
 \label{sec:SimulationExperiment}
