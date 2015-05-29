@@ -789,27 +789,3 @@ For the three-site \(\pt\)-symmetric model, we require six optical modes to
 simulate the non-unitary evolution in three modes. A fully reconfigurable
 circuit in integrated optics is used for this purpose.
 
-\subsection{Data acquisition}
-For each unitary operator that we implement, we take one- and two-photon data.
-The one-photon data are obtained by injecting one photon into the circuit, with
-the other photon from the created pair acting as a herald, and counting
-coincidental detections between them. An integration time of 30 seconds is used
-for each of the two input modes ofthe circuit.
-% NOTE: Remember that we take the one-photon data with 4 detectors, so we first
-% herald with detector A and measure BCD and then herald with detector D and
-% measure ABC.
-The two-photon data consist of injecting both photons simultaneously then
-delaying one photon from the pair with respect to the other to observe the
-quantum to classical transition in photon correlations. This is done for each
-pair of different output ports giving a total of six pairwise data sets in our
-four-mode case. Two-photon data points were taken every 0.02mm over a range of
-0.48mm with 20 seconds integration time.
-
-Finally, we measure the relative detector efficiencies for the circuit. To do
-this, we inject unheralded photons from one arm of the source through the input
-mode \(S_1\), and direct them to each of the output ports in turn. The ratios of
-counts at each of detectors \(S_2\), \(E_1\) and \(E_2\) to the counts at
-detector \(S_1\) (after an integration time of 20 seconds and subtracting the
-background of dark counts) give us the relevant efficiency data. We use this
-measured efficiency data to correct both the one- and two-photon count numbers.
-
