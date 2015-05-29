@@ -642,22 +642,74 @@ are not presented here.
 In order to perform a simulation of the three-site \(\pt\)-symmetric model using
 the method of unitary dilation, we require an optical circuit with six modes.
 Full simulations of the time evolution are performed for two regions of the
-phase space: one below and one above the \(\pt\) threshold. The results of the
-simulation can be seen in figures~\ref{fig:threesitesingles} (single photon
-data) and~\ref{fig:threesitetwofolds} (two photon correlations).
+phase space: one below and one above the \(\pt\) threshold. We now have
+system modes, labelled \(S_{0}, S_{1}, S_{2}\) and the corresponding environment
+modes \(E_{0}, E_{1}, E_{2}\). Again, both single particle
+(figure~\ref{fig:threesitesingles}) and two particle
+(figure~\ref{fig:threesitetwofolds}) simulations are performed, but due to the
+larger set of possible coincidences, only a limited set are shown graphically.
+
+For the single particle simulation, we consider the three cases where the
+particle initially occupies a system mode, and measure occupation of all six
+modes at all stages of the time evolution. The three different input states
+(\(S_{0}, S_{1}, S_{2}\) are shown in the left, centre and right columns of
+figure~\ref{fig:threesitesingles} respectively. When the system is below the
+\(\pt\) symmetry breaking threshold (a), periodic behaviour is observed, and the
+simulation is run for one period. The difference between the three input
+configurations is noticeable in the rate at which the occupation of the initial
+mode drops off. In the case of the gain mode \(S_{0}\), occupation drops slowly
+as a result of the coupling to the adjacent mode \(S_{1}\); in the case of the
+loss mode \(S_{2}\), occupation drops rapidly as a result of loss to mode
+\(E_{2}\).
+
+Above the \(\pt\) symmetry breaking threshold (b), the behaviour is no longer
+periodic. Instead, the photon powers tend to an equilibrium, which when
+multiplied by the scale factor corresponds to an exponential increase in mode
+occupation. Intuitively, this occurs because power gained at mode \(S_{0}\)
+cannot couple through \(S_{1}\) quickly enough to be lost at mode \(S_{2}\).
+Looking at the behaviour near \(t=0\), the initial transfer of power from mode
+\(S_{0}\) to mode \(S_{1}\) appears to be `mediated' by the environment mode
+\(E_{0}\).
+
 \begin{figure}[p]
   \centering
   \includegraphics{figures/threesite_singles}
   \caption[Single photon data from simulation of the 3-site PT symmetric model]
-  {Single photon data from simulation of the 3-site \(\pt\) symmetric model}
+  {Single photon data from simulation of the 3-site \(\pt\) symmetric model with
+  (a) below and (b) above the \(\pt\) symmetry breaking threshold. Occupation of
+  system modes are shown by solid lines; environment modes by dotted lines. The
+  three columns show different initial states. Left: injection in \(S_{0}\)
+  (gain mode); centre \(S_{1}\) (neutral mode); right \(S_{2}\) (loss mode). As
+  with the 2-site data, the scale factor is plotted as a separate black line.}
   \label{fig:threesitesingles}
 \end{figure}
+
+The two particle simulation has been restricted to initial states where both
+excitations are in the system, i.e.\ \(S_{0}S_{1}, S_{0},S_{2}, S_{1}S{2}\)
+(shown in the left, centre and right columns of
+figure~\ref{fig:threesitetwofolds} respectively). The measurements are also
+restricted to a set of six pairs of modes: the three input configurations and a
+further three where \(S_{0}\) and one of the environment modes are occupied
+(\(S_{0}E_{0}, S_{0}E_{1}, S_{0}E_{2}\)).
+
+Below the \(\pt\) symmetry breaking
+threshold (a), the same periodic behaviour is observed as in the single particle
+simulation, and above the threshold (b) the photon powers again tend to an
+equilibrium (corresponding to exponential increase in occupation when the
+unbounded scale factor is taken into account). Other than the case where the
+gain and neutral modes (\(S_{0}S_{1}\)), very little power remains in the
+system.
 
 \begin{figure}[p]
   \centering
   \includegraphics{figures/threesite_pairs}
   \caption[Two photon data from simulation of the 3-site PT symmetric model]
-  {Two photon data from simulation of the 3-site \(\pt\) symmetric model}
+  {Two photon data from simulation of the 3-site \(\pt\) symmetric model, with
+  (a) below and (b) above the \(\pt\) symmetry breaking threshold. Solid lines
+  are coincident detections between pairs of system modes while dashed lines
+  show the coincidences between a system and an environment mode. In all cases,
+  both photons were injected in system modes with the left column being
+  \(S_{0}S_{1}\), centre \(S_{0}S_{2}\) and right \(S_{1}S_{2}\).}
   \label{fig:threesitetwofolds}
 \end{figure}
 
