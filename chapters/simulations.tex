@@ -65,8 +65,10 @@ without the overheads of a universal quantum computer.
 By way of introduction, consider four broad categories of quantum objects.
 First, group by exchange symmetry: fermions and bosons, then by interactions:
 particles can interact with each other (e.g. charged particles via the
-electromagnetic force) or not. Full simulation of arbitrary interacting systems
-is believed to have the same requirements as a general quantum computer. When
+electromagnetic force) or not. Sufficiently detailed simulations of general
+systems of interacting particles would require comparable capabilities to a
+digital quantum computer; after all, such a simulator could `simulate' a quantum
+computer. When
 interactions can be ignored, we have a much more limited simulator, and if we
 are further restricted to non-interacting fermions, the system can be simulated
 classically \todo{citation needed}. The final category---non-interacting
@@ -80,6 +82,22 @@ effective interactions via detection~\cite{klm}). The implication of this is
 that with a relatively simple quantum computer (a system of photons in a large
 interferometer) we can go beyond the original \bosonsampling{} algorithm and
 perform meaningful quantum simulations.
+
+This is the kind of simulation I present in this chapter. In
+section~\ref{sec:Molecules}, we identify that molecular vibrations can be
+described as bosonic quasi-particles which, in the harmonic approximation, do
+not interact. Using a four-mode optical setup, we simulate the time evolution
+of the vibrational state of Carbon Dioxide (\co) and Carbonyl Sulphate (OCS)
+molecules, both of which have four modes of vibrational excitation per phonon.
+
+In section~\ref{sec:PT}, I extend the simulation to systems described by
+Hamiltonians obeying \(\pt\) symmetry, rather than the more stringent
+constraint of Hermiticity. Physically, this reflects an open quantum system
+with balanced but spatially separated loss and gain. The same simulation
+techniques are used, but due to the loss and gain modes we now require a
+doubling of the number of modes. Two \(\pt\) symmetric models are considered,
+the first on 2 sites (requiring four optical modes), the second on 3 sites
+(requiring six optical modes).
 
 \section{Experimental Setup}
 \subsection{Bulk Optics}
@@ -148,9 +166,18 @@ thermo-optic phase shifts and Mach Zehnder interferometers.
 
 \section{Data Analysis}
 \subsection{Presentation of Data}
-\todo{This is where I explain which modes I am presenting, and how we have
-`saturated the distribution'---not a scalable approach. Maybe also the time to
-mention the scale factor in \(\pt\) section.}
+Since we are simulating continuous time phonemona, we discretise the evolution
+in order to present our results. At each point in the discretisation, we measure
+the system; in particular we measure the occupation of each mode. In the case of
+a single vibrational excitation in the four-level molecule, these measurements
+correspond to the probability of detection of a single photon in each of our
+four optical modes. For two vibrational excitations, the measurements are
+the 10 probabilities of coincidental detections across pairs of optical modes.
+For these small numbers of modes, we can take sufficient data to `saturate' the
+probability distribution and estimate each probability individually. This
+approach doesn't scale as the number of elements in the distribution increases
+combinatorially with the number of excitations. However, for the proof of
+principle experiments here, it provides the best evidence of correct operation.
 
 \subsection{Figures of Merit}
 To evaluate the fidelity of our simulations, we look at two measures. The first
@@ -246,7 +273,9 @@ of the evolution of the vibrational state of the molecules.
   green OCS. Lines represent the theoretically calculated evolution of the
   probabilities, with shaded regions showing \(\pm 1 \sigma\) expected due to
   errors in dialling. Points are experimentally measured, with error bars due to
-  Poissonian noise too small to see at this scale.}
+  Poissonian noise too small to see at this scale. (a) and (b) show single
+  photon data for the quart and trit respectively; (c) shows data for
+  pairwise coincidences.}
   \label{fig:molecules}
 \end{figure}
 
@@ -279,9 +308,30 @@ with the simulation using a discrete time method. We dial \(\mat{U} \of{t}\) for
 21 values of \(t\) equally spaced in the interval \(\left[0,0.01\right]\)
 (units of \(\cm / c\)) and record single-phonon occupations and
 phonon-pair coincidences at each time. The results are shown in
-figure~\ref{fig:molecules}.
+figure~\ref{fig:molecules}, with single photon data for the quart in (a) and the
+trit in (b), and coincidence data in (c). Lines represent the theoretically
+expected cointinuous time evolution of the measured quantities, with shaded
+regions accounting for \(\pm 1 \sigma\) errors in dialling on the circuit
+parameters (derived from Monte-Carlo simulations of 2000 circuits). Points are
+experimental measurements, with error bars due to Poissonian noise too small to
+see at this scale. Results of the two molecules are superposed on the same
+plots, with OCS in green and \co in blue. We can see for each measured quantity
+the is somewhat similar near the beginning, but rapidly diverges.
 
-\todo{Summarise fidelities across the simulation. Table?}
+The fidelities, expressed as Kolmogorov distance between the expected and
+measured distributions, are summarised in the table below. The mean trace
+distance between the intended and measured unitary across the entire experiment
+was \(0.994 \pm 0.006\), indicating extremely good performance.
+
+\begin{tabular}{|l|l|l|l|}
+  \hline
+  & Quart & Trit & Coincidences \\
+  \hline
+  OCS & \(0.972 \pm 0.012\) & \(0.960 \pm 0.018\) & \(0.928 \pm 0.018\) \\
+  \hline
+  \co & \(0.976 \pm 0.010\) & \(0.956 \pm 0.020\) & \(0.933 \pm 0.027\) \\
+  \hline
+\end{tabular}
 
 \section{PT-symmetric systems}
 \label{sec:PT}
@@ -657,6 +707,20 @@ transmission interference filters of 3nm spectral width and collected into
 polarisation-maintaining optical fibres. Single-photon detection was achieved
 using silicon-based avalanche photodiode single-photon counting modules.
 Coincidence counting logic used a field-programmable gate array.
+
+For the single photon data in figures~\ref{fig:molecules}(a-b) and
+\ref{fig:twosite}(a-c), the source was used to produce heralded single photons
+by directing one photon straight into a detector and the other through the
+circuit, and counting coincidences. Photons were counted for 30s. Coincidence
+data in figures~\ref{fig:molecules}(c) and \ref{fig:twosite}(d-f) were obtained
+by injecting both photons into the circuit and then scanning the relative delay
+between them by moving the collection stage, to obtain a (generalised) HOM dip.
+47 positions were covered in the scan, with a separation of 0.02mm in the
+central region of the dip and 0.06mm in the wings. Coincidences were counted for
+15s at each position. Finally, the relative collection efficiency of the
+detectors was measured by configuring the circuit to direct all light from the
+V input to each of the detectors in turn and counting for 20s, then subtracting
+a background count rate taken with the source turned off.
 
 \subsection{Six mode circuit in integrated optics}
 For the three-site \(\pt\)-symmetric model, we require six optical modes to
