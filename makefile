@@ -13,6 +13,7 @@ dialling_figs=cascade.pdf\
 simulations_figs=manifolds.png\
  twosite.pdf\
  circuit.pdf\
+ integratedreck.pdf\
  molecules.pdf\
  opensystem.pdf\
  threesite_singles.pdf\

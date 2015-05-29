@@ -155,6 +155,19 @@ mode as the \emph{trit}. At the end of the circuit we detect photons in each of
 the four modes. We can perform either single photon counting or photon
 coincidence detection.
 
+\begin{figure}[h]
+  \centering
+  \includegraphics{figures/integratedreck.pdf}
+  \caption[Schematic of the integrated circuit used for simulations]
+  {A schematic of the six-mode integrated circuit used for simulations. Photons
+  can be injected in any of the modes on the left, and are measured at the
+  output on the right. Reconfigurability is provided by thermo-optic phase
+  shifts (\(\phi\)); variable reflectivity beamsplitters are implemented placing
+  a phase shift between two 50:50 directional couplers (DC) to form a Mach
+  Zehnder interferometer (MZI).}
+  \label{fig:IC}
+\end{figure}
+
 \subsection{Integrated platform}
 The simulation of the 3-site \(\pt\)-symmetric model requires a larger circuit,
 since the dilation of a \(3 \by 3\) non-unitary matrix may require up to 6
@@ -162,7 +175,8 @@ dimensions. At this point it is already becoming clear that scaling up the bulk
 optical circuit is impractical; fortunately integrated optics provides a
 solution. We use a \(6 \by 6\) integrated circuit to perform the simulations.
 All optical modes are realised in path and reconfigurability is achieved with
-thermo-optic phase shifts and Mach Zehnder interferometers.
+thermo-optic phase shifts and Mach Zehnder interferometers. A schematic of the
+circuit is shown in figure~\ref{fig:IC}
 
 \section{Data Analysis}
 \subsection{Presentation of Data}
@@ -211,11 +225,7 @@ fidelity.
   \label{fig:vibrations}
 \end{figure}
 In this section I present results from the quantum simulation of quantized
-vibrations in molecules. The theory was developed by Enrique Mart\'in L\'opez
-and the overall project was supervised by Anthony Laing. I was responsible for
-the calibration of the circuit, taking part of the data (for the OCS moleculels)
-and analysis of the data. The rest of the data (the \co{} molecules) was taken
-by Chris Sparrow, who I instructed in the use of the circuit.
+vibrations in molecules.
 
 \subsection{Introduction to phonons}
 \label{sec:Phonons}

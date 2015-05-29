@@ -16,6 +16,7 @@ all = benchmarking.pdf\
  example.pdf\
  hamiltonians.png\
  hamiltoniansim.pdf\
+ integratedreck.pdf\
  interferometerAB.pdf\
  interferometerCD.pdf\
  logvsderivative.pdf\
@@ -153,6 +154,9 @@ example.pdf : example.eps beamsplitter.eps bsmzi.eps dcmzi.eps example.pyx
 hamiltoniansim.pdf : idealhamiltonian.png experimentalhamiltonian.png\
  hamiltoniansim.pyx
 	pyxplot hamiltoniansim.pyx
+
+integratedreck.pdf : integratedreck.eps integratedreck.pyx
+	pyxplot integratedreck.pyx
 
 interferometerAB.pdf : interferometerAB.eps interferometerAB.pyx
 	pyxplot interferometerAB.pyx
