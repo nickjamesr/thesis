@@ -27,8 +27,8 @@ states of molecules,
 is a major challenge for classical computers, with even the fastest algorithms
 falling short of polyomial scaling with the system size. Approximations can be
 pretty good, but cases such as the simulation of catalyst molecules, fall short
-of the required precision for useful theoretical conclusions. \todo{This is
-mostly based on the presentation at Microsoft - find some citations.} A solution
+of the required precision for useful theoretical conclusions
+\cite{qsim-poulin}. A solution
 was proposed by Feynman \cite{qsim-feynman} in the early days of quantum
 information science: use a quantum system to simulate other quantum systems.
 Further study of quantum computing has formalised this idea and we now
@@ -43,7 +43,7 @@ algorithms provide a path for scalability. A further advantage is that
 algorithms can be devised independently of the physical system implementing the
 qubits, which could be anything from trapped ions to guided photons. Indeed,
 simulations of small molecules have been performed on such diverse platforms as
-linear optics~\cite{qsim-peruzzo} and NMR~\cite{qsim-du}. \todo{and others?}
+linear optics~\cite{qsim-peruzzo} and NMR~\cite{qsim-du}.
 However these advantages are currently offset by the large resource overheads
 required for the encoding. While some progress has been made in reducing the
 overheads~\cite{qsim-poulin}, like any application involving digital quantum
@@ -68,13 +68,12 @@ particles can interact with each other (e.g. charged particles via the
 electromagnetic force) or not. Sufficiently detailed simulations of general
 systems of interacting particles would require comparable capabilities to a
 digital quantum computer; after all, such a simulator could `simulate' a quantum
-computer. When
-interactions can be ignored, we have a much more limited simulator, and if we
-are further restricted to non-interacting fermions, the system can be simulated
-classically \todo{citation needed}. The final category---non-interacting
-bosons---is likely to yield more interesting results and since the recent
-proposal of \bosonsampling{}~\cite{bosonsampling} appears to be intractable to
-classical simulation under certain conditions.
+computer. When interactions can be ignored, we have a much more limited
+simulator, and if we are further restricted to non-interacting fermions, the
+system can be simulated classically \cite{qsim-fermions}. The final
+category---non-interacting bosons---is likely to yield more interesting results
+and since the recent proposal of \bosonsampling{}~\cite{bosonsampling} appears
+to be intractable to classical simulation under certain conditions.
 
 Photons belong to this final class: they are bosonic particles, and infamously
 non-interacting (proposals for universal photonic quantum computers rely on

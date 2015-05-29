@@ -205,17 +205,26 @@ section concerns the factors involved in choosing the step size, \(\dt\).
 Like any discrete calculus method, the discretisation length (step size) affects
 the accuracy of the method greatly. Figure~\ref{fig:stepsize} illustrates the
 effect of varying the step size in a simulated experimental context.
-\todo{Explain the noise mechanism - essentially dialling error \(\varepsilon\)
-on each of the phases in an integrated Reck scheme}. The black line shows the
-scaling of reconstruction error with step size \(\dt\) in an ideal (noiseless)
-system, which decreases as \(\dt^{2}\) as expected for a 3-point numerical
-derivative. In the presence of noise, this scaling only applies to a point,
-after which further reductions in \(\dt\) result in \emph{more} error in the
-reconstruction rather than less. The reason for this behaviour is that beyond
-the optimum, the difference between the two unitaries in the term \(\left(
-\mat{U} \of{t+\dt} - \mat{U} \of{t-\dt} \right)\) gets smaller than the noise
-in the measurements of \(\mat{U} \of{t}\) causing a large error in estimating
-this term.
+The black line shows the scaling of reconstruction error with step size \(\dt\)
+in an ideal (noiseless) system, which decreases as \(\dt^{2}\) as expected for
+a 3-point numerical derivative. In the presence of noise, this scaling only
+applies to a point, after which further reductions in \(\dt\) result in
+\emph{more} error in the reconstruction rather than less. The reason for this
+behaviour is that beyond the optimum, the difference between the two unitaries
+in the term \(\left( \mat{U} \of{t+\dt} - \mat{U} \of{t-\dt} \right)\) gets
+smaller than the noise in the measurements of \(\mat{U} \of{t}\) causing a
+large error in estimating this term.
+
+Noise is applied to the unitary matrices directly, then the noisy unitaries
+are used in equation~\ref{eq:hamiltomo}. The noise mechanism is experimentally
+motivated, and requires first transforming each unitary \(\mat{U}\) into a set
+of physical parameters (phases) required to realise the matrix experimentally
+(see chapter~\ref{ch:Dialling} for details of the transformation). Each phase
+\(\phi\) is replaced with a noisy value \(\tilde{\phi}\), obtained from a
+Gaussian distribution centered on \(\phi\) with width \(\varepsilon\), and a
+noisy unitary \(\tilde{\mat{U}}\) is calculated from this set of parameters.
+Simulations for three different levels of noise, \(\varepsilon=10^{-4}, 10^{-6},
+10^{-8}\) are shown in figure~\ref{fig:stepsize}.
 
 \section{Experimental implementation}
 \label{sec:HTExperiment}

@@ -159,7 +159,7 @@ of the experiment. The approach we used to deal with these effects (drift and
 type I crosstalk) was to perform the phase calibration for every unitary, with
 the amplitude splittings \(aq_{0}\) and \(at_{1}\) set, then assume that drift
 would be negligible for the time required to take the data. Note that drift is
-not an issue in integrated optics \todo{citation needed}.
+not an issue in integrated optics \cite{politi-ic}.
 
 Scanning \(\phi_{1}\) results in much more complicated interference fringes,
 shown in figure~\ref{fig:crapusoid}, due to type II crosstalk (self crosstalk in
@@ -227,7 +227,7 @@ the two photons, giving us two possible probability distributions each with six
 elements, which I refer to as quantum (\(\vec{Q}\)) for no temporal delay and
 classical (\(\vec{C}\)) for a large temporal delay. Since the detectors are not
 number resolving, we cannot measure the two photon events with multiple
-occupancy, so these distributions are not normalised. An comparison of the
+occupancy, so these distributions are not normalised. A comparison of the
 measured distributions to the expected distributions is illustrated in
 figure~\ref{fig:benchmarking} for a single random matrix.
 
@@ -273,10 +273,21 @@ the 12 random unitaries are summarised below:
   \hline
 \end{tabular}
 
-\subsection{Experimental Details}
+\subsection{Data Acquisition}
 \label{sec:BenchmarkingExperiment}
-Refer to the experimental details section of the simulations chapter, and make
-sure I get the numbers right.
+The experimental protocol for this benchmarking was very similar to that
+described in section~\ref{sec:SimulationExperiment}. To collect coincidence
+data, two photons from the source were injected into the circuit with a relative
+temporal delay, implemented by a linear actuator on the collection stage of one
+arm of the source. This delay was scanned through a range of 2mm in order to
+observe the quauntum to classical transition in coincidence rates. Photon
+coincidences were counted for 15s at 0.02mm intervals throughout the range.
+
+The `quart' and `trit' measurements are not true single photon count rates: they
+were obtained by blocking one arm of the source and counting unheralded singles
+at the output of the circuit. While the input state from this configuration is
+actually a thermal state of light (rather than a Fock state), it produces the
+same measurement statistics.
 
 \section{Verification}
 \label{sec:Verification}
@@ -293,11 +304,11 @@ In this section, I discuss the work I have done on procedures for verifying the
 correct operation of large linear optical devices, such as \bosonsampling{}
 machines. For the small scale experiments performed in the past, verification
 has been performed by procedures such as quantum process tomography (for
-quantum computing) \todo{citation. Hifi?} or fully evaluating the output
-probability distribution (for \bosonsampling{}) \todo{citation. Any of the BS
-experiments?}. However, as the size of devices---and more importantly the number
-of photons---increases, these procedures do not scale well enough, and new
-approaches are required.
+quantum computing \cite{qpt}) or directly measuring the output
+probability distribution (for \bosonsampling{} \cite{bs-oxford, bs-rome,
+bs-brisbane, bs-vienna}). However, as the size of
+devices---and more importantly the number of photons---increases, these
+procedures do not scale well enough, and new approaches are required.
 
 The task of verifying \bosonsampling{} is particularly important, if it is going
 to be accepted as a demonstration of post-classical computing. As a sampling
@@ -513,8 +524,8 @@ the parameter \(\clouding\).
 
 It is natural to ask at this point whether the phenomenon persists to much
 higher numbers of photons and modes. After all, the fully-clouded subspace
-occupies only a combinatorially small fraction of the full configuration space
-\todo{proof}. I have derived numerical evidence that it does, by performing
+occupies only a combinatorially small fraction of the full configuration space.
+I have derived numerical evidence that it does, by performing
 Monte-Carlo simulations of quantum walks of up to 14 photons in 196
 modes\footnote{The relationship \(p=m^{2}\) is used because of the bosonic
 birthday bound discussed in \cite{bosonsampling, birthdays,
@@ -575,7 +586,3 @@ in fact used in practice, for example observation of the zero transmission law
 for quantum Fourier transform \cite{ztl, tichy-verification} and the bosonic
 birthday bound \cite{birthdays, experimental-birthdays}.
 
-\subsection{Experimental Details}
-\label{sec:VerificationExperiment}
-Details of the quantum walk experiment and whatever I can determine about the
-6-photon QFT bit.
