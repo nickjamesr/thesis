@@ -278,7 +278,12 @@ figure~\ref{fig:example}.
 \label{sec:Qubits}
 We now extend the result to the case of a unitary operating on qubits by
 demonstrating a mapping between a unitary operation on \(m=2^{n}\) optical
-modes and the same unitary operation on \(n\) qubits. The gates that we use to
+modes and the same unitary operation on \(n\) qubits. This mapping is not
+efficient: the gate count increases exponentially with the number of qubits, but
+as discussed in \cite{random-unitaries} no efficient implementation of random
+unitaries on qubits exists.
+
+The gates that we use to
 construct the mapping are the Hadamard gate, the CNOT gate (generalised to
 include multiple controls) and variable phase gates, which implement a general
 phase rotation on a qubit, as follows:
@@ -402,13 +407,13 @@ are shown in figure~\ref{fig:example}d.
 
 \section{Conclusions}
 \label{sec:DDConclusions}
-We have shown how to express the probability density function for Haar random
-unitary matrices in terms of physically motivated parameters. The expression is
-compact and non-redundant, whereas the equivalent in the Cartesian basis is a
-lot more complicated. While the mathematics of this process has been known
-for some time, the link to linear-optical components has not previously been
-made clear, and the proof presented here in terms of a change of basis is much
-simpler than that in \cite{spengler2010}. The formula in its general form
-is applicable to \bosonsampling{}, where Haar unitaries are required, and is
-extensible to systems of qubits so may find additional applications outside of
-linear optics.
+In this chapter, I have shown how to express the probability density function
+for Haar random unitary matrices in terms of physically motivated parameters.
+The expression is compact and non-redundant, compared to the factor of 2
+redundancy in the Cartesian basis. While the mathematics of this process has
+been known for some time, the link to linear-optical components has not
+previously been made clear, and the proof presented here in terms of a change of
+basis is much simpler than that in \cite{spengler2010}. The formula in its
+general form is applicable to \bosonsampling{}, where Haar unitaries are
+required, and is extensible to systems of qubits so may find additional
+applications outside of linear optics.

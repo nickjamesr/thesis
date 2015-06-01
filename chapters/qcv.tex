@@ -8,8 +8,10 @@ which highlights some important features. My work in calibrating this circuit
 formed a large part of the early years of my PhD and was a substantial
 contribution to the success of the simulation experiments. After calibrating the
 circuit, I performed a randomised benchmarking test to verify correct operation.
-I planned this part of the experiment, and took all the experimental data, which
-is presented in this chapter.
+I derived the random unitaries for this part of the experiment, and took all
+the experimental data, which is presented in this chapter. The experimental
+circuit was designed and build by Enrique Mart\'in L\'opez and the project was
+supervised by Anthony Laing.
 
 A large part of the verification section is based on my contributions to an
 experiment published in~\cite{verification}, in which I was one of several
@@ -20,27 +22,6 @@ similar Bayesian model analysis applied to 6-photon data, which will appear in
 the publication~\cite{bigreck}, on which I am one of several co-authors. While I
 didn't take any of the data in this section, my analysis forms a substantial
 part of both publications mentioned.
-
-\section{Introduction}
-\label{sec:QCVIntro}
-In this chapter, I describe the two related tasks of \emph{calibration} and
-\emph{verification} in the context of linear optical devices. The
-quantum nature of the devices makes these problems more difficult than in the
-classical case and worthy of detailed study.
-
-I begin in section~\ref{sec:Calibration} by discussing the calibration of a
-universal linear optical circuit, for example that described by Reck et al in
-\cite{reck}. As a concrete example, I present detail of the calibration of the
-circuit used for quantum simulations in chapter~\ref{ch:Simulations}.
-Section~\ref{sec:Benchmarking} contains data showing randomised benchmarking of
-this circuit to verify correct operation. This procedure is applicable to the
-small scale circuit here, but cannot be applied in larger cases where the size
-of the state space increases sharply with the system size.
-
-Section~\ref{sec:Verification} addresses this problem of verification in large
-systems. The analysis using the \(\rstar\) discriminator (as described
-in~\cite{notuniform}) and the discussion of \emph{bosonic clouding} appeared in
-a Nature Photonics article \cite{verification}.
 
 \section{Calibration}
 \label{sec:Calibration}
@@ -132,7 +113,9 @@ calibrating a device in the presence of multiple varieties of crosstalk.
     \label{fig:cd}
   \end{subfigure}
   \caption[Illustration of nested interferometers in the bulk Reck scheme]
-  {Interferometers}
+  {Interferometers present in a reconfigurable bulk optics circuit. Depending on
+  the settings of the amplitude parameters, two different interferometric paths
+  are available.}
   \label{fig:interferometers}
 \end{figure}
 
