@@ -232,8 +232,8 @@ r_{n}=1\), recalling that \(r_{n}=1\) was a variable introduced for convenience.
 
 We can then place the column \(\vec{c}_{0}\) as the rightmost column, at which
 point the matrix is lower triangular and we can compute the determinant by
-multiplying the diagonal elements of the matrix. Since the shift, these are the
-elements given by equation~\ref{eq:diagonal}.
+multiplying the diagonal elements of the matrix. Following the shift, these are
+the elements given by equation~\ref{eq:diagonal}.
 \begin{equation}
   \det \mat{J} \of{ \vec{x}, \vec{r} } = \prod_{i=1}^{n-1} \mat{J}_{i,i}
 \end{equation}
@@ -307,7 +307,7 @@ The existence of this mapping means that we can directly apply the results
 described above to the implementation of Haar unitaries in systems of qubits,
 with the only difference being the description of a varible reflectivity element
 in terms of the internal phase \(\theta\) in an MZI. A further change of
-variables, \(r = \cos^{2} \of{\theta} \) is required, and the appropriate
+variables, \(r = \cos^{2} \of{\theta/2} \) is required, and the appropriate
 \pdf{}s for these elements are then:
 \begin{equation}
   \prob{P}_{\theta_{i}} \of{ \theta } = \left( n-i \right) \cos \of{
@@ -354,7 +354,6 @@ for reflectivities.
   
 \section{Variable reflectivity beamsplitters}
 \label{sec:integrated}
-
 The discussion of linear optical circuits in linear optics makes use of a
 variable reflectivity beamsplitter as a primitive component. In terms of the
 power reflectivity, \(r\), the matrix describing this component is
@@ -373,7 +372,7 @@ representation of this component is (down to global phase)
     i \sin \of{ \frac{\theta}{2} } & \cos \of{ \frac{\theta}{2} }
   \end{pmatrix}
 \end{equation}
-We use the coordinate transformation \( r \rightarrow \cos \of{ ^{\theta}/_{2}}
+We use the coordinate transformation \( r \rightarrow \cos^{2} \of{ \theta/2}
 \) to find the \pdf{}s in terms of this phase shift, rather than the
 reflectivity.
 
@@ -402,7 +401,7 @@ down to a global phase) by the matrix
   \end{pmatrix}
 \end{equation}
 The appropriate transformation between reflectivity and internal phase is now
-\(r \rightarrow \sin \of{^{\xi}/_{2}} \), resulting in different \pdf{}s, which
+\(r \rightarrow \sin^{2} \of{\xi/2} \), resulting in different \pdf{}s, which
 are shown in figure~\ref{fig:example}d.
 
 \section{Conclusions}

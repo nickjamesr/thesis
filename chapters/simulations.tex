@@ -32,7 +32,8 @@ of the required precision for useful theoretical conclusions
 was proposed by Feynman \cite{qsim-feynman} in the early days of quantum
 information science: use a quantum system to simulate other quantum systems.
 Further study of quantum computing has formalised this idea and we now
-understand that if we had sufficient control over one non-trivial quantum systemto build a universal quantum computer, we could program it to simulate any other
+understand that if we had sufficient control over one non-trivial quantum system
+to build a universal quantum computer, we could program it to simulate any other
 quantum system.
 
 I will refer to this method of simulation as \emph{digital} quantum simulation,
@@ -68,12 +69,12 @@ particles can interact with each other (e.g. charged particles via the
 electromagnetic force) or not. Sufficiently detailed simulations of general
 systems of interacting particles would require comparable capabilities to a
 digital quantum computer; after all, such a simulator could `simulate' a quantum
-computer. When interactions can be ignored, we have a much more limited
-simulator, and if we are further restricted to non-interacting fermions, the
-system can be simulated classically \cite{qsim-fermions}. The final
-category---non-interacting bosons---is likely to yield more interesting results
-and since the recent proposal of \bosonsampling{}~\cite{bosonsampling} appears
-to be intractable to classical simulation under certain conditions.
+computer, error correction and all. When interactions can be ignored, we have a
+much more limited simulator, and if we are further restricted to non-interacting
+fermions, the system can be simulated classically \cite{qsim-fermions}. The
+final category---non-interacting bosons---is likely to yield more interesting
+results and since the recent proposal of \bosonsampling{}~\cite{bosonsampling}
+appears to be intractable to classical simulation under certain conditions.
 
 Photons belong to this final class: they are bosonic particles, and infamously
 non-interacting (proposals for universal photonic quantum computers rely on
@@ -87,7 +88,7 @@ section~\ref{sec:Molecules}, we identify that molecular vibrations can be
 described as bosonic quasi-particles which, in the harmonic approximation, do
 not interact. Using a four-mode optical setup, we simulate the time evolution
 of the vibrational state of Carbon Dioxide (\co) and Carbonyl Sulphate (OCS)
-molecules, both of which have four modes of vibrational excitation per phonon.
+molecules, both of which have four vibrational modes per phonon.
 
 In section~\ref{sec:PT}, I extend the simulation to systems described by
 Hamiltonians obeying \(\pt\) symmetry, rather than the more stringent
@@ -150,9 +151,9 @@ required because there are only 2 inputs),
 \end{align}
 We refer to the final state of the photon injected in the V mode as
 the \emph{quart} and the final state of the photon injected in the H
-mode as the \emph{trit}. At the end of the circuit we detect photons in each of
-the four modes. We can perform either single photon counting or photon
-coincidence detection.
+mode as the \emph{trit}. At the end of the circuit we measure the state by
+detecting photons in each of the four modes. We can perform either single photon
+counting or photon coincidence detection.
 
 \begin{figure}[h]
   \centering
@@ -175,17 +176,17 @@ optical circuit is impractical; fortunately integrated optics provides a
 solution. We use a \(6 \by 6\) integrated circuit to perform the simulations.
 All optical modes are realised in path and reconfigurability is achieved with
 thermo-optic phase shifts and Mach Zehnder interferometers. A schematic of the
-circuit is shown in figure~\ref{fig:IC}
+circuit is shown in figure~\ref{fig:IC}, and details of its operation are
+available in a preprint \cite{bigreck}.
 
 \section{Data Analysis}
 \subsection{Presentation of Data}
 Since we are simulating continuous time phonemona, we discretise the evolution
-in order to present our results. At each point in the discretisation, we measure
-the system; in particular we measure the occupation of each mode. In the case of
-a single vibrational excitation in the four-level molecule, these measurements
-correspond to the probability of detection of a single photon in each of our
-four optical modes. For two vibrational excitations, the measurements are
-the 10 probabilities of coincidental detections across pairs of optical modes.
+in order to present our results, taking measurements at a discrete set of times.
+In the case of a single vibrational excitation in the four-level molecule,
+these measurements correspond to the probability of detection of a single
+photon in each optical mode. For two vibrational excitations, the measurements
+are the probabilities of coincidental detections across pairs of optical modes.
 For these small numbers of modes, we can take sufficient data to `saturate' the
 probability distribution and estimate each probability individually. This
 approach doesn't scale as the number of elements in the distribution increases
@@ -198,7 +199,7 @@ is a trace distance between the unitary matrix that we intended to implement,
 and the matrix that we in fact did implement, according to the data we collect
 \cite{sst}. If the desired unitary is \(\mat{U}\) and the measured unitary
 is \(\mat{U^{\prime}}\), the trace distance, \(F\) is defined by:
-\[F=\frac{1}{2}\Tr\of{\mat{U}^{\dagger}{\mat{U}^{\prime}}}\]
+\[F=\frac{1}{2}\abs{\Tr\of{\mat{U}^{\dagger}{\mat{U}^{\prime}}}}\]
 The second measure we use compares (normalised) discrete probability
 distributions, \(p\) and \(q\). This fidelity is computed as:
 \[F=1-\frac{1}{2}\sum_{i}\abs{p_{i}-q_{i}}\]
@@ -330,7 +331,7 @@ the is somewhat similar near the beginning, but rapidly diverges.
 The fidelities, expressed as Kolmogorov distance between the expected and
 measured distributions, are summarised in the table below. The mean trace
 distance between the intended and measured unitary across the entire experiment
-was \(0.994 \pm 0.006\), indicating extremely good performance.
+was \(0.993 \pm 0.007\), indicating extremely good performance.
 
 \begin{tabular}{|l|l|l|l|}
   \hline
@@ -785,6 +786,10 @@ a background count rate taken with the source turned off.
 
 \subsection{Six mode circuit in integrated optics}
 For the three-site \(\pt\)-symmetric model, we require six optical modes to
-simulate the non-unitary evolution in three modes. A fully reconfigurable
-circuit in integrated optics is used for this purpose.
+simulate the non-unitary evolution in three modes. A fully-reconfigurable
+silica-based planar waveguide circuit is used for this purpose, with
+reconfigurability provided by 30 tunable thermo-optic phase shifters. See
+supplementary information in \cite{bigreck} for full details of the circuit,
+source and control.
+
 

@@ -453,12 +453,68 @@ An alternative series-type solution has been described in~\cite{hamiltomo-ulm},
 where the Hermitian and anti-Hermitian parts of \(\mat{U}\) are considered
 separately.
 
+\section{Conclusions}
+In this chapter, I have presented a scalable tomography method that can be used
+to determine the Hamiltonian describing the evolution of a quantum system.
+The procedure is applicable to Hamiltonians that are constant or piecewise
+constant in time, and can be applied to any closed quantum system with
+non-interacting particles. The experimental demands to implement the
+tomography procedure are modest: only single particle amplitudes  and pairwise
+correlations need to be measured. This capability is well established in quantum
+photonics (the Hong-Ou-Mandel effect), and is available in some other physical
+systems. See \cite{fermion-antibunching} for an experimental observation of
+fermionic antibunching and \cite{hom-matter} for discussion of prospects of
+equivalent methods in bosonic matter waves.
+
+I have demonstrated the procedure for a 21-mode,
+continuously coupled optical quantum walk. Although the results from this
+experiment were not conclusive, I am able to explain the reason for this by
+considering the theoretical behaviour of the tomography process in realistic
+experimental conditions. 
+
 \section{Experimental Details}
 \label{sec:HamiltomoExperiment}
-Get information from verification paper.
+The experimental results in this chapter require measurements of one and two
+photon states after evolution for three different times in a continuous time
+quantum walk. In a linear optical quantum walk, effective evolution time is
+determined by two parameters: the length of the coupling region and the mode
+index for guided light. Since we cannot change the length of the coupling region
+in a monolithic, integrated device, we take advantage of the dispersion of the
+waveguide and change the mode index by varying the wavelength of the photons.
+It is worth mentioning that this process could also affect the mode size and
+therefore the couplings, but since the couplings only ever appear in our results
+as the product \(\mat{H}t\), the effect is just another contribution to the
+effective evolution time.
 
-Wavelength shifts were achieved by tuning the laser and tilting the
-down-conversion crystal.
+Our photon source consists of a variable-wavelength 140fs pulsed Ti:sapphire
+laser, which is attenuated with a half waveplate and polarizing beamsplitter
+before frequency doubling with a type-I \(\beta\)-barium borate (BBO) nonlinear
+crystal. The resulting (half wavelength) light is filtered by dichroic mirrors
+and focussed onto a type-I bismuth triborate \(\text{BiB}_{3}\text{O}_{6}\)
+(BiBO) nonlinear crystal to generate pairs of photons through spontaneous
+parametric down conversion. After passing through an interference filter, the
+photon pairs are collected into two polarization maintaining fibres which are
+butt-coupled to the quantum walk chip. In order to vary the wavelength of the
+two photon state, the filters and non-linear crystals must be tilted slightly,
+in addition to adjusting the wavelength of the laser. The wavelength of the
+photons is verified with a spectrometer.
 
+Single photon data was taken in two ways. First, we set up the two photon source
+to yield heralded single photons by directing one of the photons straight to the
+detectors and measuring coincidence counts. A second method uses coherent light
+as a proxy for single photons by directing (heavily attenuated) light straight
+from the laser into the chip and measuring powers at the output. In the analysis
+of the experiment, the measurements from the coherent source have been used
+because of the much higher effective count rate. Monte-Carlo simulations of the
+experiment have modelled noise from this kind of source, rather than photon
+counting.
 
+The 21 mode waveguide array implementing the continuous time quantum walk was
+fibricated in Silicon oxynitride. The index contranst of this material platform
+is 2.4\%, which enables fabrication of micrometre-sized single-mode waveguides.
+The waveguides were designed to have a constant width of 2.2\(\mu\)m and a
+height of 0.85\(\mu\)m. They are pitched at 1.3\(\mu\)m within the coupling
+region, which has a length of 700\(\mu\)m. Outside of the coupling region, the
+waveguides bend adiabatically to a much greater separation, matching the 
+pitch of the fibre arrays that couple light in and out of the chip.
 

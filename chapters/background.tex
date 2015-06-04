@@ -1,62 +1,11 @@
 \chapter{Background}
-\label{ch:Introduction}
-\section{General Introduction}
-\label{sec:Science}
-The race for the first quantum computer is on. Academic researchers and private
-enterprises \cite{dwave} around the world are pursuing this goal, on a number of
-different physical platforms. Here, I will describe my efforts towards achieving
-quantum computation in linear optics.
-
-Of course, building a full-scale, universal quantum computer is going to be
-difficult, and beyond the scope of any single PhD student's research. At the
-other end of the spectrum, some quantum technologies have already found
-commercial viability \cite{idquantique,magiq,qutools}, putting them beyond 
-the realms of academic research. I will focus on the middle ground between
-these two extremes: quantum computers that fall short of being universal for
-BQP, yet may be able to outperform a classical computer at certain, specific tasks in the near future.
-
-One such device would be the Boson Sampler. Proposed by Aaronson and Arkhipov
-in~\cite{bosonsampling}, this is a device somewhat native to linear optics.
-While it is
-a good candidate for beating a classical computer, its uses are somewhat limited
-at the moment. I will discuss two results relevant to building a Boson Sampler:
-in chapter~\ref{ch:DirectDialling} I present a theoretical result concerning
-Haar random unitary matrices; chapter~\ref{ch:QCV} presents a demonstration of
-practical techniques to verify the output of such a device. Experimental results
-presented in chapter~\ref{ch:QCV} could be said to be implementing
-\bosonsampling{} on a small scale.
-
-The second class of quantum computer that I shall discuss is the quantum
-simulator. The purpose of quantum simulation is to use a device that is well
-understood and controlled, in order to simulate the behaviour of a quantum
-system that is less accessible. In chapter~\ref{ch:Simulations} I present
-experimental results of quantum simulations using linear optics. Two systems are
-simulated: the (quantized) vibrations of molecules, and more abstract systems of
-bosons obeying \(\pt\)-symmetric (but non-Hermitian) dynamics.
-
-Once we begin to scale up the size of these devices, it will be essential to
-have procedures to test whether they are working correctly. Since the original
-point is to outperform a classical computer, they cannot simply be checked by
-performing the same calculations classically! In the case of problems in NP such
-as Shor factoring, we have efficient methods to check the output, but this is
-not guaranteed for the problems discussed here and the issue of verification in
-\bosonsampling is particularly important. Chapter~\ref{ch:QCV} describes methods
-for the calibration and verification of quantum optics devices. I present a
-detailed case study of the calibration of a circuit in bulk optics, which
-illustrates many of the complicating features present in any large optical
-device. A series of verification procedures are applied to systems of up to 5
-photons in a quantum walk and 6 photons in a quantum Fourier transform.
-
-Finally, in chapter~\ref{ch:Hamiltomo} I describe a tomography protocol that can
-be used in certain circumstances to efficiently determine the Hamiltonian
-describing a dynamical quantum system. Tomography arguably provides the ultimate
-verification of correct operation, but quantum process tomography has the
-unfortunate property of scaling exponentially with the size of the system. The
-procedure presented here applies when we can make simplifying assumptions,
-namely that the constituent particles of the system do not interact and that the
-Hamiltonian is constant (or at least piecewise constant) in time. I present an
-experimental demonstration of the protocol on a photonic quantum walk, but it
-could have applications outside of quantum photonics.
+\label{ch:Background}
+\section{Quantum Interference}
+\label{sec:HOM}
+Quantum interference is really important. In fact, a large part of the
+verification chapter is concerned with establishing that it's happening. There
+is a neat mathematical description of this phonemenon in terms of permanents (or
+determinants) of matrices.
 
 \section{Evolution of Quantum States}
 \label{sec:Evolution}
@@ -279,7 +228,7 @@ circuit) and we have direct control over all of them.
 A final important discussion surrounding \bosonsampling{} is that of
 verification: if we have a large Boson Sampler, how can we confirm that it is
 operating correctly? There is an important distinction to be made here between
-a quantum algorithm like Shor factoring, which in in NP and \bosonsampling{},
+a quantum algorithm like Shor factoring, which is in NP and \bosonsampling{},
 which is not. In the former case, the problem satisfies the \emph{short
 certificate} property, guaranteeing that the output of any task in NP can be
 verified by in classical polynomial time. A valid certificate in the case of

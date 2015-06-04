@@ -93,9 +93,9 @@ def TraceDistance(root):
     for j in range(4):
       u[i,j]*=phi
   u=u[:,0:2]
-  return max(sum([0.5*abs(numpy.dot(u.conjugate().T, r))[i,i]\
-for i in range(2)]),\
-  sum([0.5*abs(numpy.dot(u.T, r))[i,i] for i in range(2)]))
+  return max(abs(sum([0.5*numpy.dot(u.conjugate().T, r)[i,i]\
+for i in range(2)])),\
+  abs(sum([0.5*numpy.dot(u.T, r)[i,i] for i in range(2)])))
 
 def GetPairs(root):
   eta,eps=GetEfficiencies(root)
