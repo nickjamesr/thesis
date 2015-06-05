@@ -1,5 +1,5 @@
-chapters=$(addprefix chapters/,qcv.tex dialling.tex simulations.tex\
- hamiltomo.tex background.tex)
+chapters=$(addprefix chapters/,introduction.tex background.tex dialling.tex \
+ simulations.tex qcv.tex hamiltomo.tex conclusions.tex)
 
 background_figs=bosonsampling.pdf\
  reck_original.pdf\

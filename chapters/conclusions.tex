@@ -1,4 +1,49 @@
 \chapter{Conclusions}
 \label{ch:Conclusions}
-\todo{How successful was I at achieving the aims set out in the introduction.
-Put the work into wider context (I suck at this) and give some outlook.}
+In this thesis I have discussed the use of non-interacting bosons (photons) to
+implement non-universal models of quantum computation. I have presented
+proof-of-principle experiments showing that useful quantum simulations can be
+performed on this physical platform without the overheads of a universal quantum
+computer, and I have developed a series of tools for verifying the results of
+such systems.
+
+The simulation experiments that I presented in chapter~\ref{ch:Simulations} open
+up new and exciting possibilities of performing quantum simulations without the
+massive technical overheads of a universal quantum computer. I have demonstrate
+that the scope of these simulations extends beyond the isolated quantum systems
+usually considered in quantum mechanics, to open quantum systems with very
+different dynamics. The immediate application to vibrational states of molecules
+suggests that this is set to soon become a useful simulation technique for
+chemists, and that other applications will probably be discovered.
+
+I believe that the verification and control procedures presented in other
+chapters will become important, even essential in the development of
+intermediate models of quantum computation. In the realm of \bosonsampling{},
+the scale of experiments will grow with the capabilities of single photon
+sources, which will potentially see a sharp increase when multiplexing
+technologies mature. At this point, methods such as the dialling procedure in
+chapter~\ref{ch:DirectDialling} and the verification techniques presented in
+chapter~\ref{ch:QCV} will become invaluable. It is not clear whether
+verification in terms of clouding will be widely deployed, but its mere
+existence (along with the existence of other procedures such as the zero
+transmission law) is important evidence that we will be able to gain confidence
+in the correct operation of large quantum devices. 
+
+Finally, the tomography protocol presented in chapter~\ref{ch:Hamiltomo} is
+another useful tool for understanding systems of non-interacting bosons.
+Tomography is the ultimate proof of correct operation of a device, but general
+quantum process tomography has the unfortunate property of scaling exponentially
+with the size of the physical system. This new protocol takes advantage of
+additional assumptions about the system (no interactions and piecewise constant
+Hamiltonian) in order to obtain favourable scaling. Irrespective of whether any
+of these procedures are widely adopted in the form presented here, this idea of
+taking advantage of properties of the physical system is very generally
+applicable. In the context of non-universal quantum computing, I expect it to be
+the single most important driver of progress.
+
+Based on the current state of non-universal quantum computing in linear optics,
+I believe it has potential to be the next quantum technology to become widely
+deployed. I am confident that we will start seeing useful applications of
+analogue quantum simulators long before digital quantum simulation becomes
+feasible. The experiments in this thesis, and the verification and control
+procedures represent an important step towards achieving this goal.
