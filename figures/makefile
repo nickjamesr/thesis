@@ -30,6 +30,7 @@ all = benchmarking.pdf\
  recursive.pdf\
  rstar.pdf\
  schematic.pdf\
+ simplehom.pdf\
  sixphoton.pdf\
  tevol.pdf\
  threesite_singles.pdf\
@@ -227,6 +228,9 @@ rstar.pdf : rstar.pyx ../verification/data/updating.dat\
 
 schematic.pdf : schematic.eps schematic.pyx
 	pyxplot schematic.pyx
+
+simplehom.pdf : hom.eps simplehom.pyx
+	pyxplot simplehom.pyx
 
 sixphoton.pdf : sixphoton.pyx ../reck/data/classical_events.dat\
  ../reck/data/quantum_events.dat

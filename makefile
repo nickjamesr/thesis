@@ -5,6 +5,7 @@ background_figs=bosonsampling.pdf\
  homwalk.pdf\
  reck_original.pdf\
  reck_general.pdf\
+ simplehom.pdf
  
 dialling_figs=cascade.pdf\
  example.pdf\
