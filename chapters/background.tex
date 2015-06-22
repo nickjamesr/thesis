@@ -1,16 +1,68 @@
 \chapter{Background}
 \label{ch:Background}
-\section{Quantum Interference (unfinished)}
+\section{Quantum Interference}
 \label{sec:HOM}
-Quantum interference is really important. In fact, a large part of the
-verification chapter is concerned with establishing that it's happening. There
-is a neat mathematical description of this phonemenon in terms of permanents (or
-determinants) of matrices.
+The phenomenon of quantum interference is central to linear optical quantum
+computing. It was famously observed in photonics in the form of the
+Hong-Ou-Mandel (HOM) dip \cite{hom}, and plays a central role in the
+Knill-Laflamme-Milburn (KLM) proposal for scalable quantum computing.
 
-Figure~\ref{fig:HoMWalk} shows a more complicated example of quantum
-interference, in the scenario of a continuously-coupled walk. The difference
-between the three coincidence plots (b-d) will be really important in
-chapter~\ref{ch:QCV}.
+The HOM
+dip is perhaps the clearest illustration of quantum interference and is
+illustrated in figure~\ref{fig:SimpleHoM}. If two particles are incident on a
+50:50 beamsplitter in different input modes (A and B), they may be found in
+three possible configurations at the output modes (\aprime{} and \bprime{}). One
+particle may be transmitted and the other reflected, leading to both particles
+in the same mode (labelled (b) and (c) in figure~\ref{fig:SimpleHoM}).
+Alternatively, both particles could be reflected or both transmitted, resulting
+in one particle in each mode (labelled (a) in figure~\ref{fig:SimpleHoM}).
+
+In the classical picture, where the particles are distinguishable, we sum the
+probabilities for each of the possible paths, resulting in probability 0.5 for
+outcome (a), and 0.25 for each of outcomes (b) and (c). In the quantum picture,
+this is not the case and we must sum amplitudes, with signs depending on the
+exchange symmetry of the particles. For bosons (including photons), the two ways
+of obtaining outcome (a) interfere destructively, and the state at the output is
+an equal superposition of (b) and (c). On measurement, each of these outcomes is
+observed with probability 0.5. In the case of fermions, the quantum interference
+(Pauli exclusion) is constructive for outcome (a) and it is observed with unit
+probability.
+
+Mathematically, this behaviour can be neatly described by permanents and
+determinants of matrices. The unitary transfer matrix describing the
+beamsplitter is
+\[ \frac{1}{\sqrt{2}} \begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix} \]
+To calculate the classical probability of outcome (a), we take the
+\emph{permanent} of the absolute square of this matrix. For bosons, the
+probability is the absolute square of the \emph{permanent} of the matrix; for
+fermions we take the absolute square of the \emph{determinant}. Note that the
+order of taking the permanent (determinant) and the absolute square differs
+between quantum and classical, reflecting summing of amplitudes rather than
+probabilities. This formulation is discussed for larger interferometers in
+section~\ref{sec:BosonSampling} on \bosonsampling{}.
+
+A more complicated manifestation of quantum interference is observed when
+multiple particles pass through a continuously coupled walk. A detailed
+discussion of photonic quantum walks can be found in~\cite{walks-peruzzo}
+and~\cite{walks-jasmin}; here I have summarised the results in
+figure~\ref{fig:HoMWalk}. I have simulated injecting particles (classical,
+bosonic and fermionic) into the central modes (7 and 8) of a
+continuously-coupled walk. When only one particle (here, a photon) is injected
+(in mode 7), the probability of a detection at each of the output modes is shown
+in (a). The remaining graphs show the outcome when two particles are injected,
+one in each of modes 7 and 8. The \(\left(x,y\right)\) position in the array
+represents two output modes, and the intensity of the colour indicates the
+probability of a coincident detection between those two modes.
+
+(b,c,d) model bosons, classical (distinguishable particles) and fermions,
+respectively. We see that (c) is just a Cartesian product of (a) with itself
+with highest probabilities in the four `corners' of the plot. When the particles
+are bosons (b), there is an enhancement along the \(y=x\) line (marked in
+black): the two particles tend to go the same way! This observation, which we
+call `bosonic clouding' is studied in chapter~\ref{ch:QCV} as a way of verifying
+quantum behaviour. Finally, the fermions (d) obey Pauli exclusion: there is
+zero probability along the \(y=x\) line and suppression nearby. The quantum
+interference enhances the probabilities in the other two corners.
 
 \begin{figure}
   \centering
@@ -18,8 +70,8 @@ chapter~\ref{ch:QCV}.
   \caption[Quantum interference on a beamsplitter]
   {Quantum interference on a beamsplitter. Two particles are incident on a
   \(50:50\) beamsplitter, one in each of the modes A and B. There are 3 possible
-  outcomes at modes A\(^{\prime}\) and B\(^{\prime}\): (a) one particle in each,
-  (b) two particles in A\(^{\prime}\), (c) two particles in B\(^{\prime}\). In
+  outcomes at modes \aprime{} and \bprime{}: (a) one particle in each,
+  (b) two particles in \aprime{}, (c) two particles in \bprime{}. In
   the case of classical (distinguishable) particles, (a) occurs with probability
   0.5 and (b) and (c) occur with probability 0.25. For bosons, the two ways of
   achieving (a) interfere destructively, resulting in an equal superposition of
