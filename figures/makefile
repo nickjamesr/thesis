@@ -16,6 +16,7 @@ all = benchmarking.pdf\
  example.pdf\
  hamiltonians.png\
  hamiltoniansim.pdf\
+ homwalk.pdf\
  integratedreck.pdf\
  interferometerAB.pdf\
  interferometerCD.pdf\
@@ -40,6 +41,9 @@ all = benchmarking.pdf\
 default : $(all)
 
 # Generate data if required
+../background/% :
+	cd ../background $(MAKE) $*
+
 ../pt/% :
 	cd ../pt && $(MAKE) $*
 
@@ -82,6 +86,12 @@ hamiltoniansim_data=$(addprefix ../hamiltomo/data/TOpt/,ideal.dat\
 idealhamiltonian.png experimentalhamiltonian.png : $(hamiltoniansim_data)\
  hamiltoniansim.gnu
 	gnuplot hamiltoniansim.gnu
+
+homwalk_data=$(addprefix ../background/,bosons.dat\
+ fermions.dat\
+ classical.dat)
+BosonWalk.png FermionWalk.png ClassicalWalk.png QuantumWalk.png : hom.gnu
+	gnuplot hom.gnu
 
 vibrations.png : vibrations.svg
 	$(inkscape) -d 120 -e vibrations.png vibrations.svg
@@ -154,6 +164,10 @@ example.pdf : example.eps beamsplitter.eps bsmzi.eps dcmzi.eps example.pyx
 hamiltoniansim.pdf : idealhamiltonian.png experimentalhamiltonian.png\
  hamiltoniansim.pyx
 	pyxplot hamiltoniansim.pyx
+
+homwalk.pdf : BosonWalk.png FermionWalk.png ClassicalWalk.png QuantumWalk.png\
+ homwalk.pyx
+	pyxplot homwalk.pyx
 
 integratedreck.pdf : integratedreck.eps integratedreck.pyx
 	pyxplot integratedreck.pyx

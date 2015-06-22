@@ -31,21 +31,40 @@ def quantumwalk(nmodes, t, potential=2, coupling=0.5):
     H[i+1,i]=complex(coupling).conjugate()
   return expi(H,t)
 
-def bosons(U):
+def bosons(U,i,j):
   M=numpy.zeros_like(U,dtype=float)
+  rows,cols=M.shape
+  for k in range(rows):
+    for l in range(cols):
+      M[k,l]=abs2(U[k,i]*U[l,j]+U[l,i]*U[k,j])
+    M[k,k]/=2
   return M
 
-def fermions(U):
+def fermions(U,i,j):
   M=numpy.zeros_like(U,dtype=float)
+  rows,cols=M.shape
+  for k in range(rows):
+    for l in range(cols):
+      M[k,l]=abs2(U[k,i]*U[l,j]-U[l,i]*U[k,j])
+    M[k,k]/=2
   return M
 
-def classical(U):
+def classical(U,i,j):
   M=numpy.zeros_like(U,dtype=float)
+  rows,cols=M.shape
+  for k in range(rows):
+    for l in range(cols):
+      M[k,l]=abs2(U[k,i]*U[l,j])+abs2(U[l,i]*U[k,j])
+    M[k,k]/=2
   return M
 
 if __name__=='__main__':
-  U=quantumwalk(7,3)
-  numpy.savetxt("singles.dat",abs2(U[:,3]))
-  numpy.savetxt("bosons.dat",bosons(U))
-  numpy.savetxt("fermions.dat",fermions(U))
-  numpy.savetxt("classical.dat",classical(U))
+  nmodes=16
+  j=nmodes/2
+  i=j-1
+  U=quantumwalk(16,6)
+  numpy.savetxt("singles.dat",abs2(U[:,i]))
+  numpy.savetxt("bosons.dat",bosons(U,i,j))
+  numpy.savetxt("fermions.dat",fermions(U,i,j))
+  numpy.savetxt("classical.dat",classical(U,i,j))
+

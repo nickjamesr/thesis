@@ -2,6 +2,7 @@ chapters=$(addprefix chapters/,introduction.tex background.tex dialling.tex \
  simulations.tex qcv.tex hamiltomo.tex conclusions.tex)
 
 background_figs=bosonsampling.pdf\
+ homwalk.pdf\
  reck_original.pdf\
  reck_general.pdf\
  
