@@ -1,5 +1,5 @@
 chapters=$(addprefix chapters/,introduction.tex background.tex dialling.tex \
- simulations.tex qcv.tex hamiltomo.tex conclusions.tex)
+ simulations.tex qcv.tex hamiltomo.tex conclusions.tex publications.tex)
 
 background_figs=bosonsampling.pdf\
  homwalk.pdf\
@@ -41,11 +41,14 @@ qcv_figs=protected/dilbert.png\
  schematic.pdf\
  sixphoton.pdf
 
+publications_figs=
+
 figures=$(addprefix figures/, $(background_figs)\
  $(dialling_figs)\
  $(simulations_figs)\
  $(qcv_figs)\
- $(hamiltomo_figs))
+ $(hamiltomo_figs)\
+ $(publication_figs))
 
 thesis.pdf : $(figures) thesis.tex title.tex thesis.sty $(chapters)\
 		bib/thesis.bib
