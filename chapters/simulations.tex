@@ -2,7 +2,7 @@
 \label{ch:Simulations}
 In this chapter I discuss two instances of linear optical quantum simulations.
 The first is a full simulation of the time evolution of vibrational excitations
-in molecules. This work is being prepared for publication in \cite{molecules},
+in molecules. This work is being prepared for publication \cite{molecules},
 with co-authors Enrique Mart\'in L\'opez, Chris Sparrow Jeremy O'Brien and
 Anthony Laing. Some material appears in Enrique's PhD thesis \cite{enrique}. The
 physical platform used in this simulation was a bulk optics circuit built by
@@ -12,7 +12,7 @@ Sparrow and analysed by me.
 
 The second simulation moves away from closed quantum systems obeying Hermitian
 dynamics and considers a more abstract system of bosons obeying (non-Hermitian) 
-PT-symmetric dynamics. This work is being prepared for publication in
+PT-symmetric dynamics. This work is being prepared for publication
 \cite{pt-prep} with co-authors Yogesh Joglekar, Chris Sparrow, Chris Harrold,
 Jeremy O'Brien and Anthony Laing. The theory for this section (the
 \(\pt\)-symmetric model) was developed by Yogesh and appears in part in several
@@ -96,10 +96,10 @@ In section~\ref{sec:PT}, I extend the simulation to systems described by
 Hamiltonians obeying \(\pt\) symmetry, rather than the more stringent
 constraint of Hermiticity. Physically, this reflects an open quantum system
 with balanced but spatially separated loss and gain. The same simulation
-techniques are used, but due to the loss and gain modes we now require a
-doubling of the number of modes. Two \(\pt\) symmetric models are considered,
-the first on 2 sites (requiring four optical modes), the second on 3 sites
-(requiring six optical modes).
+techniques are used, but due to the loss and gain modes we now require
+double the number of modes in our simulator. Two \(\pt\) symmetric models are
+considered, the first on 2 sites (requiring four optical modes), the second on
+3 sites (requiring six optical modes).
 
 \section{Experimental Setup}
 \subsection{Bulk Optics}
@@ -126,7 +126,7 @@ figure~\ref{fig:circuit}. This circuit allows complete reconfigurability and
 arbitrary control over two photons in four optical modes. Operationally, it is
 similar to the scheme in~\cite{reck} (introduced in
 section~\ref{sec:ReckScheme}), but architecturally it is optimised for a stable
-implementation in bulk optics using combined path/polarisation encoding and 
+implementation in bulk optics using combined path and polarisation encoding and 
 Jamin-Lebedef interferometers. Reconfigurability is provided by a series of 7
 half waveplates, 5 of which give control over the amplitude splitting of the
 photons with the remaining 2 controlling the internal phases. Since we always
@@ -137,7 +137,7 @@ phase that would not be detected by any experiment. More detail on the
 calibration of the circuit is provided in chapter~\ref{ch:QCV}.
 
 Up to two photons can be injected at the input, initially in orthogonal
-polarisations, horizontal, H and vertical, V. The operation performed on the
+polarisations: horizontal, H and vertical, V. The operation performed on the
 photons' state is described by a \(4 \by 2\) unitary (only 2 columns are
 required because there are only 2 inputs),
 \begin{align}
@@ -163,7 +163,7 @@ counting or photon coincidence detection.
   \caption[A schematic of the integrated circuit used for simulations]
   {A schematic of the six-mode integrated circuit used for simulations. Photons
   can be injected in any of the modes on the left, and are measured at the
-  output on the right. Reconfigurability is provided by thermo-optic phase
+  output on the right. Reconfigurability is provided by thermal optic phase
   shifts (\(\phi\)); variable reflectivity beamsplitters are implemented placing
   a phase shift between two 50:50 directional couplers (DC) to form a Mach
   Zehnder interferometer (MZI).}
@@ -177,9 +177,9 @@ dimensions. At this point it is already becoming clear that scaling up the bulk
 optical circuit is impractical; fortunately integrated optics provides a
 solution. We use a \(6 \by 6\) integrated circuit to perform the simulations.
 All optical modes are realised in path and reconfigurability is achieved with
-thermo-optic phase shifts and Mach Zehnder interferometers. A schematic of the
-circuit is shown in figure~\ref{fig:IC}, and details of its operation are
-available in a preprint \cite{bigreck}.
+thermal optic phase shifts and Mach Zehnder interferometers. A schematic of the
+circuit is shown in figure~\ref{fig:IC}. Details of its operation not the main
+concern here, and are described in preprint \cite{bigreck}.
 
 \section{Data Analysis}
 \subsection{Presentation of Data}
@@ -202,8 +202,9 @@ and the matrix that we in fact did implement, according to the data we collect
 \cite{sst}. If the desired unitary is \(\mat{U}\) and the measured unitary
 is \(\mat{U^{\prime}}\), the trace distance, \(F\) is defined by:
 \[F=\frac{1}{2}\abs{\Tr\of{\mat{U}^{\dagger}{\mat{U}^{\prime}}}}\]
-The second measure we use compares (normalised) discrete probability
-distributions, \(p\) and \(q\). This fidelity is computed as:
+The second measure we use is the Kolmogorov distance, comparing (normalised)
+discrete probability distributions, \(p\) and \(q\). This fidelity is computed
+as:
 \[F=1-\frac{1}{2}\sum_{i}\abs{p_{i}-q_{i}}\]
 This can be computed for the single photon data without any normalisation, since
 detection probabilities across all output modes must sum to 1. In the case of
@@ -326,9 +327,9 @@ expected cointinuous time evolution of the measured quantities, with shaded
 regions accounting for \(\pm 1 \sigma\) errors in dialling on the circuit
 parameters (derived from Monte-Carlo simulations of 2000 circuits). Points are
 experimental measurements, with error bars due to Poissonian noise too small to
-see at this scale. Results of the two molecules are superposed on the same
+see at this scale. Results from the two molecules are superposed on the same
 plots, with OCS in green and \co in blue. We can see for each measured quantity
-the is somewhat similar near the beginning, but rapidly diverges.
+the evolution is somewhat similar near the beginning, but rapidly diverges.
 
 The fidelities, expressed as Kolmogorov distance between the expected and
 measured distributions, are summarised in the table below. The mean trace
@@ -379,7 +380,7 @@ serbyn-physrevb-87-020501}. In recent years, the \(\pt{}\)
 symmetry breaking has been experimentally investigated in classical systems
 including two optical waveguides \cite{pt-ruter}, electrical circuits
 \cite{schindler-physreva-84-040101}, mechanical systems
-\cite{bender-amjphys-81-173} and discrete fiber networks
+\cite{bender-amjphys-81-173} and discrete fibre networks
 \cite{pt-regensburger}.
 
 I will now demonstrate the quantum simulation of non-interacting bosons
@@ -409,7 +410,7 @@ simulating non-Hermitian Hamiltonians.
   the state is initialised with a single excitation in the system loss mode
   \(S_{0}\). The time evolution of the occupation of mode \(S_{0}\) is shown
   for a range of \(\gamma\), where \(\gamma < 1\) is the \(\pt\) symmetric
-  region and \(\gamma > 1\) is the \(\pt\) broken. Lines show the values of
+  region and \(\gamma > 1\) is \(\pt\) broken. Lines show the values of
   \(\gamma\) (0.95,1.0,1.05) that we have used in the experiment. In (a)
   unnormalised occupations are shown on a logarithmic scale, while in (b) the
   occupations have been normalised and experimental data are shown as points.}
@@ -580,7 +581,7 @@ keeping track of gain and loss.
     S_2, E_1, E2\right\}\) after the evolution is shown. (a) is in the
     \(\pt{}\)-symmetric region (\(\gamma=0.95\)), where we observe periodic
     behaviour. (b) is on the \(\pt{}\) phase boundary (\(\gamma=1\)) and (c) is
-    in the \(\pt{}\) broken region (\(\gamma=1.05\)). In both of these cases,
+    in the \(\pt{}\) broken region (\(\gamma=1.05\)). In the latter two cases,
     the detection probabilities in our
     experiment tend towards a constant value, with any evolution after this
     point being purely due to the scale factor. The bottom row (d-f) shows
@@ -614,7 +615,7 @@ The graphs in figure~\ref{fig:twosite} show the evolution of the 2-site system
 at 3 points in the parameter space: \(\pt{}\)-symmetric, \(\gamma=0.95\) (a,d);
 \(\pt{}\)-critical, \(\gamma=1.0\) (b,e) and \(\pt{}\)-broken, \(\gamma=1.05\)
 (c,f). The scale factor (i.e. operator norm of the non-unitary matrix) has been
-seperated from the experimental data for clarity. Consequently, the occupation
+separated from the experimental data for clarity. Consequently, the occupation
 probabilities are always bounded between zero and one, and reflect the
 probabilities of detecting photons in the relevant optical modes. On the other
 hand, the scale factor is unbounded, and this is the origin of the quadratic or
@@ -687,7 +688,7 @@ Looking at the behaviour near \(t=0\), the initial transfer of power from mode
 \end{figure}
 
 The two particle simulation has been restricted to initial states where both
-excitations are in the system, i.e.\ \(S_{0}S_{1}, S_{0},S_{2}, S_{1}S{2}\)
+excitations are in the system, i.e.\ \(S_{0}S_{1}, S_{0}S_{2}, S_{1}S_{2}\)
 (shown in the left, centre and right columns of
 figure~\ref{fig:threesitetwofolds} respectively). The measurements are also
 restricted to a set of six pairs of modes: the three input configurations and a
@@ -699,8 +700,8 @@ threshold (a), the same periodic behaviour is observed as in the single particle
 simulation, and above the threshold (b) the photon powers again tend to an
 equilibrium (corresponding to exponential increase in occupation when the
 unbounded scale factor is taken into account). Other than the case where the
-gain and neutral modes (\(S_{0}S_{1}\)), very little power remains in the
-system.
+gain and neutral modes (\(S_{0}S_{1}\)) are initially occupied, very little
+power remains in the system.
 
 \begin{figure}[p]
   \centering
@@ -730,7 +731,8 @@ normalised probability distributions, and summarised below:
 \end{tabular}
 
 \section{Conclusions}
-In this chapter I have demonstrated the power of linear optics to bosonic
+In this chapter I have demonstrated the power of linear optics to simulate
+bosonic
 excitations in a wide variety of settings. The simulations of vibrational states
 in molecules shows an application to a system of genuine practical use,
 which is beginning to attract wider interest from the physical chemistry
@@ -779,7 +781,7 @@ circuit, and counting coincidences. Photons were counted for 30s. Coincidence
 data in figures~\ref{fig:molecules}(c) and \ref{fig:twosite}(d-f) were obtained
 by injecting both photons into the circuit and then scanning the relative delay
 between them by moving the collection stage, to obtain a (generalised) HOM dip.
-47 positions were covered in the scan, with a separation of 0.02mm in the
+47 positions were measured in the scan, with a separation of 0.02mm in the
 central region of the dip and 0.06mm in the wings. Coincidences were counted for
 15s at each position. Finally, the relative collection efficiency of the
 detectors was measured by configuring the circuit to direct all light from the
@@ -790,7 +792,7 @@ a background count rate taken with the source turned off.
 For the three-site \(\pt\)-symmetric model, we require six optical modes to
 simulate the non-unitary evolution in three modes. A fully-reconfigurable
 silica-based planar waveguide circuit is used for this purpose, with
-reconfigurability provided by 30 tunable thermo-optic phase shifters. See
+reconfigurability provided by 30 tunable thermal optic phase shifters. See
 supplementary information in \cite{bigreck} for full details of the circuit,
 source and control.
 
