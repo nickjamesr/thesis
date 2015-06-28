@@ -2,8 +2,8 @@
 \label{ch:DirectDialling}
 This chapter contains theoretical work that I performed with the intention of
 answering the question: ``How do we fabricate random linear optical circuits?''
-It is currently being prepared for publication in \cite{dialling}, with
-co-authors Anthony Laing and Jeremy O'Brien.
+It is currently being prepared for publication with co-authors Anthony Laing
+and Jeremy O'Brien. A preprint is available at \cite{dialling}.
 
 \begin{figure}[t]
   \begin{subfigure}{0.52\textwidth}
@@ -28,28 +28,6 @@ co-authors Anthony Laing and Jeremy O'Brien.
     vectors. Physically, it can refer to the input power, which will always be 1
     in the case of single photons.}
   \label{fig:reck}
-\end{figure}
-
-\begin{figure}[t]
-  \includegraphics{figures/example}
-  \caption[A $6 \by 6$ unitary, expressed in linear optics]
-    {(a) A \(6 \by 6\) unitary, expressed in linear optics using a scheme
-    similar to the one in \cite{reck}. (b) The \pdf{}s for
-    beamsplitter reflectivities required to achieve Haar random unitaries.
-    The reflectivities of beamsplitters on the
-    bottom row can be chosen uniformly from the interval \(\left[ 0,1 \right)\),
-    while those on higher rows are chosen from according to polynomials
-    increasingly biased towards lower reflectivities. (c) A variable
-    reflectivity beamsplitter can be implemented using a Mach Zehnder
-    interferometer (MZI), composed of a phase shift, \(\theta\) between two
-    50:50 beamsplitters (Hadamard operations). The phases may be chosen directly
-    from the distributions shown, with increasing bias towards \(\theta=\pi\).
-    (d) Finally, in integrated optics, variable refelectivity beamsplitters are
-    implemented using an MZI composed of a phase shift, \(\xi\) between two
-    50:50 directional couplers (symmetric Hadamards operations). The phases must
-    then be chosen from the illustrated distributions, biased towards \(\xi=0\).
-    Line colours in (b-d) correspond to shading in (a).}
-  \label{fig:example}
 \end{figure}
 
 \section{Introduction}
@@ -274,6 +252,28 @@ fabricated with reflectivities and phase shifts chosen from the correct
 distributions, as described here. A \( 6 \by 6 \) example is illustrated in
 figure~\ref{fig:example}.
 
+\begin{figure}[p]
+  \includegraphics{figures/example}
+  \caption[A $6 \by 6$ unitary, expressed in linear optics]
+    {(a) A \(6 \by 6\) unitary, expressed in linear optics using a scheme
+    similar to the one in \cite{reck}. (b) The \pdf{}s for
+    beamsplitter reflectivities required to achieve Haar random unitaries.
+    The reflectivities of beamsplitters on the
+    bottom row can be chosen uniformly from the interval \(\left[ 0,1 \right)\),
+    while those on higher rows are chosen from according to polynomials
+    increasingly biased towards lower reflectivities. (c) A variable
+    reflectivity beamsplitter can be implemented using a Mach Zehnder
+    interferometer (MZI), composed of a phase shift, \(\theta\) between two
+    50:50 beamsplitters (Hadamard operations). The phases may be chosen directly
+    from the distributions shown, with increasing bias towards \(\theta=\pi\).
+    (d) Finally, in integrated optics, variable refelectivity beamsplitters are
+    implemented using an MZI composed of a phase shift, \(\xi\) between two
+    50:50 directional couplers (symmetric Hadamard operations). The phases must
+    then be chosen from the illustrated distributions, biased towards \(\xi=0\).
+    Line colours in (b-d) correspond to shading in (a).}
+  \label{fig:example}
+\end{figure}
+
 \section{Extension to qubits}
 \label{sec:Qubits}
 We now extend the result to the case of a unitary operating on qubits by
@@ -363,7 +363,7 @@ power reflectivity, \(r\), the matrix describing this component is
     \sqrt{1-r} & -\sqrt{r}
   \end{pmatrix}
 \end{equation}
-In the qubit picture, we avoid implement a variable-reflectivity beamsplitter as
+In the qubit picture, we implement a variable-reflectivity beamsplitter as
 a variable phase shift, \(\theta\) between two Hadamard operations. The matrix
 representation of this component is (down to global phase)
 \begin{equation}
