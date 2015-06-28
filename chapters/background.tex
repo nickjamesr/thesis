@@ -4,7 +4,7 @@
 \label{sec:HOM}
 The phenomenon of quantum interference is central to linear optical quantum
 computing. It was famously observed in photonics in the form of the
-Hong-Ou-Mandel (HOM) dip \cite{hom}, and plays a central role in the
+Hong-Ou-Mandel (HOM) dip \cite{hom}, and plays a major role in the
 Knill-Laflamme-Milburn (KLM) proposal for scalable quantum computing.
 
 The HOM
@@ -19,7 +19,7 @@ in one particle in each mode (labelled (a) in figure~\ref{fig:SimpleHoM}).
 
 In the classical picture, where the particles are distinguishable, we sum the
 probabilities for each of the possible paths, resulting in probability 0.5 for
-outcome (a), and 0.25 for each of outcomes (b) and (c). In the quantum picture,
+outcome (a), and 0.25 for each of outcomes (b) and (c). In the quantum picture
 this is not the case and we must sum amplitudes, with signs depending on the
 exchange symmetry of the particles. For bosons (including photons), the two ways
 of obtaining outcome (a) interfere destructively, and the state at the output is
@@ -45,7 +45,7 @@ A more complicated manifestation of quantum interference is observed when
 multiple particles pass through a continuously coupled walk. A detailed
 discussion of photonic quantum walks can be found in~\cite{walks-peruzzo}
 and~\cite{walks-jasmin}; here I have summarised the results in
-figure~\ref{fig:HoMWalk}. I have simulated injecting particles (classical,
+figure~\ref{fig:HoMWalk}. I have simulated injecting particles (distinguishable,
 bosonic and fermionic) into the central modes (7 and 8) of a
 continuously-coupled walk. When only one particle (here, a photon) is injected
 (in mode 7), the probability of a detection at each of the output modes is shown
@@ -54,9 +54,10 @@ one in each of modes 7 and 8. The \(\left(x,y\right)\) position in the array
 represents two output modes, and the intensity of the colour indicates the
 probability of a coincident detection between those two modes.
 
-(b,c,d) model bosons, classical (distinguishable particles) and fermions,
+(b,c,d) model bosons, distinguishable particles and fermions,
 respectively. We see that (c) is just a Cartesian product of (a) with itself
-with highest probabilities in the four `corners' of the plot. When the particles
+with high probabilities in the all four `corners' of the plot. When the
+particles
 are bosons (b), there is an enhancement along the \(y=x\) line (marked in
 black): the two particles tend to go the same way! This observation, which we
 call `bosonic clouding' is studied in chapter~\ref{ch:QCV} as a way of verifying
@@ -69,10 +70,10 @@ interference enhances the probabilities in the other two corners.
   \includegraphics{figures/simplehom.pdf}
   \caption[Quantum interference on a beamsplitter]
   {Quantum interference on a beamsplitter. Two particles are incident on a
-  \(50:50\) beamsplitter, one in each of the modes A and B. There are 3 possible
+  50:50 beamsplitter, one in each of the modes A and B. There are 3 possible
   outcomes at modes \aprime{} and \bprime{}: (a) one particle in each,
   (b) two particles in \aprime{}, (c) two particles in \bprime{}. In
-  the case of classical (distinguishable) particles, (a) occurs with probability
+  the case of distinguishable particles, (a) occurs with probability
   0.5 and (b) and (c) occur with probability 0.25. For bosons, the two ways of
   achieving (a) interfere destructively, resulting in an equal superposition of
   (b) and (c). For fermions, the effect of interference (Pauli exclusion) is
@@ -88,15 +89,15 @@ interference enhances the probabilities in the other two corners.
   photon (bright light) is injected in mode 7, the height of the bar indicates
   the probability of detection at each of the output modes. (b-d) Two particles
   are injected into modes 7 and 8, the intensity of the colour indicates the
-  probability of coincident detection at modes \(i\) (horizontal axis) and \(j\)
+  probability of coincident detection at modes \(x\) (horizontal axis) and \(y\)
   (vertical axis) for bosons (b), fermions (d) and distinguishable particles
-  (c). The diagonal line indicates `bunched' events where \(i=j\).}
+  (c). The diagonal line indicates `bunched' events where \(x=y\).}
   \label{fig:HoMWalk}
 \end{figure}
 
 \section{Evolution of Quantum States}
 \label{sec:Evolution}
-A large part of quantum mechanics (arguably all of quantum mechanics) concerns
+A large part (arguably all) of quantum mechanics concerns
 calculating the evolution of quantum systems. At any time, a system in a pure
 state\footnote{Except when explicitly stated, I am describing photonic states as
 pure.} can be completely described by
@@ -131,9 +132,10 @@ operator, \(\op{U}_{i}\) and  the overall time evolution operator is just the
 When the Hamiltonian is Hermitian, which it must be for a closed quantum system
 (in order to conserve energy), the time evolution operator is unitary.
 
-In the case of photonics (or at least the cases that I will discuss in this
-thesis), the state space is discrete and finite, meaning that the wavefunction
-can be expressed exactly as a complex vector of unit magnitude. The number of
+In the photonics applications discussed in this thesis,
+the state space is discrete and finite, meaning that the wavefunction
+can be expressed exactly as a complex vector of finite dimension and unit
+magnitude. The number of
 dimensions required is the number of optical modes, be they spatial,
 polarisation or some other degree of freedom. The Hamiltonians that we consider
 are piecewise constant in time (e.g. the application of a waveplate in bulk or
@@ -204,8 +206,9 @@ This result has profound consequences for experimental quantum photonics.
 It implies that when such a circuit is built, \emph{all} other linear optical
 devices will become redundant, being just specific configurations of the
 general circuit. Rapid progress in fabrication and control of integrated optics
-has recently brought a \(6 \by 6\) reconfigurable circuit to the lab, and some
-of the data in chapter~\ref{ch:Simulations} were taken on this device.
+has recently brought a \(6 \by 6\) reconfigurable circuit to the lab
+\cite{bigreck}, and some of the data in chapter~\ref{ch:Simulations} were taken
+on this device.
 
 \section{Boson Sampling}
 \label{sec:BosonSampling}
@@ -231,35 +234,15 @@ section~\ref{sec:RStar}.
 
 In their development of the \bosonsampling{} problem, AA have described a
 computational task that can be performed by a linear optical network which we
-strongly believe cannot be performed by a classical computer. If we find no
+strongly believe cannot be performed efficiently by a classical computer. If we
+find no
 fundamental obstacle to demonstrating \bosonsampling{} in practice (or even
 better, actually do it!), this would force us to abandon (or at least further
-extentd) the Extendend Church-Turing Thesis (ECT). First though, we need to
-better understand this \emph{strong belief} on which the result is based.
-
-The nature of the proof is that, if
-the exact form of the \bosonsampling{} problem were performed classically, it
-would imply the collapse of the polynomial hierarchy. While this is not
-expressly forbidden by complexity theory, the same can be said about the
-conservation of energy. The implications to a complexity theorist are equally
-absurd. The caveat to this proof is that even the quantum computer does not
-perform \bosonsampling{} exactly, so this is an unfair demand to place on a
-classical competitor. In the case of a reasonable approximation, two unproved
-but plausible conjectures (backed up by numerical evidence) are required to
-imply the same collapse of the polynomial hierarchy.
-
-Against the better known challenger to the ECT, using Shor's algorithm to factor
-large numbers, this actually compares very favourably. If somebody were to
-announce tomorrow that they had developed a classical algorithm that could
-factor numbers in polynomial time, the news would be very disruptive to
-everyday life (and quantum computing research budgets) but it wouldn't have a
-profound effect on complexity theory. A single decision problem (factoring)
-would have to be moved from NP to P. We already know that factoring is not
-NP-complete, so it wouldn't even have any implications on the long-standing
-question of whether P=NP.
+extend) the Extendend Church-Turing Thesis (ECT).
 
 I will now briefly describe practical \bosonsampling{}, before returning to
-consider how valuable it is as a computational model. As the name suggests, a
+consider the nature of this \emph{strong belief} on which the result is based
+and how valuable it is as a computational model. As the name suggests, a
 demonstration of \bosonsampling{} involves taking samples from a probability
 distribution, in this case corresponding to the probabilities of detection
 events in a linear optics experiment as shown in figure~\ref{fig:BosonSampling}.
@@ -289,15 +272,41 @@ didn't have to store the entire distribution to perform a sampling (and we
 wouldn't expect to have to do this), just computing one element of it requires
 evaluation of the permanent of a \(p \by p\) complex matrix. Computing
 permanents exactly is \# P complete \cite{valiant} and the fastest known
-algorithm (Ryser's algorithm) has running time \(\bigo \of{ p 2^{p} }\). This is
+algorithm (Ryser's algorithm) has running time \(\bigo \of{ p \cdot 2^{p} }\).
+This is
 by no means a proof that \bosonsampling{} is classically hard (if we inject
 classical, distinguishable particles, we can sample the output distribution
-without explicitly calculating \emph{any} \(p\)-photon probabilities), but it
+without explicitly calculating \emph{any} \(p\)-particle probabilities), but it
 does strongly suggest a link between \bosonsampling{} and the evaluation of
-permanents.
+permanents or complex matrices.
 
-Now one may ask how this is considered a computation at all.
-After all, it does not result in any deterministic outcome. A plausible
+The nature of the proof is that, if
+the exact form of the \bosonsampling{} problem were performed classically, it
+would imply the collapse of the polynomial hierarchy. While this is not
+expressly forbidden by complexity theory, the same can be said about the
+conservation of energy and thermodynamics: the implications to a complexity
+theorist are comparable in their absurdity. The caveat to this proof is that
+even the quantum computer does not
+perform \bosonsampling{} exactly, so this is an unfair demand to place on a
+classical competitor. In the case of a reasonable approximate sampling, two
+unproved
+but plausible conjectures (backed up by numerical evidence) are required to
+imply the same collapse of the polynomial hierarchy.
+
+Against the better known challenger to the ECT, using Shor's algorithm to factor
+large numbers, this actually compares very favourably. If somebody were to
+announce tomorrow that they had developed a classical algorithm that could
+factor numbers in polynomial time, the news would be very disruptive to
+everyday life (and quantum computing research budgets) but it wouldn't have a
+profound effect on complexity theory. A single decision problem (factoring)
+would have to be moved from NP to P. We already know that factoring is not
+NP-complete, so it wouldn't even have any implications on the long-standing
+question of whether P=NP. If a classical Boson Sampler were unveiled, we would
+have to revise the entire structure of the polynomial hierarchy (or revisit the
+two conjectures in AA).
+
+Now one may ask how this is considered a computation at all---after
+all, it does not result in any deterministic outcome. A plausible
 complaint might be that just because something cannot be modeled classically,
 it doesn't make it a classically intractable computation. We can illustrate
 this by pointing to a cow, and using it to define the \alg{Cow} algorithm.
@@ -315,10 +324,10 @@ circuit) and we have direct control over all of them.
 A final important discussion surrounding \bosonsampling{} is that of
 verification: if we have a large Boson Sampler, how can we confirm that it is
 operating correctly? There is an important distinction to be made here between
-a quantum algorithm like Shor factoring, which is in NP and \bosonsampling{},
+a quantum algorithm like Shor factoring, which is in NP, and \bosonsampling{},
 which is not. In the former case, the problem satisfies the \emph{short
 certificate} property, guaranteeing that the output of any task in NP can be
-verified by in classical polynomial time. A valid certificate in the case of
+verified in classical polynomial time. A valid certificate in the case of
 factoring is the prime factors, since these can be efficiently multiplied
 together to verify correct operation. Tasks outside NP have no such guarantee.
 This difficulty was raised in the original proposal by Aaronson and Arkhipov,

@@ -11,6 +11,7 @@ set multiplot
   # Component labels
   text "Beamsplitter" at 20*fig_m,58*fig_m
   text "Phase shift" at 64*fig_m,58*fig_m
+  text "Mirror" at 46*fig_m,52*fig_m
 
   # Input labels
   text "\(\left| 0 \right\rangle\)" at -4*fig_m,36*fig_m
