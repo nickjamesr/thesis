@@ -27,7 +27,7 @@ integrated circuit.
 Simulation of quantum systems, for example calculation of the electronic energy
 states of molecules,
 is a major challenge for classical computers, with even the fastest algorithms
-falling short of polynomial scaling with the system size. Approximations can be
+falling short of polyomial scaling with the system size. Approximations can be
 pretty good, but cases such as the simulation of catalyst molecules, fall short
 of the required precision for useful theoretical conclusions
 \cite{qsim-poulin}. A solution
@@ -183,7 +183,7 @@ concern here, and are described in preprint \cite{bigreck}.
 
 \section{Data Analysis}
 \subsection{Presentation of Data}
-Since we are simulating continuous time phenomena, we discretise the evolution
+Since we are simulating continuous time phonemona, we discretise the evolution
 in order to present our results, taking measurements at a discrete set of times.
 In the case of a single vibrational excitation in the four-level molecule,
 these measurements correspond to the probability of detection of a single
@@ -260,7 +260,7 @@ there are \(3n - 5\) vibrational modes. Therefore a linear 3-atom molecule will
 have four vibrational modes, making it a suitable candidate for simulation in
 our system. The four modes are illustrated in figure~\ref{fig:vibrations}.
 
-We identify two such molecules to simulate: carbon dioxide (\co{}) and Carbonyl
+We identify two such molecules to simulate: carbon dioxide (\co{}) and carbonyl
 sulphate (OCS). The energies of the vibrational modes are taken from
 spectroscopic data on the HITRAN database~\cite{hitran}, to give us the
 Hamiltonians in the diagonal basis:
@@ -323,7 +323,7 @@ with the simulation using a discrete time method. We dial \(\mat{U} \of{t}\) for
 phonon-pair coincidences at each time. The results are shown in
 figure~\ref{fig:molecules}, with single photon data for the quart in (a) and the
 trit in (b), and coincidence data in (c). Lines represent the theoretically
-expected continuous time evolution of the measured quantities, with shaded
+expected cointinuous time evolution of the measured quantities, with shaded
 regions accounting for \(\pm 1 \sigma\) errors in dialling on the circuit
 parameters (derived from Monte-Carlo simulations of 2000 circuits). Points are
 experimental measurements, with error bars due to Poissonian noise too small to
@@ -368,7 +368,7 @@ symmetry breaking.
 It has been established that \(\pt{}\) symmetric theory is unlikely to be a
 complete alternative to quantum mechanics, either reducing to the same thing
 \cite{mostafazadeh-jmathphys-43-205} or producing non-physical results such as
-violation of the no-signalling principle of relativity \cite{lee-prl-112-130404}.
+violation of the no-signaling principle of relativity \cite{lee-prl-112-130404}.
 However, it has recently become clear that it is far from being just a
 mathematical curiosity: \(\pt{}\)-symmetric Hamiltonians model open
 systems---classical or quantum---with balanced, spatially separated loss and
@@ -418,7 +418,7 @@ simulating non-Hermitian Hamiltonians.
 \end{figure}
 
 \subsection{Two-site PT-symmetric model}
-Let us consider a 2-site Hamiltonian with a tunnelling \(J > 0\) between the two
+Let us consider a 2-site Hamiltonian with a tunneling \(J > 0\) between the two
 sites and a \(\pt{}\)-symmetric potential \(\pm i \gamma\) on the two sites, \(
 \mat{H} = -J \sigma_x -i \gamma \sigma_z\). The eigenvalues of this matrix are
 \( \epsilon = \pm \sqrt{J^{2} - \gamma^{2}} \) which are real for \( J \geq
@@ -513,7 +513,7 @@ time-evolution operator into a larger, unitary operator. This can be done for
 any matrix by doubling the dimension; that is, any \(n \by n\) matrix can be
 embedded as an \(n \by n\) submatrix of a \(2n \by 2n\) unitary matrix. In order
 to perform this embedding for a non-unitary matrix \(\mat{G}\), we must first
-scale it so that the operator norm is less than or equal to 1. A suitable
+rescale it so that the operator norm is less than or equal to 1. A suitable
 definition of operator norm in this case is \(\abs{\mat{G}} = \sqrt{\abs{e_{
 \text{max}}}}\), where \(e_{\text{max}}\) is the largest eigenvalue of 
 \(\mat{GG^{\dagger}}\) \cite{dilation}. The scaled matrix is then
@@ -535,7 +535,7 @@ Since \(\mat{G}_{s}\mat{G}_{s}^{\dagger}\) is always Hermitian, it always has
 real eigenvalues and thus the defect matrix is well defined.
 
 Physically, the interpretation of this unitary matrix corresponds to doubling
-the number of available modes by introducing an \emph{environment} space, of
+the number of available modes by introducing an \emph{enviroment} space, of
 equal dimension to the \emph{system}. The rationalisation for this increase in
 size being sufficient is that each system mode needs only one loss/gain channel
 to realise arbitrary dynamics: adding more does not provide any additional
@@ -762,7 +762,7 @@ input and output modes. This insensitivity to certain phases reduces the number
 of parameters that we need to control to 7. All of the tunable parameters are
 realised experimentally with half waveplates (HWPs), 5 of which control
 amplitude splitting and the remaining 2 control internal phases
-(interferometers). The calibration of the circuit is described in
+(interferometers). The calibration of the circuit is decribed in
 section~\ref{sec:Calibration} of chapter~\ref{ch:QCV}.
 
 The type-I spontaneous parametric down-conversion source used a 404nm

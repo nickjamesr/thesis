@@ -85,7 +85,7 @@ interference enhances the probabilities in the other two corners.
   \centering
   \includegraphics{figures/homwalk.pdf}
   \caption[Quantum interference in a continuously-coupled walk]
-  {Quantum interference in a 16-mode continuously-coupled walk. (a) A single
+  {Quantum interference in a 16-mode continously-coupled walk. (a) A single
   photon (bright light) is injected in mode 7, the height of the bar indicates
   the probability of detection at each of the output modes. (b-d) Two particles
   are injected into modes 7 and 8, the intensity of the colour indicates the
@@ -238,7 +238,7 @@ strongly believe cannot be performed efficiently by a classical computer. If we
 find no
 fundamental obstacle to demonstrating \bosonsampling{} in practice (or even
 better, actually do it!), this would force us to abandon (or at least further
-extend) the Extended Church-Turing Thesis (ECT).
+extend) the Extendend Church-Turing Thesis (ECT).
 
 I will now briefly describe practical \bosonsampling{}, before returning to
 consider the nature of this \emph{strong belief} on which the result is based
@@ -307,7 +307,7 @@ two conjectures in AA).
 
 Now one may ask how this is considered a computation at all---after
 all, it does not result in any deterministic outcome. A plausible
-complaint might be that just because something cannot be modelled classically,
+complaint might be that just because something cannot be modeled classically,
 it doesn't make it a classically intractable computation. We can illustrate
 this by pointing to a cow, and using it to define the \alg{Cow} algorithm.
 After all, it is beyond the powers of our classical computers to model such a

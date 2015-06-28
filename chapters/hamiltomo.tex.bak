@@ -37,7 +37,7 @@ own work, but it is important background for the results that follow.
 Any lossless linear optical device on \(m\) modes can be described in its
 entirety by an
 \(m \by m\) unitary matrix, \(\mat{U}\). Since photons do not interact, this
-matrix is sufficient to describe the action of the device on any number of
+matrix is sufficient to decsribe the action of the device on any number of
 photons, even if the calculation of the transfer elements does not scale
 polynomially with the number of photons, \(p\). This means that a full
 description of the device can be expressed in only \(m^{2}\) real
@@ -127,7 +127,7 @@ column \(\beta\) to deduce the phase of an element \(u_{jl}\) where \(j \neq
 This method works fine unless one of the powers \(P_{\alpha \beta},
 P_{\alpha l}, P_{j \beta}\) is equal to zero, in which case the phase is
 undefined (if \(P_{jl}=0\) we do not need to know its phase). It is therefore
-important to select references in such a way as to minimise the number of zero
+important to select references in such a way as to minimize the number of zero
 elements.
 
 \section{Tomography of a Hamiltonian}
@@ -222,7 +222,7 @@ of physical parameters (phases) required to realise the matrix experimentally
 (see chapter~\ref{ch:DirectDialling} for details of the transformation). Each
 phase
 \(\phi\) is replaced with a noisy value \(\tilde{\phi}\), obtained from a
-Gaussian distribution centred on \(\phi\) with width \(\varepsilon\), and a
+Gaussian distribution centered on \(\phi\) with width \(\varepsilon\), and a
 noisy unitary \(\tilde{\mat{U}}\) is calculated from this set of parameters.
 Simulations for three different levels of noise, \(\varepsilon=10^{-4}, 10^{-6},
 10^{-8}\) are shown in figure~\ref{fig:stepsize}.
@@ -342,7 +342,7 @@ evolution times were 6.723, 6.682 and 6.594 for wavelengths 774nm, 776nm and
   \centering
   \includegraphics{figures/tevol}
   \caption[Deducing the effective evolution times for different wavelengths]
-  {(a) Deducing the effective evolution times for different wavelengths. The
+  {(a) Deducing the effective evolution times for differet wavelengths. The
   error is a mean Kolmogorov distance between the power distributions and has
   minima at 6.723, 6.682 and 6.594 for wavelengths 774nm, 776nm and 778nm
   respectively. The effective (symmetrised) timestep is 0.06. (b) Simulating the
@@ -488,13 +488,13 @@ as the product \(\mat{H}t\), the effect is just another contribution to the
 effective evolution time.
 
 Our photon source consists of a variable-wavelength 140fs pulsed Ti:sapphire
-laser, which is attenuated with a half waveplate and polarising beamsplitter
+laser, which is attenuated with a half waveplate and polarizing beamsplitter
 before frequency doubling with a type-I \(\beta\)-barium borate (BBO) nonlinear
 crystal. The resulting (half wavelength) light is filtered by dichroic mirrors
-and focused onto a type-I bismuth triborate \(\text{BiB}_{3}\text{O}_{6}\)
+and focussed onto a type-I bismuth triborate \(\text{BiB}_{3}\text{O}_{6}\)
 (BiBO) nonlinear crystal to generate pairs of photons through spontaneous
 parametric down conversion. After passing through an interference filter, the
-photon pairs are collected into two polarisation maintaining fibres which are
+photon pairs are collected into two polarization maintaining fibres which are
 butt-coupled to the quantum walk chip. In order to vary the wavelength of the
 two photon state, the filters and non-linear crystals must be tilted slightly,
 in addition to adjusting the wavelength of the laser. The wavelength of the
@@ -511,7 +511,7 @@ experiment have modelled noise from this kind of source, rather than photon
 counting.
 
 The 21 mode waveguide array implementing the continuous time quantum walk was
-fabricated in Silicon oxynitride. The index contrast of this material platform
+fibricated in Silicon oxynitride. The index contranst of this material platform
 is 2.4\%, which enables fabrication of micrometre-sized single-mode waveguides.
 The waveguides were designed to have a constant width of 2.2\(\mu\)m and a
 height of 0.85\(\mu\)m. They are pitched at 1.3\(\mu\)m within the coupling

@@ -58,7 +58,7 @@ relevance to linear optics is not widely appreciated. Further, we extend the
 result to systems of qubits, by deriving a mapping between a linear-optical
 circuit on \(m=2^{n}\) modes and a circuit operating on \(n\) qubits.
 
-\section{A physically-motivated parameterisation}
+\section{A physically-motivated parameterization}
 \label{sec:Parameterization}
 Drawing a Haar random unitary is analogous to choosing a random number from a
 uniform distribution in that it should be unbiased. The probability of drawing
@@ -266,7 +266,7 @@ figure~\ref{fig:example}.
     interferometer (MZI), composed of a phase shift, \(\theta\) between two
     50:50 beamsplitters (Hadamard operations). The phases may be chosen directly
     from the distributions shown, with increasing bias towards \(\theta=\pi\).
-    (d) Finally, in integrated optics, variable reflectivity beamsplitters are
+    (d) Finally, in integrated optics, variable refelectivity beamsplitters are
     implemented using an MZI composed of a phase shift, \(\xi\) between two
     50:50 directional couplers (symmetric Hadamard operations). The phases must
     then be chosen from the illustrated distributions, biased towards \(\xi=0\).
@@ -305,7 +305,7 @@ effectively implementing a Mach Zehnder interferometer (MZI).
 
 The existence of this mapping means that we can directly apply the results
 described above to the implementation of Haar unitaries in systems of qubits,
-with the only difference being the description of a variable reflectivity element
+with the only difference being the description of a varible reflectivity element
 in terms of the internal phase \(\theta\) in an MZI. A further change of
 variables, \(r = \cos^{2} \of{\theta/2} \) is required, and the appropriate
 \pdf{}s for these elements are then:

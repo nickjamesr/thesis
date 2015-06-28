@@ -1,4 +1,4 @@
-\chapter{Calibration and Verification of Quantum Devices}
+\chapter{Calibration and Verificiation of Quantum Devices}
 \label{ch:QCV}
 This chapter is a collection of work done for various experiments, all of which
 concerns either calibrating a device or verifying the output of the experiment.
@@ -127,17 +127,17 @@ path-only equivalent in figure~\ref{fig:schematic}. The waveplates implementing
 amplitude splittings (\(at_{0}, at_{1}, aq_{0}, aq_{1}, aq_{2}\)) are shown as
 beamsplitters, and the phase shifts implemented by the waveplates \(\phi_{0}\)
 and \(\phi_{1}\) are shown on the relevant paths. In figures~\ref{fig:ab}
-and~\ref{fig:cd}, I have highlighted the two interferometers, which can produce
+and~\ref{fig:cd}, I have highilighted the two interferometers, which can produce
 fringes in count rates at detectors A and B and detectors C and D respectively.
 
 When \(\phi_{0}\) is scanned, the observed interference fringes are as expected,
 but the origin of the fringes shifts as a function of other components in the
 interferometer, \(aq_{0}\) and \(at_{1}\), which in the ideal case would have no
 effect on the internal phase. This is an example of type I crosstalk, and the
-phase shifts due to \(aq_{0}\) and \(at_{1}\) could be characterised through
+phase shifts due to \(aq_{0}\) and \(at_{1}\) could be characterized through
 measurement and incorporated into the calibration. However, due to the nature of
 bulk optics, there is generally a further drift in the origin of the fringe due
-to movement of components. This drift cannot be characterised, but the timescale
+to movement of components. This drift cannot be characterized, but the timescale
 is sufficiently slow that it does not have to be adjusted for in any given run
 of the experiment. The approach we used to deal with these effects (drift and
 type I crosstalk) was to perform a new phase calibration for every unitary, with
@@ -225,7 +225,7 @@ figure~\ref{fig:benchmarking} for a single random matrix.
   benchmarking. (a) quantum coincidences; (b) classical coincidences; (c)
   singles from the `quart'; (d) singles from the `trit'. The bars show results 
   expected from theory, with the middle line being the ideal case, and the lower
-  and upper lines representing \(\pm 1\sigma\) deviations caused by errors in
+  and upper lines represnting \(\pm 1\sigma\) deviations caused by errors in
   setting parameters. The points are the experimentally measured results. Error
   bars due to Poissonian noise are too small to see on this scale. The overall
   fidelity (trace distance between ideal and reconstructed matrices) is \(0.99\)
@@ -235,7 +235,7 @@ figure~\ref{fig:benchmarking} for a single random matrix.
   \label{fig:benchmarking}
 \end{figure}
 
-To assess the performance of the circuit, we consider the same fidelity
+To assess the performance of the circuit, we consider the same fidelitiy
 measures as in chapter~\ref{ch:Simulations}. Normalised probability
 distributions are compared using the Kolmogorov distance:
 \begin{equation}
@@ -267,7 +267,7 @@ described in section~\ref{sec:SimulationExperiment}. To collect coincidence
 data, two photons from the source were injected into the circuit with a relative
 temporal delay, implemented by a linear actuator on the collection stage of one
 arm of the source. This delay was scanned through a range of 2mm in order to
-observe the quantum to classical transition in coincidence rates. Photon
+observe the quauntum to classical transition in coincidence rates. Photon
 coincidences were counted for 15s at 0.02mm intervals throughout the range.
 
 The `quart' and `trit' measurements are not true single photon count rates: they
@@ -304,7 +304,7 @@ number generators poses a challenge, as illustrated in figure~\ref{fig:dilbert}.
 The additional problem in the case of \bosonsampling{} lies in the fact that the
 configuration space being sampled is so large: with a few dozen photons in a few
 hundred modes, the probability of observing the same event twice is vanishingly
-small, making estimating any individual probability futile.
+small, making estimating any individual proabability futile.
 
 This point was raised by Gogolin et al in~\cite{gogolin}, in which an argument
 is presented that under certain conditions the output of a \bosonsampling{}
@@ -329,7 +329,7 @@ information-theoretically impossible to distinguish the \bosonsampling{}
 distribution from the uniform.
 
 A response to this was quickly published by Aaronson and Arkhipov (AA)
-in~\cite{notuniform}, challenging the assumption of no knowledge of the unitary
+in~\cite{notuniform}, challenging the assumpton of no knowledge of the unitary
 description of the device. Indeed, we know from~\cite{sst} that it is possible
 to efficiently determine the unitary from one- and two-photon measurements so it
 is not unreasonable to relax this assumption. Under the new set of assumptions 
@@ -400,7 +400,7 @@ photons into a 6-mode quantum Fourier transform described by the unitary
   \mat{QFT}_{jk} = \frac{1}{\sqrt{6}} \omega^{jk} &&,&&
   \omega=e^{\frac{2\pi i}{6}}
 \end{align}
-implemented on a reconfigurable integrated optics circuit. The input state
+implemented on a reconfigurable integrated optics circit. The input state
 consists of three photons in each of the first two modes, \(\ket{S} =
 \ket{000111}\) and we observe events in the subspace where no more than two
 photons occupy the same mode. Photons are injected under two conditions:
@@ -445,7 +445,7 @@ from indistinguishable photons, demonstrating the power of this method.
   possible detection event. The indices of the output modes dictate the
   position, so for the event where the photons are detected in modes \(i\),
   \(j\) and \(k\), a sphere will be drawn at \(\left(i,j,k\right)\) on these
-  axes. The size of the sphere indicates the probability of the event occurring. 
+  axes. The size of the sphere indicates the probability of the event occuring. 
   The clustering of events around (but not necessarily on) the line \(i=j=k\)
   (drawn in black) is the phenomenon that we call bosonic clouding.
   (a) and (b) show simulations of the quantum walk; (c) and (d) show the
@@ -564,7 +564,7 @@ most of the configuration space (the regions where at least one of the photons
 is still near the centre) will have very low probabilities. A uniform sampling
 across the configuration space will pick up mostly these, and possibly miss the
 clouds entirely. Instead of the uniform distribution, I sample according to the
-probability of the event occurring in a `classical' experiment, where the
+probability of the event occuring in a `classical' experiment, where the
 injected photons are distinguishable in some degree of freedom.
 
 \subsection{Alternative Approaches}
@@ -579,7 +579,7 @@ birthday bound \cite{birthdays, experimental-birthdays}.
 
 \section{Conclusions}
 In this chapter, I have presented work I performed towards calibration and
-verification of post-classical quantum devices. As well as highlighting important
+verification of post-classical quantum devices. As well as highlighing important
 aspects of the general calibration task, the case study described in the
 calibration section made possible the quantum simulation results in
 chapter~\ref{ch:Simulations}. The task of verification is equally important if
