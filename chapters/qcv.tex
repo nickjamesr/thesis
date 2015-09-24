@@ -228,22 +228,24 @@ figure~\ref{fig:benchmarking} for a single random matrix.
   and upper lines representing \(\pm 1\sigma\) deviations caused by errors in
   setting parameters. The points are the experimentally measured results. Error
   bars due to Poissonian noise are too small to see on this scale. The overall
-  fidelity (trace distance between ideal and reconstructed matrices) is \(0.99\)
-  and the fidelities (Kolmogorov distance between normalised probability
-  distribution functions) of individual distributions are (a) \(0.97\); (b)
-  \(0.94\); (c) \(0.99\); (d) \(0.89\).}
+  fidelity (using equation~\ref{eq:trace} to compare ideal and reconstructed
+  matrices) is \(0.99\) and the fidelities (using equation~\ref{eq:kolmogorov}
+  to compare normalised probability distribution functions) of individual
+  distributions are (a) \(0.97\); (b) \(0.94\); (c) \(0.99\); (d) \(0.89\).}
   \label{fig:benchmarking}
 \end{figure}
 
 To assess the performance of the circuit, we consider the same fidelity
 measures as in chapter~\ref{ch:Simulations}. Normalised probability
-distributions are compared using the Kolmogorov distance:
+distributions are compared using the quantity
 \begin{equation}
-  \Delta \of{ p,p^{\prime} } = \frac{1}{2} \sum_{i} \abs{p_{i} - p_{i}^{\prime}}
+  F_{\mathrm{k}} = \Delta \of{ p,p^{\prime} } = 1 - \frac{1}{2} \sum_{i}
+  \abs{p_{i} - p_{i}^{\prime}}
 \end{equation}
-and unitary matrices are compared using the trace distance
+and unitary matrices are compared using
 \begin{equation}
-  \frac{1}{2} \abs{ \Tr \of{ \mat{U}^{\dagger} \mat{U}^{\prime} } }
+  F_{\mathrm{Tr}} = \Delta \of{ \mat{U},\mat{U}^{\prime}} = \frac{1}{2} \abs{
+  \Tr \of{ \mat{U}^{\dagger} \mat{U}^{\prime} } }
 \end{equation}
 where the factor of \(2\) is required because only two columns of the unitary
 are considered. The mean and standard deviations of each of these measures over
@@ -251,9 +253,9 @@ the 12 random unitaries are summarised below:
 
 \begin{tabular}{|c|c|c|c|c|}
   \hline
-  & \multicolumn{4}{|c|}{Kolmogorov distances} \\
+  & \multicolumn{4}{|c|}{\(F_{\mathrm{k}}\)} \\
   \cline{2-5}
-  Trace distance & quart & trit & quantum & classical \\
+  \(F_{\mathrm{Tr}}\)& quart & trit & quantum & classical \\
   \hline
   \(0.991 \pm 0.015\) & \(0.979 \pm 0.005\) & \(0.96 \pm 0.03\) & \(0.959 \pm
   0.013\) & \(0.971 \pm 0.015\) \\

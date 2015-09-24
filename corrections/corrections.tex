@@ -1,11 +1,29 @@
 \documentclass[a4paper,11pt]{article}
+\usepackage{thesis}
 
 \begin{document}
 
 \section{}
 \begin{quote}
-  ``Please correct the places where "distance" is used incorrectly.''
+  ``Please correct the places where `distance' is used incorrectly.''
 \end{quote}
+The paragraph defining the fidelity has been rewritten as follows:
+\begin{quote}
+  ``To evaluate the fidelity of our simulations, we look at two quantities. The
+  first is computed from the trace of the product of the unitary matrix that we
+  intended to implement, and the matrix that we in fact did implement, according
+  to the data we collect. If the desired unitary is \(\mat{U}\) and
+  the measured unitary is \(\mat{U^{\prime}}\), this fidelity,
+  \(F_{\mathrm{tr}}\) is defined by:
+  \begin{equation}
+    F_{\mathrm{tr}}=\frac{1}{2}\abs{\Tr\of{\mat{U}^{\dagger}{\mat{U}^{\prime}}}}
+  \end{equation}
+  In the case of perfect implementation, \(\mat{U}\) and \(\mat{U^{\prime}}\)
+  will be the same (and both unitary), yielding unit fidelity; an imperfect
+  implementation results in a fidelity less than one.''
+\end{quote}
+Previously incorrect uses of `distance' throughout the document now reference
+these `fidelities' and make no claim to be a `distance'.
 
 \section{}
 \begin{quote}
