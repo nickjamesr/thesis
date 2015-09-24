@@ -22,8 +22,8 @@ set multiplot
   text "\(1.10\)" at 48*fig_m,9*fig_m
   text "\(0\)" at 58*fig_m,5*fig_m
   text "\(11\)" at 83*fig_m,2*fig_m
-  text "\(1.10\)" at 98*fig_m,11*fig_m
-  text "\(0.90\)" at 89*fig_m,4*fig_m
+  text "\(1.10\)" at 89*fig_m,4*fig_m
+  text "\(0.90\)" at 98*fig_m,11*fig_m
 
   set display
   refresh
