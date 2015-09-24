@@ -200,15 +200,15 @@ To evaluate the fidelity of our simulations, we look at two measures. The first
 is a trace distance between the unitary matrix that we intended to implement,
 and the matrix that we in fact did implement, according to the data we collect
 \cite{sst}. If the desired unitary is \(\mat{U}\) and the measured unitary
-is \(\mat{U^{\prime}}\), the trace distance, \(F\) is defined by:
+is \(\mat{U^{\prime}}\), the trace distance, \(F_{\mathrm{tr}}\) is defined by:
 \begin{equation}
-  F=\frac{1}{2}\abs{\Tr\of{\mat{U}^{\dagger}{\mat{U}^{\prime}}}}
+  F_{\mathrm{tr}}=\frac{1}{2}\abs{\Tr\of{\mat{U}^{\dagger}{\mat{U}^{\prime}}}}
 \end{equation}
 The second measure we use is the Kolmogorov distance, comparing (normalised)
 discrete probability distributions, \(p\) and \(q\). This fidelity is computed
 as:
 \begin{equation}
-  F=1-\frac{1}{2}\sum_{i}\abs{p_{i}-q_{i}}
+  F_{\mathrm{k}}=1-\frac{1}{2}\sum_{i}\abs{p_{i}-q_{i}}
 \end{equation}
 This can be computed for the single photon data without any normalisation, since
 detection probabilities across all output modes must sum to 1. In the case of
