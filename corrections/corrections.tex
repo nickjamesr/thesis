@@ -71,6 +71,16 @@ in question:
   a number of random unitaries and confirm that they are correctly
   distributed [using some appropriate measure of your choice].''
 \end{quote}
+Numerics have been performed on the \(3 \by 3\) case to give some assurance of
+correct operation of the scheme. The numerics check the mean of the trace of the
+generated unitaries and also compare the distributions of absolute values and
+phases of individual elements. We expect the trace to have mean 1, and the
+distribution of absolute values (\(r\)) and phases \(\phi\) of all elements to
+follow
+\begin{align}
+  \prob{P}_{r} \of{r} &= 4r\left(1-r^{2}\right) &, && 0 \leq r < 1 \\
+  \prob{P}_{\phi} \of{\phi} &= \frac{1}{2\pi} &, && 0 \leq \phi < 2\pi
+\end{align}
 
 \section{}
 \begin{quote}
