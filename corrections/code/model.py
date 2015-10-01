@@ -1,9 +1,10 @@
 #!/usr/bin/python
 
 import numpy
+import cmath
 
 from matplotlib import pyplot
-from sys import argv
+from sys import argv,exit
 
 def expi(phi):
   return numpy.exp(1j*phi)
@@ -73,22 +74,99 @@ if __name__=='__main__':
   if len(argv)>2:
     nsamples=int(argv[2])
 
-  nmetrics = 4
-  register = numpy.empty((nmetrics,nsamples))
-
+  register = numpy.empty((9,nsamples))
   for i in range(nsamples):
-    u=unitary_from_reck(*generate())
-    register[0,i] = abs(u[0,0])
-    register[1,i] = abs(u[1,0])
-    register[2,i] = abs(u[2,0])
-    register[3,i] = abs(trace(u))**2
-
-  nbins = 25
-  print "0,0 element (mean {0:.4f})".format(numpy.mean(register[0]))
-  count, bins, ignored = pyplot.hist(register[0], nbins, normed=True)
-  pyplot.plot(bins, elements(bins), linewidth=2, color='r')
+    r,phi = generate()
+    register[0,i] = r[2,1]
+    register[1,i] = r[2,2]
+    register[2,i] = root(r[2,1])
+    register[3,i] = root(r[2,2])
+    register[4,i] = toor(r[2,1])
+    register[5,i] = toor(r[2,2])
+    register[6,i] = root(r[2,1])
+    register[7,i] = toor(r[2,1])*root(r[2,2])
+    register[8,i] = toor(r[2,1])*toor(r[2,2])
+  print "r(2,1) - linear"
+  count, bins, ignored = pyplot.hist(register[0], 15, normed=True)
+  pyplot.show()
+  print "r(2,2) - uniform"
+  count, bins, ignored = pyplot.hist(register[1], 15, normed=True)
+  pyplot.show()
+  print "root(r_21)"
+  count, bins, ignored = pyplot.hist(register[2], 15, normed=True)
+  pyplot.show()
+  print "root(r_22)"
+  count, bins, ignored = pyplot.hist(register[3], 15, normed=True)
+  pyplot.show()
+  print "root(1-r_21)"
+  count, bins, ignored = pyplot.hist(register[4], 15, normed=True)
+  pyplot.show()
+  print "root(1-r_22)"
+  count, bins, ignored = pyplot.hist(register[5], 15, normed=True)
+  pyplot.show()
+  print "|rho_0|"
+  count, bins, ignored = pyplot.hist(register[6], 15, normed=True)
+  pyplot.plot(bins, elements(bins))
+  pyplot.show()
+  print "|rho_1|"
+  count, bins, ignored = pyplot.hist(register[7], 15, normed=True)
+  pyplot.plot(bins, elements(bins))
+  pyplot.show()
+  print "|rho_2|"
+  count, bins, ignored = pyplot.hist(register[8], 15, normed=True)
+  pyplot.plot(bins, elements(bins))
   pyplot.show()
 
-  print "|trace|^2   (mean {0:.4f})".format(numpy.mean(register[3]))
-  count, bins, ignored = pyplot.hist(register[3], nbins, normed=True)
-  pyplot.show()
+  exit(0)
+  nmetrics = 18
+  register = numpy.empty((nmetrics,nsamples))
+    
+  for i in range(nsample):
+    u   = unitary_from_reck(*generate())
+    r   = abs(u[0,0])
+    phi = cmath.phase(u[0,0])
+    n=0
+    register[n,i] = r
+    n+=1
+    register[n,i] = r**2
+    n+=1
+    register[n,i] = r**3
+    n+=1
+    register[n,i] = r**4
+    n+=1
+    register[n,i] = r**5
+    n+=1
+    register[n,i] = r**6
+    n+=1
+    register[n,i] = phi
+    n+=1
+    register[n,i] = phi**2
+    n+=1
+    register[n,i] = phi**3
+    n+=1
+    register[n,i] = phi**4
+    n+=1
+    register[n,i] = phi**5
+    n+=1
+    register[n,i] = phi**6
+    n+=1
+    v = u.copy()
+    register[n,i] = abs(trace(v))**2
+    n+=1
+    v = numpy.dot(u,v)
+    register[n,i] = abs(trace(v))**2
+    n+=1
+    v = numpy.dot(u,v)
+    register[n,i] = abs(trace(v))**2
+    n+=1
+    v = numpy.dot(u,v)
+    register[n,i] = abs(trace(v))**2
+    n+=1
+    v = numpy.dot(u,v)
+    register[n,i] = abs(trace(v))**2
+    n+=1
+    v = numpy.dot(u,v)
+    register[n,i] = abs(trace(v))**2
+
+  for i in range(nmetrics):
+    print numpy.mean(register[i])
