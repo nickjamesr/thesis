@@ -477,15 +477,28 @@ experimental conditions.
 \label{sec:HamiltomoExperiment}
 The experimental results in this chapter require measurements of one and two
 photon states after evolution for three different times in a continuous time
-quantum walk. In a linear optical quantum walk, effective evolution time is
-determined by two parameters: the length of the coupling region and the mode
-index for guided light. Since we cannot change the length of the coupling region
-in a monolithic, integrated device, we take advantage of the dispersion of the
-waveguide and change the mode index by varying the wavelength of the photons.
-It is worth mentioning that this process could also affect the mode size and
-therefore the couplings, but since the couplings only ever appear in our results
-as the product \(\mat{H}t\), the effect is just another contribution to the
-effective evolution time.
+quantum walk. The effective evolution time in a linear optical quantum walk is
+dictated by the length of the coupling region, the effective index of
+refraction for guided light, and the strength of coupling between adjacent
+waveguides. Since we cannot change the length of the coupling region in a
+monolithic, integrated device, we must instead rely on the other two effects.
+Both the mode index and the coupling strength are a function of the wavelength
+of the photons, so by using a variable wavelength source, we can achieve
+different evolution times with the same chip.
+
+Tuning the wavelength does not give us independent control over the mode index
+and the coupling strength, so the effect on evolution time,
+\(t_{\text{eff}}\), will necessarily be a combination of these two factors.
+The couplings, \(\eta_{ij}\), appear on the off-diagonals of the Hamiltonian,
+\(\mat{H}\), which only appears in our results as the product \(\mat{H} t\).
+Hence, any transformation of the form \(\eta_{ij} \rightarrow k \eta_{ij}\)
+for some constant \(k\) will have exactly the same effect as the
+transformation \(t \rightarrow k t\). For a small change in wavelength, we
+can approximate the change in mode index as linear, \(n \of{\lambda} = \bigo
+\of{\lambda}\). Since the couplings depend on the overlap of the evanescent
+field, the dependence on wavelength is exponential and consequently we expect
+the effect of the change in coupling strength to be smaller than the effect of
+the change in mode index.
 
 Our photon source consists of a variable-wavelength 140fs pulsed Ti:sapphire
 laser, which is attenuated with a half waveplate and polarising beamsplitter

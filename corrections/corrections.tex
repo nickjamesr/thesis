@@ -1,0 +1,239 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage{thesis}
+
+\begin{document}
+
+\section{}
+\begin{quote}
+  ``Please correct the places where `distance' is used incorrectly.''
+\end{quote}
+The paragraph defining the fidelity has been rewritten as follows:
+\begin{quote}
+  ``To evaluate the fidelity of our simulations, we look at two quantities. The
+  first is computed from the trace of the product of the unitary matrix that we
+  intended to implement, and the matrix that we in fact did implement, according
+  to the data we collect. If the desired unitary is \(\mat{U}\) and
+  the measured unitary is \(\mat{U^{\prime}}\), this fidelity,
+  \(F_{\mathrm{tr}}\) is defined by:
+  \begin{equation}
+    F_{\mathrm{tr}}=\frac{1}{2}\abs{\Tr\of{\mat{U}^{\dagger}{\mat{U}^{\prime}}}}
+  \end{equation}
+  In the case of perfect implementation, \(\mat{U}\) and \(\mat{U^{\prime}}\)
+  will be the same (and both unitary), yielding unit fidelity; an imperfect
+  implementation results in a fidelity less than one.''
+\end{quote}
+Previously incorrect uses of `distance' throughout the document now reference
+`fidelities' and make no claim to be a distance.
+
+\section{}
+\begin{quote}
+  ``Please consider the relative impact of changes in mode index vs
+  mode coupling as a function of wavelength on p100 and provide a
+  revised paragraph.''
+\end{quote}
+The relative impact of the two effects has been considered. As briefly discussed
+with Peter Mosley in the viva, I have come to the conclusion that the change in
+mode index greater than the change in coupling strength. I propose the following
+revision to the paragraph in question:
+\begin{quote}
+  ``The experimental results in this chapter require measurements of one and two
+  photon states after evolution for three different times in a continuous time
+  quantum walk. The effective evolution time in a linear optical quantum walk is
+  dictated by the length of the coupling region, the effective index of
+  refraction for guided light, and the strength of coupling between adjacent
+  waveguides. Since we cannot change the length of the coupling region in a
+  monolithic, integrated device, we must instead rely on the other two effects.
+  Both the mode index and the coupling strength are a function of the wavelength
+  of the photons, so by using a variable wavelength source, we can achieve
+  different evolution times with the same chip.
+
+  Tuning the wavelength does not give us independent control over the mode index
+  and the coupling strength, so the effect on evolution time,
+  \(t_{\text{eff}}\), will necessarily be a combination of these two factors.
+  The couplings, \(\eta_{ij}\), appear on the off-diagonals of the Hamiltonian,
+  \(\mat{H}\), which only appears in our results as the product \(\mat{H} t\).
+  Hence, any transformation of the form \(\eta_{ij} \rightarrow k \eta_{ij}\)
+  for some constant \(k\) will have exactly the same effect as the
+  transformation \(t \rightarrow k t\). For a small change in wavelength, we
+  can approximate the change in mode index as linear, \(n \of{\lambda} = \bigo
+  \of{\lambda}\). Since the couplings depend on the overlap of the evanescent
+  field, the dependence on wavelength is exponential and consequently we expect
+  the effect of the change in coupling strength to be smaller than the effect of
+  the change in mode index.''
+\end{quote}
+
+\section{}
+\begin{quote}
+  ``Please give an explicit description of how the parametrisation of
+  Haar random unitaries given in the thesis produces the correct
+  distribution of elements of the first column of the unitary in the 3x3
+  case.  Please also use the parametrisation in the 3x3 case to produce
+  a number of random unitaries and confirm that they are correctly
+  distributed [using some appropriate measure of your choice].''
+\end{quote}
+When expressed in the polar form, \(z=\rho e^{i\phi}\), the elements in Haar
+unitaries are identically (but not independently) distributed according to
+\begin{align}
+  \label{eq:rho}
+  \prob{P}_{\rho} \of{\rho} &= 4\rho\left(1-\rho^{2}\right) &,
+    && 0 \leq \rho < 1 \\
+  \label{eq:phi}
+  \prob{P}_{\phi} \of{\phi} &= \frac{1}{2\pi} &, && -\pi \leq \phi < \pi
+\end{align}
+where the amplitudes \(\rho\) and phases \(\phi\) are independent of each other
+for any element.
+
+For a \(3 \by 3\) unitary, the first column is
+\begin{equation}
+  U_{0} = \begin{pmatrix}
+    z_{0} \\ z_{1} \\ z_{2}
+  \end{pmatrix} = \begin{pmatrix}
+    \rho_{0} e^{i \phi_{0}} \\
+    \rho_{1} e^{i \phi_{1}} \\
+    \rho_{2} e^{i \phi_{2}}
+  \end{pmatrix}
+\end{equation}
+In terms of my parameterisation, there are five optical elements\footnote{the
+normalisation constraint implies that we only have five degrees of freedom for a
+complex unit vector in three dimensions}: two beamsplitters with reflectivities
+\(r_{1}, r_{2}\) and three phase shifts \(\theta_{0}, \theta_{1}, \theta_{2}\).
+The elements of the unitary are expressed in this parameterisation as
+\begin{align}
+  \rho_{0} &= \sqrt{r_{1}} & \phi_{0} &= \theta_{0} \\
+  \rho_{1} &= \sqrt{1-r_{1}} \sqrt{r_{2}} & \phi_{1} &= \theta_{1} \\
+  \rho_{2} &= \sqrt{1-r_{1}} \sqrt{1-r_{2}} & \phi_{2} &= \theta_{2}
+\end{align}
+Here I will show explicitly that when these are chosen from the distributions
+derived in the thesis
+\begin{align}
+  \prob{P}_{r_{1}} \of{r_{1}} &= 2 \left( 1-r_{1} \right) &,
+    && 0 \leq r_{1} < 1 \\
+  \prob{P}_{r_{2}} \of{r_{2}} &= 1 &,
+    && 0 \leq r_{2} < 1 \\
+  \label{eq:theta}
+  \prob{P}_{\theta_{i}} \of{\theta_{i}} &= \frac{1}{2 \pi} &,
+    && -\pi \leq \theta_{i} < \pi && \left( i=0,1,2 \right)
+\end{align}
+the distributions of elements in equations \ref{eq:rho} and \ref{eq:phi} are
+recovered.
+
+Since there is no transformation involved in the phases, and the distributions
+in equations \ref{eq:phi} and \ref{eq:theta} are identical, it is immediately
+clear that the parameterisation works for the phases. For the amplitudes, I
+begin by introducing new variables to remove the square roots
+\begin{align}
+  s_{1} &= \sqrt{r_{1}} & t_{1} &= \sqrt{1-r_{1}} \\
+  s_{2} &= \sqrt{r_{2}} & t_{2} &= \sqrt{1-r_{2}}
+\end{align}
+These relations are monotonic and all variables are still non-zero only in the
+interval \(\left[ 0,1 \right]\). I perform the necessary transformations to
+derive the probability density functions for these new variables (only \(s_{1}\)
+written out in full):
+\begin{align}
+  \prob{P}_{s_{1}} \of{s_{1}} &= \abs{ \frac{dr_{1}}{ds_{1}} }
+    \prob{P}_{r_{1}} \of{r_{1}} \\
+  &= \left( 2s_{1} \right) \left( 2 \left( 1-s_{1}^{2} \right) \right) \\
+  \label{eq:s1}
+  &= 4 s_{1} \left( 1-s_{1}^{2} \right) \\
+  \label{eq:t1}
+  \prob{P}_{t_{1}} \of{t_{1}} &= 4 t_{1}^{3} \\
+  \label{eq:s2}
+  \prob{P}_{s_{2}} \of{s_{2}} &= 2 s_{2} \\
+  \label{eq:t2}
+  \prob{P}_{t_{2}} \of{t_{2}} &= 2 t_{2}
+\end{align}
+The elements in the first column of the unitary are expressed in these new
+variables as
+\begin{align}
+  \rho_{0} &= s_{1} \\
+  \rho_{1} &= t_{1} s_{2} \\
+  \rho_{2} &= t_{1} t_{2}
+\end{align}
+The distribution for \(s_{1}\) (equation \ref{eq:s1}) matches the expected
+distribution for \(\rho_{0}\) (equation \ref{eq:rho}) so no further work is
+required here. For \(\rho_{1}\) and \(\rho_{2}\), a further transformation is
+necessary. Note that since \(s_{2}\) and \(t_{2}\) are identically distributed,
+I only need to do this once. Standard algebra of random variables states that if
+\(S\) and \(T\) are independent random variables and the random variable \(R =
+ST\), then
+\begin{align}
+  \prob{P}_{R} \of{\rho} &= \int_{-\infty}^{\infty} \prob{P}_{T} \of{t}
+    \prob{P}_{S} \of{\frac{\rho}{t}} \frac{1}{\abs{t}} dt \\
+  \intertext{which is applied to the transformation in question} \\
+  \prob{P}_{\rho_{1}} \of{\rho_{1}} &= \int_{\rho_{1}}^{1} \left( 4 t^{3} \right)
+    \left( \frac{2 \rho_{1}}{t} \right) \frac{1}{t} dt \\
+  &= 8 \rho_{1} \int_{\rho_{1}}^{1} t dt \\
+  &= 4 \rho_{1} \left( 1-\rho_{1}^{2} \right)
+\end{align}
+thus recovering the correct distribution for all elements in the first column of
+the unitary.
+
+Numerical evidence of correct operation is obtained by using my parameterisation
+to generate \(10^{6}\) \(3 \by 3\) unitaries. The distribution of the trace of
+these unitaries is then checked against a known result for \(n \by n\) Haar
+unitaries (see page 55 of ref 51 in the thesis and also~\cite{diaconis}):
+\begin{align}
+    E_{n,m}
+    &= E \left[ \abs{ \Tr \of{ \mat{U}_{ \left(n\right) }^{m} } }^{2} \right] \\
+    &= \int_{\mat{U}_{ \left(n\right) }} d \mat{U} \abs{ \Tr \of{ \mat{U}_{
+    \left(n\right) }^{m} } }^{2} \\
+    &= \min \of{n,m}
+\end{align}
+The results for the first 6 powers of \( \mat{U} \) are summarised in the table
+below (\(n=3\) throughout), where \(\widetilde{E}_{n,m}\) is the numerical
+estimate of the expectation \(E_{n,m}\).
+
+\def\arraystretch{1.3}
+\begin{tabular}{l|c|c|c|c|c|c}
+  \(m\) & 1 & 2 & 3 & 4 & 5 & 6 \\
+  \hline
+  \(E_{3,m}\) & 1 & 2 & 3 & 3 & 3 & 3 \\
+  \hline
+  \(\widetilde{E}_{3,m}\) & 0.998 & 2.003 & 3.002 & 2.998 & 2.996 & 3.004
+\end{tabular}
+
+If desired, I can insert these results as a new appendix, or a new section in
+chapter 3 of the thesis.
+
+\section{}
+\begin{quote}
+  ``Please update the Appendix to correctly list the preprints as
+  referred to elsewhere in the thesis.''
+\end{quote}
+I have inserted the following text into the appendix, after the list of
+first-author preprints:
+\begin{quote}
+  ``I am co-author on one additional preprint
+  \begin{itemize}
+    \item E. Mart\'in L\'opez, N. J. Russell, C. Sparrow, J. L. O'Brien and A.
+      Laing, ``Quantum simulation of phonons in the harmonic limit'',
+      \textit{in preparation}.''
+  \end{itemize}
+\end{quote}
+
+\section{}
+\begin{quote}
+  ``Please either produce a revised Figure 4.6 or find another way to
+  make sure that this is correctly described''
+\end{quote}
+Figure 4.6 has been revised to show the correct axis labels. The new version
+(figure \ref{fig:manifolds}) is reproduced here.
+\begin{figure}
+  \centering
+  \includegraphics{manifolds}
+  \caption{Revised version of figure 4.6, with the axes correctly labelled.}
+  \label{fig:manifolds}
+\end{figure}
+
+\section{}
+\subsection*{Other minor edits made}
+\begin{enumerate}
+  \item Add numbers to the three equations formerly missing them.
+  \item Assign different symbols to the figures of merit in section 4.3.2.
+  \item Correct other minor typographical errors (e.g. spelling and
+        punctuation).
+\end{enumerate}
+
+\bibliographystyle{ieeetr}
+\bibliography{corrections.bib}
+\end{document}

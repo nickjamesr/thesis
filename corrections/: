@@ -1,0 +1,152 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage{thesis}
+
+\begin{document}
+
+\section{}
+\begin{quote}
+  ``Please correct the places where `distance' is used incorrectly.''
+\end{quote}
+The paragraph defining the fidelity has been rewritten as follows:
+\begin{quote}
+  ``To evaluate the fidelity of our simulations, we look at two quantities. The
+  first is computed from the trace of the product of the unitary matrix that we
+  intended to implement, and the matrix that we in fact did implement, according
+  to the data we collect. If the desired unitary is \(\mat{U}\) and
+  the measured unitary is \(\mat{U^{\prime}}\), this fidelity,
+  \(F_{\mathrm{tr}}\) is defined by:
+  \begin{equation}
+    F_{\mathrm{tr}}=\frac{1}{2}\abs{\Tr\of{\mat{U}^{\dagger}{\mat{U}^{\prime}}}}
+  \end{equation}
+  In the case of perfect implementation, \(\mat{U}\) and \(\mat{U^{\prime}}\)
+  will be the same (and both unitary), yielding unit fidelity; an imperfect
+  implementation results in a fidelity less than one.''
+\end{quote}
+Previously incorrect uses of `distance' throughout the document now reference
+these `fidelities' and make no claim to be a `distance'.
+
+\section{}
+\begin{quote}
+  ``Please consider the relative impact of changes in mode index vs
+  mode coupling as a function of wavelength on p100 and provide a
+  revised paragraph.''
+\end{quote}
+The relative impact of the two effects has been considered and I have come to
+the conclusion that the change in mode index is likely to be greater than the
+change in coupling strength. I propose the following revision to the paragraph
+in question:
+\begin{quote}
+  ``The experimental results in this chapter require measurements of one and two
+  photon states after evolution for three different times in a continuous time
+  quantum walk. The effective evolution time in a linear optical quantum walk is
+  dictated by the length of the coupling region, the effective index of
+  refraction for guided light, and the strength of coupling between adjacent
+  waveguides. Since we cannot change the length of the coupling region in a
+  monolithic, integrated device, we must instead rely on the other two effects.
+  Both the mode index and the coupling strength are a function of the wavelength
+  of the photons, so by using a variable wavelength source, we can achieve
+  different evolution times with the same chip.
+
+  Tuning the wavelength does not give us independent control over the mode index
+  and the coupling strength, so the effect on evolution time,
+  \(t_{\text{eff}}\), will necessarily be a compination of these two factors.
+  The couplings, \(\eta_{ij}\), appear on the off-diagonals of the Hamiltonian,
+  \(\mat{H}\), which only appears in our results as the product \(\mat{H} t\).
+  Hence, any transformation of the form \(\eta_{ij} \rightarrow k \eta_{ij}\)
+  for some constant \(k\) will have exactly the same effect as the
+  transformation \(t \rightarrow k t\). For a small change in wavelength, we
+  can approximate the change in mode index as linear, \(n \of{\lambda} = \bigo
+  \of{\lambda}\). Since the couplings depend on the overlap of the evanescent
+  field, the dependence on wavelength is exponential and consequently we expect
+  the effect of the change in coupling strength to be smaller than the effect of
+  the change in mode index.''
+\end{quote}
+
+\section{}
+\begin{quote}
+  ``Please give an explicit description of how the parametrisation of
+  Haar random unitaries given in the thesis produces the correct
+  distribution of elements of the first column of the unitary in the 3x3
+  case.  Please also use the parametrisation in the 3x3 case to produce
+  a number of random unitaries and confirm that they are correctly
+  distributed [using some appropriate measure of your choice].''
+\end{quote}
+When expressed in the polar form, \(z=\rho e^{i\phi}\), the elements in Haar
+unitaries are identically (but not independently) distributed according to
+\begin{align}
+  \label{eq:rho}
+  \prob{P}_{\rho} \of{\rho} &= 4\rho\left(1-\rho^{2}\right) &,
+    && 0 \leq \rho < 1 \\
+  \label{eq:phi}
+  \prob{P}_{\phi} \of{\phi} &= \frac{1}{2\pi} &, && -\pi \leq \phi < \pi
+\end{align}
+where the amplitudes \(\rho\) and phases \(\phi\) are independent of each other
+for any element.
+
+In the case of a \(3 \by 3\) unitary, the first column is
+\begin{equation}
+  U_{0} = \begin{pmatrix}
+    z_{0} \\ z_{1} \\ z_{2}
+  \end{pmatrix} = \begin{pmatrix}
+    \rho_{0} e^{i \phi_{0}} \\
+    \rho_{1} e^{i \phi_{1}} \\
+    \rho_{2} e^{i \phi_{2}}
+  \end{pmatrix}
+\end{equation}
+In terms of my parameterisation, there are five optical elements\footnote{the
+normalisation constraint implies that we only need five degrees of freedom for a
+complex unit vector in three dimensions}: two beamsplitters with reflectivities
+\(r_{1}, r_{2}\) and three phase shifts \(\theta_{0}, \theta_{1}, \theta_{2}\).
+Here I will show explicitly that when these are chosen from the distributions
+\begin{align}
+  \prob{P}_{r_{1}} \of{r_{1}} &= 2 \left( 1-r_{1} \right) &,
+    && 0 \leq r_{1} < 1 \\
+  \prob{P}_{r_{2}} \of{r_{2}} &= 1 &,
+    && 0 \leq r_{2} < 1 \\
+  \prob{P}_{\theta} \of{\theta} &= \frac{1}{2 \pi} &,
+    && -\pi \leq \theta < \pi \\
+  \intertext{(for each of \(\theta_{0}, \theta_{1}, \theta_{2}\))}
+\end{align}
+the distributions of elements in equations \ref{eq:rho} and \ref{eq:phi} are
+recovered, and provide additional numerical evidence of this.
+
+\section{}
+\begin{quote}
+  ``Please update the Appendix to correctly list the preprints as
+  referred to elsewhere in the thesis.''
+\end{quote}
+I have inserted the following text into the appendix, after the list of
+first-author preprints:
+\begin{quote}
+  ``I am co-author on one additional preprint
+  \begin{itemize}
+    \item E. Mart\'in L\'opez, N. J. Russell, C. Sparrow, J. L. O'Brien and A.
+      Laing, ``Quantum simulation of phonons in the harmonic limit'',
+      \textit{in preparation}.''
+  \end{itemize}
+\end{quote}
+
+\section{}
+\begin{quote}
+  ``Please either produce a revised Figure 4.6 or find another way to
+  make sure that this is correctly described''
+\end{quote}
+Figure 4.6 has been revised to show the correct axis labels. The new version
+(figure \ref{fig:manifolds}) is reproduced here.
+\begin{figure}
+  \centering
+  \includegraphics{manifolds}
+  \caption{Revised version of figure 4.6, with the axes correctly labelled.}
+  \label{fig:manifolds}
+\end{figure}
+
+\section{}
+\subsection*{Other minor edits made}
+\begin{enumerate}
+  \item Add number to the three equations formerly missing them.
+  \item Assign different symbols to the figures of merit in section 4.3.2.
+  \item Correct other minor typographical errors (e.g. spelling and
+        punctuation).
+\end{enumerate}
+
+\end{document}

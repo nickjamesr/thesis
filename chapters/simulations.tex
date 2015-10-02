@@ -178,8 +178,8 @@ optical circuit is impractical; fortunately integrated optics provides a
 solution. We use a \(6 \by 6\) integrated circuit to perform the simulations.
 All optical modes are realised in path and reconfigurability is achieved with
 thermal optic phase shifts and Mach Zehnder interferometers. A schematic of the
-circuit is shown in figure~\ref{fig:IC}. Details of its operation not the main
-concern here, and are described in preprint \cite{bigreck}.
+circuit is shown in figure~\ref{fig:IC}. Details of its operation is not the
+main concern here, and are described in preprint \cite{bigreck}.
 
 \section{Data Analysis}
 \subsection{Presentation of Data}
@@ -196,16 +196,27 @@ combinatorially with the number of excitations. However, for the proof of
 principle experiments here, it provides the best evidence of correct operation.
 
 \subsection{Figures of Merit}
-To evaluate the fidelity of our simulations, we look at two measures. The first
-is a trace distance between the unitary matrix that we intended to implement,
-and the matrix that we in fact did implement, according to the data we collect
-\cite{sst}. If the desired unitary is \(\mat{U}\) and the measured unitary
-is \(\mat{U^{\prime}}\), the trace distance, \(F\) is defined by:
-\[F=\frac{1}{2}\abs{\Tr\of{\mat{U}^{\dagger}{\mat{U}^{\prime}}}}\]
-The second measure we use is the Kolmogorov distance, comparing (normalised)
-discrete probability distributions, \(p\) and \(q\). This fidelity is computed
-as:
-\[F=1-\frac{1}{2}\sum_{i}\abs{p_{i}-q_{i}}\]
+To evaluate the fidelity of our simulations, we look at two quantities. The
+first is computed from the trace of the product of the unitary matrix that we
+intended to implement, and the matrix that we in fact did implement, according
+to the data we collect \cite{sst}. If the desired unitary is \(\mat{U}\) and
+the measured unitary is \(\mat{U^{\prime}}\), this fidelity, \(F_{\mathrm{tr}}\)
+is defined by:
+\begin{equation}
+  \label{eq:trace}
+  F_{\mathrm{tr}}=\frac{1}{2}\abs{\Tr\of{\mat{U}^{\dagger}{\mat{U}^{\prime}}}}
+\end{equation}
+In the case of perfect implementation, \(\mat{U}\) and \(\mat{U^{\prime}}\)
+will be the same (and both unitary), yielding unit fidelity; an imperfect
+implementation results in a fidelity less than one.
+
+The second measure we use is computed directly from (normalised) discrete
+probability distributions, \(p\) and \(q\), relating to expected and observed
+photon count rates. We define this fidelity as:
+\begin{equation}
+  \label{eq:kolmogorov}
+  F_{\mathrm{k}}=1-\frac{1}{2}\sum_{i}\abs{p_{i}-q_{i}}
+\end{equation}
 This can be computed for the single photon data without any normalisation, since
 detection probabilities across all output modes must sum to 1. In the case of
 coincidences, we only measure a subset of the possible detection events (in
@@ -328,13 +339,14 @@ regions accounting for \(\pm 1 \sigma\) errors in dialling on the circuit
 parameters (derived from Monte-Carlo simulations of 2000 circuits). Points are
 experimental measurements, with error bars due to Poissonian noise too small to
 see at this scale. Results from the two molecules are superposed on the same
-plots, with OCS in green and \co in blue. We can see for each measured quantity
+plots, with OCS in green and \co{} in blue. We can see for each measured quantity
 the evolution is somewhat similar near the beginning, but rapidly diverges.
 
-The fidelities, expressed as Kolmogorov distance between the expected and
-measured distributions, are summarised in the table below. The mean trace
-distance between the intended and measured unitary across the entire experiment
-was \(0.993 \pm 0.007\), indicating extremely good performance.
+The fidelities (expressed as \(F_{\mathrm{k}}\); see
+equation~\ref{eq:kolmogorov}) between the expected and
+measured distributions, are summarised in the table below. The mean value of
+\(F_{\mathrm{Tr}}\) across the entire experiment was \(0.993 \pm 0.007\),
+indicating extremely good performance.
 
 \begin{tabular}{|l|l|l|l|}
   \hline
@@ -494,7 +506,7 @@ We can expand this model to a 3-site system, where the Hamiltonian is given by:
 \end{equation}
 When \(\gamma=0\), this is familiar in a photonics context as a
 continuously-coupled quantum walk on three modes with uniform coupling between
-the modes. The eigenvalues are \(\left\{ -\sqrt{2} \eta, 0 +\sqrt{2}
+the modes. The eigenvalues are \(\left\{ -\sqrt{2} \eta, 0, +\sqrt{2}
 \eta\right\}\), and the eigenvectors are orthonormal.
 
 In the case \(\gamma \neq 0\), the matrix is no longer Hermitian. Physically,
@@ -634,11 +646,11 @@ Poissonian noise are too small to see at this scale) and lines represent
 theoretical expectations. The dashed black line (not on the same scale) is the
 scale factor, and is unbounded.
 
-In summary, the fidelities obtained are \(0.948 \pm 0.052\) for the trace
-distance, \(0.956 \pm 0.020\) for the single photon data shown and \(0.961 \pm
-0.014\) for the coincidences. Note that the figure for the coincidences takes
-into account the \(S_2 E_1\), \(S_2 E_2\) and \(E_1 E_2\) correlations, which
-are not presented here.
+In summary, the fidelities obtained are \(0.948 \pm 0.052\) for
+\(F_{\mathrm{Tr}}\) , \(0.956 \pm 0.020\) for the single photon data shown and
+\(0.961 \pm 0.014\) for the coincidences. Note that the figure for the
+coincidences takes into account the \(S_2 E_1\), \(S_2 E_2\) and \(E_1 E_2\)
+correlations, which are not presented here.
 
 \subsection{Six Mode Simulation}
 \label{sec:SixMode}
@@ -716,8 +728,8 @@ power remains in the system.
   \label{fig:threesitetwofolds}
 \end{figure}
 
-The fidelities are calculated using the Kolmogorov distance between two
-normalised probability distributions, and summarised below:
+The fidelities, \(F_{\mathrm{k}}\) are calculated according to
+equation~\ref{eq:kolmogorov}, and summarised below:
 
 \begin{tabular}{|l|l|l|l|}
   \hline
