@@ -1,4 +1,124 @@
 \chapter[Parameterisation: a Worked Example]{Parameterisation:\\a Worked Example}
 \label{app:example}
 
-Here is a worked example of a \(3 \by 3\) matrix.
+When expressed in the polar form, \(z=\rho e^{i\phi}\), the elements in Haar
+unitaries are identically (but not independently) distributed according to
+\begin{align}
+  \label{eq:rho}
+  \prob{P}_{\rho} \of{\rho} &= 4\rho\left(1-\rho^{2}\right) &,
+    && 0 \leq \rho < 1 \\
+  \label{eq:phi}
+  \prob{P}_{\phi} \of{\phi} &= \frac{1}{2\pi} &, && -\pi \leq \phi < \pi
+\end{align}
+(see theorem 3.1 of \cite{reffy} and also \cite{haar-entries}),
+where the amplitudes \(\rho\) and phases \(\phi\) are independent of each other
+for any element.
+
+For a \(3 \by 3\) unitary, the first column is
+\begin{equation}
+  U_{0} = \begin{pmatrix}
+    z_{0} \\ z_{1} \\ z_{2}
+  \end{pmatrix} = \begin{pmatrix}
+    \rho_{0} e^{i \phi_{0}} \\
+    \rho_{1} e^{i \phi_{1}} \\
+    \rho_{2} e^{i \phi_{2}}
+  \end{pmatrix}
+\end{equation}
+In terms of my parameterisation, there are five optical elements\footnote{the
+normalisation constraint implies that we only have five degrees of freedom for a
+complex unit vector in three dimensions}: two beamsplitters with reflectivities
+\(r_{1}, r_{2}\) and three phase shifts \(\theta_{0}, \theta_{1}, \theta_{2}\).
+The elements of the unitary are expressed in this parameterisation as
+\begin{align}
+  \rho_{0} &= \sqrt{r_{1}} & \phi_{0} &= \theta_{0} \\
+  \rho_{1} &= \sqrt{1-r_{1}} \sqrt{r_{2}} & \phi_{1} &= \theta_{1} \\
+  \rho_{2} &= \sqrt{1-r_{1}} \sqrt{1-r_{2}} & \phi_{2} &= \theta_{2}
+\end{align}
+Here I will show explicitly that when these are chosen from the distributions
+derived in the thesis
+\begin{align}
+  \prob{P}_{r_{1}} \of{r_{1}} &= 2 \left( 1-r_{1} \right) &,
+    && 0 \leq r_{1} < 1 \\
+  \prob{P}_{r_{2}} \of{r_{2}} &= 1 &,
+    && 0 \leq r_{2} < 1 \\
+  \label{eq:theta}
+  \prob{P}_{\theta_{i}} \of{\theta_{i}} &= \frac{1}{2 \pi} &,
+    && -\pi \leq \theta_{i} < \pi && \left( i=0,1,2 \right)
+\end{align}
+the distributions of elements in equations \ref{eq:rho} and \ref{eq:phi} are
+recovered.
+
+Since there is no transformation involved in the phases, and the distributions
+in equations \ref{eq:phi} and \ref{eq:theta} are identical, it is immediately
+clear that the parameterisation works for the phases. For the amplitudes, I
+begin by introducing new variables to remove the square roots
+\begin{align}
+  s_{1} &= \sqrt{r_{1}} & t_{1} &= \sqrt{1-r_{1}} \\
+  s_{2} &= \sqrt{r_{2}} & t_{2} &= \sqrt{1-r_{2}}
+\end{align}
+These relations are monotonic and all variables are still non-zero only in the
+interval \(\left[ 0,1 \right]\). I perform the necessary transformations to
+derive the probability density functions for these new variables (only \(s_{1}\)
+written out in full):
+\begin{align}
+  \prob{P}_{s_{1}} \of{s_{1}} &= \abs{ \frac{dr_{1}}{ds_{1}} }
+    \prob{P}_{r_{1}} \of{r_{1}} \\
+  &= \left( 2s_{1} \right) \left( 2 \left( 1-s_{1}^{2} \right) \right) \\
+  \label{eq:s1}
+  &= 4 s_{1} \left( 1-s_{1}^{2} \right) \\
+  \label{eq:t1}
+  \prob{P}_{t_{1}} \of{t_{1}} &= 4 t_{1}^{3} \\
+  \label{eq:s2}
+  \prob{P}_{s_{2}} \of{s_{2}} &= 2 s_{2} \\
+  \label{eq:t2}
+  \prob{P}_{t_{2}} \of{t_{2}} &= 2 t_{2}
+\end{align}
+The elements in the first column of the unitary are expressed in these new
+variables as
+\begin{align}
+  \rho_{0} &= s_{1} \\
+  \rho_{1} &= t_{1} s_{2} \\
+  \rho_{2} &= t_{1} t_{2}
+\end{align}
+The distribution for \(s_{1}\) (equation \ref{eq:s1}) matches the expected
+distribution for \(\rho_{0}\) (equation \ref{eq:rho}) so no further work is
+required here. For \(\rho_{1}\) and \(\rho_{2}\), a further transformation is
+necessary. Note that since \(s_{2}\) and \(t_{2}\) are identically distributed,
+I only need to do this once. Standard algebra of random variables states that if
+\(S\) and \(T\) are independent random variables and the random variable \(R =
+ST\), then
+\begin{align}
+  \prob{P}_{R} \of{\rho} &= \int_{-\infty}^{\infty} \prob{P}_{T} \of{t}
+    \prob{P}_{S} \of{\frac{\rho}{t}} \frac{1}{\abs{t}} dt \\
+  \intertext{which is applied to the transformation in question} \\
+  \prob{P}_{\rho_{1}} \of{\rho_{1}} &= \int_{\rho_{1}}^{1} \left( 4 t^{3} \right)
+    \left( \frac{2 \rho_{1}}{t} \right) \frac{1}{t} dt \\
+  &= 8 \rho_{1} \int_{\rho_{1}}^{1} t dt \\
+  &= 4 \rho_{1} \left( 1-\rho_{1}^{2} \right)
+\end{align}
+thus recovering the correct distribution for all elements in the first column of
+the unitary.
+
+Numerical evidence of correct operation is obtained by using my parameterisation
+to generate \(10^{6}\) \(3 \by 3\) unitaries. The distribution of the trace of
+these unitaries is then checked against a known result for \(n \by n\) Haar
+unitaries (see page 55 of~\cite{reffy} in the thesis and also~\cite{diaconis}):
+\begin{align}
+    E_{n,m}
+    &= E \left[ \abs{ \Tr \of{ \mat{U}_{ \left(n\right) }^{m} } }^{2} \right] \\
+    &= \int_{\mat{U}_{ \left(n\right) }} d \mat{U} \abs{ \Tr \of{ \mat{U}_{
+    \left(n\right) }^{m} } }^{2} \\
+    &= \min \of{n,m}
+\end{align}
+The results for the first 6 powers of \( \mat{U} \) are summarised in the table
+below (\(n=3\) throughout), where \(\widetilde{E}_{n,m}\) is the numerical
+estimate of the expectation \(E_{n,m}\).
+
+\def\arraystretch{1.3}
+\begin{tabular}{l|c|c|c|c|c|c}
+  \(m\) & 1 & 2 & 3 & 4 & 5 & 6 \\
+  \hline
+  \(E_{3,m}\) & 1 & 2 & 3 & 3 & 3 & 3 \\
+  \hline
+  \(\widetilde{E}_{3,m}\) & 0.998 & 2.003 & 3.002 & 2.998 & 2.996 & 3.004
+\end{tabular}
