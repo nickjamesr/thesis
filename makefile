@@ -1,5 +1,6 @@
 chapters=$(addprefix chapters/,introduction.tex background.tex dialling.tex \
- simulations.tex qcv.tex hamiltomo.tex conclusions.tex publications.tex)
+ simulations.tex qcv.tex hamiltomo.tex conclusions.tex publications.tex \
+ worked_example.tex)
 
 background_figs=bosonsampling.pdf\
  homwalk.pdf\
